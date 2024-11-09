@@ -1,6 +1,8 @@
-##This is ~./bashrc
+#!/data/data/com.termux/files/usr/bin/bash
 
-export PATH=/data/data/com.termux/files/usr/bin:$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin
+## This is ~./bashrc
+
+export PATH="/data/data/com.termux/files/usr/bin:$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PREFIX/glibc/bin"
 export CLASSPATH=".:/data/data/com.termux/files/usr/lib/antlr-4.13.2-complete.jar:$CLASSPATH"
 alias antlr4='java -jar /data/data/com.termux/files/usr/lib/antlr-4.13.2-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
