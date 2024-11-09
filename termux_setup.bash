@@ -15,3 +15,4 @@ mkdir debian1 && cd debian1 && wget https://raw.githubusercontent.com/AndronixAp
 mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && chmod +x debian-xfce.sh && bash debian-xfce.sh && cd ~
 mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && chmod +x debian.sh && bash debian.sh && cd ~
 cp ~/termux-sh/debian1_setup.sh ~/debian1/debian-fs/root && cp ~/termux-sh/debian2_setup.sh ~/debian2/debian-fs/root && cp ~/termux-sh/debian3_setup.sh ~/debian3/debian-fs/root
+curl -sLo ~/termux-proot.sh https://github.com/Yonle/termux-proot/raw/v1.0.0/termux && chmod +x ~/termux-proot.sh && ~/termux-proot.sh
