@@ -1,1 +1,1 @@
-apt update -y && apt upgrade -y && apt install xfce4 xfce4-goodies
+apt update -y && apt upgrade -y && apt install xfce4 xfce4-goodies -y
