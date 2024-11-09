@@ -1,0 +1,1 @@
+apt update -y && apt upgrade -y && apt install texlive-full
