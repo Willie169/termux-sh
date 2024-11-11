@@ -2,7 +2,8 @@
 
 This repo contains setup bash files for Termux.
 
-- [get_started.bash](get_started.bash): Setup Termux, one Termux proot, three Debian Buster ARM64 proots, and download Debian AMD64 QEMU image.
+- [get_started.bash](get_started.bash): Copy it and run it on Termux to automatically setup Termux using [termux_setup.bash](termux_setup.bash).
+- [termux_setup.bash](termux_setup.bash): Termux setup scripts for developers, including packages, shortcuts, one Termux proot, three Debian buster ARM64 proots, and download Debian bookworm AMD64 QEMU image.
 - [DOTbashrc](DOTbashrc): `.bashrc` for Termux.
 - [DOTshortcuts](DOTshortcuts): Shortcuts for Termux:Widget.
 - [termux_setup.bash](termux_setup.bash) for main setup script.
