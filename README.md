@@ -6,4 +6,4 @@ Bash files for Termux.
 - [termux_setup.bash](termux_setup.bash) for main setup script.
 - [debian1_setup.sh](debian1_setup.sh): Setup for texlive-full.
 - [debian2_setup.sh](debian2_setup.sh): Setup for GUI.
-- [debian3_setup.sh](debian3_setup.sh): Setup for developers 
+- [debian3_setup.sh](debian3_setup.sh): Setup for developers.
