@@ -1,1 +1,1 @@
-apt update -y && apt upgrade -y && apt install texlive-full -y
+apt update -y && apt upgrade -y && apt install texlive-full nano vim -y
