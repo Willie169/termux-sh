@@ -7,7 +7,4 @@ wget http://ftp.debian.org/debian/pool/main/p/python3-defaults/python3-venv_3.12
 dpkg -i python3-venv_3.12.6-1_arm64.deb
 wget http://ftp.debian.org/debian/pool/main/p/python-pip/python3-pip_24.3.1+dfsg-1_all.deb
 dpkg -i python3-pip_24.3.1+dfsg-1_all.deb
-python3 -m venv myenv
-source myenv/bin/activate
-python3 get-pip.py
 pip3 install numpy sympy matplotlib setup tools selenium jupyter pandas meson conda
