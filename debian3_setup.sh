@@ -6,4 +6,4 @@ wget https://bootstrap.pypa.io/pip/3.7/get-pip.py
 python3 -m venv myenv
 source myenv/bin/activate
 python3 get-pip.py
-pip3 install numpy sympy matplotlib setuptools selenium jupyter pandas meson conda
+pip3 install numpy sympy matplotlib setuptools selenium jupyter pandas meson
