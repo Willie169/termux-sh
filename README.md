@@ -10,5 +10,6 @@ This repo contains setup bash files for Termux.
 - [debian1_setup.sh](debian1_setup.sh): Setup for texlive-full.
 - [debian2_setup.sh](debian2_setup.sh): Setup for GUI.
 - [debian3_setup.sh](debian3_setup.sh): Setup for developers.
+- [debian_amd64.sh](debian_amd64.sh): Setup for developers on Debian AMD64, e.g. the QEMU downloaded in [termux_setup.bash](termux_setup.bash).
 
 Look into the files for more information.
