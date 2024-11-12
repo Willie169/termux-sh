@@ -17,6 +17,6 @@ Look into the files for more information.
 
 References:
 - [https://ivonblog.com](https://ivonblog.com).
--[https://wiki.termux.com/wiki/Main_Page](https://wiki.termux.com/wiki/Main_Page).
+- [https://wiki.termux.com/wiki/Main_Page](https://wiki.termux.com/wiki/Main_Page).
 - [https://ryanfortner.github.io](https://ryanfortner.github.io).
 - [https://www.qemu.org](https://www.qemu.org).
