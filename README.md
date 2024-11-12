@@ -9,7 +9,7 @@ This repo contains setup bash files for Termux.
 - [debian1_setup.sh](debian1_setup.sh): Setup for texlive-full, will be placed in debian1's root after installation.
 - [debian2_setup.sh](debian2_setup.sh): Setup for GUI, will be placed in debian2's root after installation.
 - [debian3_setup.sh](debian3_setup.sh): Setup for developers, will be placed in debian3's root after installation.
-- [debian_amd64.sh](debian_amd64.sh): Setup for developers on Debian AMD64. For example , you can copy is and run in the QEMU Debian bookworm AMD64 downloaded in [termux_setup.bash](termux_setup.bash).
+- [debian_bookworm.sh](debian_bookworm.sh): Setup for developers for Debian bookworm. For example , you can copy it and run it in the QEMU Debian bookworm AMD64 or proot-distro Debian bookworm ARM64 installed in [termux_setup.bash](termux_setup.bash).
 - [qemu_resize.md](qemu_resize.md): Commands about how to resize the QEMU VM's disk space.
 
 Look into the files for more information.
