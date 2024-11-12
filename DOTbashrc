@@ -8,7 +8,7 @@ export GOROOT=/data/data/com.termux/files/usr/lib/go
 export GOPATH=~/go
 alias cptorcc='cp ~/.torrc_file/charging/torrc $PREFIX/etc/tor/torrc'
 alias cptorncc='cp ~/.torrc_file/notcharging/torrc $PREFIX/etc/tor/torrc'
-alias sc=source
+alias src=source
 
 torch() {
     battery_status=$(termux-battery-status)
