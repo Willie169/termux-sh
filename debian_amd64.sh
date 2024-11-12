@@ -1,1 +1,1 @@
-apt update -y && apt upgrade -y && apt install build-essential cmake python3-all-dev python3-pip python3-venv openjdk-17-jdk curl wget git gh nano vim iproute2 procps grep libboost-all-dev gdb tmux nodejs ssh -y
+apt update -y && apt upgrade -y && apt install build-essential cmake python3-all-dev python3-pip python3-venv openjdk-17-jdk curl wget git gh nano vim iproute2 procps grep libboost-all-dev gdb tmux nodejs ssh rust go -y
