@@ -1,5 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-pkg install android-tools apksigner automake bash build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dpkg fdroidcl ffmpeg fontconfig-utils fontconfig freetype gdb gh git glab-cli golang grep iproute2 make maven mc nano neovim nodejs openjdk-17-x openjdk-17 openssh-sftp-server openssh openssl-tool openssl perl procps proot python-ensurepip-wheels python-pip python qemu-common qemu-utils rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tmux tor torsocks vim wget which x11-repo -y
+pkg install android-tools apksigner automake bash build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dpkg fdroidcl ffmpeg fontconfig-utils fontconfig freetype gdb gh git glab-cli golang grep iproute2 make maven mc nano neovim nodejs openjdk-17-x openjdk-17 openssh-sftp-server openssh openssl-tool openssl perl procps proot proot-distro python-ensurepip-wheels python-pip python qemu-common qemu-utils rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tmux tor torsocks vim wget which x11-repo -y
 pkg install termux-x11-nightly -y
 apt install qemu-system-x86_64 tigervnc xfce4 -y
 cd ~ && mkdir -p .shortcuts && cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts && cp ~/termux-sh/DOTbashrc ~/.bashrc && cp ~/termux-sh/DOTshortcuts/* ~
@@ -16,3 +16,4 @@ mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixAp
 mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && chmod +x debian.sh && bash debian.sh && cd ~
 cp ~/termux-sh/debian1_setup.sh ~/debian1/debian-fs/root && cp ~/termux-sh/debian2_setup.sh ~/debian2/debian-fs/root && cp ~/termux-sh/debian3_setup.sh ~/debian3/debian-fs/root
 curl -sLo ~/termux-proot.sh https://github.com/Yonle/termux-proot/raw/v1.0.0/termux && chmod +x ~/termux-proot.sh && ~/termux-proot.sh
+proot-distro install debian
