@@ -11,6 +11,6 @@ This repo contains setup bash files for Termux.
 - [debian3-setup.sh](debian3-setup.sh): Setup for developers, will be placed in debian3's root after installation.
 - [debian-bookworm.sh](debian-bookworm.sh): Setup for developers for Debian bookworm. For example , you can copy it and run it in the QEMU Debian bookworm AMD64 or proot-distro Debian bookworm ARM64 installed in [termux-setup.bash](termux-setup.bash).
 - [qemu-resize.md](qemu-resize.md): Commands about how to resize the QEMU VM's disk space.
-- [box86-box64-wine64-winetricks64.sh](box86-box64-wine64-winetricks64.sh): Install and setup box86, box64, wine64, and winetricks64, copy and run it on the Debian bookworm ARM64 installed via proot-distro.
+- [box86-box64-wine-winetricks.sh](box86-box64-wine-winetricks.sh): Install and setup box86, box64, wine, and winetricks, copy and run it on the Debian bookworm ARM64 installed via proot-distro.
 
 Look into the files for more information.
