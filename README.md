@@ -14,3 +14,9 @@ This repo contains setup bash files for Termux.
 - [box86-box64-wine-winetricks.sh](box86-box64-wine-winetricks.sh): Install and setup box86, box64, wine, and winetricks, run it on the Debian bookworm ARM64 installed via proot-distro.
 
 Look into the files for more information.
+
+References:
+- [https://ivonblog.com](https://ivonblog.com).
+-[https://wiki.termux.com/wiki/Main_Page](https://wiki.termux.com/wiki/Main_Page).
+- [https://ryanfortner.github.io](https://ryanfortner.github.io).
+- [https://www.qemu.org](https://www.qemu.org).
