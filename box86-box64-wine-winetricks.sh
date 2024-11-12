@@ -5,14 +5,13 @@ wget https://ryanfortner.github.io/box86-debs/box86.list -O /etc/apt/sources.lis
 wget -qO- https://ryanfortner.github.io/box86-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box86-debs-archive-keyring.gpg
 wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list
 wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg
-apt install box86-android box64-android nano cabextract libfreetype6 libfreetype6:armhf libfontconfig libfontconfig:armhf libxext6 libxext6:armhf libxinerama-dev libxinerama-dev:armhf libxxf86vm1 libxxf86vm1:armhf libxrender1 libxrender1:armhf libxcomposite1 libxcomposite1:armhf libxrandr2 libxrandr2:armhf libxi6 libxi6:armhf libxcursor1 libxcursor1:armhf libvulkan-dev libvulkan-dev:armhf zenity mesa-vulkan-drivers mesa-vulkan-drivers:armhf libvulkan1 libvulkan1:armhf -y
-wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.7/wine-9.7-amd64.tar.xz
-wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.7/wine-9.7-x86.tar.xz
-tar xvf wine-9.7-amd64.tar.xz
-tar xvf wine-9.7-x86.tar.xz
-rm wine-9.7-amd64.tar.xz wine-9.7-x86.tar.xz
-mv wine-9.7-amd64 wine64
-mv wine-9.7-x86 wine
+apt update && apt install box86-android box64-android nano cabextract libfreetype6 libfreetype6:armhf libfontconfig libfontconfig:armhf libxext6 libxext6:armhf libxinerama-dev libxinerama-dev:armhf libxxf86vm1 libxxf86vm1:armhf libxrender1 libxrender1:armhf libxcomposite1 libxcomposite1:armhf libxrandr2 libxrandr2:armhf libxi6 libxi6:armhf libxcursor1 libxcursor1:armhf libvulkan-dev libvulkan-dev:armhf zenity mesa-vulkan-drivers mesa-vulkan-drivers:armhf libvulkan1 libvulkan1:armhf -y
+wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.21/wine-9.21-amd64.tar.xz
+wget https://github.com/Kron4ek/Wine-Builds/releases/download/9.21/wine-9.21-x86.tar.xz
+tar xvf wine-9.21-amd64.tar.xz
+tar xvf wine-9.21-x86.tar.xz
+mv wine-9.21-amd64 wine64
+mv wine-9.21-x86 wine
 echo '#!/bin/bash
 export WINEPREFIX=~/.wine32
 box86 '"$HOME/wine/bin/wine "'"$@"' > /usr/local/bin/wine
@@ -48,4 +47,4 @@ WINEPREFIX=~/.wine64
 cp x64/* "$WINEPREFIX/drive_c/windows/system32"
 cp x64/*.dll "$WINEPREFIX/drive_c/windows/syswow64"
 cd ~/
-rm -rf dxvk-2.4.1.tar.gz dxvk-2.4.1
+rm -rf wine-9.21-amd64.tar.xz wine-9.21-x86.tar.xz dxvk-2.4.1.tar.gz
