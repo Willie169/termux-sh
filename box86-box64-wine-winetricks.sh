@@ -40,11 +40,12 @@ export BOX64_NOBANNER=1 WINE=wine64 WINEPREFIX=~/.wine64 WINESERVER=~/wine64/bin
 wine64 '"/usr/local/bin/winetricks "'"$@"' > /usr/local/bin/winetricks64
 chmod +x /usr/local/bin/winetricks64
 wget https://github.com/doitsujin/dxvk/releases/download/v2.4.1/dxvk-2.4.1.tar.gz
-tar -xvf dxvk-2.4.1.tar.gz
-cd dxvk-2.4.1
-cp x32/* ~/.wine32/drive_c/windows/system32
-cp x32/* ~/.wine64/drive_c/windows/system32
-cp x64/* ~/.wine64/drive_c/windows/syswow64
-export WINEPREFIX=~/.wine
-cp x64/*.dll $WINEPREFIX/drive_c/windows/system32
-cp x32/*.dll $WINEPREFIX/drive_c/windows/syswow64
+tar -xvf dxvk-2.4.1.tar.gz && cd dxvk-2.4.1
+WINEPREFIX=~/.wine32
+cp x32/* "$WINEPREFIX/drive_c/windows/system32"
+cp x32/*.dll "$WINEPREFIX/drive_c/windows/syswow64"
+WINEPREFIX=~/.wine64
+cp x64/* "$WINEPREFIX/drive_c/windows/system32"
+cp x64/*.dll "$WINEPREFIX/drive_c/windows/syswow64"
+cd ~/
+rm -rf dxvk-2.4.1.tar.gz dxvk-2.4.1
