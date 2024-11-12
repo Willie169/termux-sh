@@ -3,7 +3,7 @@
 This repo contains setup bash files for Termux.
 
 - [get_started.bash](get_started.bash): Copy it and run it on Termux to automatically setup Termux using [termux_setup.bash](termux_setup.bash).
-- [termux_setup.bash](termux_setup.bash): Termux setup scripts for developers, including packages, shortcuts, one Termux proot, three Debian buster ARM64 proots using Andronix's script, and download Debian bookworm AMD64 QEMU image from its official website.
+- [termux_setup.bash](termux_setup.bash): Termux setup scripts for developers, including packages, shortcuts, one Termux proot, three Debian buster ARM64 proots using Andronix's script, download Debian bookworm AMD64 QEMU image from its official website, and install a proot Debian bookworm ARM64 via proot-distro.
 - [DOTbashrc](DOTbashrc): My `.bashrc` for Termux.
 - [DOTshortcuts](DOTshortcuts): Shortcuts for Termux:Widget.
 - [debian1_setup.sh](debian1_setup.sh): Setup for texlive-full, will be placed in debian1's root after installation.
