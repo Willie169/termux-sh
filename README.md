@@ -8,9 +8,8 @@ This repo contains setup bash files for Termux.
 - [DOTshortcuts](DOTshortcuts): Shortcuts for Termux:Widget.
 - [debian1-setup.sh](debian1-setup.sh): Setup for texlive-full, will be placed in debian1's root after installation.
 - [debian2-setup.sh](debian2-setup.sh): Setup for GUI, will be placed in debian2's root after installation.
-- [debian3-setup.sh](debian3-setup.sh): Setup for developers, will be placed in debian3's root after installation.
-- [debian-bookworm-non-proot.sh](debian-bookworm-non-proot.sh): Setup for developers for Debian bookworm that isn't proot or other emulation or virtualization that is externally managed. For example, you can copy it and run it in the QEMU Debian bookworm AMD64. 
-- [debian-bookworm-proot.sh](debian-bookworm-proot.sh): Setup for developers for Debian bookworm that is proot or other emulation or virtualization that is externally managed. For example, you can copy it and run it in the proot-distro Debian bookworm ARM64.
+- [debian3-setup.sh](debian3-setup.sh): Setup for developers, will be placed in debian3's root after installation. 
+- [debian-bookworm.sh](debian-bookworm.sh): Setup for developers for Debian bookworm that is externally managed. For example, you can copy it and run it in the proot-distro Debian bookworm ARM64 and the QEMU Debian bookworm AMD64.
 - [qemu-resize.md](qemu-resize.md): Commands and tutorial about how to resize the QEMU VM's disk space.
 - [box64-wine64-winetricks.sh](box64-wine64-winetricks.sh): Install and setup box64, wine64, and winetricks to be ran on a Debian bookworm ARM64, such as the proot-distro Debian bookworm ARM64.
 - [xmrig-install.sh](xmrig-install.sh): Clone and compile xmrig, a Monero (XMR) miner.
