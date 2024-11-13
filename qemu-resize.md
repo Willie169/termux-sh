@@ -5,7 +5,7 @@
 <p>Change <code>debian-12-nocloud-amd64.qcow2</code> to the real file name. <code>+20G</code> indicates increasing 20GB disk image. You can adjust the size as needed.<br />
 Inside VM, run:</p>
 <pre><code>sudo apt update
-sudo apt install parted e2fsprogs
+sudo apt install parted e2fsprogs -y
 sudo parted /dev/sda
 print
 fix
