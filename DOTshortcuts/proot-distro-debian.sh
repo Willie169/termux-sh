@@ -1,1 +1,1 @@
-proot-distro login debian --isolated --fix-low-ports --shared-tmp
+proot-distro login debian --isolated --fix-low-ports
