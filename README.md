@@ -13,7 +13,7 @@ This repo contains setup bash files for Termux.
 - [qemu-resize.md](qemu-resize.md): Commands and tutorial about how to resize the QEMU VM's disk space.
 - [box64-wine64-winetricks.sh](box64-wine64-winetricks.sh): Install and setup box64, wine64, and winetricks to be ran on a Debian bookworm ARM64, such as the proot-distro Debian bookworm ARM64.
 - [xmrig-install.sh](xmrig-install.sh): Clone and compile xmrig, a Monero (XMR) miner.
-- [proot-distro-debian01.sh](proot-distro-debian01.sh): proot-distro install Debian bookworm ARM64 with overridden alias debian01.
+- [proot-install-debian01.sh](proot-install-debian01.sh): proot-distro install Debian bookworm ARM64 with overridden alias debian01.
 
 Look into the files for more information.
 
