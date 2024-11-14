@@ -3,7 +3,7 @@
 This repo contains setup bash files for Termux.
 
 - [get-started.sh](get-started.sh): Copy it and run it on Termux to automatically setup Termux using [termux_setup.bash](termux_setup.bash).
-- [termux-setup.sh](termux-setup.sh): Termux setup scripts for developers, including packages, shortcuts, one Termux proot, three Debian buster ARM64 proots using Andronix's script, download Debian bookworm AMD64 QEMU image from its official website, and install a proot Debian bookworm ARM64 via proot-distro.
+- [termux-setup.sh](termux-setup.sh): Termux setup scripts for developers, including packages, shortcuts, one Termux proot, three Debian buster ARM64 proots using Andronix's script, download Debian bookworm AMD64 QEMU image from its official website, and install a proot-distro Debian bookworm ARM64.
 - [DOTbashrc](DOTbashrc): My `.bashrc` for Termux.
 - [DOTshortcuts](DOTshortcuts): Shortcuts for Termux:Widget.
 - [debian1-setup.sh](debian1-setup.sh): Setup for texlive-full, will be placed in debian1's root after installation.
@@ -13,6 +13,7 @@ This repo contains setup bash files for Termux.
 - [qemu-resize.md](qemu-resize.md): Commands and tutorial about how to resize the QEMU VM's disk space.
 - [box64-wine64-winetricks.sh](box64-wine64-winetricks.sh): Install and setup box64, wine64, and winetricks to be ran on a Debian bookworm ARM64, such as the proot-distro Debian bookworm ARM64.
 - [xmrig-install.sh](xmrig-install.sh): Clone and compile xmrig, a Monero (XMR) miner.
+- [proot-distro-install-override-alias.sh](proot-distro-install-override-alias.sh): proot-distro install Debian bookworm with overridden alias debian01.
 
 Look into the files for more information.
 
