@@ -20,10 +20,10 @@ Look into the files for more information.
 
 References:
 - [https://ivonblog.com](https://ivonblog.com).
-- [https://wiki.termux.com/wiki/Main_Page](https://wiki.termux.com/wiki/Main_Page).
+- [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
+- [https://wiki.termux.com](https://wiki.termux.com).
 - [https://ryanfortner.github.io](https://ryanfortner.github.io).
 - [https://www.qemu.org](https://www.qemu.org).
 - [https://andronix.app](https://andronix.app).
 - [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
-- [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
