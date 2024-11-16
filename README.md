@@ -2,9 +2,9 @@
 
 This repo contains setup bash files for Termux.
 
-- [get-started.sh](get-started.sh): Copy it and run it on Termux to automatically setup Termux using [termux_setup.bash](termux_setup.bash).
-- [termux-setup.sh](termux-setup.sh): Termux setup scripts for developers, including packages, shortcuts, one Termux proot, three Debian buster ARM64 proots using Andronix's script, download Debian bookworm AMD64 QEMU image from its official website, and install a proot-distro Debian bookworm ARM64.
-- [DOTbashrc](DOTbashrc): My `.bashrc` for Termux.
+- [get-started.sh](get-started.sh): Copy and run it on Termux to setup Termux for developing using [termux-setup.sh](termux-setup.sh).
+- [termux-setup.sh](termux-setup.sh): Termux setup script for developing, including packages installation, shortcuts for Termux:Widget, one Termux proot installation, three Debian buster ARM64 proot installation using [Andronix](https://github.com/AndronixApp/AndronixOrigin)'s scripts, download Debian bookworm AMD64 QEMU image from its official website, and install a proot-distro Debian bookworm ARM64.
+- [DOTbashrc](DOTbashrc): `.bashrc` for Termux.
 - [DOTshortcuts](DOTshortcuts): Shortcuts for Termux:Widget.
 - [debian1-setup.sh](debian1-setup.sh): Setup for texlive-full, will be placed in debian1's root after installation.
 - [debian2-setup.sh](debian2-setup.sh): Setup for GUI, will be placed in debian2's root after installation.
@@ -24,5 +24,6 @@ References:
 - [https://ryanfortner.github.io](https://ryanfortner.github.io).
 - [https://www.qemu.org](https://www.qemu.org).
 - [https://andronix.app](https://andronix.app).
+- [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
 - [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
