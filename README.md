@@ -25,3 +25,4 @@ References:
 - [https://www.qemu.org](https://www.qemu.org).
 - [https://andronix.app](https://andronix.app).
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
+- [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
