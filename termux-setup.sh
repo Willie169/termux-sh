@@ -3,7 +3,7 @@ pkg install android-tools apksigner automake bash build-essential bzip2 clang cm
 pkg install termux-x11-nightly -y
 apt install qemu-system-x86_64 tigervnc xfce4 -y
 cd ~ && mkdir -p .shortcuts && cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts && cp ~/termux-sh/DOTbashrc ~/.bashrc && cp ~/termux-sh/DOTshortcuts/* ~
-source .bashrc && chmod +x ~/.shortcuts/*sh && chmod +x ~/*sh
+source .bashrc && chmod +x ~/.shortcuts/*.sh && chmod +x ~/*.sh
 sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings        && wget 'https://github.com/termux/termux-x11/releases/download/nightly/termux-x11-nightly-1.03.01-0-all.deb' -O termux-x11-nightly-all.deb && dpkg -i termux-x11-nightly-all.deb
 wget https://andronixos.sfo2.cdn.digitaloceanspaces.com/OS-Files/setup-audio.sh && chmod +x setup-audio.sh && ./setup-audio.sh
 wget https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.qcow2
