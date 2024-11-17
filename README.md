@@ -14,7 +14,7 @@ This repository contains setup bash files for Termux.
 - [box64-wine64-winetricks.sh](box64-wine64-winetricks.sh): Install and setup box64, wine64, and winetricks to be ran on a Debian bookworm ARM64, such as the proot-distro Debian bookworm ARM64.
 - [xmrig-install.sh](xmrig-install.sh): Clone and compile xmrig, the official Monero (XMR) miner.
 - [proot-install-debian01.sh](proot-install-debian01.sh): Install proot-distro Debian bookworm ARM64 with overridden alias "debian01".
-- [proot-install-nethunter.sh](proot-install-nethunter.sh): Install proot-distro Kali Linux Nethunter from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, enter "KBDEXKMTE" for everything. Boot it with `<shortcut> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`.
+- [proot-install-nethunter.sh](proot-install-nethunter.sh): Install proot-distro Kali Linux Nethunter from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, enter "KBDEXKMTE" for everything. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`.
 
 Look into the files for more information.
 
