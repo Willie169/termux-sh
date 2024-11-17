@@ -1,6 +1,6 @@
 # termux-sh
 
-This repo contains setup bash files for Termux.
+This repository contains setup bash files for Termux.
 
 - [get-started.sh](get-started.sh): Copy and run it on Termux to setup Termux for developing using [termux-setup.sh](termux-setup.sh).
 - [termux-setup.sh](termux-setup.sh): Termux setup script for developing, including installing packages, copying shortcuts for Termux:Widget and in `~`, installng one Termux proot with [termux-proot.sh](DOTshortcuts/termux-proot.sh), which can be booted using the same shortcut, installing three Debian buster ARM64 proot with [Andronix](https://github.com/AndronixApp/AndronixOrigin)'s scripts in three folders in `~` named debian1, debian2, and debian3, downloading [Debian bookworm AMD64 QEMU image from its official website](https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.qcow2), and installing a proot-distro Debian bookworm ARM64.
