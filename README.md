@@ -14,11 +14,10 @@ This repository contains setup Bash scripts and related files for automating the
 ### **[termux-setup-all.sh](termux-setup-all.sh)**
    - A comprehensive setup script that installs essential packages, configures shortcuts, and sets up all supported environments (excluding QEMU).
    - **Key features:**
-     1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, SSL, SSH, FFMPEG, Maven, XFCE4, and more.
+     1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, SSL, SSH, FFMPEG, Maven, Termux-X11, XFCE4, and more.
      2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`).
      3. **Proot setup**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
      4. **Termux property adjustments**: Enables external app access via `termux.properties`.
-     5. **Termux-X11 installation**: Installs the nightly version of Termux-X11.
      6. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh`.
      7. **QEMU image download**: Fetches the Debian Bookworm AMD64 image.
      8. **Fabric installation**: Installs [fabric](https://github.com/danielmiessler/fabric), a modular AI framework.
