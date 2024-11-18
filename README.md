@@ -17,7 +17,7 @@ A comprehensive setup script that installs essential packages, configures shortc
 
 **Key features:**
 
-1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, FFMPEG, Maven, Termux-X11, XFCE4, and more.
+1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, and more.
 2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`).
 2. **Proot setup**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
 2. **Termux property adjustments**: Enables external app access via `termux.properties`.
