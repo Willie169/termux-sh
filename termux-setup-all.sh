@@ -16,7 +16,7 @@ mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixAp
 cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cp ~/termux-sh/debian3-setup.sh ~/debian3/debian-fs/root
 curl -sLo ~/termux-proot.sh https://github.com/Yonle/termux-proot/raw/v1.0.0/termux && chmod +x ~/termux-proot.sh && echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | ~/termux-proot.sh
 proot-distro install debian
-echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh && exit' | ./debian1.sh
-echo 'chmod +x debian2-setup.sh && ./debian2-setup.sh && exit' | ./debian2.sh
-echo 'chmod +x debian3-setup.sh && ./debian3-setup.sh && exit' | ./debian3.sh
-cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh
+echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit' | ./debian1.sh && cd ~
+echo 'chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian1-setup.sh && exit' | ./debian2.sh && cd ~
+echo 'chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian1-setup.sh && exit' | ./debian3.sh && cd ~
+cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh && cd ~
