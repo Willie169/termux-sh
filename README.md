@@ -13,7 +13,7 @@ This repository contains setup Bash scripts and related files for automating the
 
 ### **[termux-setup-all.sh](termux-setup-all.sh)**
 
-A comprehensive setup script that installs essential packages, configures shortcuts, and sets up all supported environments (excluding QEMU setup).
+A comprehensive setup script that installs essential packages, configures shortcuts, and sets up proot environments.
 
 **Key features:**
 
@@ -28,7 +28,7 @@ A comprehensive setup script that installs essential packages, configures shortc
 2. **Andronix Debian environments**: 
 - Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective setup scripts from [Andronix](https://andronix.app).
 2. **Proot-distro environments**:
-- Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01` using [proot-install-debian.sh](proot-install-debian.sh) and [proot-install-debian01.sh](proot-install-debian01.sh).
+- Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01`, the latter using [proot-install-debian01.sh](proot-install-debian01.sh).
 2. **Environment setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
