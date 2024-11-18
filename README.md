@@ -4,7 +4,7 @@ This repository contains setup bash scripts and related files for automating the
 
 ### 1. **[get-started.sh](get-started.sh)**
    - A quick-start script for Termux. Simply copy and execute this script to initialize Termux with basic configurations.  
-   - It primarily calls the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
+   - It calls the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
 
 ### 2. **[termux-setup-all.sh](termux-setup-all.sh)**
    - A comprehensive Termux setup script that installs essential packages, configures shortcuts, and sets up various environments (except the QEMU image).  
@@ -15,8 +15,8 @@ This repository contains setup bash scripts and related files for automating the
      4. **Install Termux-X11**: Install the nightly version for GUI support.
      5. **Audio configuration**: Downloads and executes [Andronix](https://andronix.app)'s `setup-audio.sh` to enable audio output.
      6. **Download QEMU image**: Fetches the Debian Bookworm AMD64 image.
-     7. **Install Node.js tools**: Installs libraries for HTML and Markdown.
-     8. **Font setup**: Downloads custom fonts for Termux.
+     7. **Install Node.js tools**: Installs node-html-markdown, showdown, and jsdom.
+     8. **Font setup**: Downloads [msyh.ttc]() for Termux.
      9. **Install Termux proot**: Sets up Termux proot using [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
      10. **Install Andronix Debian environments**: 
          - Creates three Debian Buster ARM64 proot environments (`debian1`, `debian2`, `debian3`).
