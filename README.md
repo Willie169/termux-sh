@@ -44,7 +44,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 - [`kali.sh`](DOTshortcuts/kali.sh): Boot the Kali Nethunter `KBDEXKMTE` proot-distro as user `kali`.
 - [`termux-proot.sh`](DOTshortcuts/termux-proot.sh): Boot the Termux proot.
 - [`qemu-cli.sh`](DOTshortcuts/qemu-cli.sh): Start a headless QEMU VM running Debian Bookworm AMD64, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
-- [`qemu-gui.sh`](DOTshortcuts/qemu-gui.sh): Start a QEMU VM with GUI support via VNC, using the same Debian Bookworm image and configuration as `qemu-cli.sh`.
+- [`qemu-gui.sh`](DOTshortcuts/qemu-gui.sh): Start a QEMU VM with GUI support via VNC, using the same Debian Bookworm image and configuration as [`qemu-cli.sh`](DOTshortcuts/qemu-cli.sh).
 
 ### Utility Scripts
 
