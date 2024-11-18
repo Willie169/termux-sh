@@ -9,6 +9,7 @@ This repository contains setup Bash scripts and related files for automating the
 ### **[get-started.sh](get-started.sh)**
    - A quick-start script for Termux. Copy and execute this script to initialize Termux with predefined configurations.  
    - This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
+   - It consumes about 14.7 GB of storage space to setup Termux with **[termux-setup-all.sh](termux-setup-all.sh)**. 
 
 ### **[termux-setup-all.sh](termux-setup-all.sh)**
    - A comprehensive setup script that installs essential packages, configures shortcuts, and sets up all supported environments (excluding QEMU).
@@ -48,7 +49,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 
 - [`gitPull.sh`](DOTshortcuts/gitPull.sh): `git pull` all repositories in `~/gh`.
 - [`code.sh`](DOTshortcuts/code.sh), [`download.sh`](DOTshortcuts/download.sh): `cd /storage/emulated/0/Documents/code` and `cd /storage/emulated/0/Download` respectively.
-- [`xmrig.sh`](DOTshortcuts/xmrig.sh): Mine XMR to a wallet of [**the repository owner**](https://github.com/Willie169) (`48j6iQDeCSDeH46gw4dPJnMsa6TQzPa6WJaYbBS9JJucKqg9Mkt5EDe9nSkES3b8u7V6XJfL8neAPAtbEpmV2f4XC7bdbkv`) using `xmrig`, which is not installed in the [main setup workflow](#main-setup-workflow) and can be installed with [xmrig-install.sh](xmrig-install.sh).
+- [`xmrig.sh`](DOTshortcuts/xmrig.sh): Mine XMR to a wallet of [**the repository owner**](https://github.com/Willie169) (`48j6iQDeCSDeH46gw4dPJnMsa6TQzPa6WJaYbBS9JJucKqg9Mkt5EDe9nSkES3b8u7V6XJfL8neAPAtbEpmV2f4XC7bdbkv`) using [xmrig](https://github.com/xmrig/xmrig), which is not installed in the [main setup workflow](#main-setup-workflow) and can be installed with [xmrig-install.sh](xmrig-install.sh).
 - [shizuku.sh](DOTshortcuts/shizuku.sh): `cd shizuku` and `sh rish`. This is a shortcuts for [Shizuku](https://github.com/RikkaApps/Shizuku), which is not configured in the scripts in this repository.
 
 ### [DOTbashrc](DOTbashrc)
@@ -98,7 +99,7 @@ These scripts are not called by main setup script in this repo. Run it separatel
   Provides instructions and scripts for resizing QEMU virtual disk images.
   
 - **[xmrig-install.sh](xmrig-install.sh)**:  
-  Clone and compile xmrig, an open source Monero (XMR) miner.
+  Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
 
 - **[proot-install-nethunter.sh](proot-install-nethunter.sh)**:  
   Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, "KBDEXKMTE" for everything. The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`.
