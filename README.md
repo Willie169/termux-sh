@@ -16,18 +16,18 @@ This repository contains setup Bash scripts and related files for automating the
    - **Key features:**
      1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, SSL, SSH, FFMPEG, Maven, Termux-X11, XFCE4, and more.
      2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`).
-     3. **Proot setup**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
-     4. **Termux property adjustments**: Enables external app access via `termux.properties`.
-     6. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh`.
-     7. **QEMU image download**: Fetches the Debian Bookworm AMD64 image.
-     8. **Fabric installation**: Installs [fabric](https://github.com/danielmiessler/fabric), a modular AI framework.
-     9. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
-     10. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
-     11. **Andronix Debian environments**: 
+     2. **Proot setup**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
+     2. **Termux property adjustments**: Enables external app access via `termux.properties`.
+     2. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh`.
+     2. **QEMU image download**: Fetches the Debian Bookworm AMD64 image.
+     2. **Fabric installation**: Installs [fabric](https://github.com/danielmiessler/fabric), a modular AI framework.
+     2. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
+     2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
+     2. **Andronix Debian environments**: 
          - Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective setup scripts.
-     12. **Proot-distro environments**:
+     2. **Proot-distro environments**:
          - Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01`.
-     13. **Environment setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
+     2. **Environment setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
 
