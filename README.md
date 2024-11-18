@@ -9,7 +9,7 @@ This repository contains setup Bash scripts and related files for automating the
 ### **[get-started.sh](get-started.sh)**
    - A quick-start script for Termux. Copy and execute this script to initialize Termux with predefined configurations.  
    - This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
-   - It occupies about 15.1GB storage space to setup Termux with **[termux-setup-all.sh](termux-setup-all.sh)**.
+   - It occupies about 15GB storage space to setup Termux with **[termux-setup-all.sh](termux-setup-all.sh)**.
 
 ### **[termux-setup-all.sh](termux-setup-all.sh)**
 
