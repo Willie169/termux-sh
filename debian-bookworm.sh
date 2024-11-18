@@ -2,6 +2,3 @@ apt update && apt upgrade -y && apt install automake bash build-essential bzip2 
 python3 -m venv myenv
 source myenv/bin/activate
 pip3 install numpy sympy matplotlib setuptools selenium jupyter pandas meson ninja
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.bashrc
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
