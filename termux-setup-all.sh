@@ -14,7 +14,7 @@ mkdir debian1 && cd debian1 && wget https://raw.githubusercontent.com/AndronixAp
 mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && chmod +x debian-xfce.sh && echo 'exit' | bash debian-xfce.sh && cd ~
 mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && chmod +x debian.sh && echo 'exit' | bash debian.sh && cd ~
 cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cp ~/termux-sh/debian3-setup.sh ~/debian3/debian-fs/root
-curl -sLo ~/termux-proot.sh https://github.com/Yonle/termux-proot/raw/v1.0.0/termux && chmod +x ~/termux-proot.sh && echo 'exit' | ~/termux-proot.sh
+curl -sLo ~/termux-proot.sh https://github.com/Yonle/termux-proot/raw/v1.0.0/termux && chmod +x ~/termux-proot.sh && echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | ~/termux-proot.sh
 proot-distro install debian
 echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh && exit' | ./debian1.sh
 echo 'chmod +x debian2-setup.sh && ./debian2-setup.sh && exit' | ./debian2.sh
