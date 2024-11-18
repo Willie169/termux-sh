@@ -1,4 +1,3 @@
-#!/bin/bash
 cd ~/gh
 for dir in */ ; do
     if [ -d "$dir/.git" ]; then
