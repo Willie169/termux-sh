@@ -57,18 +57,7 @@ Customized `.bashrc` for Termux with pre-defined aliases, functions, and environ
 
 ---
 
-## Components of the Repository
-
-Below are the explanation of each components of the repository excluding the shortcuts explained above.
-
-### Main Setup Scripts
-- **[termux-setup.sh](termux-setup.sh)**:  
-  A simplified version of `termux-setup-all.sh` for Termux configuration and VM installation without VM setup.
-
-- **[termux-setup-all.sh](termux-setup-all.sh)**:  
-  Configures Termux and installs additional proot and QEMU-based environments with pre-configured setup scripts.
-
-### Proot Setup Scripts
+## Proot Setup Scripts
 
 These scripts are invoked by [termux-setup-all.sh](termux-setup-all.sh).
 
@@ -88,9 +77,11 @@ These scripts are invoked by [termux-setup-all.sh](termux-setup-all.sh).
   Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debian01`.
 
 - **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**:  
-  Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux.
+  Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the default alias `debian`.
 
-### Additional Scripts and Instructions
+---
+
+## Additional Scripts and Instructions
 
 These scripts are not called by main setup script in this repo. Run it separately if you need it.
 
