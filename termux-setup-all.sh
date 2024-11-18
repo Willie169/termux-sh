@@ -16,7 +16,9 @@ cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/An
 cd ~ && mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && chmod +x debian.sh && echo 'exit' | bash debian.sh
 cd ~ && cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cp ~/termux-sh/debian3-setup.sh ~/debian3/debian-fs/root
 cd ~ && proot-distro install debian
+./~/termux-sh/proot-install-debian01.sh && cd ~
 echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit' | ./debian1.sh && cd ~
 echo 'chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian2-setup.sh && exit' | ./debian2.sh && cd ~
 echo 'chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit' | ./debian3.sh && cd ~
-cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh && cd ~
+cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh
+echo 'apt update && apt upgrade -y' | proot-distro login debian01 && cd ~
