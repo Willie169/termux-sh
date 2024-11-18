@@ -14,7 +14,7 @@ cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/An
 cd ~ && mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && chmod +x debian.sh && echo 'exit' | bash debian.sh
 cd ~ && cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cp ~/termux-sh/debian3-setup.sh ~/debian3/debian-fs/root
 cd ~ && proot-distro install debian
-cd ~ && sh ~/termux-sh/ proot-install-debian01.sh
+cd ~ && ./~/termux-sh/proot-install-debian01.sh
 cd ~ && cd debian1 && echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit' | ./start-debian.sh
 cd ~ && cd debian2 && echo 'chmod +x xfce4_de.sh && chmod +x debian2-setup.sh && ./xfce4_de.sh && vncserver-stop && ./debian2-setup.sh && rm debian2-setup.sh && exit' | ./start-debian.sh
 cd ~ && cd debian3 && echo 'chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit' | ./start-debian.sh
