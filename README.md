@@ -18,19 +18,18 @@ A comprehensive setup script that installs essential packages, configures shortc
 **Key features:**
 
 1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, and more.
-2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`).
-2. **Proot setup**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
+2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and copies the [DOTbashrc](DOTbashrc) into `~` as `.bashrc`.
+2. **Proot setup**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot) with [termux-proot.sh](DOTshortcuts/termux-proot.sh).
 2. **Termux property adjustments**: Enables external app access via `termux.properties`.
 2. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh`.
-2. **QEMU image download**: Fetches the Debian Bookworm AMD64 image.
 2. **Fabric installation**: Installs [fabric](https://github.com/danielmiessler/fabric), a modular AI framework.
 2. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
 2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
 2. **Andronix Debian environments**: 
-- Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective setup scripts.
+- Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective setup scripts from [Andronix](https://andronix.app).
 2. **Proot-distro environments**:
-- Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01`.
-2. **Environment setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance, not including the QEMU image. See below instructions regarding QEMU for QEMU setup.
+- Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01` using [proot-install-debian.sh](proot-install-debian.sh) and [proot-install-debian01.sh](proot-install-debian01.sh).
+2. **Environment setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
 
@@ -87,6 +86,8 @@ These scripts are invoked by [termux-setup-all.sh](termux-setup-all.sh).
 ## Additional Scripts and Instructions
 
 These scripts are not called by main setup script in this repo. Run it separately if you need it.
+
+- **[qemu-download.sh](qemu-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 image.
 
 - **[qemu-resize.md](qemu-resize.md)**:  
   Provides instructions and scripts for resizing QEMU virtual disk images.
