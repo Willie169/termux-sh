@@ -12,11 +12,11 @@ This repository contains setup bash scripts and related files for automating the
      1. **Install packages**: Includes development tools (e.g., `clang`, `git`, `rust`), runtime environments (e.g., `nodejs`, `openjdk`), and utilities (e.g., `termux-api`, `tmux`, `qemu-utils`).
      2. **Setup Termux shortcuts**: Copies the shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`).
      3. **Configure Termux properties**: Enables external apps access in `termux.properties` and reloads settings.
-     4. **Install Termux-X11**: Sets up the nightly version for GUI support.
-     5. **Audio configuration**: Downloads and executes [Andronix](https://andronix.app)'s `setup-audio.sh`.
+     4. **Install Termux-X11**: Install the nightly version for GUI support.
+     5. **Audio configuration**: Downloads and executes [Andronix](https://andronix.app)'s `setup-audio.sh` to enable audio output.
      6. **Download QEMU image**: Fetches the Debian Bookworm AMD64 image.
-     7. **Install Node.js tools**: Installs libraries such as `node-html-markdown` and `showdown`.
-     8. **Font setup**: Downloads custom fonts (e.g., `msyh.ttc`, `Iansui-Regular.ttf`) for Termux.
+     7. **Install Node.js tools**: Installs libraries for HTML and Markdown.
+     8. **Font setup**: Downloads custom fonts for Termux.
      9. **Install Termux proot**: Sets up Termux proot using [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
      10. **Install Andronix Debian environments**: 
          - Creates three Debian Buster ARM64 proot environments (`debian1`, `debian2`, `debian3`).
