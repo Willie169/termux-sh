@@ -1,4 +1,4 @@
-## Termux-Sh
+## termux-sh
 
 This repository contains setup bash scripts and related files for automating the configuration of Termux, a terminal emulator for Android. The scripts facilitate the installation of essential tools, environment configurations, proot distributions, QEMU virtual machines, and related setups.
 
