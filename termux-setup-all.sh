@@ -19,4 +19,4 @@ proot-distro install debian
 echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh && exit' | ./debian1.sh
 echo 'chmod +x debian2-setup.sh && ./debian2-setup.sh && exit' | ./debian2.sh
 echo 'chmod +x debian3-setup.sh && ./debian3-setup.sh && exit' | ./debian3.sh
-cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh | ./proot-debian.sh
+cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh
