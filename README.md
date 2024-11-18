@@ -16,10 +16,10 @@ This repository contains setup bash scripts and related files for automating the
      5. **Audio configuration**: Downloads and executes [Andronix](https://andronix.app)'s `setup-audio.sh` to enable audio output.
      6. **Download QEMU image**: Fetches the Debian Bookworm AMD64 image.
      7. **Install Node.js tools**: Installs node-html-markdown, showdown, and jsdom.
-     8. **Font setup**: Downloads [msyh.ttc]() for Termux.
+     8. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc) for Termux.
      9. **Install Termux proot**: Sets up Termux proot using [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
      10. **Install Andronix Debian environments**: 
-         - Creates three Debian Buster ARM64 proot environments (`debian1`, `debian2`, `debian3`).
+         - Creates three Debian Buster ARM64 proot environments in `~/debian1`, `~/debian2`, and `~/debian3`.
          - Copies the respective setup scripts: **[debian1-setup.sh](debian1-setup.sh)**, **[debian2-setup.sh](debian2-setup.sh)**, and **[debian3-setup.sh](debian3-setup.sh)** to each proot's root directory.
      11. **Install proot-distro Debian Bookworm environments**:
          - Sets up two ARM64 instances: one with the default alias `debian` and another with a custom alias `debian01`.
