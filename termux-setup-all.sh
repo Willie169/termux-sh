@@ -20,5 +20,5 @@ cd ~ && proot-distro install debian
 echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit' | ./debian1.sh && cd ~
 echo 'chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian2-setup.sh && exit' | ./debian2.sh && cd ~
 echo 'chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit' | ./debian3.sh && cd ~
-cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh
-echo 'apt update && apt upgrade -y' | proot-distro login debian01 && cd ~
+cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh && cd ~
+echo 'apt update && apt upgrade -y' | ./proot-debian01.sh && cd ~
