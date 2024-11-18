@@ -16,3 +16,4 @@ cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/An
 cd ~ && mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && chmod +x debian.sh && echo 'exit' | bash debian.sh
 cd ~ && cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cp ~/termux-sh/debian3-setup.sh ~/debian3/debian-fs/root
 cd ~ && proot-distro install debian
+./~/termux-sh/proot-install-debian01.sh && cd ~
