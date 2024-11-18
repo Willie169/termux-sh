@@ -1,30 +1,95 @@
-# termux-sh
+## Termux-Sh
 
-This repository contains setup bash files for Termux.
+This repository contains setup bash scripts and related files for automating the configuration of Termux, a terminal emulator for Android. The scripts facilitate the installation of essential tools, environment configurations, proot distributions, QEMU virtual machines, and related setups.
 
-- [get-started.sh](get-started.sh): Copy and run it on Termux to setup Termux for developing using [termux-setup-all.sh](termux-setup-all.sh).
-- [termux-setup.sh](termux-setup.sh): Termux setup script for developing, including installing packages, copying shortcuts for Termux:Widget and in `~`, installng one Termux proot with [termux-proot.sh](DOTshortcuts/termux-proot.sh), which can be booted using the same shortcut, installing three Debian buster ARM64 proot with [Andronix](https://github.com/AndronixApp/AndronixOrigin)'s scripts in three folders in `~` named debian1, debian2, and debian3, downloading [Debian bookworm AMD64 QEMU image from its official website](https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-nocloud-amd64.qcow2), installing two proot-distro Debian bookworm ARM64, one with default alias "debian" and one with overriden alias "debian01".
-- [termux-setup-all.sh](termux-setup-all.sh): Same as [termux-setup.sh](termux-setup.sh) but with setup for each VM installed except Debian bookworm AMD64 QEMU image using [debian1-setup.sh](debian1-setup.sh), [debian2-setup.sh](debian2-setup.sh), [debian3-setup.sh](debian3-setup.sh) for each Andronix Debian buster ARM64, [debian-bookworm.sh](debian-bookworm.sh), [box64-wine64-winetricks.sh](box64-wine64-winetricks.sh) for proot-distro Debian bookworm ARM64 with default alias "debian", `termux-change-repo`, update, and upgrade for Termux proot, and update and upgrade for proot-distro Debian bookworm ARM64 with overriden alias "debian01".
-- [DOTbashrc](DOTbashrc): `.bashrc` for Termux.
-- [DOTshortcuts](DOTshortcuts): Shortcuts for Termux:Widget and in `~`. [debian1.sh](DOTshortcuts/debian1.sh) to boot Debian buster ARM64 with in `~/debian1`, [debian2.sh](DOTshortcuts/debian2.sh) to boot Debian buster ARM64 with in `~/debian2`, [debian3.sh](DOTshortcuts/debian3.sh) to boot Debian buster ARM64 with in `~/debian3`, [kali.sh](DOTshortcuts/kali.sh) to boot Kali nethunter KBDEXKMTE with user `kali`, [termux-proot.sh](DOTshortcuts/termux-proot.sh) to boot Termux proot, [proot-debian.sh](DOTshortcuts/debian.sh) to boot proot-distro Debian bookworm ARM64, [proot-debian01.sh](DOTshortcuts/debian01.sh) to boot proot-distro Debian bookworm ARM64 whose alias is overriden as debian01, all assuming installed; [gitPull.sh](DOTshortcuts/gitPull.sh) to `git pull` all git repositories in `~/gh`.
-- [debian1-setup.sh](debian1-setup.sh): Setup for texlive-full, will be placed in debian1's root after installation.
-- [debian2-setup.sh](debian2-setup.sh): Setup for GUI, will be placed in debian2's root after installation.
-- [debian3-setup.sh](debian3-setup.sh): Setup for developers, will be placed in debian3's root after installation. 
-- [debian-bookworm.sh](debian-bookworm.sh): Setup for developers for Debian bookworm that is externally managed. For example, you can copy and run it in the proot-distro Debian bookworm ARM64 and the QEMU Debian bookworm AMD64.
-- [proot-install-debian01.sh](proot-install-debian01.sh): Install proot-distro Debian bookworm ARM64 with overridden alias "debian01".
-- [qemu-resize.md](qemu-resize.md): Commands and tutorial about how to resize a QEMU VM's disk space.
-- [box64-wine64-winetricks.sh](box64-wine64-winetricks.sh): Install and setup box64, wine64, and winetricks to be ran on a Debian bookworm ARM64, such as the proot-distro Debian bookworm ARM64.
-- [xmrig-install.sh](xmrig-install.sh): Clone and compile xmrig, the official Monero (XMR) miner. It is not used by other setup scripts in this repo, so run it separately if you need it.
-- [proot-install-nethunter.sh](proot-install-nethunter.sh): Install proot-distro Kali Linux nethunter ARM64 from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, "KBDEXKMTE" for everything. The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`. It is not used by other setup scripts in this repo, so run it separately if you need it.
+### 1. **[get-started.sh](get-started.sh)**
+   - A quick-start script for Termux. Simply copy and execute this script to initialize Termux with basic configurations.  
+   - It primarily calls the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
 
-Look into the files for more information.
+### 2. **[termux-setup-all.sh](termux-setup-all.sh)**
+   - A comprehensive Termux setup script that installs essential packages, configures shortcuts, and sets up various environments (except the QEMU image).  
+   - **Key actions performed (in order):**
+     1. **Install packages**: Includes development tools (e.g., `clang`, `git`, `rust`), runtime environments (e.g., `nodejs`, `openjdk`), and utilities (e.g., `termux-api`, `tmux`, `qemu-utils`).
+     2. **Setup Termux shortcuts**: Copies the shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`).
+     3. **Configure Termux properties**: Enables external apps access in `termux.properties` and reloads settings.
+     4. **Install Termux-X11**: Sets up the nightly version for GUI support.
+     5. **Audio configuration**: Downloads and executes [Andronix](https://andronix.app)'s `setup-audio.sh`.
+     6. **Download QEMU image**: Fetches the Debian Bookworm AMD64 image.
+     7. **Install Node.js tools**: Installs libraries such as `node-html-markdown` and `showdown`.
+     8. **Font setup**: Downloads custom fonts (e.g., `msyh.ttc`, `Iansui-Regular.ttf`) for Termux.
+     9. **Install Termux proot**: Sets up Termux proot using [Yonle's termux-proot](https://github.com/Yonle/termux-proot).
+     10. **Install Andronix Debian environments**: 
+         - Creates three Debian Buster ARM64 proot environments (`debian1`, `debian2`, `debian3`).
+         - Copies the respective setup scripts: **[debian1-setup.sh](debian1-setup.sh)**, **[debian2-setup.sh](debian2-setup.sh)**, and **[debian3-setup.sh](debian3-setup.sh)** to each proot's root directory.
+     11. **Install proot-distro Debian Bookworm environments**:
+         - Sets up two ARM64 instances: one with the default alias `debian` and another with a custom alias `debian01`.
+     12. **Execute setup scripts**: Runs the specific configuration scripts for each proot or proot-distro instance.
 
-References:
-- [https://ivonblog.com](https://ivonblog.com).
-- [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
-- [https://wiki.termux.com](https://wiki.termux.com).
-- [https://ryanfortner.github.io](https://ryanfortner.github.io).
-- [https://www.qemu.org](https://www.qemu.org).
+---
+
+## Components of the Repository
+
+### Main Setup Scripts
+- **[termux-setup.sh](termux-setup.sh)**:  
+  A simplified version of `termux-setup-all.sh` for basic Termux configuration without detailed VM setup.
+
+- **[termux-setup-all.sh](termux-setup-all.sh)**:  
+  Configures Termux and installs additional proot and QEMU-based environments with pre-configured setup scripts.
+
+### Proot Setup Scripts
+- **[debian1-setup.sh](debian1-setup.sh)**:  
+  Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
+
+- **[debian2-setup.sh](debian2-setup.sh)**:  
+  Configures GUI support in the `debian2` proot using XFCE and related tools.
+
+- **[debian3-setup.sh](debian3-setup.sh)**:  
+  Installs developer tools for the `debian3` proot, targeting general software development needs.
+
+- **[debian-bookworm.sh](debian-bookworm.sh)**:  
+  Installs developer tools in external Debian Bookworm environments, compatible with both QEMU and proot-distro setups.
+
+- **[proot-install-debian01.sh](proot-install-debian01.sh)**:  
+  Installs a proot-distro Debian Bookworm ARM64 environment with a custom alias (`debian01`).
+
+- **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**:  
+  Installs `box64`, `wine64`, and `winetricks` for running x86_64 Windows applications on ARM64 devices.
+
+### QEMU Setup
+- **[qemu-resize.md](qemu-resize.md)**:  
+  Provides instructions and scripts for resizing QEMU virtual disk images.
+
+### Additional Scripts
+
+These scripts are not called by main setup script in this repo. Run it separately if you need it.
+
+- **[xmrig-install.sh](xmrig-install.sh)**:  
+  Clone and compile xmrig, an open source Monero (XMR) miner.
+
+- **[proot-install-nethunter.sh](proot-install-nethunter.sh)**:  
+  Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, "KBDEXKMTE" for everything. The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`.
+
+### Shortcuts
+
+- **[DOTshortcuts](DOTshortcuts)**:  
+  - `debian1.sh`, `debian2.sh`, `debian3.sh`: Boot respective Debian Buster ARM64 proots.
+  - `debian.sh`, `debian01.sh`: Boot respective Debian Bookworm ARM64 proot-distros.
+  - `kali.sh`: Boot Kali Nethunter proot-distro.
+  - `termux-proot.sh`: Boot Termux proot.
+  - `gitPull.sh`: Update all repositories in `~/gh`.
+
+- **[DOTbashrc](DOTbashrc)**:  
+  Customized `.bashrc` for Termux with pre-defined aliases, functions, and environment variables.
+
+---
+
+### References
+
 - [https://andronix.app](https://andronix.app).
 - [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
+- [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
+- [https://ivonblog.com](https://ivonblog.com).
+- [https://ryanfortner.github.io](https://ryanfortner.github.io).
+- [https://wiki.termux.com](https://wiki.termux.com).
+- [https://www.qemu.org](https://www.qemu.org).
