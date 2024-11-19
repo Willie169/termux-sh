@@ -7,9 +7,7 @@ This repository contains setup Bash scripts and related files for automating the
 ## Main Setup Workflow
 
 ### **1. Main Setup**
-- Copy and run [get-started.sh](get-started.sh) to initialize Termux with predefined configurations.  
-- This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
-- It occupies about 21GB storage space.
+Copy and run [get-started.sh](get-started.sh) to initialize Termux with predefined configurations. This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which occupies about 21GB storage space to run.
 
 ### **2. Debian1 Setup:**
 
@@ -22,7 +20,7 @@ And then run (in proot):
 chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
 ```
 
-### **3. Debian2 Setup:**
+### **3. Debian2 Installation and Setup:**
 
 Run (in Termux):
 ```
