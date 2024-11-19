@@ -15,3 +15,4 @@ cd ~ && proot-distro install debian
 cd ~ && ./termux-sh/proot-install-debian01.sh
 cd ~ && cat ~/termux-sh/debian-bookworm.sh <(echo 'exit') | ./proot-debian.sh
 cd ~ && cat ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debianbox.sh
+cd ~
