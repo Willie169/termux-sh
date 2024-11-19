@@ -1,1 +1,0 @@
-proot-distro install debian --override-alias debian01

@@ -9,7 +9,20 @@ This repository contains setup Bash scripts and related files for automating the
 The Main Setup Workflow occupies about 21GB storage space.
 
 ### **1. Main Setup**
-Copy and run **[get-started.sh](get-started.sh)** to initialize Termux with predefined configurations. This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments except Debian2.
+
+Copy and run:
+```
+cd ~
+termux-setup-storage
+termux-change-repo
+pkg update && pkg upgrade -y && apt update && apt upgrade -y && pkg install git -y
+git clone https://github.com/Willie169/termux-sh.git
+chmod +x ~/termux-sh/*.sh
+source ~/termux-sh/termux-setup-all.sh
+```
+to initialize Termux with predefined configurations.
+
+This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments except Debian2.
 
 ### **2. Debian1 Setup:**
 
@@ -55,9 +68,9 @@ chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit
 2. **Fabric installation**: Installs [fabric](https://github.com/danielmiessler/fabric), a modular AI framework.
 2. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
 2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
-2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective setup scripts from [Andronix](https://andronix.app).
-2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01`, the latter using [proot-install-debian01.sh](proot-install-debian01.sh).
-2. **Environment setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
+2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective scripts from [Andronix](https://andronix.app).
+2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debianbox`.
+2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
 
@@ -67,18 +80,18 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 
 ### Boot VM Scripts
 
-- [`debian1.sh`](DOTshortcuts/debian1.sh), [`debian2.sh`](DOTshortcuts/debian2.sh), [`debian3.sh`](DOTshortcuts/debian3.sh): Boot respective Debian Buster ARM64 proots.
-- [`proot-debian.sh`](DOTshortcuts/proot-debian.sh), [`proot-debian01.sh`](DOTshortcuts/proot-debian01.sh): Boot Debian Bookworm ARM64 proot-distros with `isolated` and `fix-low-ports` options.
-- [`kali.sh`](DOTshortcuts/kali.sh): Boot the Kali Nethunter `KBDEXKMTE` proot-distro as user `kali`.
-- [`termux-proot.sh`](DOTshortcuts/termux-proot.sh): Boot the Termux proot.
-- [`qemu-cli.sh`](DOTshortcuts/qemu-cli.sh): Start a headless QEMU VM running Debian Bookworm AMD64, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
-- [`qemu-gui.sh`](DOTshortcuts/qemu-gui.sh): Start a QEMU VM with GUI support via VNC, using the same Debian Bookworm image and configuration as [`qemu-cli.sh`](DOTshortcuts/qemu-cli.sh).
+- [debian1.sh](DOTshortcuts/debian1.sh), [debian2.sh](DOTshortcuts/debian2.sh), [debian3.sh](DOTshortcuts/debian3.sh): Boot respective Debian Buster ARM64 proots.
+- [proot-debian.sh](DOTshortcuts/proot-debian.sh), [`proot-debianbox.sh`](DOTshortcuts/proot-debianbox.sh): Boot respective Debian Bookworm ARM64 proot-distros with `isolated` and `fix-low-ports` options.
+- [kali.sh](DOTshortcuts/kali.sh): Boot the Kali Nethunter `KBDEXKMTE` proot-distro as user `kali`.
+- [termux-proot.sh](DOTshortcuts/termux-proot.sh): Boot the Termux proot.
+- [qemu-cli.sh](DOTshortcuts/qemu-cli.sh): Start a headless QEMU VM running Debian Bookworm AMD64, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
+- [qemu-gui.sh](DOTshortcuts/qemu-gui.sh): Start a QEMU VM with GUI support via VNC, using the same Debian Bookworm image and configuration as [qemu-cli.sh](DOTshortcuts/qemu-cli.sh).
 
 ### Utility Scripts
 
-- [`gitPull.sh`](DOTshortcuts/gitPull.sh): `git pull` all repositories in `~/gh`.
-- [`code.sh`](DOTshortcuts/code.sh), [`download.sh`](DOTshortcuts/download.sh): `cd /storage/emulated/0/Documents/code` and `cd /storage/emulated/0/Download` respectively.
-- [`xmrig.sh`](DOTshortcuts/xmrig.sh): Mine XMR to a wallet of [**the repository owner**](https://github.com/Willie169) (`48j6iQDeCSDeH46gw4dPJnMsa6TQzPa6WJaYbBS9JJucKqg9Mkt5EDe9nSkES3b8u7V6XJfL8neAPAtbEpmV2f4XC7bdbkv`) using [xmrig](https://github.com/xmrig/xmrig), which is not installed in the [main setup workflow](#main-setup-workflow) and can be installed with [xmrig-install.sh](xmrig-install.sh).
+- [gitPull.sh](DOTshortcuts/gitPull.sh): `git pull` all repositories in `~/gh`.
+- [code.sh](DOTshortcuts/code.sh), [download.sh](DOTshortcuts/download.sh): `cd /storage/emulated/0/Documents/code` and `cd /storage/emulated/0/Download` respectively.
+- [xmrig.sh](DOTshortcuts/xmrig.sh): Mine XMR to a wallet of [**the repository owner**](https://github.com/Willie169) (`48j6iQDeCSDeH46gw4dPJnMsa6TQzPa6WJaYbBS9JJucKqg9Mkt5EDe9nSkES3b8u7V6XJfL8neAPAtbEpmV2f4XC7bdbkv`) using [xmrig](https://github.com/xmrig/xmrig), which is not installed in the [main setup workflow](#main-setup-workflow) and can be installed with [xmrig-install.sh](xmrig-install.sh).
 - [shizuku.sh](DOTshortcuts/shizuku.sh): `cd shizuku` and `sh rish`. This is a shortcuts for [Shizuku](https://github.com/RikkaApps/Shizuku), which is not configured in the scripts in this repository.
 
 ### [DOTbashrc](DOTbashrc)
@@ -103,11 +116,11 @@ These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 - **[debian-bookworm.sh](debian-bookworm.sh)**:  
   Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups, but the [termux-setup-all.sh](termux-setup-all.sh) only sets up this for the proot-distro Debian Bookworm environment with the default alias `debian`.
 
-- **[proot-install-debian01.sh](proot-install-debian01.sh)**:  
-  Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debian01`.
+- **[proot-install-debianbox.sh](proot-install-debianbox.sh)**:  
+  Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
 
 - **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**:  
-  Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the default alias `debian`.
+  Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the overridden alias `debianbox`.
 
 ---
 
