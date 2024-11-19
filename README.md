@@ -55,10 +55,8 @@ chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit
 2. **Fabric installation**: Installs [fabric](https://github.com/danielmiessler/fabric), a modular AI framework.
 2. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
 2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
-2. **Andronix Debian environments**: 
-- Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective setup scripts from [Andronix](https://andronix.app).
-2. **Proot-distro Debian environments**:
-- Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01`, the latter using [proot-install-debian01.sh](proot-install-debian01.sh).
+2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective setup scripts from [Andronix](https://andronix.app).
+2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debian01`, the latter using [proot-install-debian01.sh](proot-install-debian01.sh).
 2. **Environment setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
