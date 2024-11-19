@@ -15,4 +15,3 @@ cd ~ && proot-distro install debian
 cd ~ && ./termux-sh/proot-install-debian01.sh
 cd ~ && cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh
 cd ~ && echo 'apt update && apt upgrade -y' | ./proot-debian01.sh
-cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && bash debian-xfce.sh
