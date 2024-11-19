@@ -22,7 +22,12 @@ chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
 
 ### **3. Debian2 Installation and Setup:**
 
-Run (in Termux):
+1. Run (in Termux):
+```
+cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && bash debian-xfce.sh
+```
+2. Follow the screen guide to configure XFCE4.
+3.
 ```
 cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cd ~ && ./debian2.sh
 ```
