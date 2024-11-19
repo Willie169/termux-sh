@@ -94,7 +94,7 @@ Customized `.bashrc` for Termux with pre-defined aliases, functions, and environ
 
 ## Proot Setup Scripts
 
-These scripts are invoked by [termux-setup-all.sh](termux-setup-all.sh) or are parts of it.
+These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 
 - **[debian1-setup.sh](debian1-setup.sh)**:  
   Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
@@ -118,7 +118,7 @@ These scripts are invoked by [termux-setup-all.sh](termux-setup-all.sh) or are p
 
 ## Additional Scripts and Instructions
 
-These scripts are not called by main setup script in this repo. Run it separately if you need it.
+These scripts are not called by Main Setup Workflow. Run it separately if you need it.
 
 - **[qemu-download.sh](qemu-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 image.
 
