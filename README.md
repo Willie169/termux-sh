@@ -24,7 +24,7 @@ to initialize Termux with predefined configurations.
 
 This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments except Debian2.
 
-### **2. Debian1 Setup:**
+### **2. Debian1 TexLive Setup:**
 
 Run (in Termux):
 ```
@@ -35,27 +35,27 @@ And then run (in proot):
 chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
 ```
 
-### **3. Debian2 Installation and Setup:**
+### **3. Debian2 Developer Setup:**
+
+Run (in Termux):
+```
+cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cd ~ && ./debian2.sh
+```
+And then run (in proot):
+```
+chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian2-setup.sh && exit
+```
+
+### **4. Debian3 Installation and GUI Setup:**
 
 1. Run (in Termux):
 ```
-cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && bash debian-xfce.sh
+cd ~ && mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && bash debian-xfce.sh
 ```
 2. Follow the screen guide to configure XFCE4 (in proot), don't exit the proot after it.
 3. And then run (in proot):
 ```
 apt update -y && apt upgrade -y && cat alias exit='vncserver-stop && trap "exit" INT TERM && exit' >> ~/.bashrc && source ~/.bashrc
-```
-
-### **4. Debian3 Setup:**
-
-Run (in Termux):
-```
-cp ~/termux-sh/debian3-setup.sh ~/debian3/debian-fs/root && cd ~ && ./debian3.sh
-```
-And then run (in proot):
-```
-chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit
 ```
 
 ### **Key features:**
@@ -104,23 +104,17 @@ Customized `.bashrc` for Termux with pre-defined aliases, functions, and environ
 
 These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 
-- **[debian1-setup.sh](debian1-setup.sh)**:  
-  Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
+- **[debian1-setup.sh](debian1-setup.sh)**: Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
 
-- **[debian2-setup.sh](debian2-setup.sh)**:  
-  Configures GUI support in the `debian2` proot using XFCE and related tools.
+- **[debian2-setup.sh](debian2-setup.sh)**: Installs developer tools for the `debian2` proot, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more.
 
-- **[debian3-setup.sh](debian3-setup.sh)**:  
-  Installs developer tools for the `debian3` proot, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more.
+- **[debian3-setup.sh](debian3-setup.sh)**: Configures GUI support in the `debian3` proot using XFCE and related tools.
 
-- **[debian-bookworm.sh](debian-bookworm.sh)**:  
-  Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups, but the [termux-setup-all.sh](termux-setup-all.sh) only sets up this for the proot-distro Debian Bookworm environment with the default alias `debian`.
+- **[debian-bookworm.sh](debian-bookworm.sh)**: Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups, but the [termux-setup-all.sh](termux-setup-all.sh) only sets up this for the proot-distro Debian Bookworm environment with the default alias `debian`.
 
-- **[proot-install-debianbox.sh](proot-install-debianbox.sh)**:  
-  Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
+- **[proot-install-debianbox.sh](proot-install-debianbox.sh)**: Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
 
-- **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**:  
-  Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the overridden alias `debianbox`.
+- **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**: Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the overridden alias `debianbox`.
 
 ---
 
