@@ -26,14 +26,10 @@ chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
 ```
 cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && bash debian-xfce.sh
 ```
-2. Follow the screen guide to configure XFCE4.
-3.
+2. Follow the screen guide to configure XFCE4 (in proot), don't exit the proot after it.
+3. And then run (in proot):
 ```
-cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cd ~ && ./debian2.sh
-```
-And then run (in proot):
-```
-chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian2-setup.sh && exit
+apt update -y && apt upgrade -y && cat alias exit='vncserver-stop && trap "exit" INT TERM && exit' >> ~/.bashrc && source ~/.bashrc
 ```
 
 ### **4. Debian3 Setup:**
