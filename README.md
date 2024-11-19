@@ -22,7 +22,7 @@ source ~/termux-sh/termux-setup-all.sh
 ```
 to initialize Termux with predefined configurations.
 
-This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments except Debian2.
+This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments except debian2.
 
 ### **2. Debian1 TexLive Setup:**
 
@@ -105,15 +105,10 @@ Customized `.bashrc` for Termux with pre-defined aliases, functions, and environ
 These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 
 - **[debian1-setup.sh](debian1-setup.sh)**: Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
-
 - **[debian2-setup.sh](debian2-setup.sh)**: Installs developer tools for the `debian2` proot, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more.
-
 - **[debian3-setup.sh](debian3-setup.sh)**: Configures GUI support in the `debian3` proot using XFCE and related tools.
-
 - **[debian-bookworm.sh](debian-bookworm.sh)**: Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups, but the [termux-setup-all.sh](termux-setup-all.sh) only sets up this for the proot-distro Debian Bookworm environment with the default alias `debian`.
-
 - **[proot-install-debianbox.sh](proot-install-debianbox.sh)**: Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
-
 - **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**: Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the overridden alias `debianbox`.
 
 ---
@@ -123,15 +118,9 @@ These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 These scripts are not called by Main Setup Workflow. Run it separately if you need it.
 
 - **[qemu-download.sh](qemu-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 image.
-
-- **[qemu-resize.md](qemu-resize.md)**:  
-  Provides instructions and scripts for resizing QEMU virtual disk images.
-  
-- **[xmrig-install.sh](xmrig-install.sh)**:  
-  Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
-
-- **[proot-install-nethunter.sh](proot-install-nethunter.sh)**:  
-  Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, "KBDEXKMTE" for everything. The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`.
+- **[qemu-resize.md](qemu-resize.md)**: Provides instructions and scripts for resizing QEMU virtual disk images. 
+- **[xmrig-install.sh](xmrig-install.sh)**: Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
+- **[proot-install-nethunter.sh](proot-install-nethunter.sh)**: Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, "KBDEXKMTE" for everything. The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`.
 
 ---
 
