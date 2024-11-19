@@ -16,6 +16,7 @@ export BOX64_PATH=~/wine64/bin/
 export BOX64_LD_LIBRARY_PATH=~/wine64/lib/i386-unix/:~/wine64/lib/wine/x86_64-unix/:/lib/i386-linux-gnu/:/lib/x86_64-linux-gnu:/lib/aarch64-linux-gnu/:/lib/arm-linux-gnueabihf/:/usr/lib/aarch64-linux-gnu/:/usr/lib/arm-linux-gnueabihf/:/usr/lib/i386-linux-gnu/:/usr/lib/x86_64-linux-gnu
 export WINEPREFIX=~/.wine64' >> ~/.bashrc
 source ~/.bashrc
+wine64 wineboot
 wget https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks
 chmod +x winetricks
 mv winetricks /usr/local/bin/
@@ -25,7 +26,6 @@ wine64 '"/usr/local/bin/winetricks "'"$@"' > /usr/local/bin/winetricks64
 chmod +x /usr/local/bin/winetricks64
 wget https://github.com/doitsujin/dxvk/releases/download/v2.4.1/dxvk-2.4.1.tar.gz
 tar -xvf dxvk-2.4.1.tar.gz
-wine64 wineboot
 cd dxvk-2.4.1
 cp x32/* $WINEPREFIX/drive_c/windows/system32
 cp x32/* $WINEPREFIX/drive_c/windows/system32
