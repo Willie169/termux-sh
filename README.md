@@ -61,7 +61,7 @@ Customized `.bashrc` for Termux with pre-defined aliases, functions, and environ
 
 ## Proot Setup Scripts
 
-These scripts are invoked by [termux-setup-all.sh](termux-setup-all.sh).
+These scripts are invoked by [termux-setup-all.sh](termux-setup-all.sh) or are part of it.
 
 - **[debian1-setup.sh](debian1-setup.sh)**:  
   Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
