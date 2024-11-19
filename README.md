@@ -83,7 +83,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 ### Boot VM Scripts
 
 - [debian1.sh](DOTshortcuts/debian1.sh), [debian2.sh](DOTshortcuts/debian2.sh), [debian3.sh](DOTshortcuts/debian3.sh): Boot respective Debian Buster ARM64 proots.
-- [proot-debian.sh](DOTshortcuts/proot-debian.sh), [`proot-debianbox.sh`](DOTshortcuts/proot-debianbox.sh): Boot respective Debian Bookworm ARM64 proot-distros with `isolated` and `fix-low-ports` options.
+- [proot-debian.sh](DOTshortcuts/proot-debian.sh), [proot-debianbox.sh](DOTshortcuts/proot-debianbox.sh): Boot respective Debian Bookworm ARM64 proot-distros with `isolated` and `fix-low-ports` options.
 - [kali.sh](DOTshortcuts/kali.sh): Boot the Kali Nethunter `KBDEXKMTE` proot-distro as user `kali`.
 - [termux-proot.sh](DOTshortcuts/termux-proot.sh): Boot the Termux proot.
 - [qemu-cli.sh](DOTshortcuts/qemu-cli.sh): Start a headless QEMU VM running Debian Bookworm AMD64, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
@@ -95,6 +95,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 - [code.sh](DOTshortcuts/code.sh), [download.sh](DOTshortcuts/download.sh): `cd /storage/emulated/0/Documents/code` and `cd /storage/emulated/0/Download` respectively.
 - [xmrig.sh](DOTshortcuts/xmrig.sh): Mine XMR to a wallet of [**the repository owner**](https://github.com/Willie169) (`48j6iQDeCSDeH46gw4dPJnMsa6TQzPa6WJaYbBS9JJucKqg9Mkt5EDe9nSkES3b8u7V6XJfL8neAPAtbEpmV2f4XC7bdbkv`) using [xmrig](https://github.com/xmrig/xmrig), which is not installed in the [main setup workflow](#main-setup-workflow) and can be installed with [xmrig-install.sh](xmrig-install.sh).
 - [shizuku.sh](DOTshortcuts/shizuku.sh): `cd shizuku` and `sh rish`. This is a shortcuts for [Shizuku](https://github.com/RikkaApps/Shizuku), which is not configured in the scripts in this repository.
+- [termux-backup-bz2.sh](DOTshortcuts/termux-backup-bz2.sh): Creates a compressed backup with the highest compression level of BZIP2 of the Termux home and user directories, then splits the resulting archive into smaller parts, each 4000MB in size.
 
 ### [DOTbashrc](DOTbashrc)
 
