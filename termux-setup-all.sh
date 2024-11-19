@@ -16,8 +16,6 @@ cd ~ && proot-distro install debian
 cd ~ && ./termux-sh/proot-install-debian01.sh
 cd ~ && cat ~/termux-sh/debian-bookworm.sh ~/termux-sh/box64-wine64-winetricks.sh <(echo 'exit') | ./proot-debian.sh
 cd ~ && echo 'apt update && apt upgrade -y' | ./proot-debian01.sh
-cd ~/debian1 && echo 'chmod +x debian1-setup.sh && ./debian1-setup.sh -y && rm debian1-setup.sh && exit' | ./start-debian.sh
-cd ~/debian3 && echo 'chmod +x debian3-setup.sh && ./debian3-setup.sh -y && rm debian3-setup.sh && exit' | ./start-debian.sh
 cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && echo 'apt update && apt upgrade -y
 vncserver-stop
 trap "exit" INT TERM
