@@ -6,12 +6,47 @@ This repository contains setup Bash scripts and related files for automating the
 
 ## Main Setup Workflow
 
-### **[get-started.sh](get-started.sh)**
-   - A quick-start script for Termux. Copy and execute this script to initialize Termux with predefined configurations.  
-   - This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
-   - It occupies about 21GB storage space to setup Termux with **[termux-setup-all.sh](termux-setup-all.sh)**.
+### **1. [get-started.sh](get-started.sh):**
+- A quick-start script for Termux. Copy and execute this script to initialize Termux with predefined configurations.  
+- This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**.
+- It occupies about 21GB storage space to setup Termux with **[termux-setup-all.sh](termux-setup-all.sh)**.
 
-### **[termux-setup-all.sh](termux-setup-all.sh)**
+### **2. Debian1 Setup:**
+
+Run:
+```
+cd ~ && ./debian1.sh
+```
+And then paste:
+```
+chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
+```
+
+### **2. Debian1 Setup:**
+
+Run:
+```
+cd ~ && ./debian1.sh
+```
+And then paste:
+```
+chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
+```
+
+### **3. Debian3 Setup:**
+
+Run:
+```
+cd ~ && ./debian3.sh
+```
+And then paste:
+```
+chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit
+```
+
+---
+
+## [termux-setup-all.sh](termux-setup-all.sh)
 
 A comprehensive setup script that installs essential packages, configures shortcuts, and sets up proot environments.
 
