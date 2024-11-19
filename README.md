@@ -15,29 +15,29 @@ This repository contains setup Bash scripts and related files for automating the
 
 Run:
 ```
-cd ~ && ./debian1.sh
+cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && cd ~ && ./debian1.sh
 ```
 And then paste:
 ```
 chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
 ```
 
-### **2. Debian1 Setup:**
+### **3. Debian2 Setup:**
 
 Run:
 ```
-cd ~ && ./debian1.sh
+cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && cd ~ && ./debian2.sh
 ```
 And then paste:
 ```
-chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
+chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian2-setup.sh && exit
 ```
 
-### **3. Debian3 Setup:**
+### **4. Debian3 Setup:**
 
 Run:
 ```
-cd ~ && ./debian3.sh
+cp ~/termux-sh/debian3-setup.sh ~/debian3/debian-fs/root && cd ~ && ./debian3.sh
 ```
 And then paste:
 ```
