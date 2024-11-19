@@ -6,8 +6,10 @@ This repository contains setup Bash scripts and related files for automating the
 
 ## Main Setup Workflow
 
+The Main Setup Workflow occupies about 21GB storage space.
+
 ### **1. Main Setup**
-Copy and run **[get-started.sh](get-started.sh)** to initialize Termux with predefined configurations. This script invokes the main setup script: [termux-setup-all.sh](termux-setup-all.sh), which contains all Termux configurations and proot environments installations except Debian2.
+Copy and run **[get-started.sh](get-started.sh)** to initialize Termux with predefined configurations. This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments except Debian2.
 
 ### **2. Debian1 Setup:**
 
@@ -43,13 +45,7 @@ And then run (in proot):
 chmod +x debian3-setup.sh && ./debian3-setup.sh && rm debian3-setup.sh && exit
 ```
 
----
-
-## [termux-setup-all.sh](termux-setup-all.sh)
-
-A comprehensive setup script that installs essential packages, configures shortcuts, and sets up proot environments, which occupies about 21GB storage space to run.
-
-**Key features:**
+### **Key features:**
 
 1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, and more.
 2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and appends the [DOTbashrc](DOTbashrc) to `~/.bashrc`.
