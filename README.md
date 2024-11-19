@@ -55,7 +55,9 @@ cd ~ && mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/An
 2. Follow the screen guide to configure XFCE4 (in proot). Don't exit the proot after it.
 3. And then run (in proot):
 ```
-apt update -y && apt upgrade -y && echo 'alias exit=\'vncserver-stop && trap "exit" INT TERM && exit\'' >> ~/.bashrc && source ~/.bashrc
+apt update -y && apt --fix-broken install -y && apt upgrade -y
+alias exit='vncserver-stop && trap "" INT TERM && builtin exit' >> ~/.bashrc && source ~/.bashrc
+exit
 ```
 
 ### **Key features:**
