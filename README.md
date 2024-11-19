@@ -56,7 +56,7 @@ cd ~ && mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/An
 3. And then run (in proot):
 ```
 apt update -y && apt --fix-broken install -y && apt upgrade -y
-alias exit='vncserver-stop && trap "" INT TERM && builtin exit' >> ~/.bashrc && source ~/.bashrc
+echo 'alias exit=\'vncserver-stop && trap "" INT TERM && builtin exit\'' >> ~/.bashrc && source ~/.bashrc
 exit
 ```
 
