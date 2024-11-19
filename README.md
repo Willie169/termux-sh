@@ -52,7 +52,7 @@ chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian2-setup.sh && exit
 ```
 cd ~ && mkdir debian3 && cd debian3 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian-xfce.sh -O debian-xfce.sh && bash debian-xfce.sh
 ```
-2. Follow the screen guide to configure XFCE4 (in proot), don't exit the proot after it.
+2. Follow the screen guide to configure XFCE4 (in proot). Don't exit the proot after it.
 3. And then run (in proot):
 ```
 apt update -y && apt upgrade -y && cat alias exit='vncserver-stop && trap "exit" INT TERM && exit' >> ~/.bashrc && source ~/.bashrc
