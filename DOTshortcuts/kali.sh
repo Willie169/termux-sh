@@ -1,1 +1,1 @@
-KBDEXKMTD kali
+kali-default kali
