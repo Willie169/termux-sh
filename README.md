@@ -22,9 +22,9 @@ source ~/termux-sh/termux-setup-all.sh
 ```
 to initialize Termux with predefined configurations.
 
-This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments except debian2.
+This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments.
 
-### **2. Debian1 TexLive Setup:**
+### **2. Debian1 TexLive Setup**
 
 Run (in Termux):
 ```
@@ -35,7 +35,7 @@ And then run (in proot):
 chmod +x debian1-setup.sh && ./debian1-setup.sh && rm debian1-setup.sh && exit
 ```
 
-### **3. Debian2 Developer Setup:**
+### **3. Debian2 Developer Setup**
 
 Run (in Termux):
 ```
@@ -46,7 +46,7 @@ And then run (in proot):
 chmod +x debian2-setup.sh && ./debian2-setup.sh && rm debian2-setup.sh && exit
 ```
 
-### **4. Debian3 Installation and GUI Setup:**
+### **4. Debian3 Installation and GUI Setup**
 
 1. Run (in Termux):
 ```
@@ -60,7 +60,7 @@ echo "alias exit='vncserver-stop && trap '' INT TERM && builtin exit'" >> ~/.bas
 exit
 ```
 
-### **Key features:**
+### **Key features**
 
 1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, and more.
 2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and appends the [DOTbashrc](DOTbashrc) to `~/.bashrc`.
@@ -72,6 +72,7 @@ exit
 2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
 2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective scripts from [Andronix](https://andronix.app).
 2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debianbox`.
+2. **Proot-distro Ubuntu environments**: Configures an Ubuntu 24.04 ARM64 instance with alias `ubuntu`.
 2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
