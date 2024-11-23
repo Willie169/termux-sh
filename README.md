@@ -6,7 +6,7 @@ This repository contains setup Bash scripts and related files for automating the
 
 ## Main Setup Workflow
 
-The Main Setup Workflow occupies about 40GB storage space.
+The Main Setup Workflow occupies about 45GB storage space.
 
 ### **1. Main Setup**
 
@@ -71,8 +71,8 @@ exit
 2. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
 2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
 2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective scripts from [Andronix](https://andronix.app).
-2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debianbox`.
-2. **Proot-distro Ubuntu environments**: Configures an Ubuntu 24.04 ARM64 instance with alias `ubuntu`.
+2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with default alias `debian` and overridden alias `debianbox` respectively.
+2. **Proot-distro Ubuntu environments**: Configures an Ubuntu 24.04 ARM64 instance with default alias `ubuntu`.
 2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
@@ -111,6 +111,7 @@ These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 - **[debian1-setup.sh](debian1-setup.sh)**: Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
 - **[debian2-setup.sh](debian2-setup.sh)**: Installs developer tools for the `debian2` proot, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more.
 - **[debian3-setup.sh](debian3-setup.sh)**: Configures GUI support in the `debian3` proot using XFCE and related tools.
+- **[ubuntu-24-04.sh](ubuntu-24-04.sh)**: Installs developer tools for Ubuntu 24.04 VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. The [termux-setup-all.sh](termux-setup-all.sh) sets up this for the proot-distro Ubuntu 24.04 environment with the default alias `ubuntu`.
 - **[debian-bookworm.sh](debian-bookworm.sh)**: Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups, but the [termux-setup-all.sh](termux-setup-all.sh) only sets up this for the proot-distro Debian Bookworm environment with the default alias `debian`.
 - **[proot-install-debianbox.sh](proot-install-debianbox.sh)**: Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
 - **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**: Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the overridden alias `debianbox`.
@@ -133,6 +134,7 @@ These scripts are not called by Main Setup Workflow. Run it separately if you ne
 - [https://andronix.app](https://andronix.app).
 - [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
+- [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro).
 - [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
 - [https://github.com/zanjie1999/windows-fonts](https://github.com/zanjie1999/windows-fonts).
 - [https://ivonblog.com](https://ivonblog.com).

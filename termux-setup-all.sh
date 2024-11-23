@@ -14,6 +14,6 @@ cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/An
 cd ~ && proot-distro install debian && proot-distro install ubuntu
 cd ~ && ./termux-sh/proot-install-debianbox.sh
 cd ~ && cat ~/termux-sh/debian-bookworm.sh <(echo -e "\nexit") | ./proot-debian.sh
-cd ~ && echo 'apt update && apt upgrade -y' | ./proot-ubuntu.sh
+cd ~ && cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | ./proot-ubuntu.sh
 cd ~ && cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | ./proot-debianbox.sh
 cd ~
