@@ -71,8 +71,8 @@ exit
 2. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
 2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc).
 2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective scripts from [Andronix](https://andronix.app).
-2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with aliases `debian` and `debianbox`.
-2. **Proot-distro Ubuntu environments**: Configures an Ubuntu 24.04 ARM64 instance with alias `ubuntu`.
+2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with default alias `debian` and overridden alias `debianbox` respectively.
+2. **Proot-distro Ubuntu environments**: Configures an Ubuntu 24.04 ARM64 instance with default alias `ubuntu`.
 2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
 
 ---
