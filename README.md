@@ -79,7 +79,7 @@ exit
 
 ## Shortcuts
 
-All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOTbashrc](DOTbashrc)**, which is in the repository's root directory.
+All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOTbashrc](DOTbashrc)**, which is in the repository's root directory. Some of them are for things not installed or configured in the [Main Setup Workflow](#main-setup-workflow).
 
 ### Boot VM Scripts
 
@@ -100,7 +100,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 
 ### [DOTbashrc](DOTbashrc)
 
-Customized `.bashrc` for Termux with pre-defined aliases, functions, and environment variables. Note that some of them are for tools that are not installed or configured in the scripts in this repository such as [ANTLR4](https://github.com/antlr/antlr4) and [Tor](https://www.torproject.org).
+Customized `.bashrc` for Termux with pre-defined aliases, functions, and environment variables. 
 
 ---
 
