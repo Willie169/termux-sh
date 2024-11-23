@@ -1,1 +1,1 @@
-kali-default kali
+kali-default kali --isolated --fix-low-ports
