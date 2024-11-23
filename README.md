@@ -6,7 +6,7 @@ This repository contains setup Bash scripts and related files for automating the
 
 ## Main Setup Workflow
 
-The Main Setup Workflow occupies about 45GB storage space.
+The Main Setup Workflow occupies about 28GB storage space.
 
 ### **1. Main Setup**
 
