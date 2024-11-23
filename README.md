@@ -84,7 +84,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 
 - [debian1.sh](DOTshortcuts/debian1.sh), [debian2.sh](DOTshortcuts/debian2.sh), [debian3.sh](DOTshortcuts/debian3.sh): Boot respective Debian Buster ARM64 proots.
 - [proot-debian.sh](DOTshortcuts/proot-debian.sh), [proot-debianbox.sh](DOTshortcuts/proot-debianbox.sh): Boot respective Debian Bookworm ARM64 proot-distros with `isolated` and `fix-low-ports` options.
-- [kali.sh](DOTshortcuts/kali.sh): Boot the Kali Nethunter `KBDEXKMTE` proot-distro as user `kali`.
+- [kali.sh](DOTshortcuts/kali.sh): Boot the Kali Nethunter `KBDEXKMTD` proot-distro as user `kali`.
 - [termux-proot.sh](DOTshortcuts/termux-proot.sh): Boot the Termux proot.
 - [qemu-cli.sh](DOTshortcuts/qemu-cli.sh): Start a headless QEMU VM running Debian Bookworm AMD64, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
 - [qemu-gui.sh](DOTshortcuts/qemu-gui.sh): Start a QEMU VM with GUI support via VNC, using the same Debian Bookworm image and configuration as [qemu-cli.sh](DOTshortcuts/qemu-cli.sh).
@@ -123,7 +123,7 @@ These scripts are not called by Main Setup Workflow. Run it separately if you ne
 - **[qemu-download.sh](qemu-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 image.
 - **[qemu-resize.md](qemu-resize.md)**: Provides instructions and scripts for resizing QEMU virtual disk images. 
 - **[xmrig-install.sh](xmrig-install.sh)**: Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
-- **[proot-install-nethunter.sh](proot-install-nethunter.sh)**: Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Enter Build ID after it, "KBDEXKMTE" for everything. The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`.
+- **[proot-install-nethunter.sh](proot-install-nethunter.sh)**: Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter Build ID (e.g. `KBDEXKMTE` for everything and `KBDEXKMTD` for default). The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`. Read [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
 
 ---
 
