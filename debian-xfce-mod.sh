@@ -173,7 +173,8 @@ apt install firefox-esr -y
 clear
 echo ' Welcome to Andronix | Debian '
 $after
-rm -rf ~/.bash_profile" > $folder/root/.bash_profile
+rm -rf ~/.bash_profile
+exit" > $folder/root/.bash_profile
 else
 echo "#!/bin/bash
 apt update --allow-releaseinfo-change -y && apt install wget sudo -y
@@ -199,7 +200,8 @@ echo 'Installing Browser'
 apt install firefox-esr -y 
 clear
 echo ' Welcome to Andronix | Debian '
-rm -rf ~/.bash_profile" > $folder/root/.bash_profile
+rm -rf ~/.bash_profile
+exit" > $folder/root/.bash_profile
 fi
 
 bash $bin
