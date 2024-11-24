@@ -129,6 +129,14 @@ These scripts are not called by Main Setup Workflow. Run it separately if you ne
 
 ---
 
+## TODO
+
+- Transit to `config.json`.
+- Add Docker script support.
+- Add more supported VMs and tools.
+
+---
+
 ## References
 
 - [https://andronix.app](https://andronix.app).
