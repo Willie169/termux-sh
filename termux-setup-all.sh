@@ -4,13 +4,14 @@ pkg install android-tools apksigner automake bash build-essential bzip2 clang cm
 apt install qemu-system-x86_64 tigervnc xfce4 -y
 cd ~ && mkdir -p .shortcuts && cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts && cat ~/termux-sh/DOTbashrc >> ~/.bashrc && cp ~/termux-sh/DOTshortcuts/* ~ && cd ~ && source .bashrc && chmod +x ~/.shortcuts/*.sh && chmod +x ~/*.sh
 sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
-cd ~ && echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash termux-proot.sh
+echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/termux-proot.sh
+mkdir ~/debian3 && cp ~/termux-sh/debian-xfce-mod.sh ~/debian3 && cd ~/debian3 && bash debian-xfce-mod.sh --after $"apt update --allow-releaseinfo-change -y && apt --fix-broken install -y && apt upgrade -y\necho \"alias exit='vncserver-stop && trap '' INT TERM && builtin exit'\" >> ~/.bashrc && source ~/.bashrc\nexit"
 cd ~ && wget https://andronixos.sfo2.cdn.digitaloceanspaces.com/OS-Files/setup-audio.sh && bash setup-audio.sh
 cd ~ && go install github.com/danielmiessler/fabric@latest
 npm install node-html-markdown && npm install showdown && npm install jsdom
 cd ~/.termux && wget https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc -O font.ttc
-cd ~ && mkdir debian1 && cd debian1 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && echo 'exit' | bash debian.sh
-cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && echo 'exit' | bash debian.sh
+mkdir ~/debian1 && cd ~/debian1 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && echo 'exit' | bash debian.sh
+mkdir ~/debian2 && cd ~/debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && echo 'exit' | bash debian.sh
 proot-distro install debian
 proot-distro install ubuntu
 ~/termux-sh/proot-install-debianbox.sh
@@ -19,3 +20,4 @@ cd ~ && cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | bash proot-ubuntu.
 cd ~ && cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | bash proot-debianbox.sh
 cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && echo 'bash debian1-setup.sh && rm debian1-setup.sh && exit' bash ~/debian1.sh
 cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && echo 'bash debian1-setup.sh && rm debian1-setup.sh && exit' bash ~/debian2.sh
+cd ~
