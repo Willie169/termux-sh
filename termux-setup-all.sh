@@ -9,7 +9,7 @@ cd ~ && wget https://andronixos.sfo2.cdn.digitaloceanspaces.com/OS-Files/setup-a
 cd ~ && go install github.com/danielmiessler/fabric@latest
 npm install node-html-markdown && npm install showdown && npm install jsdom
 cd ~/.termux && wget https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc -O font.ttc
-cd ~ && mkdir debian1 && cd debian1 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.&& echo 'exit' | bash debian.sh
+cd ~ && mkdir debian1 && cd debian1 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && echo 'exit' | bash debian.sh
 cd ~ && mkdir debian2 && cd debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && echo 'exit' | bash debian.sh
 proot-distro install debian
 proot-distro install ubuntu
