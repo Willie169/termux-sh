@@ -104,7 +104,8 @@ These scripts are not called by Main Setup Workflow. Run it separately if you ne
 
 ## TODO
 
-- Transit to `config.json`.
+- Transit to config.json to make this project more customizable.
+- Make scripts more modular, e.g. [debian-xfce-mod.sh](debian-xfce-mod.sh). 
 - Add Docker script support.
 - Add more supported VMs and tools.
 
