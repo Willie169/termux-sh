@@ -8,8 +8,6 @@ This repository contains setup Shell scripts and related files for automating th
 
 The Main Setup Workflow occupies about 28GB storage space.
 
-### **1. Main Setup**
-
 Copy and run:
 ```
 cd ~
