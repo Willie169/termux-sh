@@ -1,1 +1,0 @@
-apt update -y && apt upgrade -y && cat alias exit='vncserver-stop && trap "exit" INT TERM && exit' >> ~/.bashrc && source ~/.bashrc
