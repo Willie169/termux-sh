@@ -14,7 +14,7 @@ You may encounter the `Process completed (signal 9) - press Enter` Error during 
 
 To prevent it from occuring, please read [my tutorial "Android Non Root" about it](https://willie169.github.io/#process-completed-signal-9---press-enter-error) for the fixes. 
 
-If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi, Samsung, etc. and other non-stock Android 12L and beyond` in the tutorial, but don't know how to connect to ADB or want to connect to your Android device's ADB without another device, please read [another section of my Android Non Root about Shizuku](https://willie169.github.io/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell). 
+If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi, Samsung, etc. and other non-stock Android 12L and beyond` in the tutorial, but don't know how to connect to ADB or want to connect to your Android device's ADB without another device, please read [another section of my tutorial about Shizuku](https://willie169.github.io/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell). 
 
 ### Main Script
 
@@ -117,8 +117,10 @@ These scripts are not called by Main Setup Workflow. Run it separately if you ne
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
 - [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro).
 - [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
+- [https://github.com/willie169/Android-Non-Root](https://github.com/willie169/Android-Non-Root).
 - [https://github.com/zanjie1999/windows-fonts](https://github.com/zanjie1999/windows-fonts).
 - [https://ivonblog.com](https://ivonblog.com).
 - [https://ryanfortner.github.io](https://ryanfortner.github.io).
 - [https://wiki.termux.com](https://wiki.termux.com).
+- [https://willie169.github.io](https://willie169.github.io).
 - [https://www.qemu.org](https://www.qemu.org).
