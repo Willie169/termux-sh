@@ -14,10 +14,10 @@ mkdir ~/debian1 && cd ~/debian1 && wget https://raw.githubusercontent.com/Andron
 mkdir ~/debian2 && cd ~/debian2 && wget https://raw.githubusercontent.com/AndronixApp/AndronixOrigin/master/Installer/Debian/debian.sh -O debian.sh && echo 'exit' | bash debian.sh
 proot-distro install debian
 proot-distro install ubuntu
-~/termux-sh/proot-install-debianbox.sh
-cd ~ && cat ~/termux-sh/debian-bookworm.sh <(echo -e "\nexit") | bash proot-debian.sh
-cd ~ && cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | bash proot-ubuntu.sh
-cd ~ && cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | bash proot-debianbox.sh
+bash ~/termux-sh/proot-install-debianbox.sh
+cat ~/termux-sh/debian-bookworm.sh <(echo -e "\nexit") | bash ~/proot-debian.sh
+cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | bash ~/proot-ubuntu.sh
+cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | bash ~/proot-debianbox.sh
 cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && echo 'bash debian1-setup.sh && rm debian1-setup.sh && exit' bash ~/debian1.sh
 cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && echo 'bash debian1-setup.sh && rm debian1-setup.sh && exit' bash ~/debian2.sh
 cd ~
