@@ -15,7 +15,7 @@ termux-setup-storage
 termux-change-repo
 pkg update && pkg upgrade -y && apt update && apt upgrade -y && pkg install git -y
 git clone https://github.com/Willie169/termux-sh.git
-chmod +x ~/termux-sh/*.sh
+source termux-setup-all.sh
 ```
 to initialize Termux with predefined configurations. 
 
@@ -35,7 +35,7 @@ Follow the screen guide to complete it.
 2. **Fabric installation**: Installs [fabric](https://github.com/danielmiessler/fabric), a modular AI framework.
 2. **Node.js library installation**: Installs `node-html-markdown`, `showdown`, and `jsdom`.
 2. **Font setup**: Downloads [msyh.ttc](https://github.com/zanjie1999/windows-fonts/raw/wine/msyh.ttc) as `~/.termux/font.ttc`.
-2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective scripts from [Andronix](https://andronix.app).
+2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
 2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with default alias `debian` and overridden alias `debianbox` respectively.
 2. **Proot-distro Ubuntu environments**: Configures an Ubuntu 24.04 ARM64 instance with default alias `ubuntu`.
 2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
@@ -75,7 +75,7 @@ These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 
 - **[debian1-setup.sh](debian1-setup.sh)**: Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
 - **[debian2-setup.sh](debian2-setup.sh)**: Installs developer tools for the `debian2` proot, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more.
-- **[debian-xfce-mod.sh](debian-xfce-mod.sh)**: Modified version of Andronix's [debian-xfce.sh](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh). Install and configures Debian Buster ARM64 proot with XFCE GUI support and related tools.
+- **[debian-xfce-mod.sh](debian-xfce-mod.sh)**: Modified version of [Andronix's debian-xfce.sh](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh). Install and configures Debian Buster ARM64 proot with XFCE GUI support and related tools.
 - **[ubuntu-24-04.sh](ubuntu-24-04.sh)**: Installs developer tools for Ubuntu 24.04 VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. The [termux-setup-all.sh](termux-setup-all.sh) sets up this for the proot-distro Ubuntu 24.04 environment with the default alias `ubuntu`.
 - **[debian-bookworm.sh](debian-bookworm.sh)**: Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups, but the [termux-setup-all.sh](termux-setup-all.sh) only sets up this for the proot-distro Debian Bookworm environment with the default alias `debian`.
 - **[proot-install-debianbox.sh](proot-install-debianbox.sh)**: Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
