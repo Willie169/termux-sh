@@ -6,7 +6,10 @@ This repository contains setup Shell scripts and related files for automating th
 
 ## Main Setup Workflow
 
-The Main Setup Workflow occupies about 28GB storage space.
+### Prerequisites
+
+- Approximately 28GB of storage space.
+- Stable internet connection for packages and scripts download and setup.
 
 ### Process completed (signal 9) - press Enter Error
 
@@ -18,7 +21,7 @@ If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi
 
 ### Main Script
 
-Copy and run:
+Copy and run the following script to initialize Termux with predefined settings:
 ```
 cd ~
 termux-setup-storage
@@ -26,8 +29,7 @@ termux-change-repo
 pkg update && pkg upgrade -y && apt update && apt upgrade -y && pkg install git -y
 git clone https://github.com/Willie169/termux-sh.git
 source termux-setup-all.sh
-```
-to initialize Termux with predefined configurations. 
+``` 
 
 This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which installs essential packages, configures shortcuts, and sets up proot environments.
 
