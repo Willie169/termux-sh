@@ -35,7 +35,7 @@ This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-
 
 Follow the screen guide to complete it.
 
-### **Key features of Main Setup Workflow**
+### Key features
 
 1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, and more.
 2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and appends the [DOTbashrc](DOTbashrc) to `~/.bashrc`.
