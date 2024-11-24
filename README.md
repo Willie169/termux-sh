@@ -8,6 +8,16 @@ This repository contains setup Shell scripts and related files for automating th
 
 The Main Setup Workflow occupies about 28GB storage space.
 
+### Process completed (signal 9) - press Enter Error
+
+You may encounter the `Process completed (signal 9) - press Enter` Error during the main setup workflow or when using Termux, especially when running VMs.
+
+To prevent it from occuring, read [my tutorial "Android Non Root" about it](https://willie169.github.io/#process-completed-signal-9---press-enter-error) for the fixes. 
+
+If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi, Samsung, etc. and other non-stock Android 12L and beyond` in the tutorial, but don't know how to connect to ADB or want to connect to your Android device's ADB without another device, please read [another section of my Android Non Root about Shizuku](https://willie169.github.io/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell). 
+
+### Main Script
+
 Copy and run:
 ```
 cd ~
@@ -23,9 +33,7 @@ This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-
 
 Follow the screen guide to complete it.
 
----
-
-## **Key features of Main Setup Workflow**
+### **Key features of Main Setup Workflow**
 
 1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, and more.
 2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and appends the [DOTbashrc](DOTbashrc) to `~/.bashrc`.
