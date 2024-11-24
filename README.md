@@ -12,7 +12,7 @@ The Main Setup Workflow occupies about 28GB storage space.
 
 You may encounter the `Process completed (signal 9) - press Enter` Error during the main setup workflow or when using Termux, especially when running VMs.
 
-To prevent it from occuring, read [my tutorial "Android Non Root" about it](https://willie169.github.io/#process-completed-signal-9---press-enter-error) for the fixes. 
+To prevent it from occuring, please read [my tutorial "Android Non Root" about it](https://willie169.github.io/#process-completed-signal-9---press-enter-error) for the fixes. 
 
 If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi, Samsung, etc. and other non-stock Android 12L and beyond` in the tutorial, but don't know how to connect to ADB or want to connect to your Android device's ADB without another device, please read [another section of my Android Non Root about Shizuku](https://willie169.github.io/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell). 
 
