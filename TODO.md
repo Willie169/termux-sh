@@ -1,3 +1,0 @@
-# TODO
-
-- Use config.json.
