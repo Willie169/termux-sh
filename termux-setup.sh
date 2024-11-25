@@ -12,3 +12,4 @@ cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && echo 'bash debian1-s
 cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && echo 'bash debian1-setup.sh && rm debian1-setup.sh && exit' bash ~/debian2.sh
 cd ~
 echo 'termux-setup.sh finished'
+curl parrot.live
