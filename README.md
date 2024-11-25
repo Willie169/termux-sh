@@ -9,7 +9,9 @@ This repository contains setup Shell scripts and related files for automating th
 ### Prerequisites
 
 - Approximately 30GB of storage space.
-- Stable internet connection for packages and scripts download and setup.
+- Internet connection for packages and scripts download and setup.
+- It is recommended to turn off the battery optimization of Termux.
+- It is recommended to hold wakelock. You can do so by opening Termux, pulling down the notification bar, and tapping "Acquire wakelock".
 
 ### Process completed (signal 9) - press Enter Error
 
