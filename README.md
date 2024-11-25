@@ -112,6 +112,7 @@ These scripts are not called by Main Setup Workflow. Run it separately if you ne
 
 - [https://andronix.app](https://andronix.app).
 - [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
+- [https://github.com/hugomd/parrot.live](https://github.com/hugomd/parrot.live).
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
 - [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro).
 - [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
