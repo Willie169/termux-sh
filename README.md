@@ -27,7 +27,7 @@ termux-setup-storage
 termux-change-repo
 pkg update && pkg install git -y
 cd ~ && git clone https://github.com/Willie169/termux-sh.git
-source ~/termux-sh/termux-setup-all.sh
+bash ~/termux-sh/termux-setup-all.sh
 ``` 
 
 This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which calls scripts to install essential packages, configures shortcuts, and sets up proot environments.
