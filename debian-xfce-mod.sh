@@ -173,8 +173,6 @@ apt install firefox-esr -y
 clear
 echo ' Welcome to Andronix | Debian '
 $after
-rm -rf ~/.bash_profile
-exit
 " > $folder/root/.bash_profile
 else
 echo "#!/bin/bash
