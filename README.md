@@ -78,10 +78,11 @@ Customized `.bashrc` for Termux with pre-defined aliases, functions, and environ
 
 ---
 
-## Proot Setup Scripts
+## Setup Scripts
 
 These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
 
+- **[termux-setup.sh](termux-setup.sh)**: Main part of the setup that installs essential packages, configures shortcuts, and sets up proot environments except Debian Buster ARM64 proot with XFCE in `~/debian3`.
 - **[debian1-setup.sh](debian1-setup.sh)**: Installs `texlive-full` for LaTeX typesetting in the `debian1` proot.
 - **[debian2-setup.sh](debian2-setup.sh)**: Installs developer tools for the `debian2` proot, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more.
 - **[debian-xfce-mod.sh](debian-xfce-mod.sh)**: Modified version of [Andronix's debian-xfce.sh](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh). Install and configures Debian Buster ARM64 proot with XFCE GUI support and related tools.
