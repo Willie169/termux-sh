@@ -1,4 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
+cd ~ && wget https://andronixos.sfo2.cdn.digitaloceanspaces.com/OS-Files/setup-audio.sh && bash setup-audio.sh
+cd ~ && go install github.com/danielmiessler/fabric@latest
+npm install node-html-markdown && npm install showdown && npm install jsdom
 proot-distro install debian
 proot-distro install ubuntu
 bash ~/termux-sh/proot-install-debianbox.sh
