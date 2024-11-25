@@ -8,7 +8,7 @@ This repository contains setup Shell scripts and related files for automating th
 
 ### Prerequisites
 
-- Approximately 28GB of storage space.
+- Approximately 30GB of storage space.
 - Stable internet connection for packages and scripts download and setup.
 
 ### Process completed (signal 9) - press Enter Error
