@@ -5,7 +5,7 @@ apt install qemu-system-x86_64 tigervnc xfce4 -y
 cd ~ && mkdir -p .shortcuts && cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts && cat ~/termux-sh/DOTbashrc >> ~/.bashrc && cp ~/termux-sh/DOTshortcuts/* ~ && cd ~ && source .bashrc && chmod +x ~/.shortcuts/*.sh && chmod +x ~/*.sh
 sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/termux-proot.sh
-mkdir ~/debian3 && cp ~/termux-sh/debian-xfce-mod.sh ~/debian3 && cd ~/debian3 && bash debian-xfce-mod.sh --after "$(printf "apt update --allow-releaseinfo-change -y && apt --fix-broken install -y && apt upgrade -y\necho \"alias exit='vncserver-stop && trap '' INT TERM && builtin exit'\" >> ~/.bashrc && source ~/.bashrc\nexit")"
+mkdir ~/debian3 && cp ~/termux-sh/debian-xfce-mod.sh ~/debian3 && cd ~/debian3 && bash debian-xfce-mod.sh --after "$(printf "apt update --allow-releaseinfo-change -y && apt --fix-broken install -y && apt upgrade -y\necho \"alias exit='vncserver-stop && trap '' INT TERM && builtin exit'\" >> ~/.bashrc && source ~/.bashrc\nrm -rf ~/.bash_profile\nexit")"
 cd ~ && wget https://andronixos.sfo2.cdn.digitaloceanspaces.com/OS-Files/setup-audio.sh && bash setup-audio.sh
 cd ~ && go install github.com/danielmiessler/fabric@latest
 npm install node-html-markdown && npm install showdown && npm install jsdom
