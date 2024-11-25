@@ -19,9 +19,4 @@ cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | bash ~/proot-ubuntu.sh
 cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | bash ~/proot-debianbox.sh
 cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root && echo 'bash debian1-setup.sh && rm debian1-setup.sh && exit' bash ~/debian1.sh
 cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root && echo 'bash debian1-setup.sh && rm debian1-setup.sh && exit' bash ~/debian2.sh
-cd ~
-tmux new-session -d -s 'termux-setup-all'
-tmux split-window -h
-tmux send-keys -t 0 'bash ~/termux-sh/termux-setup.sh' C-m
-tmux send-keys -t 1 'bash ~/termux-sh/debian-xfce-setup.sh' C-m
-tmux attach -t 'termux-setup-all'
+mkdir ~/debian3 && cp ~/termux-sh/debian-xfce-mod.sh ~/debian3 && cd ~/debian3 && bash debian-xfce-mod.sh --after "$(printf "apt update --allow-releaseinfo-change -y && apt --fix-broken install -y && apt upgrade -y\necho \"alias exit='vncserver-stop && trap '' INT TERM && builtin exit'\" >> ~/.bashrc && source ~/.bashrc\nrm -rf ~/.bash_profile\nvncserver-stop && trap '' INT TERM\necho 'termux-setup-all.sh finished'")"
