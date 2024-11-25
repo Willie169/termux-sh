@@ -174,7 +174,8 @@ clear
 echo ' Welcome to Andronix | Debian '
 $after
 rm -rf ~/.bash_profile
-exit" > $folder/root/.bash_profile
+exit
+" > $folder/root/.bash_profile
 else
 echo "#!/bin/bash
 apt update --allow-releaseinfo-change -y && apt install wget sudo -y
@@ -201,7 +202,8 @@ apt install firefox-esr -y
 clear
 echo ' Welcome to Andronix | Debian '
 rm -rf ~/.bash_profile
-exit" > $folder/root/.bash_profile
+exit
+" > $folder/root/.bash_profile
 fi
 
 bash $bin
