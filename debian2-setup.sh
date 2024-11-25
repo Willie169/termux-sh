@@ -8,3 +8,5 @@ source myenv/bin/activate
 python3 get-pip.py
 rm get-pip.py
 pip3 install numpy sympy matplotlib setup tools selenium jupyter pandas meson ninja
+rm -rf .bash_profile
+exit
