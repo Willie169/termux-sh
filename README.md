@@ -23,11 +23,10 @@ If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi
 
 Copy and run the following script to initialize Termux with predefined settings:
 ```
-cd ~
 termux-setup-storage
 termux-change-repo
-pkg update && pkg upgrade -y && apt update && apt upgrade -y && pkg install git -y
-git clone https://github.com/Willie169/termux-sh.git
+pkg update && pkg install git -y
+cd ~ && git clone https://github.com/Willie169/termux-sh.git
 source termux-setup-all.sh
 ``` 
 
