@@ -17,6 +17,6 @@ bash ~/termux-sh/proot-install-debianbox.sh
 cat ~/termux-sh/debian-bookworm.sh <(echo -e "\nexit") | bash ~/proot-debian.sh
 cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | bash ~/proot-ubuntu.sh
 cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | bash ~/proot-debianbox.sh
-cp ~/termux-sh/debian1-setup.sh ~/debian1/debian-fs/root/.bash_profile && bash ~/debian1.sh
-cp ~/termux-sh/debian2-setup.sh ~/debian2/debian-fs/root/.bash_profile && bash ~/debian2.sh
+cp ~/termux-sh/debian-dev.sh ~/debian1/debian-fs/root/.bash_profile && bash ~/debian1.sh
+cp ~/termux-sh/debian-texlive.sh ~/debian2/debian-fs/root/.bash_profile && bash ~/debian2.sh
 mkdir ~/debian3 && cp ~/termux-sh/debian-xfce-mod.sh ~/debian3 && cd ~/debian3 && bash debian-xfce-mod.sh --after "$(printf "apt update --allow-releaseinfo-change -y && apt --fix-broken install -y && apt upgrade -y && apt install curl -y\necho \"alias exit='vncserver-stop && trap '' INT TERM && builtin exit'\" >> ~/.bashrc && source ~/.bashrc\nrm -rf ~/.bash_profile\nvncserver-stop && trap '' INT TERM\necho 'termux-setup-all.sh finished'\ncurl parrot.live")"
