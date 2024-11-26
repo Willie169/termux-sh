@@ -4,7 +4,7 @@ This repository contains setup Shell scripts and related files for automating th
 
 ---
 
-## Main Setup Workflow
+## Termux Setup All
 
 ### Prerequisites
 
@@ -12,7 +12,7 @@ This repository contains setup Shell scripts and related files for automating th
 - Internet connection for packages and scripts download and setup.
 - It is recommended to turn off the battery optimization of Termux.
 - It is recommended to hold wakelock. You can do so by opening Termux, pulling down the notification bar, and tapping "Acquire wakelock".
-- It is recommended to prevent the `Process completed (signal 9) - press Enter` error. You may encounter the `Process completed (signal 9) - press Enter` Error during the main setup workflow or when using Termux, especially when running VMs. To prevent it from occuring, please read [my tutorial "Android Non Root" about it](https://willie169.github.io/#process-completed-signal-9---press-enter-error) for the fixes. If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi, Samsung, etc. and other non-stock Android 12L and beyond` in the tutorial, but don't know how to connect to ADB or want to connect to your Android device's ADB without another device, please read [another section of my tutorial about Shizuku](https://willie169.github.io/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell). 
+- It is recommended to prevent the `Process completed (signal 9) - press Enter` error. You may encounter the `Process completed (signal 9) - press Enter` Error during the Termux Setup All or when using Termux, especially when running VMs. To prevent it from occuring, please read [my tutorial "Android Non Root" about it](https://willie169.github.io/#process-completed-signal-9---press-enter-error) for the fixes. If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi, Samsung, etc. and other non-stock Android 12L and beyond` in the tutorial, but don't know how to connect to ADB or want to connect to your Android device's ADB without another device, please read [another section of my tutorial about Shizuku](https://willie169.github.io/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell). 
 
 ### Main Script
 
@@ -25,13 +25,13 @@ cd ~ && git clone https://github.com/Willie169/termux-sh.git
 bash ~/termux-sh/termux-setup-all.sh
 ``` 
 
-This script invokes the main setup script: **[termux-setup-all.sh](termux-setup-all.sh)**, which calls scripts to install essential packages, configures shortcuts, and sets up proot environments.
+This script invokes **[termux-setup-all.sh](termux-setup-all.sh)**, which install essential packages, configures shortcuts, and sets up proot environments.
 
-Follow the screen guide to complete it. If you see a dancing parrot on screen, pull down the notification bar and tap `exit` on the notification of Termux. Now, you can restart Termux and enjoy it.
+Follow the screen guide to complete it. If you see a dancing parrot (provided by [parrot.live](https://github.com/hugomd/parrot.live)) on screen, pull down the notification bar and tap `exit` on the notification of Termux. Now, you can restart Termux and enjoy it.
 
 ### Key features
 
-1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more.
+1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
 2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and appends the [DOTbashrc](DOTbashrc) to `~/.bashrc`.
 2. **Termux property adjustments**: Enables external app access via `termux.properties`.
 2. **Termux proot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot) with [termux-proot.sh](DOTshortcuts/termux-proot.sh).
@@ -42,13 +42,25 @@ Follow the screen guide to complete it. If you see a dancing parrot on screen, p
 2. **Andronix Debian environments**: Creates three Debian Buster ARM64 proot environments (`~/debian1`, `~/debian2`, and `~/debian3`) with respective scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
 2. **Proot-distro Debian environments**: Configures two Debian Bookworm ARM64 instances with default alias `debian` and overridden alias `debianbox` respectively.
 2. **Proot-distro Ubuntu environments**: Configures an Ubuntu 24.04 ARM64 instance with default alias `ubuntu`.
-2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance.
+2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance. See below [Setup Script](#setup-script) section for more information.
+
+### Setup Scripts
+
+These scripts are parts of [Termux Setup All](#termux-setup-all).
+
+- **[proot-install-debianbox.sh](proot-install-debianbox.sh)**: Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
+- **[debian-dev.sh](debian-dev.sh)**: Installs developer tools including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, Zsh, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. Used for the `debian1` proot in [Termux Setup All](#termux-setup-all).
+- **[debian-texlive.sh](debian-texlive.sh)**: Installs `texlive-full` for LaTeX typesetting. Used for the `debian2` proot in [Termux Setup All](#termux-setup-all).
+- **[debian-xfce-mod.sh](debian-xfce-mod.sh)**: Modified version of [Andronix's debian-xfce.sh](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh). Install and configures Debian Buster ARM64 proot with XFCE GUI support and related tools. Used for the `debian3` proot in [Termux Setup All](#termux-setup-all).
+- **[ubuntu-24-04.sh](ubuntu-24-04.sh)**: Installs developer tools for Ubuntu 24.04 VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. Used for the proot-distro Ubuntu 24.04 with the default alias `ubuntu` in [Termux Setup All](#termux-setup-all).
+- **[debian-bookworm.sh](debian-bookworm.sh)**: Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups. Used for the proot-distro Debian Bookworm with the default alias `debian` in [Termux Setup All](#termux-setup-all).
+- **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**: Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Used for the proot-distro Debian Bookworm with the overriden alias `debianbox` in [Termux Setup All](#termux-setup-all).
 
 ---
 
 ## Shortcuts
 
-All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOTbashrc](DOTbashrc)**, which is in the repository's root directory. Some of them are for things not installed or configured in the [Main Setup Workflow](#main-setup-workflow).
+All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOTbashrc](DOTbashrc)**, which is in the repository's root directory. Some of them are for things not installed or configured in the [Termux Setup All](#termux-setup-all).
 
 ### Boot VM Scripts
 
@@ -61,6 +73,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 
 ### Utility Scripts
 
+- [DOTbashrc](DOTbashrc): Customized `.bashrc` for Termux with pre-defined aliases, functions, and environment variables.
 - [gitPull.sh](DOTshortcuts/gitPull.sh): `git pull` all repositories in `~/gh`.
 - [code.sh](DOTshortcuts/code.sh), [download.sh](DOTshortcuts/download.sh): `cd /storage/emulated/0/Documents/code` and `cd /storage/emulated/0/Download` respectively.
 - [xmrig.sh](DOTshortcuts/xmrig.sh): Mine XMR to [the repository owner](https://github.com/Willie169)'s wallet, `48j6iQDeCSDeH46gw4dPJnMsa6TQzPa6WJaYbBS9JJucKqg9Mkt5EDe9nSkES3b8u7V6XJfL8neAPAtbEpmV2f4XC7bdbkv`, using [xmrig](https://github.com/xmrig/xmrig), which is not installed in the [main setup workflow](#main-setup-workflow) and can be installed with [xmrig-install.sh](xmrig-install.sh). Change the wallet and other configurations if you need.
@@ -68,43 +81,24 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 - [termux-backup-bz2.sh](DOTshortcuts/termux-backup-bz2.sh): Creates a compressed backup with the highest compression level of BZIP2 of the Termux home and user directories, then splits the resulting archive into smaller parts, each 4000MB in size.
 - [start-audio.sh](start-audio.sh): `pulseaudio --start`. Configured in Main Setup Workflow according to [https://docs.andronix.app/troubleshoot/sound](https://docs.andronix.app/troubleshoot/sound).
 
-### [DOTbashrc](DOTbashrc)
-
-Customized `.bashrc` for Termux with pre-defined aliases, functions, and environment variables. 
-
----
-
-## Setup Scripts
-
-These scripts are parts of [Main Setup Workflow](#main-setup-workflow).
-
-- **[debian-dev.sh](debian-dev.sh)**: Installs developer tools including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, Zsh, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. Used for the `debian1` proot in Main Setup Workflow.
-- **[debian-texlive.sh](debian-texlive.sh)**: Installs `texlive-full` for LaTeX typesetting. Used for the `debian2` proot in Main Setup Workflow.
-- **[debian-xfce-mod.sh](debian-xfce-mod.sh)**: Modified version of [Andronix's debian-xfce.sh](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh). Install and configures Debian Buster ARM64 proot with XFCE GUI support and related tools. Used for the `debian3` proot in Main Setup Workflow.
-- **[ubuntu-24-04.sh](ubuntu-24-04.sh)**: Installs developer tools for Ubuntu 24.04 VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. The [termux-setup-all.sh](termux-setup-all.sh) sets up this for the proot-distro Ubuntu 24.04 environment with the default alias `ubuntu`.
-- **[debian-bookworm.sh](debian-bookworm.sh)**: Installs developer tools for Debian Bookworm VMs, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. It is compatible with both QEMU and Proot setups, but the [termux-setup-all.sh](termux-setup-all.sh) only sets up this for the proot-distro Debian Bookworm environment with the default alias `debian`.
-- **[proot-install-debianbox.sh](proot-install-debianbox.sh)**: Installs a proot-distro Debian Bookworm ARM64 environment with an overriden alias `debianbox`.
-- **[box64-wine64-winetricks.sh](box64-wine64-winetricks.sh)**: Installs `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on ARM64 Linux. Invoked by [termux-setup-all.sh](termux-setup-all.sh) to install them on the proot-distro Debian Bookworm environment with the overridden alias `debianbox`.
-
 ---
 
 ## Additional Scripts and Instructions
 
-These scripts are not called by Main Setup Workflow. Run it separately if you need it.
+These scripts are not called by [Termux Setup All](#termux-setup-all). Run it separately if you need it.
 
-- **[qemu-download.sh](qemu-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 image.
-- **[qemu-resize.md](qemu-resize.md)**: Provides instructions and scripts for resizing QEMU virtual disk images. 
+- **[qemu-download.sh](qemu-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 QCOW2 virtual disk image.
+- **[qemu-resize.md](qemu-resize.md)**: Provides instructions and scripts for resizing QCOW2 images. 
 - **[xmrig-install.sh](xmrig-install.sh)**: Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
-- **[proot-install-nethunter.sh](proot-install-nethunter.sh)**: Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter Build ID (e.g. `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB). The script will add a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`. Read [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
+- **[proot-install-nethunter.sh](proot-install-nethunter.sh)**: Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install. For example, `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB. There will be a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`. Go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
 
 ---
 
-## TODO
+## To-do List
 
-- Transit to config.json to make this project more customizable.
-- Make scripts more modular, e.g. [debian-xfce-mod.sh](debian-xfce-mod.sh). 
-- Add Docker script support.
-- Add more supported VMs and tools.
+- Migrate to `config.json` to make this project more customizable.
+- Modularize scripts for flexibility and reusability.
+- Expand Docker, VMs, and development tools script support.
 
 ---
 
