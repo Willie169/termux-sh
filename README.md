@@ -69,7 +69,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 - [nethunter.sh](DOTshortcuts/nethunter.sh): Boot the Kali Nethunter proot-distro with alias `kali-default` as user `kali`.
 - [termux-proot.sh](DOTshortcuts/termux-proot.sh): Boot the Termux proot.
 - [qemu-debian-cli.sh](DOTshortcuts/qemu-debian-cli.sh) and [qemu-debian-gui.sh](DOTshortcuts/qemu-debian-gui.sh): Start a headless and a VNC GUI supported QEMU VM running Debian Bookworm AMD64 respectively, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
--  [qemu-alpine.sh](DOTshortcuts/qemu-alpine.sh): Start a headless QEMU VM running Alpine Linux 3.21 without `cdrom`.
+-  [qemu-alpine.sh](DOTshortcuts/qemu-alpine.sh): Start a headless QEMU VM running Alpine Linux 3.21 with 1 GB RAM and SSH port forwarding (host: 2222 → guest: 22).
 
 ### Utility Scripts
 
