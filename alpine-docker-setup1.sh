@@ -7,7 +7,6 @@ echo 'https://dl-cdn.alpinelinux.org/alpine/v3.21/community
 https://dl-cdn.alpinelinux.org/alpine/v3.21/main' >> /etc/apk/repositories
 apk update
 apk upgrade
-setup-alpine
 echo 'KEYMAPOPTS="tr"
 HOSTNAMEOPTS="-n alpine"
 INTERFACESOPTS="auto lo
@@ -21,4 +20,4 @@ https://dl-cdn.alpinelinux.org/alpine/v3.21/main"
 SSHDOPTS="-c openssh"
 NTPOPTS="-c busybox"
 DISKOPTS="-v -m sys -s 0 /dev/sda"' >> answerfile
-poweroff
+setup-alpine
