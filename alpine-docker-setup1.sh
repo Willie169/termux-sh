@@ -7,6 +7,7 @@ echo 'https://dl-cdn.alpinelinux.org/alpine/v3.21/community
 https://dl-cdn.alpinelinux.org/alpine/v3.21/main' >> /etc/apk/repositories
 apk update
 apk upgrade
+setup-alpine
 echo 'KEYMAPOPTS="tr"
 HOSTNAMEOPTS="-n alpine"
 INTERFACESOPTS="auto lo
