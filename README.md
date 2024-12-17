@@ -68,8 +68,8 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 - [proot-debian.sh](DOTshortcuts/proot-debian.sh), [proot-debianbox.sh](DOTshortcuts/proot-debianbox.sh): Boot respective Debian Bookworm ARM64 proot-distros with `isolated` and `fix-low-ports` options.
 - [nethunter.sh](DOTshortcuts/nethunter.sh): Boot the Kali Nethunter proot-distro with alias `kali-default` as user `kali`.
 - [termux-proot.sh](DOTshortcuts/termux-proot.sh): Boot the Termux proot.
-- [qemu-cli.sh](DOTshortcuts/qemu-cli.sh): Start a headless QEMU VM running Debian Bookworm AMD64, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
-- [qemu-gui.sh](DOTshortcuts/qemu-gui.sh): Start a QEMU VM with GUI support via VNC, using the same Debian Bookworm image and configuration as [qemu-cli.sh](DOTshortcuts/qemu-cli.sh).
+- [qemu-debian-cli.sh](DOTshortcuts/qemu-debian-cli.sh) and [qemu-debian-gui.sh](DOTshortcuts/qemu-debian-gui.sh): Start a headless and a VNC GUI supported QEMU VM running Debian Bookworm AMD64 respectively, with 2GB RAM and SSH port forwarding (host: 2222 → guest: 22).
+-  [qemu-alpine.sh](DOTshortcuts/qemu-alpine.sh): Start a headless QEMU VM running Alpine Linux 3.21 without `cdrom`.
 
 ### Utility Scripts
 
