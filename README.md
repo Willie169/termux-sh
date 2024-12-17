@@ -109,6 +109,7 @@ These scripts are not called by [Termux Setup All](#termux-setup-all). Run it se
 - [https://andronix.app](https://andronix.app).
 - [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
 - [https://github.com/cyberkernelofficial/docker-in-termux](https://github.com/cyberkernelofficial/docker-in-termux).
+- [https://github.com/diogok/termux-qemu-alpine-docker](https://github.com/diogok/termux-qemu-alpine-docker).
 - [https://github.com/hugomd/parrot.live](https://github.com/hugomd/parrot.live).
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
 - [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro).
