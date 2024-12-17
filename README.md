@@ -89,7 +89,7 @@ These scripts are not called by [Termux Setup All](#termux-setup-all). Run it se
 
 - **[qemu-install.sh](qemu-install.sh)**: Install QEMU x86-64 related packages on Termux.
 - **[qemu-debian-download.sh](qemu-debian-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 QCOW2 virtual disk image
-- **[qemu-alpine-setup.sh](qemu-alpine-setup.sh)**: Fetches the `alpine-virt-3.21.0-x86_64.iso` in `~/alpine` and set up QEMU image `alpine.img` on it.
+- **[qemu-alpine-setup.sh](qemu-alpine-setup.sh)**: Fetches the `alpine-virt-3.21.0-x86_64.iso` in `~/alpine` and create QEMU image `alpine.img` on it. Run `setup-alpine` after QEMU VM booted to set it up.
 - **[qemu-resize.md](qemu-resize.md)**: Provides instructions and scripts for resizing QCOW2 images. 
 - **[xmrig-install.sh](xmrig-install.sh)**: Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
 - **[proot-install-nethunter.sh](proot-install-nethunter.sh)**: Installs the Kali Nethunter ARM64 proot-distro from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install. For example, `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB. There will be a user named `kali` alongside with `root`. Boot it with `<build id> [ USER ]` or `proot-distro login <build id> [ USER ]`. Open GUI after logged in with `sudo kgui`. Go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
