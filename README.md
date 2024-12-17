@@ -31,7 +31,7 @@ Follow the screen guide to complete it. If you see a dancing parrot (provided by
 
 ### Key features
 
-1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, QEMU, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
+1. **Package installation**: Installs tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
 2. **Shortcut configuration**: Copies shortcuts from **[DOTshortcuts](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and appends the [DOTbashrc](DOTbashrc) to `~/.bashrc`.
 2. **Termux property adjustments**: Enables external app access via `termux.properties`.
 2. **Termux proot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot) with [termux-proot.sh](DOTshortcuts/termux-proot.sh).
@@ -87,6 +87,7 @@ All shortcuts are located in **[DOTshortcuts](DOTshortcuts)**, except for **[DOT
 
 These scripts are not called by [Termux Setup All](#termux-setup-all). Run it separately if you need it.
 
+- **[qemu-install.sh](qemu-install.sh)**: Install QEMU x86-64 related packages on Termux.
 - **[qemu-download.sh](qemu-download.sh)**: Fetches the QEMU Debian Bookworm AMD64 QCOW2 virtual disk image.
 - **[qemu-resize.md](qemu-resize.md)**: Provides instructions and scripts for resizing QCOW2 images. 
 - **[xmrig-install.sh](xmrig-install.sh)**: Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
