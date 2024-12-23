@@ -1,7 +1,7 @@
 size='5G'
 memory='1024'
 cpu='2'
-pkg update && pkg install qemu-utils qemu-common qemu-system-x86_64-headless wget -y
+pkg update && pkg install qemu-utils qemu-common qemu-system-x86-64-headless wget -y
 mkdir ~/alpine-amd64 && cd ~/alpine-amd64
 wget https://dl-cdn.alpinelinux.org/v3.21/releases/x86_64/alpine-virt-3.21.0-x86_64.iso
 qemu-img create -f qcow2 alpine-amd64.img $size
