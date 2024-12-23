@@ -5,7 +5,7 @@ In host, run:
 qemu-img resize debian-12-nocloud-amd64.qcow2 +5G
 ```
 Change `debian-12-nocloud-amd64.qcow2` to the real file name. `+5G` indicates increasing 30GB disk image. You can adjust the size as needed.
-### For Debian Derivatives
+### Resize Partition (Debian Derivatives for Example)
 In Debian-derivative guest, run:
 ```
 sudo apt update
