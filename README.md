@@ -90,7 +90,7 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 - [`qemu-alpine-aarch64-setup.sh`](qemu-alpine-aarch64-setup.sh), [`qemu-alpine-amd64-setup.sh`](qemu-alpine-amd64-setup.sh), [`qemu-debian-arm64-setup.sh`](qemu-debian-arm64-setup.sh), [`qemu-debian-amd64-setup.sh`](qemu-debian-amd64-setup.sh): Setup amd boot the respective QEMU system emulation VMs with `-netdev user,id=n1,dns=8.8.8.8,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1` option, where the Alpine VMs are created from Virt 3.21.0 ISO images and the Debian VMs are pre-created Bookworm QCOW2 images. Remember to `setup-alpine` in Alpine VMs and resize disk in Debian VMs.
 - [`qemu-resize.md`](qemu-resize.md): Provide instructions and scripts for resizing QEMU images.
 - [`alpine-docker.sh`](alpine-docker.sh): Install Docker on an Alpine machine and run hello-world.
-- [`debian-waydroid.sh`](debian-waydroid.sh): Install [Waydroid](https://docs.waydro.id) on Debian derivatives such as the QEMU Debian VMs. Waydroid is a container-based approach to boot a full Android system in a Linux namespace on a GNU/Linux-based platform.
+- [`debian-waydroid.sh`](debian-waydroid.sh): Install [Waydroid](https://waydro.id) on Debian derivatives such as the QEMU Debian VMs. Waydroid is a container-based approach to boot a full Android system in a Linux namespace on a GNU/Linux-based platform.
 - [`xmrig-install.sh`](xmrig-install.sh): Clone and compile [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
 - [`proot-install-nethunter.sh`](proot-install-nethunter.sh): Install the Kali Nethunter ARM64 proot-distro instance from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install. For example, `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB. Boot it with `<build id> [` USER `]` or `proot-distro login <build id> [` USER `]`. Open GUI after logged in with `sudo kgui`. Please go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
 
@@ -114,7 +114,6 @@ This repository is licensed under GNU General Public License General Public Lice
 
 - [https://alpinelinux.org](https://alpinelinux.org).
 - [https://andronix.app](https://andronix.app).
-- [https://docs.waydro.id](https://docs.waydro.id).
 - [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
 - [https://github.com/cyberkernelofficial/docker-in-termux](https://github.com/cyberkernelofficial/docker-in-termux).
 - [https://github.com/diogok/termux-qemu-alpine-docker](https://github.com/diogok/termux-qemu-alpine-docker).
@@ -132,3 +131,4 @@ This repository is licensed under GNU General Public License General Public Lice
 - [https://www.debian.org](https://www.debian.org).
 - [https://www.docker.com](https://www.docker.com).
 - [https://www.qemu.org](https://www.qemu.org).
+- [https://waydro.id](https://waydro.id).
