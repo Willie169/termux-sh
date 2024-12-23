@@ -32,7 +32,7 @@ Follow the screen guide to complete it. If you see a dancing parrot, powered by 
 ### Key features
 
 1. **Package installation**: Install tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
-2. **Shortcut configuration**: Copy shortcuts from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` and the home directory (`~`) and then rename the [`bashrc.sh`](DOTshortcuts/.bashrc) in the home directory to `.bashrc`.
+2. **Shortcut configuration**: Copy shortcuts from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` for Termux:Widget and the home directory (`~`), and then rename the [`bashrc.sh`](DOTshortcuts/.bashrc) in the home directory to `.bashrc`.
 2. **Termux properties adjustments**: Enable external app access via `termux.properties`.
 2. **Termux proot environment**: Install [Yonle's termux-proot](https://github.com/Yonle/termux-proot), Termux proot environment.
 2. **Audio setup**: Configure audio output using [Andronix](https://andronix.app)'s `setup-audio.sh`.
@@ -122,6 +122,7 @@ This repository is licensed under GNU General Public License General Public Lice
 - [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
 - [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro).
 - [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
+- [https://github.com/termux/termux-widget](https://github.com/termux/termux-widget).
 - [https://github.com/willie169/Android-Non-Root](https://github.com/willie169/Android-Non-Root).
 - [https://github.com/zanjie1999/windows-fonts](https://github.com/zanjie1999/windows-fonts).
 - [https://ivonblog.com](https://ivonblog.com).
