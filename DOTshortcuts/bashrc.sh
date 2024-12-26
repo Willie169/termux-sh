@@ -2,20 +2,21 @@
 
 export PATH="/data/data/com.termux/files/usr/bin:$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PREFIX/glibc/bin:/data/data/com.termux/files/home/.cargo/bin"
 export CLASSPATH=".:/data/data/com.termux/files/usr/lib/antlr-4.13.2-complete.jar:$CLASSPATH"
-alias antlr4='java -jar /data/data/com.termux/files/usr/lib/antlr-4.13.2-complete.jar'
-alias grun='java org.antlr.v4.runtime.misc.TestRig'
 export GOROOT=/data/data/com.termux/files/usr/lib/go
 export GOPATH=~/go
-alias cptorcc='cp ~/.torrc_file/charging/torrc $PREFIX/etc/tor/torrc'
-alias cptorncc='cp ~/.torrc_file/notcharging/torrc $PREFIX/etc/tor/torrc'
+export TORPATH='cp ~/.torrc_file/charging/torrc $PREFIX/etc/tor'
+export PDROOTFS='$PREFIX/var/lib/proot-distro/installed-rootfs'
+alias antlr4='java -jar /data/data/com.termux/files/usr/lib/antlr-4.13.2-complete.jar'
+alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
+alias gacp='gitacp'
 
 torch() {
     battery_status=$(termux-battery-status)
     is_charging=$(echo "$battery_status" | grep -o '"status": "CHARGING"')
     pkill -f "^tor$"
     echo -e "Is charging: $is_charging\n"
-    
+
     if [[ $is_charging == *"CHARGING"* ]]; then
         cptorcc
     else
@@ -94,4 +95,3 @@ gitacp() {
     git commit -m "$1"
     git push origin "$2"
 }
-alias gacp='gitacp'
