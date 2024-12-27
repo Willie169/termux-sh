@@ -1,6 +1,6 @@
 apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh git golang grep libboost-all-dev libssl-dev iproute2 jq make maven mc nano neovim nodejs openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all tar texlive-full tmux vim wget zsh -y
-export alias src='source'
-export FONTCONFIG_PATH=$HOME/.font
+echo 'alias src=\'source\'
+export FONTCONFIG_PATH="/usr/share/fonts"' >> .bashrc
 source .bashrc
 python3 -m venv .env
 source .env/bin/activate
@@ -20,6 +20,7 @@ curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSer
 curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-SemiBold.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-SemiBold.ttc
 curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-Bold.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-Bold.ttc
 curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-Black.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-Black.ttc
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKtc-Regular.otf
 fc-cache -fv
 fc-list | grep "STIX Two Math"
 fc-list | grep "Noto Sans CJK"
