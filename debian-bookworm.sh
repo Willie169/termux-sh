@@ -37,3 +37,4 @@ fc-cache -fv
 fc-list | grep "STIX Two Math"
 fc-list | grep "Noto Sans CJK"
 fc-list | grep "Noto Serif CJK"
+fc-list | grep "Noto Sans Mono CJK"
