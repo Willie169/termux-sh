@@ -7,34 +7,85 @@ source .env/bin/activate
 pip3 install numpy sympy matplotlib setuptools selenium jupyter pandas meson ninja
 mkdir -p /usr/share/fonts/opentype/stix
 curl https://raw.githubusercontent.com/stipub/stixfonts/master/fonts/static_otf/STIXTwoMath-Regular.otf --output /usr/share/fonts/opentype/stix/STIXTwoMath-Regular.otf
-mkdir -p /usr/share/fonts/truetype/noto
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTC/NotoSansCJK-Thin.ttc --output /usr/share/fonts/truetype/noto/NotoSansCJK-Thin.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTC/NotoSansCJK-DemiLight.ttc --output /usr/share/fonts/truetype/noto/NotoSansCJK-DemiLight.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTC/NotoSansCJK-Light.ttc --output /usr/share/fonts/truetype/noto/NotoSansCJK-Light.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTC/NotoSansCJK-Regular.ttc --output /usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTC/NotoSansCJK-Medium.ttc --output /usr/share/fonts/truetype/noto/NotoSansCJK-Medium.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTC/NotoSansCJK-Bold.ttc --output /usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/OTC/NotoSansCJK-Black.ttc --output /usr/share/fonts/truetype/noto/NotoSansCJK-Black.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-ExtraLight.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-ExtraLight.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-Light.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-Light.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-Regular.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-Regular.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-Medium.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-Medium.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-SemiBold.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-SemiBold.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-Bold.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-Bold.ttc
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/OTC/NotoSerifCJK-Black.ttc --output /usr/share/fonts/truetype/noto/NotoSerifCJK-Black.ttc
-mkdir -p /usr/share/fonts/opentype/noto
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKtc-Regular.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKtc-Regular.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKtc-Bold.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKtc-Bold.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKsc-Regular.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKsc-Regular.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKsc-Bold.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKsc-Bold.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKjp-Regular.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKjp-Regular.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKjp-Bold.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKjp-Bold.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKkr-Regular.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKkr-Regular.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKkr-Bold.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKkr-Bold.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKhk-Regular.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKhk-Regular.otf
-curl https://raw.githubusercontent.com/notofonts/noto-cjk/tree/main/Sans/Mono/NotoSansMonoCJKhk-Bold.otf --output /usr/share/fonts/opentype/noto/NotoSansMonoCJKhk-Bold.otf
+mkdir /usr/share/fonts/noto-cjk
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Thin.otf --output /usr/share/fonts/noto-cjk/NotoSansTC-Thin.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansTC-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSansTC-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansTC-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Demi-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansTC-Demi-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansTC-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Black.otf --output /usr/share/fonts/noto-cjk/NotoSansTC-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Thin.otf --output /usr/share/fonts/noto-cjk/NotoSansSC-Thin.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansSC-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSansSC-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansSC-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Demi-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansSC-Demi-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansSC-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Black.otf --output /usr/share/fonts/noto-cjk/NotoSansSC-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Thin.otf --output /usr/share/fonts/noto-cjk/NotoSansHK-Thin.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansHK-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSansHK-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansHK-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Demi-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansHK-Demi-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansHK-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Black.otf --output /usr/share/fonts/noto-cjk/NotoSansHK-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Thin.otf --output /usr/share/fonts/noto-cjk/NotoSansJP-Thin.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansJP-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSansJP-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansJP-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Demi-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansJP-Demi-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansJP-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Black.otf --output /usr/share/fonts/noto-cjk/NotoSansJP-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Thin.otf --output /usr/share/fonts/noto-cjk/NotoSansKR-Thin.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansKR-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSansKR-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansKR-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Demi-Light.otf --output /usr/share/fonts/noto-cjk/NotoSansKR-Demi-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansKR-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Black.otf --output /usr/share/fonts/noto-cjk/NotoSansKR-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-ExtraLight.otf --output /usr/share/fonts/noto-cjk/NotoSerifTC-ExtraLight.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSerifTC-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSerifTC-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Light.otf --output /usr/share/fonts/noto-cjk/NotoSerifTC-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-SemiBold.otf --output /usr/share/fonts/noto-cjk/NotoSerifTC-SemiBold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSerifTC-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Black.otf --output /usr/share/fonts/noto-cjk/NotoSerifTC-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-ExtraLight.otf --output /usr/share/fonts/noto-cjk/NotoSerifSC-ExtraLight.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSerifSC-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSerifSC-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Light.otf --output /usr/share/fonts/noto-cjk/NotoSerifSC-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-SemiBold.otf --output /usr/share/fonts/noto-cjk/NotoSerifSC-SemiBold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSerifSC-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Black.otf --output /usr/share/fonts/noto-cjk/NotoSerifSC-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-ExtraLight.otf --output /usr/share/fonts/noto-cjk/NotoSerifHK-ExtraLight.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSerifHK-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSerifHK-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Light.otf --output /usr/share/fonts/noto-cjk/NotoSerifHK-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-SemiBold.otf --output /usr/share/fonts/noto-cjk/NotoSerifHK-SemiBold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSerifHK-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Black.otf --output /usr/share/fonts/noto-cjk/NotoSerifHK-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-ExtraLight.otf --output /usr/share/fonts/noto-cjk/NotoSerifJP-ExtraLight.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSerifJP-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSerifJP-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Light.otf --output /usr/share/fonts/noto-cjk/NotoSerifJP-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-SemiBold.otf --output /usr/share/fonts/noto-cjk/NotoSerifJP-SemiBold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSerifJP-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Black.otf --output /usr/share/fonts/noto-cjk/NotoSerifJP-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-ExtraLight.otf --output /usr/share/fonts/noto-cjk/NotoSerifKR-ExtraLight.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSerifKR-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Medium.otf --output /usr/share/fonts/noto-cjk/NotoSerifKR-Medium.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Light.otf --output /usr/share/fonts/noto-cjk/NotoSerifKR-Light.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-SemiBold.otf --output /usr/share/fonts/noto-cjk/NotoSerifKR-SemiBold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSerifKR-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Black.otf --output /usr/share/fonts/noto-cjk/NotoSerifKR-Black.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKtc-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKtc-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKtc-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKtc-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKsc-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKsc-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKsc-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKsc-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKhk-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKhk-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKhk-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKhk-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKjp-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKjp-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKjp-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKjp-Bold.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKkr-Regular.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKkr-Regular.otf
+curl https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKkr-Bold.otf --output /usr/share/fonts/noto-cjk/NotoSansMonoCJKkr-Bold.otf
 fc-cache -fv
-fc-list | grep "STIX Two Math"
-fc-list | grep "Noto Sans CJK"
-fc-list | grep "Noto Serif CJK"
-fc-list | grep "Noto Sans Mono CJK"
