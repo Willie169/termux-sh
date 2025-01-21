@@ -4,7 +4,7 @@ This repository contains setup Shell scripts for automating the configuration of
 
 ---
 
-## Termux Setup
+## Termux Setup ([`termux-setup.sh`](termux-setup.sh))
 
 ### Prerequisites
 
