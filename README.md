@@ -37,7 +37,7 @@ Follow the screen guide to complete it. If you see a dancing parrot, powered by 
 2. **Termux proot environment**: Install [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux proot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh).
 2. **Audio setup**: Configure audio output using [Andronix](https://andronix.app)'s `setup-audio.sh`.
 2. **Fabric installation**: Install [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
-2. **Node.js library installation**: Install `node-html-markdown`, `showdown`, and `jsdom`.
+2. **Node.js library installation**: `npm install jsdom marked node-html-markdown showdown`.
 2. **Andronix Debian environments**: Create three Debian Buster ARM64 proot environments,`~/debian1`, which is CLI only, and `~/debian2`, which has XFCE and VNC server configured, using script from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
 2. **Proot-distro Debian environments**: Configure two Debian Bookworm ARM64 proot-distro instances with default alias, `debian`, and an overridden alias, `debianbox`, respectively.
 2. **Proot-distro Ubuntu environments**: Configure an Ubuntu 24.04 ARM64 proot-distro instance with default alias, `ubuntu`.
