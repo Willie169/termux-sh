@@ -1,5 +1,5 @@
 apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh git golang grep libboost-all-dev libssl-dev iproute2 jq make maven mc nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all tar texlive-full tmux vim wget zsh -y
-npm install jsdom marked node-html-markdown showdown
+npm install -g jsdom marked node-html-markdown showdown
 echo 'alias src="source"
 export FONTCONFIG_PATH="/usr/share/fonts"' >> ~/.bashrc
 source ~/.bashrc
