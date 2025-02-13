@@ -15,13 +15,13 @@ BUSTERCLIINSTALL=0
 BUSTERXFCE=''
 
 cd ~ && pkg update && pkg upgrade -y && pkg install curl x11-repo -y
-[ -n "$PKG" ] && pkg install "$PKG" -y
+[ -n "$PKG" ] && pkg install $PKG -y
 mkdir -p ~/.shortcuts && cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts && cp ~/termux-sh/DOTshortcuts/* ~ && chmod +x ~/.shortcuts/* && chmod +x ~/*.sh && cp ~/bashrc.sh ~/.bashrc && source ~/.bashrc
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$PROOTTERMUX" -eq 0 ] || echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/proot-termux.sh
 [ "$AUDIO" -eq 0 ] || wget https://andronixos.sfo2.cdn.digitaloceanspaces.com/OS-Files/setup-audio.sh -O ~/setup-audio.sh && bash ~/setup-audio.sh
-[ -n "$NPM" ] && npm install --global "$NPM"
-[ -n "$GO" ] && go install "$GO"
+[ -n "$NPM" ] && npm install --global $NPM
+[ -n "$GO" ] && go install $GO
 [ -n "$DEBIAN" ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIAN && [ "$DEBIANINSTALL" -eq 0 ] || cat ~/termux-sh/debian-bookworm.sh <(echo -e "\nexit") | proot-distro login $DEBIAN --isolated --fix-low-ports
 [ -n "$UBUNTU" ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU && [ "$UBUNTUINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | proot-distro login $UBUNTU --isolated --fix-low-ports
 [ -n "$DEBIANBOX" ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIANBOX && [ "$DEBIANBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | proot-distro login $DEBIANBOX --isolated --fix-low-ports
