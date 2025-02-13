@@ -8,7 +8,7 @@ This repository contains setup Shell scripts for automating the configuration of
 
 ### Prerequisites
 
-- Approximately 18GB of storage space for default configuration. Approximately 30GB of storage space if none of `UBUNTU`, `DEBIANBOX`, `BUSTERCLI`, and `BUSTERXFCE` is empty string, and none of `DEBIANINSTALL`, `UBUNTUINSTALL`, `DEBIANBOXINSTALL`, and `BUSTERCLIINSTALL` is `0`.
+- Approximately 18.5GB of storage space for default configuration. Approximately 30.1GB of storage space if none of `UBUNTU`, `DEBIANBOX`, `BUSTERCLI`, and `BUSTERXFCE` is empty string, and none of `DEBIANINSTALL`, `UBUNTUINSTALL`, `DEBIANBOXINSTALL`, and `BUSTERCLIINSTALL` is `0`.
 - Internet connection for packages and scripts download.
 - It is recommended to turn off the battery optimization for Termux.
 - It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping **Acquire wakelock** on the notification of Termux.
