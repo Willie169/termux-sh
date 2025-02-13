@@ -32,7 +32,7 @@ pkg install nano
 nano ~/termux-sh/termux-setup.sh
 ```
 
-2. Run the setup script:
+3. Run the setup script:
 
 ```
 bash ~/termux-sh/termux-setup.sh
