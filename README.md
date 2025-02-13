@@ -2,59 +2,76 @@
 
 This repository contains setup Shell scripts for automating the configuration of [Termux](https://github.com/termux/termux-app), a terminal emulator for Android. The scripts facilitate the installation of essential tools, environment configurations, proot distributions, QEMU virtual machines, and related setups.
 
-My tutorials for Termux and related stuff such as VNC, SSL, SSH, Graphical environment, etc. are in [Android-Non-Root](https://github.com/Willie169/Android-Non-Root), which also includes tutorials for a range of powerful, open-source tools such as [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance your Android device’s functionality, security, privacy, and customization without the need for root access.
-
 ---
 
 ## Termux Setup ([`termux-setup.sh`](termux-setup.sh))
 
 ### Prerequisites
 
-- Approximately 30GB of storage space.
-- Internet connection for packages and scripts download and setup.
+- Approximately 15GB of storage space for default configuration. Approximately 30GB of storage space if none of `UBUNTU`, `DEBIANBOX`, `BUSTERCLI`, and `BUSTERXFCE` is empty string, and none of `DEBIANINSTALL`, `UBUNTUINSTALL`, `DEBIANBOXINSTALL`, and `BUSTERCLIINSTALL` is `0`.
+- Internet connection for packages and scripts download.
 - It is recommended to turn off the battery optimization for Termux.
 - It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping **Acquire wakelock** on the notification of Termux.
-- It is recommended to prevent the `Process completed (signal 9) - press Enter` error in advance. You may encounter the `Process completed (signal 9) - press Enter` Error when using Termux, especially when running VMs. To prevent it from occuring, please read [my tutorial "Android Non Root" about it](https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error) for the fixes. If you want to use the ADB command line fix, i.e. `Fix for QEMs like OneUI, MiUi, Samsung, etc. and other non-stock Android 12L and beyond` in the above-mentioned tutorial, please read [another section of my tutorial about Shizuku](https://willie169.github.io/Android-Non-Root/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell). 
+- It is recommended to prevent the `Process completed (signal 9) - press Enter` error in advance. You may encounter it when using Termux, especially when running VMs. To prevent it from occuring, please read my tutorial **Android Non Root** about it: <https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error> for the fixes.
 
 ### Execution
 
-Copy and run the following script to initialize Termux with predefined settings:
+1. In `termux-change-repo`, it is recommended to choose a mirror close to your geographic location:
+
 ```
 termux-setup-storage
 termux-change-repo
 pkg update && pkg install git -y
 cd ~ && git clone https://github.com/Willie169/termux-sh.git
+```
+
+2. Optionally edit the variables in the beginning of `~/termux-sh/termux-setup.sh` (`nano` for example):
+
+```
+pkg install nano
+nano ~/termux-sh/termux-setup.sh
+```
+
+2. Run the setup script:
+
+```
 bash ~/termux-sh/termux-setup.sh
 ``` 
 
-This script invokes [`termux-setup.sh`](termux-setup.sh), which installs essential packages, configures shortcuts, and sets up proot environments.
+[`termux-setup.sh`](termux-setup.sh) will install essential packages, configures shortcuts, and sets up VMs in Termux.
 
-Follow the screen guide to complete it. If you see a dancing parrot, powered by [parrot.live](https://github.com/hugomd/parrot.live), on screen, pull down the notification bar and tap **exit** on the notification of Termux. Now, you can restart Termux and enjoy it.
+Follow the screen guide to complete it. If you see a dancing parrot on screen, which is powered by [parrot.live](https://github.com/hugomd/parrot.live), pull down the notification bar and tap **exit** on the notification of Termux. Now, you can restart Termux and enjoy it.
 
-### Key features
+### Features
 
-1. **Package installation**: Install tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
-2. **Shortcut configuration**: Copy shortcuts from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` for Termux:Widget and the home directory (`~`), and then rename the [`bashrc.sh`](DOTshortcuts/.bashrc) in the home directory to `.bashrc`.
-2. **Termux properties adjustments**: Enable external app access via `termux.properties`.
-2. **Termux proot environment**: Install [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux proot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh).
-2. **Audio setup**: Configure audio output using [Andronix](https://andronix.app)'s `setup-audio.sh`.
-2. **Fabric installation**: Install [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
-2. **Node.js library installation**: `npm install jsdom marked node-html-markdown showdown`.
-2. **Andronix Debian environments**: Create three Debian Buster ARM64 proot environments,`~/debian1`, which is CLI only, and `~/debian2`, which has XFCE and VNC server configured, using script from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
-2. **Proot-distro Debian environments**: Configure two Debian Bookworm ARM64 proot-distro instances with default alias, `debian`, and an overridden alias, `debianbox`, respectively.
-2. **Proot-distro Ubuntu environments**: Configure an Ubuntu 24.04 ARM64 proot-distro instance with default alias, `ubuntu`.
-2. **Environments setup scripts**: Executes specific configuration scripts for each proot or proot-distro instance. See [Setup Scripts](#setup-scripts) section for more information.
+The variables below refer to the variables set in the beginning of [`termux-setup.sh`](termux-setup.sh).
 
-### Setup Scripts
+1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default includes tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
+2. **Shortcut configuration**: Copies shortcuts from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` for Termux:Widget and the home directory (`~`) and renames the [`bashrc.sh`](DOTshortcuts/.bashrc) in the home directory to `.bashrc`.
+2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
+2. **Termux proot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux proot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
+2. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh` if not `AUDIO=0`.
+2. **Go package installation**: Installs Go packages set in `$GO`. The default is [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
+2. **Node.js packages installation**: Installs NPM packages set in `$NPM`. The default is 
+`jsdom marked node-html-markdown showdown`.
+2. **Proot-distro Debian Bookworm environment with development tools**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN` if `$DEBIAN` is not empty string, and install development tools in it if `$DEBIAN` is not empty string and `$DEBIANINSTALL` is not `0`.
+2. **Proot-distro Ubuntu environment with development tools**: Configures an Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU` if `$UBUNTU` is not empty string, and install development tools in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`.
+2. **Proot-distro Debian Bookworm environment with Box64, Wine64, and Winetricks**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX` if `$DEBIANBOX` is not empty string, and install Box64, Wine64, and Winetricks in it if `$DEBIANBOX` is not empty string and `$DEBIANBOXINSTALL` is not `0`.
+2. **Andronix Debian Buster CLI-only environment with development tools**: Creates CLI-only Debian Buster ARM64 proot environments in `~/$BUSTERCLI` if `$BUSTERCLI` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin), and install development tools in it if `$BUSTERCLI` is not empty string and `$BUSTERCLIINSTALL` is not `0`.
+2. **Andronix Debian Buster environment with XFCE and VNC**: Creates Debian Buster ARM64 proot environments with XFCE and VNC server configured in `~/$BUSTERXFCE` if `$BUSTERXFCE` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
+2. **VM booting shortcuts**: Creates shortcuts to boot each installed VM in `.shortcuts` for Termux:Widget and the home directory (`~`).
 
-These scripts are invoked by [Termux Setup](#termux-setup).
+Go to [VM Setup Scripts](#setup-scripts) for more details of the VM setup scripts invoked in [`termux-setup.sh`](termux-setup.sh).
 
-- [`proot-install-debianbox.sh`](proot-install-debianbox.sh): Installs proot-distro Debian Bookworm ARM64 instance with an overriden alias, `debianbox`.
-- [`debian-buster.sh`](debian-buster.sh): Install developer tools for Debian Buster ARM64 instance, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, Zsh, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. Invoked for the `debian1` proot environment in [Termux Setup](#termux-setup).
-- [`debian-xfce-mod.sh`](debian-xfce-mod.sh): Modified version of [`Andronix's debian-xfce.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh), which installs and configures Debian Buster ARM64 proot environment with XFCE GUI support and related tools. Invoked for the `debian2` proot environment in [Termux Setup](#termux-setup).
-- [`debian-bookworm.sh`](debian-bookworm.sh): Install developer tools for Debian Bookworm instance, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Pandoc, TeX Live, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, Noto Sans CJK, STIX Two Math, and more. It can be used for both QEMU and Proot Debian Bookworm setups. The installation of fonts is compatible with the [LaTeX-ToolKit](https://github.com/Willie169/LaTeX-ToolKit) I made, which boasts a comprehensive and customizable LaTeX template, template.tex, which is designed for article or report documentclass, TC (Traditional Chinese Taiwan), SC (Simplified Chinese), HK (Traditional Chinese Hong Kong), JP (Japanese), KR (Korean), and Latin-script languages, and with many commands and shorthands defined. Invoked for the Debian Bookworm ARM64 proot-distro instance with the default alias, `debian`, in [Termux Setup](#termux-setup).
-- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Install `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian Bookworm ARM64 proot-distro instance with the overriden alias, `debianbox`, in [Termux Setup](#termux-setup).
-- [`ubuntu-24-04.sh`](ubuntu-24-04.sh): Install developer tools for Ubuntu 24.04 instance, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. Invoked for the Ubuntu 24.04 ARM64 proot-distro instance with the default alias, `ubuntu`, in [Termux Setup](#termux-setup).
+### VM Setup Scripts
+
+These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
+
+- [`debian-xfce-mod.sh`](debian-xfce-mod.sh): Modified version of [`Andronix's debian-xfce.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh), which installs and configures Debian Buster ARM64 proot environment with XFCE GUI support and related tools. Invoked for the `$BUSTERXFCE` Debian Buster proot environment.
+- [`debian-buster.sh`](debian-buster.sh): Install developer tools for Debian Buster ARM64 instance, including development tools, runtime environments, and utilities for C/C++, Python3, Java 11, Node.js, Go, Ruby, Perl, GitHub, SSL, SSH, JQ, Maven, Zsh, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, and more. Invoked for the `$DEBIANCLI` Debian Buster proot environment.
+- [`debian-bookworm.sh`](debian-bookworm.sh): Install developer tools for Debian Bookworm instance, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Pandoc, TeX Live, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, Noto Sans CJK, STIX Two Math, and more. It can be used for both QEMU and Proot Debian Bookworm setups. The installation of fonts is compatible with my LaTeX template in [LaTeX-ToolKit](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN`.
+- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Install `box64`, `wine64`, and `winetricks` for running x86_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX`.
+- [`ubuntu-24-04.sh`](ubuntu-24-04.sh): Install developer tools for Ubuntu 24.04 instance, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Rust, Go, Ruby, Perl, GitHub, SSL, SSH, Pandoc, TeX Live, Maven, NumPy SymPy Matplotlib, Selenium, Jupyter Notebook, Pandas, Meson, Ninja, Noto Sans CJK, STIX Two Math, and more. It can be used for both QEMU and Proot Debian Bookworm setups. The installation of fonts is compatible with my LaTeX template in [LaTeX-ToolKit](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU`.
 
 ---
 
@@ -64,9 +81,7 @@ Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intend
 
 ### Boot VM Scripts
 
-- [`debian1.sh`](DOTshortcuts/debian1.sh), [`debian2.sh`](DOTshortcuts/debian2.sh): Boot respective Debian Buster ARM64 proot environments.
 - [`qemu-alpine-aarch64.sh`](DOTshortcuts/qemu-alpine-aarch64.sh), [`qemu-alpine-aarch64-vnc.sh`](DOTshortcuts/qemu-alpine-aarch64-vnc.sh), [`qemu-alpine-x86_64.sh`](DOTshortcuts/qemu-alpine-x86_64.sh), [`qemu-alpine-x86_64-vnc.sh`](DOTshortcuts/qemu-alpine-x86_64-vnc.sh), [`qemu-debian-aarch64.sh`](DOTshortcuts/qemu-debian-aarch64.sh), [`qemu-debian-aarch64-vnc.sh`](DOTshortcuts/qemu-debian-aarch64-vnc.sh), [`qemu-alpine-amd64.sh`](DOTshortcuts/qemu-alpine-amd64.sh), [`qemu-debian-amd64-vnc.sh`](DOTshortcuts/qemu-debian-amd64-vnc.sh), [`qemu-bliss-vnc.sh`](DOTshortcuts/qemu-bliss-vnc.sh): Boot respective QEMU system emulation VMs with `-netdev user,id=n1,dns=8.8.8.8,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1` option, where files with `-vnc` in their names start VNC server at the host's `localhost:0` and others are `-nographic`. Those VMs can be installed with [`qemu-alpine-aarch64-install.sh`](qemu-alpine-aarch64-install.sh), [`qemu-alpine-x86_64-install.sh`](qemu-alpine-x86_64-install.sh), [`qemu-debian-arm64-install.sh`](qemu-debian-arm64-install.sh), [`qemu-debian-amd64-install.sh`](qemu-debian-amd64-install.sh), and [`qemu-bliss-install.sh`](qemu-bliss-install.sh) respectively. See [Additional Scripts and Instructions](#additional-scripts-and-instructions) for details.
-- [`proot-debian.sh`](DOTshortcuts/proot-debian.sh), [`proot-debianbox.sh`](DOTshortcuts/proot-debianbox.sh): Boot respective Debian Bookworm ARM64 proot-distro instances with `isolated` and `fix-low-ports` options.
 - [`nethunter.sh`](DOTshortcuts/nethunter.sh): Boot the Kali Nethunter proot-distro instance with the alias `kali-default` as user `kali` with `isolated` and `fix-low-ports` options.
 - [`proot-termux.sh`](DOTshortcuts/proot-termux.sh): Boot the Termux proot.
 
@@ -96,9 +111,15 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 
 ---
 
+## Promotion
+
+My tutorials for Termux and related stuff such as VNC, SSL, SSH, Graphical environment, etc. are in [Android-Non-Root](https://github.com/Willie169/Android-Non-Root), which also includes tutorials for a range of powerful, open-source tools such as [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance your Android device’s functionality, security, privacy, and customization without the need for root access.
+
+---
+
 ## TODO
 
-- Migrate to `config.json` to make this project more customizable.
+- Make the configuration in [termux-setup.sh](termux-setup.sh) more customizable.
 - Modularize scripts for flexibility and reusability.
 - Expand VMs and development tools support.
 
