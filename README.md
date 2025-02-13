@@ -25,7 +25,7 @@ pkg update && pkg install git -y
 cd ~ && git clone https://github.com/Willie169/termux-sh.git
 ```
 
-2. Optionally edit the variables in the beginning of `~/termux-sh/termux-setup.sh` (`nano` for example):
+2. Optionally edit the variables in the beginning of `~/termux-sh/termux-setup.sh` (`nano` for example). In VM names variables, ` ` (space) will be replaced with `_`, names that are not allowed will be added a suffix `1`:
 
 ```
 pkg install nano
