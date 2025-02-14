@@ -2,7 +2,7 @@
 
 This repository contains Shell scripts for [Termux](https://github.com/termux/termux-app), a terminal emulator for Android. These scripts include setup automation, shortcuts, installations and configurations of development tools and emulation environments such as proot, proot-distro, QEMU system emulation, and box64, and more.
 
-My tutorials for Termux and related stuff such as VNC, SSL, SSH, Graphical environment, etc. are in [Android-Non-Root](https://github.com/Willie169/Android-Non-Root), which also includes tutorials for a range of powerful, open-source tools such as [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance your Android device’s functionality, security, privacy, and customization without the need for root access.
+My tutorials for Termux, some of my scripts in this repository, and other related stuff such as VNC, SSL, and SSH. are in [Android-Non-Root](https://github.com/Willie169/Android-Non-Root), which also includes tutorials for a range of powerful, open-source tools such as [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance Android device’s functionality, security, privacy, and customization without the need for root access.
 
 
 ---
