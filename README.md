@@ -2,6 +2,9 @@
 
 This repository contains setup Shell scripts for automating the configuration of [Termux](https://github.com/termux/termux-app), a terminal emulator for Android. The scripts facilitate the installation of essential tools, environment configurations, proot distributions, QEMU virtual machines, and related setups.
 
+My tutorials for Termux and related stuff such as VNC, SSL, SSH, Graphical environment, etc. are in [Android-Non-Root](https://github.com/Willie169/Android-Non-Root), which also includes tutorials for a range of powerful, open-source tools such as [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance your Android device’s functionality, security, privacy, and customization without the need for root access.
+
+
 ---
 
 ## Termux Setup ([`termux-setup.sh`](termux-setup.sh))
@@ -108,12 +111,6 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 - [`debian-waydroid.sh`](debian-waydroid.sh): Installs [Waydroid](https://waydro.id) on Debian derivatives such as the QEMU Debian VMs. Waydroid is a container-based approach to boot a full Android system in a Linux namespace on a GNU/Linux-based platform.
 - [`xmrig-install.sh`](xmrig-install.sh): Clones and compiles [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
 - [`proot-install-nethunter.sh`](proot-install-nethunter.sh): Installs the Kali Nethunter ARM64 proot-distro instance from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install. For example, `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB. Boot it with `<build id> [` USER `]` or `proot-distro login <build id> [` USER `]`. Open GUI after logged in with `sudo kgui`. Please go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
-
----
-
-## Promotion
-
-My tutorials for Termux and related stuff such as VNC, SSL, SSH, Graphical environment, etc. are in [Android-Non-Root](https://github.com/Willie169/Android-Non-Root), which also includes tutorials for a range of powerful, open-source tools such as [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance your Android device’s functionality, security, privacy, and customization without the need for root access.
 
 ---
 
