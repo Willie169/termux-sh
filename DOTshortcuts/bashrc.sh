@@ -1,6 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 export PATH="$PREFIX/bin:$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PREFIX/glibc/bin:$HOME/.cargo/bin:/data/data/com.termux/files/usr/lib/node_modules"
+export NODE_PATH="/data/data/com.termux/files/usr/lib/node_modules"
 export CLASSPATH="$PREFIX/lib/antlr-4.13.2-complete.jar"
 export GOROOT="$PREFIX/lib/go"
 export GOPATH="$HOME/go"
