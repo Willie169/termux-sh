@@ -19,27 +19,24 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 
 ### Execution
 
-1. In `termux-change-repo`, it is recommended to choose a mirror close to your geographic location:
-
-```
-termux-setup-storage
+<ol>
+<li>In <code>termux-change-repo</code>, it is recommended to choose a mirror close to your geographic location:
+<pre><code>termux-setup-storage
 termux-change-repo
-pkg update && pkg install git -y
-cd ~ && git clone https://github.com/Willie169/termux-sh.git
-```
-
-2. Optionally edit the variables in the beginning of `~/termux-sh/termux-setup.sh` (`nano` for example). In VM names variables, ` ` (space) will be replaced with `_`, names that are not allowed will be added a suffix `1`:
-
-```
-pkg install nano
+pkg update &amp;&amp; pkg install git -y
+cd ~ &amp;&amp; git clone https://github.com/Willie169/termux-sh.git
+</code></pre>
+</li>
+<li>Optionally edit the variables in the beginning of <code>~/termux-sh/termux-setup.sh</code> (<code>nano</code> for example). In VM names variables, <code> </code> (space) will be replaced with <code>_</code>, names that are not allowed will be added a suffix <code>1</code>:
+<pre><code>pkg install nano
 nano ~/termux-sh/termux-setup.sh
-```
-
-3. Run the setup script:
-
-```
-bash ~/termux-sh/termux-setup.sh
-``` 
+</code></pre>
+</li>
+<li>Run the setup script:
+<pre><code>bash ~/termux-sh/termux-setup.sh
+</code></pre>
+</li>
+</ol>
 
 [`termux-setup.sh`](termux-setup.sh) will install essential packages, configures shortcuts, and sets up VMs in Termux.
 
