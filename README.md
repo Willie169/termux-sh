@@ -55,7 +55,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Termux proot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux proot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
 2. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh` if not `AUDIO=0`.
 2. **Node.js packages installation**: Installs NPM packages set in `$NPM`. The default is 
-`jsdom marked marked-gfm-heading-id node-html-markdown showdown`.
+`jsdom marked marked-gfm-heading-id node-html-markdown markdown-toc showdown`.
 2. **Go package installation**: Installs Go packages set in `$GO`. The default is [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
 2. **Proot-distro Debian Bookworm environment with development tools**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN` if `$DEBIAN` is not empty string, and install development tools in it if `$DEBIAN` is not empty string and `$DEBIANINSTALL` is not `0`.
 2. **Proot-distro Ubuntu environment with development tools**: Configures an Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU` if `$UBUNTU` is not empty string, and install development tools in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`.
