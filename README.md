@@ -46,7 +46,7 @@ Follow the screen guide to complete it. If you see a dancing parrot on screen, w
 
 The variables below refer to the variables set in the beginning of [`termux-setup.sh`](termux-setup.sh).
 
-1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default includes tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
+1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default one includes tools for development, runtime environments, and utilities for C/C++, Python, Java, Node.js, Rust, Go, Ruby, Perl, proot, GitHub, GitLab, SSL, SSH, JQ, FFMPEG, Maven, Termux-X11, TigerVNC, XFCE4, Zsh, and more on Termux.
 2. **Shortcut configuration**: Copies shortcuts from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` for Termux:Widget and the home directory (`~`) and renames the [`bashrc.sh`](DOTshortcuts/.bashrc) in the home directory to `.bashrc`.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
 2. **Termux proot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux proot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
