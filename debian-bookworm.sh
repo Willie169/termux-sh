@@ -1,4 +1,4 @@
-apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all tar texlive-full tmux vim wget zsh -y
+apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc mlocate nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all tar texlive-full tmux vim wget zsh -y
 python3 -m venv .env
 source .env/bin/activate
 pip3 install numpy sympy matplotlib setuptools selenium jupyter pandas meson ninja
