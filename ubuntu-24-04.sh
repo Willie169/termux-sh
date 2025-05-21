@@ -4,7 +4,7 @@ wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xvzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
 cd install-tl-*
-./install-tl
+perl install-tl
 echo 'export PATH=/usr/local/texlive/2025/bin/aarch64-linux:$PATH' >> ~/.bashrc
 source ~/.bashrc
 rm -rf install-tl-*
