@@ -1,13 +1,13 @@
-sudo apt update && sudo apt upgrade -y && sudo apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc mlocate nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all tar tmux vim wget zsh -y
+apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc mlocate nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all sudo tar tmux vim wget zsh -y
 cd ~
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xvzf install-tl-unx.tar.gz
-sudo rm install-tl-unx.tar.gz
+rm install-tl-unx.tar.gz
 cd install-tl-*
-sudo ./install-tl
+./install-tl
 echo 'export PATH=/usr/local/texlive/2025/bin/aarch64-linux:$PATH' >> ~/.bashrc
 source ~/.bashrc
-sudo rm -rf install-tl-*
+rm -rf install-tl-*
 python3 -m venv .env
 source .env/bin/activate
 pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub scipy selenium setuptools sympy
@@ -16,9 +16,9 @@ cd /usr/share/fonts/opentype/xits
 wget https://github.com/aliftype/xits/releases/download/v1.302/XITS-1.302.zip
 unzip XITS-1.302.zip
 cd XITS-1.302
-sudo mv *.otf ..
+mv *.otf ..
 cd ..
-sudo rm -rf XITS-1.302*
+rm -rf XITS-1.302*
 mkdir /usr/share/fonts/noto-cjk
 cd /usr/share/fonts/noto-cjk
 wget https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Thin.otf
