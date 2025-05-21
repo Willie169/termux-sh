@@ -1,10 +1,10 @@
-apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc mlocate nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all sudo tar tmux vim wget zsh -y
+apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc mlocate nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl perl-doc procps python3-pip python3-all-dev python3-venv rust-all sudo tar tmux vim wget zsh -y
 cd ~
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xvzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
 cd install-tl-*
-perl install-tl
+perl install-tl --no-interaction
 echo 'export PATH=/usr/local/texlive/2025/bin/aarch64-linux:$PATH' >> ~/.bashrc
 source ~/.bashrc
 rm -rf install-tl-*
