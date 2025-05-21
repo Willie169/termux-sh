@@ -1,4 +1,4 @@
-apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc mlocate nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all tar tmux vim wget zsh -y
+sudo apt update && sudo apt upgrade -y && sudo apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc mlocate nano neovim nodejs npm openjdk-17-jdk openssh-client openssh-server openssl pandoc perl procps python3-pip python3-all-dev python3-venv rust-all tar tmux vim wget zsh -y
 cd ~
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xvzf install-tl-unx.tar.gz
@@ -16,9 +16,9 @@ cd /usr/share/fonts/opentype/xits
 wget https://github.com/aliftype/xits/releases/download/v1.302/XITS-1.302.zip
 unzip XITS-1.302.zip
 cd XITS-1.302
-mv *.otf ..
+sudo mv *.otf ..
 cd ..
-rm -rf XITS-1.302*
+sudo rm -rf XITS-1.302*
 mkdir /usr/share/fonts/noto-cjk
 cd /usr/share/fonts/noto-cjk
 wget https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Thin.otf
