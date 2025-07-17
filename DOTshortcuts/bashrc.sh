@@ -11,14 +11,19 @@ alias antlr4='java -jar $PREFIX/lib/antlr-4.13.2-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
 
-gitPull() {
-    for dir in */ ; do
-        if [ -d "$dir/.git" ]; then
-            cd "$dir" || continue
+gpull() {
+    depth="${1:-1}"
+    if [ "$depth" -eq 0 ]; then
+        if [ -d .git ]; then
             git pull
-            cd ..
         fi
-    done
+    else
+        find . -mindepth "$depth" -maxdepth "$depth" -type d -name .git | while read -r gitdir; do
+            repo_dir=$(dirname "$gitdir")
+            echo "Entering $repo_dir"
+            (cd "$repo_dir" && git pull)
+        done
+    fi
 }
 
 gacp() {
