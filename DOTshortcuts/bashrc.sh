@@ -12,15 +12,20 @@ alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
 
 gpull() {
-    depth="${1:-1}"
-    if [ "$depth" -eq 0 ]; then
-        if [ -d .git ]; then
-            git pull
+    level="${1:-1}"
+    if [ "$level" -eq 0 ]; then
+        repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
+        if [ -n "$repo_dir" ]; then
+            echo "$repo_dir"
+            (cd "$repo_dir" && git pull)
+        else
+            echo "Not in a Git repo."
         fi
     else
+        depth=$((level + 1))
         find . -mindepth "$depth" -maxdepth "$depth" -type d -name .git | while read -r gitdir; do
             repo_dir=$(dirname "$gitdir")
-            echo "Entering $repo_dir"
+            echo "$repo_dir"
             (cd "$repo_dir" && git pull)
         done
     fi
