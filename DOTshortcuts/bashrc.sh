@@ -27,6 +27,12 @@ gacp() {
     git push
 }
 
+gtr() {
+    git tag -a v"$1" -m "Version $1 release"
+    git push origin v"$1"
+    gh release create v"$1" --title "Version $1 release" --notes ''
+}
+
 torchk() {
     battery_status=$(termux-battery-status)
     is_charging=$(echo "$battery_status" | grep -o '"status": "CHARGING"')
