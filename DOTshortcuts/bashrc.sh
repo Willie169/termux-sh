@@ -12,7 +12,7 @@ alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
 
 gpull() {
-    level="${1:-1}"
+    level="${1:-0}"
     if [ "$level" -eq 0 ]; then
         repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
         if [ -n "$repo_dir" ]; then
