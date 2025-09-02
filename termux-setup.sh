@@ -1,5 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 PKG='android-tools apksigner automake bash build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dpkg fdroidcl ffmpeg file fontconfig-utils fontconfig freetype gdb gh ghostscript git glab-cli gnupg golang grep iproute2 jq make maven mc nano ncurses-utils neovim net-tools nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl perl procps proot proot-distro python-ensurepip-wheels python-pip python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tigervnc tmux tor torsocks vim wget which xfce4 yarn zsh'
+VIMRC=1
 PROOTTERMUX=1
 AUDIO=1
 NPM='jsdom marked marked-gfm-heading-id node-html-markdown markdown-toc showdown'
@@ -62,7 +63,16 @@ BUSTERXFCE=$(echo "$BUSTERXFCE" | tr ' ' '_')
 [ "$DEBIANBOX" == "void" ] && DEBIANBOX="${DEBIANBOX}1"
 cd ~ && pkg update && pkg upgrade -y && pkg install curl x11-repo -y
 [ -n "$PKG" ] && pkg install $PKG -y
-mkdir -p ~/.shortcuts && chmod +x ~/termux-sh/DOTshortcuts/*.sh && cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts && cp ~/termux-sh/DOTshortcuts/* ~ && mv ~/bashrc.sh ~/.bashrc && source ~/.bashrc && mv ~/vimrc ~/.vimrc
+mkdir -p ~/.shortcuts && chmod +x ~/termux-sh/DOTshortcuts/*.sh && cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts && cp ~/termux-sh/DOTshortcuts/* ~ && mv ~/bashrc.sh ~/.bashrc && source ~/.bashrc
+rm -f ~/.vimrc
+[ "$VIMRC" -eq 0 ] || cat > ~/.vimrc << EOF
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set smartindent
+filetype plugin indent on
+EOF
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$PROOTTERMUX" -eq 0 ] || echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/proot-termux.sh
 [ "$AUDIO" -eq 0 ] || wget https://andronixos.sfo2.cdn.digitaloceanspaces.com/OS-Files/setup-audio.sh -O ~/setup-audio.sh && bash ~/setup-audio.sh

@@ -47,7 +47,16 @@ Follow the screen guide to complete it. If you see a dancing parrot on screen, w
 The variables below refer to the variables set in the beginning of [`termux-setup.sh`](termux-setup.sh).
 
 1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default one includes tools for C/C++, Python3, Java17, Java21, Node.js, Yarn, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, Termux-X11, TigerVNC, XFCE4, PRoot, and more.
-2. **Shortcut configuration**: Copies shortcuts from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` for **Termux:Widget** and the home directory (`~`), renames [`bashrc.sh`](DOTshortcuts/.bashrc) to `.bashrc`, and renames [`.vimrc`](DOTshortcuts/vimrc) to `.vimrc`.
+2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` (for **Termux:Widget**) and the home directory (`~`) and renames [`~/bashrc.sh`](DOTshortcuts/.bashrc) to `~/.bashrc`.
+2. **Vim configuration**: Put the following in `./vimrc` if not `VIMRC=0`:
+```
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set smarttab
+set smartindent
+filetype plugin indent on
+```
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
 2. **Termux proot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux proot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
 2. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh` if not `AUDIO=0`.
@@ -59,7 +68,6 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Proot-distro Debian Bookworm environment with Box64, Wine64, and Winetricks**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX` if `$DEBIANBOX` is not empty string, and install Box64, Wine64, and Winetricks in it if `$DEBIANBOX` is not empty string and `$DEBIANBOXINSTALL` is not `0`.
 2. **Andronix Debian Buster CLI-only environment with development tools**: Creates CLI-only Debian Buster ARM64 proot environments in `~/$BUSTERCLI` if `$BUSTERCLI` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin), and install development tools in it if `$BUSTERCLI` is not empty string and `$BUSTERCLIINSTALL` is not `0`.
 2. **Andronix Debian Buster environment with XFCE and VNC**: Creates Debian Buster ARM64 proot environments with XFCE and VNC server configured in `~/$BUSTERXFCE` if `$BUSTERXFCE` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
-2. **VM booting shortcuts**: Creates shortcuts to boot each installed VM in `.shortcuts` for Termux:Widget and the home directory (`~`).
 
 Go to [VM Setup Scripts](#setup-scripts) for more details of the VM setup scripts invoked in [`termux-setup.sh`](termux-setup.sh).
 

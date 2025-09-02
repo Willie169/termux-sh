@@ -109,8 +109,9 @@ cat > ~/.vimrc << EOF
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set smarttab
 set smartindent
-set autoindent
+filetype plugin indent on
 EOF
 mkdir -p /usr/share/fonts/opentype/xits
 cd /usr/share/fonts/opentype/xits
