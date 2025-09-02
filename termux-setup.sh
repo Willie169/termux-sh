@@ -69,7 +69,7 @@ cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~
 mv ~/bashrc.sh ~/.bashrc
 source ~/.bashrc
-[ "$VIMRC" -eq 0 ] || cat > ~/.vimrc << EOF
+[ "$VIMRC" -eq 0 ] || cat > ~/.vimrc << 'EOF'
 set tabstop=4
 set shiftwidth=4
 set expandtab

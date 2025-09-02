@@ -8,7 +8,7 @@ perl install-tl --no-interaction
 cd ~
 rm -rf install-tl-*
 mkdir -p ~/.config/fontconfig/conf.d
-cat > ~/.config/fontconfig/conf.d/99-texlive.conf << EOF
+cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -26,7 +26,7 @@ python3 -m venv .env
 source .env/bin/activate
 pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub scipy selenium setuptools sympy
 deactivate
-cat > ~/.bashrc << EOF
+cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -182,7 +182,7 @@ updatetex() {
 
 EOF
 source ~/.bashrc
-cat > ~/.vimrc << EOF
+cat > ~/.vimrc << 'EOF'
 set tabstop=4
 set shiftwidth=4
 set expandtab

@@ -10,7 +10,7 @@ echo 'export PATH="$PATH:/usr/local/texlive/2025/bin/aarch64-linux"' >> ~/.bashr
 source ~/.bashrc
 rm -rf install-tl-*
 mkdir -p ~/.config/fontconfig/conf.d
-cat > ~/.config/fontconfig/conf.d/99-texlive.conf << EOF
+cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -28,7 +28,7 @@ python3 -m venv .env
 source .env/bin/activate
 pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub scipy selenium setuptools sympy
 deactivate
-cat > ~/.bashrc << EOF
+cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
 # Note: PS1 and umask are already set in /etc/profile. You should not
@@ -103,7 +103,7 @@ updatetex() {
 
 EOF
 source ~/.bashrc
-cat > ~/.vimrc << EOF
+cat > ~/.vimrc << 'EOF'
 set tabstop=4
 set shiftwidth=4
 set expandtab
