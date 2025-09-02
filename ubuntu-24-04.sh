@@ -1,4 +1,4 @@
-apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang gpg grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc nano neovim openjdk-17-jdk openssh-client openssh-server openssl pandoc perl perl-doc pipx procps python3-pip python3-all-dev python3-venv rust-all tar tmux vim wget zsh -y
+apt update && apt upgrade -y && apt install automake bash build-essential bzip2 clang cmake command-not-found curl dbus file gdb gh ghostscript git golang gpg grep ffmpeg libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc nano neovim openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk openjdk-21-jdk openssh-client openssh-server openssl pandoc perl perl-doc pipx procps python3-pip python3-all-dev python3-venv rust-all tar tmux unrar vim wget zsh -y
 cd ~
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xvzf install-tl-unx.tar.gz
@@ -26,7 +26,6 @@ python3 -m venv .env
 source .env/bin/activate
 pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub scipy selenium setuptools sympy
 deactivate
-rm -f ~/.bashrc
 cat > ~/.bashrc << EOF
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -183,7 +182,6 @@ updatetex() {
 
 EOF
 source ~/.bashrc
-rm -f ~/.vimrc
 cat > ~/.vimrc << EOF
 set tabstop=4
 set shiftwidth=4
