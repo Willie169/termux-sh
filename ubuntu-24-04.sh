@@ -127,9 +127,9 @@ fi
 #    . /etc/bash_completion
 #fi
 
-export PATH="$PATH:/usr/local/texlive/2025/bin/aarch64-linux"
 export GOROOT="$GOROOT:$PREFIX/lib/go"
 export GOPATH="$GOPATH:$HOME/go"
+export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:/usr/glibc/bin:$HOME/.cargo/bin:/usr/local/texlive/2025/bin/aarch64-linux:$HOME/.pyenv/bin"
 export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="/root/texmf/tex/latex/physics-patch"
 export NVM_DIR="$HOME/.nvm"
