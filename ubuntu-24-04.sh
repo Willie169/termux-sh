@@ -26,7 +26,7 @@ npm install -g jsdom marked marked-gfm-heading-id node-html-markdown showdown
 pipx install poetry
 python3 -m venv .env
 source .env/bin/activate
-pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub scipy selenium setuptools sympy
+pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy
 deactivate
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
