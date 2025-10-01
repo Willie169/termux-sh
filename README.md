@@ -58,16 +58,15 @@ set smartindent
 filetype plugin indent on
 ```
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
-2. **Termux proot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux proot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
-2. **Audio setup**: Configures audio output using [Andronix](https://andronix.app)'s `setup-audio.sh` if not `AUDIO=0`.
+2. **Termux PRoot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux PRoot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
 2. **Node.js packages installation**: Installs NPM packages set in `$NPM`. The default is 
 `jsdom marked marked-gfm-heading-id node-html-markdown markdown-toc showdown`.
 2. **Fabric installation**: Installs Go package [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
 2. **Proot-distro Debian Bookworm environment with development tools**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN` if `$DEBIAN` is not empty string, and install development tools in it if `$DEBIAN` is not empty string and `$DEBIANINSTALL` is not `0`.
 2. **Proot-distro Ubuntu environment with development tools**: Configures an Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU` if `$UBUNTU` is not empty string, and install development tools in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`.
 2. **Proot-distro Debian Bookworm environment with Box64, Wine64, and Winetricks**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX` if `$DEBIANBOX` is not empty string, and install Box64, Wine64, and Winetricks in it if `$DEBIANBOX` is not empty string and `$DEBIANBOXINSTALL` is not `0`.
-2. **Andronix Debian Buster CLI-only environment with development tools**: Creates CLI-only Debian Buster ARM64 proot environments in `~/$BUSTERCLI` if `$BUSTERCLI` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin), and install development tools in it if `$BUSTERCLI` is not empty string and `$BUSTERCLIINSTALL` is not `0`.
-2. **Andronix Debian Buster environment with XFCE and VNC**: Creates Debian Buster ARM64 proot environments with XFCE and VNC server configured in `~/$BUSTERXFCE` if `$BUSTERXFCE` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
+2. **Andronix Debian Buster CLI-only environment with development tools**: Creates CLI-only Debian Buster ARM64 PRoot environments in `~/$BUSTERCLI` if `$BUSTERCLI` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin), and install development tools in it if `$BUSTERCLI` is not empty string and `$BUSTERCLIINSTALL` is not `0`.
+2. **Andronix Debian Buster environment with XFCE and VNC**: Creates Debian Buster ARM64 PRoot environments with XFCE and VNC server configured in `~/$BUSTERXFCE` if `$BUSTERXFCE` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
 
 Go to [VM Setup Scripts](#setup-scripts) for more details of the VM setup scripts invoked in [`termux-setup.sh`](termux-setup.sh).
 
@@ -75,10 +74,10 @@ Go to [VM Setup Scripts](#setup-scripts) for more details of the VM setup script
 
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
-- [`debian-buster-xfce-mod.sh`](debian-buster-xfce-mod.sh): Modified version of [`Andronix's debian-xfce.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh), which installs and configures XFCE GUI and VNC server support and related tools for Debian Buster ARM64 proot environment. Invoked for the `$BUSTERXFCE` Debian Buster proot environment.
-- [`debian-bookworm.sh`](debian-bookworm.sh): Installs developer tools for Debian Bookworm proot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Yarn, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, UnRAR-free, custom `~/.bashrc`, custom `~/.vimrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN`.
+- [`debian-buster-xfce-mod.sh`](debian-buster-xfce-mod.sh): Modified version of [`Andronix's debian-xfce.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh), which installs and configures XFCE GUI and VNC server support and related tools for Debian Buster ARM64 PRoot environment. Invoked for the `$BUSTERXFCE` Debian Buster PRoot environment.
+- [`debian-bookworm.sh`](debian-bookworm.sh): Configures audio and installs developer tools for Debian Bookworm PRoot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Yarn, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, UnRAR-free, custom `~/.bashrc`, custom `~/.vimrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN`.
 - [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX`.
-- [`ubuntu-24-04.sh`](ubuntu-24-04.sh): Installs developer tools for Ubuntu 24.04 proot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 8, Java 11, Java 17, Java 21, Node.js, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, RARLAB UnRAR, custom `~/.bashrc`, custom `~/.vimrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU`.
+- [`ubuntu-24-04.sh`](ubuntu-24-04.sh): Configures audio and installs developer tools for Ubuntu 24.04 PRoot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 8, Java 11, Java 17, Java 21, Node.js, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, RARLAB UnRAR, custom `~/.bashrc`, custom `~/.vimrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU`.
 
 ---
 
@@ -94,7 +93,7 @@ Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intend
 
 ### Utility Scripts
 
-- [`bashrc.sh`](DOTshortcuts/bashrc.sh): A customized `.bashrc` for Termux with pre-defined aliases, functions, and environment variables for Tor, Git, Go, ANTLR4, etc.
+- [`bashrc.sh`](DOTshortcuts/bashrc.sh): A customized `.bashrc` for Termux with pre-defined aliases, functions, environment variables for development tools and human usages, audio setup, etc.
 - [`vimrc`](DOTshortcuts/vimrc): A customized `.vimrc`.
 - [`gitPull.sh`](DOTshortcuts/gitPull.sh): `git pull` all repositories in `~/gh`.
 - [`code.sh`](DOTshortcuts/code.sh), [`download.sh`](DOTshortcuts/download.sh): `cd /storage/emulated/0/Documents/code` and `cd /storage/emulated/0/Download` respectively.
@@ -102,7 +101,6 @@ Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intend
 - [`shizuku.sh`](DOTshortcuts/shizuku.sh): `cd shizuku` and `sh rish`. This is a shortcuts for [Shizuku](https://github.com/RikkaApps/Shizuku), which is not configured in the scripts in this repository. Please refer to [the section of my tutorial "Android-Non-Root" about it](https://willie169.github.io/Android-Non-Root/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell) for more information.
 - [`termux-backup-bz.sh`](DOTshortcuts/termux-backup-bz.sh): Creates a compressed backup with the highest compression level of BZIP2 of the `/data/data/com.termux/files/home` and `/data/data/com.termux/files/usr`, then splits the resulting archive into parts, each 4000MB in size.
 - [`android-backup-bz.sh`](DOTshortcuts/android-backup-bz.sh): Creates a compressed backup with the highest compression level of BZIP2 of the `/storage/emulated/0/Files`, `/storage/emulated/0/DCIM`, `/storage/emulated/0/Pictures`, `/storage/emulated/0/Alarms`, and `/storage/emulated/0/Documents`, then splits the resulting archive into parts, each 4000MB in size.
-- [`start-audio.sh`](start-audio.sh): Starts sound output from Termux. Configured in [Termux Setup](#termux-setup) according to [https://docs.andronix.app/troubleshoot/sound](https://docs.andronix.app/troubleshoot/sound).
 
 ---
 

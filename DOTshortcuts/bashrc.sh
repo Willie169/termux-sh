@@ -7,9 +7,18 @@ export GOROOT="$PREFIX/lib/go"
 export GOPATH="$HOME/go"
 export TORPATH="$PREFIX/etc/tor"
 export PDROOTFS="$PREFIX/var/lib/proot-distro/installed-rootfs"
+export EMU="/storage/emulated/0"
+export DOW="/storage/emulated/0/Download"
+export DOC="/storage/emulated/0/Documents"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 alias antlr4='java -jar $PREFIX/lib/antlr-4.13.2-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
+pulseaudio --start --exit-idle-time=-1
+pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
+pacmd load-module module-sles-sink
 
 gpull() {
     level="${1:-0}"
