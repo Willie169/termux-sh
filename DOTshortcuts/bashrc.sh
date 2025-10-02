@@ -204,7 +204,7 @@ mvaipu() {
 
 cpaipu() {
     cpaip ubuntu "$1"
-)
+}
 
 mvopu() {
     mvop ubuntu "$1"
@@ -250,8 +250,8 @@ cpropdb() {
     cprop debianbox "$1"
 }
 
-grma() {
-    git rm -rf *
+grm() {
+    git rm -rf "${1:-*}"
 }
 
 mvagcp() {
@@ -264,14 +264,14 @@ cpagcp() {
     gacp "$2"
 }
 
-grmmvagcp()
-    grma
+grmmvagcp() {
+    grm *
     mvaic "$1"
     gacp "$2"
 }
 
-grmcpagcp()
-    grma
+grmcpagcp() {
+    grm *
     cpaic "$1"
     gacp "$2"
 }
