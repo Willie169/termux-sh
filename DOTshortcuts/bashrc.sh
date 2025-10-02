@@ -94,6 +94,18 @@ cpric() {
     cp -r "/storage/emulated/0/Download/$1" .
 }
 
+mvaic() {
+    mv -r "/storage/emulated/0/Download/$1" .
+    cp "$1/*" .
+    rm -r "$1"
+}
+
+cpaic() {
+    cp -r "/storage/emulated/0/Download/$1" .
+    cp "$1/*" .
+    rm -r "$1"
+}
+
 mvoc() {
     mv "$1" "/storage/emulated/0/Download"
 }
@@ -106,30 +118,6 @@ cproc() {
     cp -r "$1" "/storage/emulated/0/Download"
 }
 
-mvid() {
-    mv "/storage/emulated/0/Download/$2" "/data/data/com.termux/files/home/debian$1/debian-fs/root/"
-}
-
-cpid() {
-    cp "/storage/emulated/0/Download/$2" "/data/data/com.termux/files/home/debian$1/debian-fs/root/"
-}
-
-cprid() {
-    cp -r "/storage/emulated/0/Download/$2" "/data/data/com.termux/files/home/debian$1/debian-fs/root/"
-}
-
-mvod() {
-    mv "/data/data/com.termux/files/home/debian$1/debian-fs/root/$2" "/storage/emulated/0/Download/"
-}
-
-cpod() {
-    cp "/data/data/com.termux/files/home/debian$1/debian-fs/root/$2" "/storage/emulated/0/Download/"
-}
-
-cprod() {
-    cp -r "/data/data/com.termux/files/home/debian$1/debian-fs/root/$2" "/storage/emulated/0/Download/"
-}
-
 mvip() {
     mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
 }
@@ -140,6 +128,18 @@ cpip() {
 
 cprip() {
     cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+}
+
+mvaip() {
+    mv -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    cp "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
+}
+
+cpaip() {
+    cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    cp "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
 }
 
 mvop() {
@@ -166,6 +166,14 @@ cpripd() {
     cprip debian "$1"
 }
 
+mvaipd() {
+    mvaip debian "$1"
+}
+
+cpaipd() {
+    cpaip debian "$1"
+}
+
 mvopd() {
     mvop debian "$1"
 }
@@ -189,6 +197,14 @@ cpipu() {
 cpripu() {
     cprip ubuntu "$1"
 }
+
+mvaipu() {
+    mvaip ubuntu "$1"
+}
+
+cpaipu() {
+    cpaip ubuntu "$1"
+)
 
 mvopu() {
     mvop ubuntu "$1"
@@ -214,6 +230,14 @@ cpripdb() {
     cprip debianbox "$1"
 }
 
+mvaipdb() {
+    mvaip debianbox "$1"
+}
+
+cpaipdb() {
+    cpaip debianbox "$1"
+}
+
 mvopdb() {
     mvop debianbox "$1"
 }
@@ -224,4 +248,30 @@ cpopdb() {
 
 cpropdb() {
     cprop debianbox "$1"
+}
+
+grma() {
+    git rm -rf *
+}
+
+mvagcp() {
+    mvaic "$1"
+    gacp "$2"
+}
+
+cpagcp() {
+    cpaic "$1"
+    gacp "$2"
+}
+
+grmmvagcp()
+    grma
+    mvaic "$1"
+    gacp "$2"
+}
+
+grmcpagcp()
+    grma
+    cpaic "$1"
+    gacp "$2"
 }
