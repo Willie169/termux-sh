@@ -96,13 +96,13 @@ cpric() {
 
 mvaic() {
     mv "/storage/emulated/0/Download/$1" .
-    cp "$1/*" .
+    cp "$1"/* .
     rm -r "$1"
 }
 
 cpaic() {
     cp -r "/storage/emulated/0/Download/$1" .
-    cp "$1/*" .
+    cp "$1"/* .
     rm -r "$1"
 }
 
