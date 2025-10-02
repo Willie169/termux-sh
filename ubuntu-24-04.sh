@@ -1,6 +1,6 @@
 apt update
 apt upgrade -y
-apt install autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus ffmpeg file flex gcc gdb gh ghostscript git golang gperf gpg grep g++ libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 iverilog jq make maven mc nano neovim openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk openjdk-21-jdk openssh-client openssh-server openssl pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tmux tree unrar verilator vim wget zsh -y
+apt install autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus ffmpeg file flex gcc gdb gh ghostscript git golang gperf gpg grep g++ libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 jq make maven mc nano neovim openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk openjdk-21-jdk openssh-client openssh-server openssl pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tmux tree unrar verilator vim wget zsh -y
 cd ~
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xvzf install-tl-unx.tar.gz
