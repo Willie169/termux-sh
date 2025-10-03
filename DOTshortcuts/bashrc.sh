@@ -96,13 +96,13 @@ cpric() {
 
 mvaic() {
     mv "/storage/emulated/0/Download/$1" .
-    cp "$1"/* .
+    cp -r "$1"/* .
     rm -r "$1"
 }
 
 cpaic() {
     cp -r "/storage/emulated/0/Download/$1" .
-    cp "$1"/* .
+    cp -r "$1"/* .
     rm -r "$1"
 }
 
@@ -132,13 +132,13 @@ cprip() {
 
 mvaip() {
     mv "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
-    cp "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
     rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
 }
 
 cpaip() {
     cp -r "/storage/emulated/0/Download/$2" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
-    cp "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
+    cp -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2/*" "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root"
     rm -r "$PREFIX/var/lib/proot-distro/installed-rootfs/$1/root/$2"
 }
 
