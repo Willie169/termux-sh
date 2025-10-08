@@ -48,15 +48,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default one includes tools for C/C++, Python3, Java17, Java21, Node.js, Yarn, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, Termux-X11, TigerVNC, XFCE4, PRoot, RARLAB UnRAR, and more.
 2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` (for **Termux:Widget**) and the home directory (`~`) and renames [`~/bashrc.sh`](DOTshortcuts/.bashrc) to `~/.bashrc`.
-2. **Vim configuration**: Put the following in `./vimrc` if not `VIMRC=0`:
-```
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-set smartindent
-filetype plugin indent on
-```
+2. **Vim configuration**: Creates custom `./vimrc` if not `VIMRC=0`.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
 2. **Termux PRoot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux PRoot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
 2. **Node.js packages installation**: Installs NPM packages set in `$NPM`. The default is 
