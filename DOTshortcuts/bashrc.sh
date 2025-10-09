@@ -254,6 +254,16 @@ grm() {
     git rm -rf "${1:-*}"
 }
 
+grmmva() {
+    grm *
+    mvaic "$1"
+}
+
+grmcpa() {
+    grm *
+    cpaic "$1"
+}
+
 mvagcp() {
     mvaic "$1"
     gacp "$2"
