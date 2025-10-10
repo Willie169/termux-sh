@@ -68,14 +68,7 @@ cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~
 mv ~/bashrc.sh ~/.bashrc
 source ~/.bashrc
-[ "$VIMRC" -eq 0 ] || cat > ~/.vimrc << 'EOF'
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-set smartindent
-filetype plugin indent on
-EOF
+[ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$PROOTTERMUX" -eq 0 ] || echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/proot-termux.sh
 [ -n "$NPM" ] && npm install --global $NPM

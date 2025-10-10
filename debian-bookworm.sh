@@ -30,6 +30,7 @@ python3 -m venv .env
 source .env/bin/activate
 pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy
 deactivate
+git clone --depth=1 https://github.com/amix/vimrc.git /opt/vim_runtime && sh /opt/vim_runtime/install_awesome_parameterized.sh /opt/vim_runtime --all
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
@@ -106,14 +107,6 @@ updatetex() {
 
 EOF
 source ~/.bashrc
-cat > ~/.vimrc << 'EOF'
-set tabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
-set smartindent
-filetype plugin indent on
-EOF
 mkdir -p /usr/share/fonts/opentype/xits
 cd /usr/share/fonts/opentype/xits
 wget https://github.com/aliftype/xits/releases/download/v1.302/XITS-1.302.zip

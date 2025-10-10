@@ -48,9 +48,9 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default one includes tools for C/C++, Python3, Java17, Java21, Node.js, Yarn, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, Termux-X11, TigerVNC, XFCE4, PRoot, RARLAB UnRAR, Icarus Verilog, and more.
 2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` (for **Termux:Widget**) and the home directory (`~`) and renames [`~/bashrc.sh`](DOTshortcuts/.bashrc) to `~/.bashrc`.
-2. **Vim configuration**: Creates custom `./vimrc` if not `VIMRC=0`.
+2. **Vim configuration**: Install [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) if not `VIMRC=0`.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
-2. **Termux PRoot environment**: Installs [Yonle's termux-proot](https://github.com/Yonle/termux-proot), a Termux PRoot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
+2. **Termux PRoot environment**: Installs [termux-proot by Yonle](https://github.com/Yonle/termux-proot), a Termux PRoot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
 2. **Node.js packages installation**: Installs NPM packages set in `$NPM`. The default is 
 `jsdom marked marked-gfm-heading-id node-html-markdown markdown-toc showdown`.
 2. **Fabric installation**: Installs Go package [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
@@ -67,9 +67,9 @@ Go to [VM Setup Scripts](#setup-scripts) for more details of the VM setup script
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
 - [`debian-buster-xfce-mod.sh`](debian-buster-xfce-mod.sh): Modified version of [`Andronix's debian-xfce.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh), which installs and configures XFCE GUI and VNC server support and related tools for Debian Buster ARM64 PRoot environment. Invoked for the `$BUSTERXFCE` Debian Buster PRoot environment.
-- [`debian-bookworm.sh`](debian-bookworm.sh): Configures PulseAudio and installs developer tools for Debian Bookworm PRoot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Yarn, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, UnRAR-free, Icarus Verilog, Verilator, custom `~/.bashrc`, custom `~/.vimrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN`.
+- [`debian-bookworm.sh`](debian-bookworm.sh): Configures PulseAudio and installs developer tools for Debian Bookworm PRoot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 17, Node.js, Yarn, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, UnRAR-free, Icarus Verilog, Verilator, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc), custom `~/.bashrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN`.
 - [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX`.
-- [`ubuntu-24-04.sh`](ubuntu-24-04.sh): Configures PulseAudio and installs developer tools for Ubuntu 24.04 PRoot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 8, Java 11, Java 17, Java 21, Node.js, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, RARLAB UnRAR, Icarus Verilog, Verilator, custom `~/.bashrc`, custom `~/.vimrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU`.
+- [`ubuntu-24-04.sh`](ubuntu-24-04.sh): Configures PulseAudio and installs developer tools for Ubuntu 24.04 PRoot environment, including development tools, runtime environments, and utilities for C/C++, Python3, Java 8, Java 11, Java 17, Java 21, Node.js, Rust, Go, Ruby, Perl, GitHub, FFmpeg, SSL, SSH, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, RARLAB UnRAR, Icarus Verilog, Verilator, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc), custom `~/.bashrc`, and my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) and my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit). Invoked for the Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU`.
 
 ---
 
@@ -127,6 +127,7 @@ This repository is licensed under GNU General Public License General Public Lice
 - [https://alpinelinux.org](https://alpinelinux.org).
 - [https://andronix.app](https://andronix.app).
 - [https://blissos.org](https://blissos.org).
+- [https://github.com/amix/vimrc](https://github.com/amix/vimrc).
 - [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
 - [https://github.com/cyberkernelofficial/docker-in-termux](https://github.com/cyberkernelofficial/docker-in-termux).
 - [https://github.com/diogok/termux-qemu-alpine-docker](https://github.com/diogok/termux-qemu-alpine-docker).
