@@ -72,15 +72,7 @@ source ~/.bashrc
 set signcolumn=no
 set foldcolumn=0
 
-function! ToggleMouse()
-    if &mouse ==# 'a'
-        set mouse=
-    else
-        set mouse=a
-    endif
-endfunction
-
-nnoremap <leader>k :call ToggleMouse()<CR>
+nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| endif<CR>
 ' | tee ~/.vim_runtime/my_configs.vim > /dev/null
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$PROOTTERMUX" -eq 0 ] || echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/proot-termux.sh

@@ -34,15 +34,7 @@ git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vi
 set signcolumn=no
 set foldcolumn=0
 
-function! ToggleMouse()
-    if &mouse ==# 'a'
-        set mouse=
-    else
-        set mouse=a
-    endif
-endfunction
-
-nnoremap <leader>k :call ToggleMouse()<CR>
+nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| endif<CR>
 ' | tee ~/.vim_runtime/my_configs.vim > /dev/null
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
