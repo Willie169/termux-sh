@@ -30,12 +30,12 @@ python3 -m venv .env
 source .env/bin/activate
 pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy
 deactivate
-git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh && echo 'set mouse=a
+git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh && echo "set mouse=a
 set signcolumn=no
 set foldcolumn=0
 
 nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| endif<CR>
-' | tee ~/.vim_runtime/my_configs.vim > /dev/null
+" | tee ~/.vim_runtime/my_configs.vim > /dev/null
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 
