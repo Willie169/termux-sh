@@ -31,6 +31,16 @@ deactivate
 git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh && echo 'set mouse=a
 set signcolumn=no
 set foldcolumn=0
+
+function! ToggleMouse()
+    if &mouse ==# 'a'
+        set mouse=
+    else
+        set mouse=a
+    endif
+endfunction
+
+nnoremap <leader>k :call ToggleMouse()<CR>
 ' | tee ~/.vim_runtime/my_configs.vim > /dev/null
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.

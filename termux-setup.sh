@@ -71,6 +71,16 @@ source ~/.bashrc
 [ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh && echo 'set mouse=a
 set signcolumn=no
 set foldcolumn=0
+
+function! ToggleMouse()
+    if &mouse ==# 'a'
+        set mouse=
+    else
+        set mouse=a
+    endif
+endfunction
+
+nnoremap <leader>k :call ToggleMouse()<CR>
 ' | tee ~/.vim_runtime/my_configs.vim > /dev/null
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$PROOTTERMUX" -eq 0 ] || echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/proot-termux.sh
