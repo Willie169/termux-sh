@@ -35,6 +35,10 @@ set nolinebreak
 
 nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| endif<CR>
 " | tee ~/.vim_runtime/my_configs.vim > /dev/null
+echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+' | tee /init.vim > /dev/null
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
