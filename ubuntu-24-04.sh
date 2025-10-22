@@ -189,7 +189,7 @@ gtr() {
 updatetex() {
     dir=$(pwd)
     cd /usr/share/LaTeX-ToolKit
-    sudo git pull
+    git pull
     cd ~/texmf/tex/latex/physics-patch
     git pull
     cd dir
