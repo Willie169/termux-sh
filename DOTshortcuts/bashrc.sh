@@ -82,6 +82,15 @@ torch() {
     fi
 }
 
+updatevimrc() {
+    cd ~/.vim_runtime
+    git reset --hard
+    git clean -d --force
+    git pull --rebase
+    python3 update_plugins.py
+    cd
+}
+
 mvic() {
     mv "/storage/emulated/0/Download/$1" .
 }

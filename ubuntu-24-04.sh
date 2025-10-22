@@ -187,14 +187,21 @@ gtr() {
 }
 
 updatetex() {
-    dir=$(pwd)
     cd /usr/share/LaTeX-ToolKit
     git pull
     cd ~/texmf/tex/latex/physics-patch
     git pull
-    cd dir
+    cd
 }
 
+updatevimrc() {
+    cd ~/.vim_runtime
+    git reset --hard
+    git clean -d --force
+    git pull --rebase
+    python3 update_plugins.py
+    cd
+}
 EOF
 source ~/.bashrc
 mkdir -p /usr/share/fonts/opentype/xits
