@@ -91,6 +91,10 @@ updatevimrc() {
     cd
 }
 
+rand() {
+    od -An -N4 -tu4 < /dev/urandom | tr -d ' ' | awk -v min=$1 -v max=$2 '{print int($1 % (max - min)) + min}';
+}
+
 mvic() {
     mv "/storage/emulated/0/Download/$1" .
 }
@@ -101,6 +105,18 @@ cpic() {
 
 cpric() {
     cp -r "/storage/emulated/0/Download/$1" .
+}
+
+mvir() {
+    mv "/storage/emulated/0/Download/$1" "$2"
+}
+
+cpir() {
+    cp "/storage/emulated/0/Download/$1" "$2"
+}
+
+cprir() {
+    cp -r "/storage/emulated/0/Download/$1" "$2"
 }
 
 mvaic() {
@@ -259,6 +275,16 @@ cpropdb() {
     cprop debianbox "$1"
 }
 
+rmmva() {
+    rm -rf *
+    mvaic "$1"
+}
+
+rmcpa() {
+    rm -rf *
+    cpaic "$1"
+}
+
 grm() {
     git rm -rf "${1:-*}"
 }
@@ -279,6 +305,18 @@ mvagcp() {
 }
 
 cpagcp() {
+    cpaic "$1"
+    gacp "$2"
+}
+
+rmmvagcp() {
+    rm -rf *
+    mvaic "$1"
+    gacp "$2"
+}
+
+rmcpagcp() {
+    rm -rf *
     cpaic "$1"
     gacp "$2"
 }

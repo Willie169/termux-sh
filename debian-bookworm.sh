@@ -123,6 +123,10 @@ updatevimrc() {
     python3 update_plugins.py
     cd
 }
+
+rand() {
+    od -An -N4 -tu4 < /dev/urandom | tr -d ' ' | awk -v min=$1 -v max=$2 '{print int($1 % (max - min)) + min}';
+}
 EOF
 source ~/.bashrc
 mkdir -p /usr/share/fonts/opentype/xits
