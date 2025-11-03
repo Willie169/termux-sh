@@ -20,6 +20,10 @@ pulseaudio --start --exit-idle-time=-1
 pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 pacmd load-module module-sles-sink
 
+gh-latest() {
+    curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -E 's/([][^$.|?*+(){}\\])/\\\\\1/g')\"))" | xargs curl -L -O
+}
+
 gpull() {
     level="${1:-0}"
     if [ "$level" -eq 0 ]; then

@@ -154,6 +154,10 @@ alias src='source'
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
+gh-latest() {
+    curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -E 's/([][^$.|?*+(){}\\])/\\\\\1/g')\"))" | xargs curl -L -O
+}
+
 gpull() {
     level="${1:-0}"
     if [ "$level" -eq 0 ]; then
