@@ -4,6 +4,23 @@ This repository contains Shell scripts for [Termux](https://github.com/termux/te
 
 My tutorials for Termux, some of my scripts in this repository, and other related stuff are in [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root), which includes tutorials for a range of powerful, open-source tools such as [Termux](https://github.com/termux/termux-app), [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), [QEMU](https://www.qemu.org), [Tailscale](https://github.com/tailscale/tailscale), [OpenSSH](https://www.openssh.com), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance Android device’s functionality, security, privacy, and customization without the need for root access.
 
+---
+
+## Table of Contents
+
+* [Termux Setup ([`termux-setup.sh`](termux-setup.sh))](#termux-setup-termux-setupshtermux-setupsh)
+  + [Prerequisites](#prerequisites)
+  + [Execution](#execution)
+  + [Features](#features)
+  + [VM Setup Scripts](#vm-setup-scripts)
+* [Shortcuts](#shortcuts)
+  + [Boot VM Scripts](#boot-vm-scripts)
+  + [Utility Scripts](#utility-scripts)
+* [Additional Scripts](#additional-scripts)
+* [My Related Repositories](#my-related-repositories)
+* [TODO](#todo)
+* [License](#license)
+* [References](#references)
 
 ---
 
@@ -105,6 +122,13 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 - [`debian-waydroid.sh`](debian-waydroid.sh): Installs [Waydroid](https://waydro.id) on Debian derivatives such as the QEMU Debian VMs. Waydroid is a container-based approach to boot a full Android system in a Linux namespace on a GNU/Linux-based platform.
 - [`xmrig-install.sh`](xmrig-install.sh): Clones and compiles [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
 - [`proot-install-nethunter.sh`](proot-install-nethunter.sh): Installs the Kali Nethunter ARM64 proot-distro instance from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install. For example, `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB. Boot it with `<build id> [` USER `]` or `proot-distro login <build id> [` USER `]`. Open GUI after logged in with `sudo kgui`. Please go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
+
+---
+
+## My Related Repositories
+
+* [**LinuxAndTermuxTips**](https://github.com/Willie169/LinuxAndTermuxTips)
+* [**Android Non Root**](https://github.com/Willie169/Android-Non-Root) and its [site](https://willie169.github.io/Android-Non-Root)
 
 ---
 
