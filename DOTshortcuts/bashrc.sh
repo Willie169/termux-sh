@@ -65,27 +65,6 @@ torchk() {
     fi
 }
 
-torchr() {
-    battery_status=$(termux-battery-status)
-    is_charging=$(echo "$battery_status" | grep -o '"status": "CHARGING"')
-    if [[ $is_charging == *"CHARGING"* ]]; then
-        echo 'CHARGING'
-    else
-        tor &
-    fi
-}
-
-torch() {
-    battery_status=$(termux-battery-status)
-    is_charging=$(echo "$battery_status" | grep -o '"status": "CHARGING"')
-    if [[ $is_charging == *"CHARGING"* ]]; then
-        pkill -f "^tor$"
-        echo 'CHARGING'
-    else
-        tor &
-    fi
-}
-
 updatevimrc() {
     cd ~/.vim_runtime
     git reset --hard
