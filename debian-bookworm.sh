@@ -36,21 +36,6 @@ set foldcolumn=0
 set nolinebreak
 
 nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| endif<CR>
-
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'github/copilot.vim'
-
-call plug#end()
-
-let g:copilot_no_tab_map = v:true
-imap <C-J> <Plug>(copilot-accept)
 " | tee ~/.vim_runtime/my_configs.vim > /dev/null
 mkdir -p ~/.config/nvim
 echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
