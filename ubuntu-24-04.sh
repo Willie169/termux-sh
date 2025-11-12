@@ -1,7 +1,10 @@
+cd ~
 apt update
 apt upgrade -y
 apt install aptitude autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep g++ libboost-all-dev libeigen3-dev libgsl-dev libssl-dev iproute2 iverilog jq make maven mc nano neovim net-tools openjdk-8-jdk openjdk-11-jdk openjdk-17-jdk openjdk-21-jdk openssh-client openssh-server openssl pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tmux tree unrar valgrind verilator vim wget zsh -y
-cd ~
+sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+mkdir -p /run/sshd
+chmod 755 /run/sshd
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xvzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
@@ -151,6 +154,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias src='source'
+alias sshd='/usr/sbin/sshd'
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 
