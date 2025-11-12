@@ -12,7 +12,7 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
   + [Prerequisites](#prerequisites)
   + [Execution](#execution)
   + [Features](#features)
-  + [VM Setup Scripts](#vm-setup-scripts)
+  + [Invoked VM Setup Scripts](#invoked-vm-setup-scripts)
 * [Shortcuts](#shortcuts)
   + [Boot VM Scripts](#boot-vm-scripts)
   + [Utility Scripts](#utility-scripts)
@@ -28,11 +28,39 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 
 ### Prerequisites
 
-- Approximately 18.5GB of storage space for default configuration. Approximately 30.1GB of storage space if none of `UBUNTU`, `DEBIANBOX`, `BUSTERCLI`, and `BUSTERXFCE` is empty string, and none of `DEBIANINSTALL`, `UBUNTUINSTALL`, `DEBIANBOXINSTALL`, and `BUSTERCLIINSTALL` is `0`.
-- Internet connection for packages and scripts download.
-- It is recommended to turn off the battery optimization for Termux.
-- It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping **Acquire wakelock** on the notification of Termux.
-- It is recommended to prevent the `Process completed (signal 9) - press Enter` error in advance. You may encounter it when using Termux, especially when running VMs. To prevent it from occuring, please read my tutorial **Android Non Root** about it: <https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error> for the fixes.
+<ul>
+<li>Sufficient storage:
+<ul>
+<li>Approximately 18.5 GB (outdated) for default configuration, i.e., <pre><code>DEBIAN='debian'
+DEBIANINSTALL=1
+UBUNTU='ubuntu'
+UBUNTUINSTALL=0
+DEBIANBOX=''
+DEBIANBOXINSTALL=0
+</code></pre></li>
+<li>Approximately - GB (haven't been counted) for configuration of:
+<pre><code>DEBIAN='debian'
+DEBIANINSTALL=1
+UBUNTU='ubuntu'
+UBUNTUINSTALL=1
+DEBIANBOX=''
+DEBIANBOXINSTALL=0
+</code></pre></li>
+<li>Approximately 30.1 GB (outdated) for configuration of:
+<pre><code>DEBIAN='debian'
+DEBIANINSTALL=1
+UBUNTU='ubuntu'
+UBUNTUINSTALL=1
+DEBIANBOX='debianbox'
+DEBIANBOXINSTALL=1
+</code></pre></li>
+</ul></li>
+<li>Sufficient power supply.</li>
+<li>Stable internet connection.</li>
+<li>It is recommended to turn off the battery optimization for Termux.</li>
+<li>It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping **Acquire wakelock** on the notification of Termux.</li>
+<li>It is recommended to prevent the `Process completed (signal 9) - press Enter` error in advance. You may encounter it when using Termux, especially when running VMs. To prevent it from occuring, please read tutorial about it in my **Android Non Root**: <https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error> for the fixes.</li>
+</ul>
 
 ### Execution
 
@@ -53,13 +81,10 @@ nano ~/termux-sh/termux-setup.sh
 <pre><code>bash ~/termux-sh/termux-setup.sh
 </code></pre>
 </li>
+<li>Follow the prompts until it exits automatically.</li>
 </ol>
 
-[`termux-setup.sh`](termux-setup.sh) will install essential packages, configures shortcuts, and sets up VMs in Termux.
-
-Follow the screen guide to complete it. If you see a dancing parrot on screen, which is powered by [parrot.live](https://github.com/hugomd/parrot.live), pull down the notification bar and tap **exit** on the notification of Termux. Now, you can restart Termux and enjoy it.
-
-### Features
+### Content
 
 The variables below refer to the variables set in the beginning of [`termux-setup.sh`](termux-setup.sh).
 
@@ -71,22 +96,17 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Node.js packages installation**: Installs NPM packages set in `$NPM`. The default is 
 `jsdom marked marked-gfm-heading-id node-html-markdown markdown-toc showdown`.
 2. **Fabric installation**: Installs Go package [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
-2. **Proot-distro Debian Bookworm environment with development tools**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN` if `$DEBIAN` is not empty string, and install development tools in it if `$DEBIAN` is not empty string and `$DEBIANINSTALL` is not `0`.
-2. **Proot-distro Ubuntu environment with development tools**: Configures an Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU` if `$UBUNTU` is not empty string, and install development tools in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`.
-2. **Proot-distro Debian Bookworm environment with Box64, Wine64, and Winetricks**: Configures Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX` if `$DEBIANBOX` is not empty string, and install Box64, Wine64, and Winetricks in it if `$DEBIANBOX` is not empty string and `$DEBIANBOXINSTALL` is not `0`.
-2. **Andronix Debian Buster CLI-only environment with development tools**: Creates CLI-only Debian Buster ARM64 PRoot environments in `~/$BUSTERCLI` if `$BUSTERCLI` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin), and install development tools in it if `$BUSTERCLI` is not empty string and `$BUSTERCLIINSTALL` is not `0`.
-2. **Andronix Debian Buster environment with XFCE and VNC**: Creates Debian Buster ARM64 PRoot environments with XFCE and VNC server configured in `~/$BUSTERXFCE` if `$BUSTERXFCE` is not empty string, using scripts from [Andronix](https://github.com/AndronixApp/AndronixOrigin).
+2. **Proot-distro Debian Bookworm environment with development tools**: Installs Debian ARM64 proot-distro environment with alias `$DEBIAN` if `$DEBIAN` is not empty string, and runs [`debian.sh`](debian.sh) in it if `$DEBIAN` is not empty string and `$DEBIANINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
+2. **Proot-distro Ubuntu environment with development tools**: Installs an Ubuntu ARM64 proot-distro environment with alias `$UBUNTU` if `$UBUNTU` is not empty string, and runs [`ubuntu.sh`](ubuntu.sh) in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
+2. **Proot-distro Debian Bookworm environment with Box64, Wine64, and Winetricks**: Installs Debian ARM64 proot-distro environment with alias `$DEBIANBOX` if `$DEBIANBOX` is not empty string, and runs [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh) in it if `$DEBIANBOX` is not empty string and `$DEBIANBOXINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
 
-Go to [VM Setup Scripts](#setup-scripts) for more details of the VM setup scripts invoked in [`termux-setup.sh`](termux-setup.sh).
-
-### VM Setup Scripts
+### Invoked VM Setup Scripts
 
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
-- [`debian-buster-xfce-mod.sh`](debian-buster-xfce-mod.sh): Modified version of [`Andronix's debian-xfce.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh), which installs and configures XFCE GUI and VNC server support and related tools for Debian Buster ARM64 PRoot environment. Invoked for the `$BUSTERXFCE` Debian Buster PRoot environment.
-- [`debian-bookworm.sh`](debian-bookworm.sh): Configures PulseAudio, installs developer tools for Debian Bookworm PRoot environment, including development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java 17, Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, FFMPEG, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, UnRAR-free, Icarus Verilog, Verilator, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc`. Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIAN`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
-- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian Bookworm ARM64 proot-distro instance with alias `$DEBIANBOX`.
-- [`ubuntu-24-04.sh`](ubuntu-24-04.sh): Configures PulseAudio, installs developer tools for Ubuntu 24.04 PRoot environment, including development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java 8, Java 11, Java 17, Java 21, Node.js, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, FFMPEG, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, RARLAB UnRAR, Icarus Verilog, Verilator, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc`. Invoked for the Ubuntu 24.04 ARM64 proot-distro instance with alias `$UBUNTU`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
+- [`debian.sh`](debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java 17, Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, FFMPEG, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, UnRAR-free, Icarus Verilog, Verilator, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian ARM64. Invoked for the Debian ARM64 proot-distro instance with alias `$DEBIAN`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
+- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian ARM64 proot-distro instance with alias `$DEBIANBOX`.
+- [`ubuntu.sh`](ubuntu.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java 8, Java 11, Java 17, Java 21, Node.js, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, FFMPEG, Pandoc, TeX Live, Node.js packages, Python3 packages, pipx, Poetry, XITS fonts, Noto CJK fonts, RARLAB UnRAR, Icarus Verilog, Verilator, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Ubuntu ARM64. Invoked for the Ubuntu ARM64 proot-distro instance with alias `$UBUNTU`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
 
 ---
 
@@ -121,7 +141,10 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 - [`alpine-docker.sh`](alpine-docker.sh): Installs Docker on an Alpine machine and run hello-world.
 - [`debian-waydroid.sh`](debian-waydroid.sh): Installs [Waydroid](https://waydro.id) on Debian derivatives such as the QEMU Debian VMs. Waydroid is a container-based approach to boot a full Android system in a Linux namespace on a GNU/Linux-based platform.
 - [`xmrig-install.sh`](xmrig-install.sh): Clones and compiles [xmrig](https://github.com/xmrig/xmrig), an open source Monero (XMR) miner.
-- [`proot-install-nethunter.sh`](proot-install-nethunter.sh): Installs the Kali Nethunter ARM64 proot-distro instance from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install. For example, `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB. Boot it with `<build id> [` USER `]` or `proot-distro login <build id> [` USER `]`. Open GUI after logged in with `sudo kgui`. Please go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
+- [`proot-install-nethunter.sh`](proot-install-nethunter.sh): Installs Kali Nethunter ARM64 proot-distro environment from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install. For example, `KBDEXKMTE` for everything, which occupies about 34GB, and `KBDEXKMTD` for default, which occupies about 13GB. Boot it with `<build id> [` USER `]` or `proot-distro login <build id> [` USER `]`. Open GUI after logged in with `sudo kgui`. Please go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
+- [`debian-buster-xfce-mod.sh`](debian-buster-xfce-mod.sh): Modified version of [`Andronix's debian-xfce.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian-xfce.sh), which installs and configures XFCE desktop environment and VNC server for Debian Buster ARM64 PRoot environment.
+- [`proot-install-buster-cli.sh`](proot-install-buster-cli.sh): Installs Andronix Debian Buster ARM64 PRoot CLI-only environment in `~/$BUSTERCLI` if `$BUSTERCLI` is not empty string using [`Andronix's debian.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian.sh). Configure the `BUSTERCLI` variable in the file to change the directory.
+- [`proot-install-buster-xfce.sh`](proot-install-buster-xfce.sh): Installs Andronix Debian Buster ARM64 PRoot environment with XFCE desktop environment and VNC server in `~/$BUSTERXFCE` if `$BUSTERXFCE` is not empty string using [`debian-buster-xfce-mod.sh`](debian-buster-xfce-mod.sh).
 
 ---
 
