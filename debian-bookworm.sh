@@ -76,8 +76,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias src='source'
 alias ssh='/usr/sbin/sshd'
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
 
 gh-latest() {
     curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -L -O
