@@ -65,13 +65,11 @@ DEBIANBOXINSTALL=1
 ### Execution
 
 <ol>
-<li>In <code>termux-change-repo</code>, it is recommended to choose a mirror close to your geographic location:
-<pre><code>termux-setup-storage
-termux-change-repo
+<li>It is recommended to run <code>termux-change-repo</code> and choose a mirror close to your geographic location.</li>
+<li><pre><code>termux-setup-storage
 pkg update &amp;&amp; pkg install git -y
 cd ~ &amp;&amp; git clone https://github.com/Willie169/termux-sh.git
-</code></pre>
-</li>
+</code></pre></li>
 <li>Optionally edit the variables in the beginning of <code>~/termux-sh/termux-setup.sh</code> (<code>nano</code> for example). In VM names variables, <code> </code> (space) will be replaced with <code>_</code>, names that are not allowed will be added a suffix <code>1</code>:
 <pre><code>pkg install nano
 nano ~/termux-sh/termux-setup.sh
