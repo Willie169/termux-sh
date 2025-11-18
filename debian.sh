@@ -78,6 +78,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias src='source'
 alias sshd='/usr/sbin/sshd'
+alias g++20='g++ -std=gnu++20'
+alias g++202='g++ -std=gnu++20 -O2'
+alias g++SDL='g++ -lSDL_bgi -lSDL2 -lm'
 
 gh-latest() {
     curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -L -O
