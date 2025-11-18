@@ -1,1 +1,0 @@
-BZIP2='-9' tar -cvjf - /storage/emulated/0/Files /storage/emulated/0/DCIM /storage/emulated/0/Pictures /storage/emulated/0/Alarms /storage/emulated/0/Documents | split -b 4000M - /sdcard/android_backup.tar.bz2.part
