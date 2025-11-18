@@ -167,7 +167,20 @@ alias src='source'
 alias sshd='/usr/sbin/sshd'
 alias g++20='g++ -std=gnu++20'
 alias g++202='g++ -std=gnu++20 -O2'
-alias g++SDL='g++ -std=gnu++20 -lm -lSDL2 -lSDL_bgi'
+
+g++SDL2() {
+    g++ "$@" -lm -lSDL2 -lSDL_bgi
+}
+
+g++20SDL2() {
+    g++ -std=gnu++20 "$@" -lm -lSDL2 -lSDL_bgi
+}
+
+xdgset() {
+    export XDG_RUNTIME_DIR=/tmp/runtime-root
+    mkdir -p $XDG_RUNTIME_DIR
+    export DISPLAY="$1"
+}
 
 gh-latest() {
     curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -L -O
