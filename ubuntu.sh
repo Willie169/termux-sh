@@ -1,7 +1,7 @@
 cd ~
 apt update
 apt upgrade -y
-apt install alsa-utils aptitude autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
+apt install alsa-utils aptitude autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
 sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 mkdir -p /run/sshd
 chmod 755 /run/sshd
@@ -37,6 +37,8 @@ set foldcolumn=0
 set nolinebreak
 
 nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| endif<CR>
+
+let g:copilot_enabled = v:false
 " | tee ~/.vim_runtime/my_configs.vim > /dev/null
 mkdir -p ~/.config/nvim
 echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after

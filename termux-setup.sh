@@ -69,6 +69,8 @@ set foldcolumn=0
 set nolinebreak
 
 nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| endif<CR>
+
+let g:copilot_enabled = v:false
 " | tee ~/.vim_runtime/my_configs.vim > /dev/null
 mkdir -p ~/.config/nvim
 echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after

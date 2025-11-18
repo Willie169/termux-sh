@@ -151,7 +151,7 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 
 * Edit your customizations in `~/vim_runtime/my_configs.vim`.
 * Setup GitHub Copilot with `:Copilot setup`.
-* To disable GitHub Copilot, run `:let g:copilot_enabled = v:false`, or globally, add `let g:copilot_enabled = v:false` to `/opt/vim_runtime/my_configs.vim`.
+* [`install-tools-first.sh`](install-tools-first.sh) disable GitHub Copilot by default. To enable it, remove `let g:copilot_enabled = v:false` from `~/vim_runtime/my_configs.vim`. Run `:let g:copilot_enabled = v:false` to disable GitHub Copilot temporarily. Run `:let g:copilot_enabled = v:true` to enable GitHub Copilot temporarily. Add `let g:copilot_enabled = v:false` to `~/vim_runtime/my_configs.vim` to disable GitHub Copilot globally.
 * See [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for more information.
 
 ### My Related Repositories
