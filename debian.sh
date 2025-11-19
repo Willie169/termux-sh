@@ -78,6 +78,7 @@ cat > ~/.bashrc << 'EOF'
 export GOROOT="$PREFIX/lib/go"
 export GOPATH="$HOME/go"
 export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:/usr/glibc/bin:$HOME/.cargo/bin:/usr/local/texlive/2025/bin/aarch64-linux:$HOME/.pyenv/bin"
+export CPLUS_INCLUDE_PATH="/usr/include/SDL2:$CPLUS_INCLUDE_PATH"
 export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
 export PULSE_SERVER=127.0.0.1
