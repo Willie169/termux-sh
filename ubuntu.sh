@@ -169,12 +169,16 @@ alias sshd='/usr/sbin/sshd'
 alias g++20='g++ -std=gnu++20'
 alias g++202='g++ -std=gnu++20 -O2'
 
+gccSDL2() {
+    gcc "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi -lm -lstdc++
+}
+
 g++SDL2() {
-    g++ "$@" -lm -lSDL2 -lSDL_bgi
+    g++ "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi
 }
 
 g++20SDL2() {
-    g++ -std=gnu++20 "$@" -lm -lSDL2 -lSDL_bgi
+    g++ -std=gnu++20 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi
 }
 
 xdgset() {
