@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
-PKG='alsa-utils android-tools apksigner autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep iproute2 iverilog jpegoptim jq make maven mc nano ncurses-utils neovim net-tools nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl pulseaudio procps proot proot-distro python-ensurepip-wheels python-pip python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree unrar valgrind vim wget which xfce4 yarn zsh' 
-NPM='jsdom marked marked-gfm-heading-id node-html-markdown markdown-toc showdown'
+PKG='alsa-utils android-tools apksigner autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep iproute2 iverilog jpegoptim jq make maven mc nano ncurses-utils neovim net-tools nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl pulseaudio procps proot proot-distro python-ensurepip-wheels python-pip python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree unrar valgrind vim wget which xfce4 yarn zsh'
+NPM='jsdom marked marked-gfm-heading-id node-html-markdown showdown unibeautify @unibeautify/cli @unibeautify/beautifier-prettydiff'
 VIMRC=1
 PROOTTERMUX=1
 DEBIAN='debian'
@@ -79,7 +79,7 @@ source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$PROOTTERMUX" -eq 0 ] || echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/proot-termux.sh
-[ -n "$NPM" ] && npm install -g jsdom marked marked-gfm-heading-id node-html-markdown showdown unibeautify @unibeautify/cli
+[ -n "$NPM" ] && npm install -g $NPM
 [ -n "$DEBIAN" ] && [ $DEBIAN != debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIAN
 [ $DEBIAN == debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian
 [ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -eq 0 ] || cat ~/termux-sh/debian-bookworm.sh <(echo -e "\nexit") | proot-distro login $DEBIAN --isolated --fix-low-ports
