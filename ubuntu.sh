@@ -33,7 +33,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 nvm install 22
 corepack enable yarn
 corepack enable pnpm
-npm install -g jsdom marked marked-gfm-heading-id node-html-markdown showdown
+npm install -g jsdom marked marked-gfm-heading-id node-html-markdown showdown unibeautify @unibeautify/cli
 pipx install poetry
 python3 -m venv .env
 source .env/bin/activate
