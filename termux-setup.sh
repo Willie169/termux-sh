@@ -1,7 +1,8 @@
 #!/data/data/com.termux/files/usr/bin/bash
-PKG='alsa-utils android-tools apksigner autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep iproute2 iverilog jpegoptim jq make maven mc nano ncurses-utils neovim net-tools nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl pulseaudio procps proot proot-distro python-ensurepip-wheels python-pip python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree unrar valgrind vim wget which xfce4 yarn zsh'
+PKG='alsa-utils android-tools apksigner autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep iproute2 iverilog jpegoptim jq make matplotlib maven mc nano ncurses-utils neovim net-tools ninja nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl pulseaudio procps proot proot-distro python-ensurepip-wheels python-pip python-scipy python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree unrar valgrind vim wget which xfce4 yarn zsh'
 NPM='jsdom marked marked-gfm-heading-id node-html-markdown showdown'
 VIMRC=1
+PIPINSTALL='jupyter meson numpy pandas pipx pydub selenium setuptools sympy'
 PROOTTERMUX=1
 DEBIAN='debian'
 DEBIANINSTALL=1
@@ -55,7 +56,7 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$DEBIANBOX" == "rockylinux" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "ubuntu" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "void" ] && DEBIANBOX="${DEBIANBOX}1"
-cd ~ && pkg update && pkg upgrade -y && pkg install curl x11-repo -y
+cd ~ && pkg update && pkg upgrade -y && pkg install curl git x11-repo -y
 [ -n "$PKG" ] && pkg install $PKG -y
 mkdir -p ~/.shortcuts
 chmod +x ~/termux-sh/DOTshortcuts/*.sh
@@ -72,11 +73,11 @@ nnoremap <leader>k :if &mouse ==# 'a' \| set mouse= \| else \| set mouse=a \| en
 
 let g:copilot_enabled = v:false
 " | tee ~/.vim_runtime/my_configs.vim > /dev/null
-mkdir -p ~/.config/nvim
-echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
+[ "$VIMRC" -eq 0 ] || mkdir -p ~/.config/nvim && echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
+[ -n "$PIPINSTALL" ] && pip install $PIPINSTALL
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$PROOTTERMUX" -eq 0 ] || echo 'termux-change-repo && pkg update && pkg upgrade -y && apt update && apt upgrade -y && exit' | bash ~/proot-termux.sh
 [ -n "$NPM" ] && npm install -g $NPM

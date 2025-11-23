@@ -36,7 +36,7 @@ nvm install 22
 corepack enable yarn
 corepack enable pnpm
 npm install -g jsdom marked marked-gfm-heading-id node-html-markdown showdown
-pipx install poetry
+pipx install poetry uv
 python3 -m venv .env
 source .env/bin/activate
 pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy
