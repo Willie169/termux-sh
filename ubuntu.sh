@@ -1,7 +1,7 @@
 cd ~
 apt update
 apt upgrade -y
-apt install alsa-utils aptitude autoconf automake bash bison build-essential bzip2 clang cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
+apt install alsa-utils aptitude autoconf automake bash bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
 wget -q https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download -O SDL2_bgi-3.0.4.tar.gz
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
@@ -165,6 +165,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias src='source'
+alias deact='deactivate'
 alias sshd='/usr/sbin/sshd'
 alias g++20='g++ -std=gnu++20'
 alias g++202='g++ -std=gnu++20 -O2'
@@ -197,7 +198,7 @@ gpull() {
         repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
         if [ -n "$repo_dir" ]; then
             echo "$repo_dir"
-            (cd "$repo_dir" && git pull)
+            (cd "$repo_dir" && git pull origin)
         else
             echo "Not in a Git repo."
         fi
@@ -206,7 +207,7 @@ gpull() {
         find . -mindepth "$depth" -maxdepth "$depth" -type d -name .git | while read -r gitdir; do
             repo_dir=$(dirname "$gitdir")
             echo "$repo_dir"
-            (cd "$repo_dir" && git pull)
+            (cd "$repo_dir" && git pull origin)
         done
     fi
 }

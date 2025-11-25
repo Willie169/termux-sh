@@ -16,6 +16,7 @@ export NVM_DIR="$HOME/.nvm"
 alias antlr4='java -jar $PREFIX/lib/antlr-4.13.2-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
+alias deact='deactivate'
 pulseaudio --start --exit-idle-time=-1
 pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 pacmd load-module module-sles-sink
@@ -30,7 +31,7 @@ gpull() {
         repo_dir=$(git rev-parse --show-toplevel 2>/dev/null)
         if [ -n "$repo_dir" ]; then
             echo "$repo_dir"
-            (cd "$repo_dir" && git pull)
+            (cd "$repo_dir" && git pull origin)
         else
             echo "Not in a Git repo."
         fi
@@ -39,7 +40,7 @@ gpull() {
         find . -mindepth "$depth" -maxdepth "$depth" -type d -name .git | while read -r gitdir; do
             repo_dir=$(dirname "$gitdir")
             echo "$repo_dir"
-            (cd "$repo_dir" && git pull)
+            (cd "$repo_dir" && git pull origin)
         done
     fi
 }
