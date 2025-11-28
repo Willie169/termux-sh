@@ -17,6 +17,10 @@ alias antlr4='java -jar $PREFIX/lib/antlr-4.13.2-complete.jar'
 alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
 alias deact='deactivate'
+alias c++20='clang++ -std=gnu++20'
+alias c++202='clang++ -std=gnu++20 -O2'
+alias cfm='clang-format'
+alias cfmi='clang-format -i'
 pulseaudio --start --exit-idle-time=-1
 pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 pacmd load-module module-sles-sink

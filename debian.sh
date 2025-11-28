@@ -90,6 +90,10 @@ alias deact='deactivate'
 alias sshd='/usr/sbin/sshd'
 alias g++20='g++ -std=gnu++20'
 alias g++202='g++ -std=gnu++20 -O2'
+alias c++20='clang++ -std=gnu++20'
+alias c++202='clang++ -std=gnu++20 -O2'
+alias cfm='clang-format'
+alias cfmi='clang-format -i'
 
 gccSDL2() {
     gcc "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi -lm -lstdc++
