@@ -61,13 +61,12 @@ gtr() {
     gh release create v"$1" --title "Version $1 release" --notes ''
 }
 
-torchk() {
-    battery_status=$(termux-battery-status)
-    is_charging=$(echo "$battery_status" | grep -o '"status": "CHARGING"')
-    if [[ $is_charging == *"CHARGING"* ]]; then
-        pkill -f "^tor$"
-        echo 'CHARGING'
-    fi
+pdssh {
+    ssh -p 2022 root@"$1" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
+}
+
+pdsftp {
+    sftp -p 2022 root@"$1"
 }
 
 updatevimrc() {
