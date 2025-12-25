@@ -1,7 +1,7 @@
 cd ~
 apt update
 apt upgrade -y
-apt install alsa-utils aptitude autoconf automake bash bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep gtkwave g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libheif-examples libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
+apt install alsa-utils aptitude autoconf automake bash bear bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep gtkwave g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libheif-examples libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
 wget -q https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download -O SDL2_bgi-3.0.4.tar.gz
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
@@ -170,22 +170,75 @@ alias src='source'
 alias deact='deactivate'
 alias sshd='/usr/sbin/sshd'
 alias g++20='g++ -std=gnu++20'
-alias g++202='g++ -std=gnu++20 -O2'
 alias c++20='clang++ -std=gnu++20'
+alias g++201='g++ -std=gnu++20 -O1'
+alias c++201='clang++ -std=gnu++20 -O1'
+alias g++202='g++ -std=gnu++20 -O2'
 alias c++202='clang++ -std=gnu++20 -O2'
+alias g++203='g++ -std=gnu++20 -O3'
+alias c++203='clang++ -std=gnu++20 -O3'
 alias cfm='clang-format'
 alias cfmi='clang-format -i'
 
+actenv() {
+    if [ -z "$1" ]; then
+        echo "Usage: actenv <venv_path>"
+        return 1
+    fi
+    if [ -f "$1/bin/activate" ]; then
+        source "$1/bin/activate"
+    else
+        echo "Error: $1/bin/activate not found"
+        return 1
+    fi
+}
+
 gccSDL2() {
+    gcc "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lm -lstdc++
+}
+
+gccSDL2bgi() {
     gcc "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi -lm -lstdc++
 }
 
 g++SDL2() {
+    g++ "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net
+}
+
+g++SDL2bgi() {
     g++ "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi
 }
 
 g++20SDL2() {
+    g++ -std=gnu++20 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net
+}
+
+g++20SDL2bgi() {
     g++ -std=gnu++20 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi
+}
+
+g++201SDL2() {
+    g++ -std=gnu++20 -O1 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net
+}
+
+g++201SDL2bgi() {
+    g++ -std=gnu++20 -O1 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi
+}
+
+g++202SDL2() {
+    g++ -std=gnu++20 -O2 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net
+}
+
+g++202SDL2bgi() {
+    g++ -std=gnu++20 -O2 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi
+}
+
+g++203SDL2() {
+    g++ -std=gnu++20 -O3 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net
+}
+
+g++203SDL2bgi() {
+    g++ -std=gnu++20 -O3 "$@" -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf -lSDL2_net -lSDL2_bgi
 }
 
 xdgset() {
