@@ -1,7 +1,7 @@
 cd ~
 apt update
 apt upgrade -y
-apt install alsa-utils aptitude autoconf automake bash bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
+apt install alsa-utils aptitude autoconf automake bash bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep g++ iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml pulseaudio-utils procps python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal x11-utils x11-xserver-utils zsh -y
 wget -q https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download -O SDL2_bgi-3.0.4.tar.gz
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
@@ -53,6 +53,7 @@ echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
+wget -qO plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -162,6 +163,7 @@ export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
 export PULSE_SERVER=127.0.0.1
 export NVM_DIR="$HOME/.nvm"
+export PLANTUML_JAR="$HOME/plantuml.jar"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias src='source'
