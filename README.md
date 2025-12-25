@@ -86,7 +86,7 @@ nano ~/termux-sh/termux-setup.sh
 
 The variables below refer to the variables set in the beginning of [`termux-setup.sh`](termux-setup.sh).
 
-1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default ones include tools for C, C++, COBOL, Python3, Java17, Java21, Node.js, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, Termux-X11, TigerVNC, XFCE4, PRoot, RARLAB UnRAR, Icarus Verilog, jpegoptim, optipng, Matplotlib, Ninja, SciPy, and more.
+1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default ones include tools for C, C++, COBOL, Python3, Java17, Java21, Node.js, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, Termux-X11, TigerVNC, XFCE4, PRoot, RARLAB UnRAR, Icarus Verilog, jpegoptim, optipng, libheif, Matplotlib, Ninja, SciPy, and more.
 2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` (for **Termux:Widget**) and the home directory (`~`) and renames [`~/bashrc.sh`](DOTshortcuts/.bashrc) to `~/.bashrc`.
 2. **Vim configuration**: Install [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim if not `VIMRC=0`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
