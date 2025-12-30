@@ -60,8 +60,8 @@ DEBIANBOXINSTALL=1
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
 <li>It is recommended to turn off the battery optimization for Termux.</li>
-<li>It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping **Acquire wakelock** on the notification of Termux.</li>
-<li>It is recommended to prevent the `Process completed (signal 9) - press Enter` error in advance. You may encounter it when using Termux, especially when running VMs. To prevent it from occuring, please read tutorial about it in my **Android Non Root**: <https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error> for the fixes.</li>
+<li>It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping <strong>Acquire wakelock</strong> on the notification of Termux.</li>
+<li>It is recommended to prevent the `Process completed (signal 9) - press Enter` error in advance. You may encounter it when using Termux, especially when running VMs. To prevent it from occuring, please read tutorial about it in my <strong>Android Non Root</strong>: <https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error> for the fixes.</li>
 </ul>
 
 ### Execution
