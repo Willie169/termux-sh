@@ -31,8 +31,15 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 ### Prerequisites
 
 <ul>
-<li>Sufficient storage:
+<li>Sufficient storage: (calculated on December 30, 2025)
 <ul>
+<li>Approximately 7.6 GB for minimal configuration, i.e., <pre><code>DEBIAN='debian'
+DEBIANINSTALL=0
+UBUNTU='ubuntu'
+UBUNTUINSTALL=0
+DEBIANBOX=''
+DEBIANBOXINSTALL=0
+</code></pre></li>
 <li>Approximately 18.5 GB (outdated) for default configuration, i.e., <pre><code>DEBIAN='debian'
 DEBIANINSTALL=1
 UBUNTU='ubuntu'
