@@ -33,35 +33,29 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 <ul>
 <li>Sufficient storage: (calculated on December 30, 2025)
 <ul>
-<li>Approximately 7.6 GB for minimal configuration, i.e., <pre><code>DEBIAN='debian'
+<li>Approximately 7.6 GB for configuration:
+<pre><code>DEBIAN='debian'
 DEBIANINSTALL=0
 UBUNTU='ubuntu'
 UBUNTUINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
-<li>Approximately 18.5 GB (outdated) for default configuration, i.e., <pre><code>DEBIAN='debian'
+<li>Approximately 28.2 GB for default configuration:
+<pre><code>DEBIAN='debian'
 DEBIANINSTALL=1
 UBUNTU='ubuntu'
 UBUNTUINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
-<li>Approximately - GB (haven't been counted) for configuration of:
+<li>Approximately 48.8 GB for configuration:
 <pre><code>DEBIAN='debian'
 DEBIANINSTALL=1
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
-</code></pre></li>
-<li>Approximately 30.1 GB (outdated) for configuration of:
-<pre><code>DEBIAN='debian'
-DEBIANINSTALL=1
-UBUNTU='ubuntu'
-UBUNTUINSTALL=1
-DEBIANBOX='debianbox'
-DEBIANBOXINSTALL=1
 </code></pre></li>
 </ul></li>
 <li>Sufficient power supply.</li>
@@ -113,7 +107,7 @@ These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding 
 
 - [`debian.sh`](debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, FFMPEG, Pandoc, TeX Live, iproute2, net-tools, nvm, pnpm, Yarn, Node.js packages, Python3 packages in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, UnRAR-free, Icarus Verilog, Verilator, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, TigerVNC server, XFCE desktop environment, PlantUML, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian ARM64. Invoked for the Debian ARM64 proot-distro environment with alias `$DEBIAN`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
 - [`ubuntu.sh`](ubuntu.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, FFMPEG, Pandoc, TeX Live, iproute2, net-tools, nvm, pnpm, Yarn, Node.js packages, Python3 packages in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR, Icarus Verilog, Verilator, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, TigerVNC server, XFCE desktop environment, PlantUML, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Ubuntu ARM64. Invoked for the Ubuntu ARM64 proot-distro environment with alias `$UBUNTU`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
-- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian ARM64 proot-distro instance with alias `$DEBIANBOX`.
+- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian ARM64 proot-distro instance with alias `$DEBIANBOX`. (No longer actively maintained.)
 
 ---
 
