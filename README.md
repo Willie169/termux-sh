@@ -8,7 +8,7 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 
 ## Table of Contents
 
-* [Termux Setup ([`termux-setup.sh`](termux-setup.sh))](#termux-setup-termux-setup-sh)
+* [Termux Setup](#termux-setup)
   + [Prerequisites](#prerequisites)
   + [Execution](#execution)
   + [Features](#features)
@@ -24,7 +24,9 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 
 ---
 
-## Termux Setup ([`termux-setup.sh`](termux-setup.sh))
+## Termux Setup
+
+[`termux-setup.sh`](termux-setup.sh)
 
 ### Prerequisites
 
