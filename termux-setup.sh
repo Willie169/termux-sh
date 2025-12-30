@@ -83,11 +83,11 @@ source ~/.vimrc
 [ -n "$NPM" ] && npm install -g $NPM
 [ -n "$DEBIAN" ] && [ $DEBIAN != debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIAN
 [ $DEBIAN == debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian
-[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -eq 0 ] || cat ~/termux-sh/debian-bookworm.sh <(echo -e "\nexit") | proot-distro login $DEBIAN --isolated --fix-low-ports
+[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -eq 0 ] || cat ~/termux-sh/debian.sh <(echo -e "\nexit") | proot-distro login $DEBIAN --isolated --fix-low-ports
 [ -n "$UBUNTU" ] && [ "$UBUNTU" == "$DEBIAN" ] && UBUNTU="${UBUNTU}1"
 [ -n "$UBUNTU" ] && [ $UBUNTU != ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU
 [ $UBUNTU == ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu
-[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-24-04.sh <(echo -e "\nexit") | proot-distro login $UBUNTU --isolated --fix-low-ports
+[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu.sh <(echo -e "\nexit") | proot-distro login $UBUNTU --isolated --fix-low-ports
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == "$DEBIAN" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == "$UBUNTU" ] && DEBIANBOX="${DEBIANBOX}1" && [ "$DEBIANBOX" == "$DEBIAN" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIANBOX
