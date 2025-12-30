@@ -303,6 +303,22 @@ updatevimrc() {
 rand() {
     od -An -N4 -tu4 < /dev/urandom | tr -d ' ' | awk -v min=$1 -v max=$2 '{print int($1 % (max - min)) + min}';
 }
+
+bzip-single() {
+  tar -cf - "$1" \
+  | pv \
+  | bzip2 -9 \
+  | pv \
+  > "$2.tar.bz2"
+}
+
+bzip-split() {
+  tar -cf - "$1" \
+  | pv \
+  | bzip2 -9 \
+  | pv \
+  | split -b 4000M -d -a 3 - "$2.tar.bz2.part."
+}
 EOF
 source ~/.bashrc
 mkdir -p /usr/share/fonts/opentype/xits
