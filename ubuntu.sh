@@ -33,7 +33,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 nvm install 22
 corepack enable yarn
 corepack enable pnpm
-npm install -g jsdom marked marked-gfm-heading-id node-html-markdown showdown
+npm install -g http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown
 pipx install poetry uv
 python3 -m venv .env
 source .env/bin/activate
@@ -179,9 +179,10 @@ alias g++203='g++ -std=gnu++20 -O3'
 alias c++203='clang++ -std=gnu++20 -O3'
 alias cfm='clang-format'
 alias cfmi='clang-format -i'
-alias vnc=vncserver
-alias vnck=vncserver -kill
-alias vncl=vncserver -list
+alias vnc='vncserver'
+alias vnck='vncserver -kill'
+alias vncl='vncserver -list'
+alias httpp='http-server -p'
 
 actenv() {
     if [ -z "$1" ]; then

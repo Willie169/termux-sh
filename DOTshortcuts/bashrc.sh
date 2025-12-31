@@ -27,6 +27,7 @@ alias g++203='g++ -std=gnu++20 -O3'
 alias c++203='clang++ -std=gnu++20 -O3'
 alias cfm='clang-format'
 alias cfmi='clang-format -i'
+alias httpp='http-server -p'
 pulseaudio --start --exit-idle-time=-1
 pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 pacmd load-module module-sles-sink
