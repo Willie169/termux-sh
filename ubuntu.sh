@@ -54,6 +54,9 @@ let &packpath = &runtimepath
 source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
 wget -qO plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+apt install postgresql-common -y
+/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+apt install postgresql-17 -y
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
