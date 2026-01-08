@@ -4,6 +4,7 @@ export PATH="$PREFIX/bin:$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PREFIX/glibc/
 export GOROOT="$PREFIX/lib/go"
 export GOPATH="$HOME/go"
 export NVM_DIR="$HOME/.nvm"
+export PGDATA="$PREFIX/var/lib/postgresql"
 export TORPATH="$PREFIX/etc/tor"
 export PDROOTFS="$PREFIX/var/lib/proot-distro/installed-rootfs"
 export EMU="/storage/emulated/0"
