@@ -1,7 +1,21 @@
+. /etc/os-release
 cd ~
 apt update
 apt upgrade -y
-apt install alsa-utils aptitude aria2 autoconf automake bash bear bc bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils fastfetch ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep gtkwave g++ inkscape iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libheif-examples libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools ngspice openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml pulseaudio-utils procps pv python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree unrar-free valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal xmlstarlet x11-utils x11-xserver-utils zsh -y
+case "$ID" in
+  ubuntu)
+    add-apt-repository ppa:zhangsongcui3371/fastfetch -y
+    ;;
+esac
+apt install alsa-utils aptitude aria2 autoconf automake bash bear bc bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils fastfetch ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep gtkwave g++ inkscape iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libheif-examples libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools ngspice openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml pulseaudio-utils procps pv python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal xmlstarlet x11-utils x11-xserver-utils zsh -y
+case "$ID" in
+  ubuntu)
+    apt install unrar -y
+    ;;
+  debian)
+    apt install unrar-free -y
+    ;;
+esac
 wget -q https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download -O SDL2_bgi-3.0.4.tar.gz
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
@@ -19,8 +33,6 @@ rm install-tl-unx.tar.gz
 cd install-tl-*
 perl install-tl --no-interaction
 cd ~
-echo 'export PATH="$PATH:/usr/local/texlive/2025/bin/aarch64-linux"' >> ~/.bashrc
-source ~/.bashrc
 rm -rf install-tl-*
 mkdir -p ~/.config/fontconfig/conf.d
 cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
@@ -61,23 +73,104 @@ apt install postgresql-common -y
 apt install postgresql-17 -y
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
 
-# Note: PS1 and umask are already set in /etc/profile. You should not
-# need this unless you want different defaults for root.
-# PS1='${debian_chroot:+($debian_chroot)}\h:\w\$ '
-# umask 022
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
 
-# You may uncomment the following lines if you want `ls' to be colorized:
-# export LS_OPTIONS='--color=auto'
-# eval "$(dircolors)"
-# alias ls='ls $LS_OPTIONS'
-# alias ll='ls $LS_OPTIONS -l'
-# alias l='ls $LS_OPTIONS -lA'
-#
-# Some more alias to avoid making mistakes:
-# alias rm='rm -i'
-# alias cp='cp -i'
-# alias mv='mv -i'
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+#if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+#    . /etc/bash_completion
+#fi
 
 export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:/usr/glibc/bin:$HOME/.cargo/bin:/usr/local/texlive/2025/bin/aarch64-linux:$HOME/.pyenv/bin"
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include:/usr/include/SDL2"
