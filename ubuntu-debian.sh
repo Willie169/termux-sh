@@ -1,82 +1,3 @@
-cat < /usr/bin/sudo << 'EOF'
-#!/bin/sh
-if [ "$(id -u)" -ne 0 ]; then
-    echo "bash: sudo: command not found" >&2
-    exit 127
-fi
-
-bg=0
-
-stop="
--v -V -K -k -e -l
-"
-
-mode="
--A -B -E -H -N -n -P -S -i -s
-"
-
-take="
--g -p -u -U -r -t -C -D -R -T
-"
-
-while [ "$#" -gt 0 ]; do
-  case "$1" in
-    --)
-      shift
-      break
-      ;;
-    -b)
-      shift
-      bg=1
-      ;;
-    -h)
-      if [ -z "$2" ] || [ "${2#-}" != "$2" ]; then
-        exit 0
-      else
-        shift 2
-        continue
-      fi
-      ;;
-    -*)
-      for s in $stop; do
-        [ "$1" = "$s" ] && exit 0
-      done
-
-      for m in $mode; do
-        if [ "$1" = "$m" ]; then
-          shift 1
-          continue 2
-        fi
-      done
-
-      for t in $take; do
-        if [ "$1" = "$t" ]; then
-          shift 2
-          continue 2
-        fi
-      done
-
-      shift
-      ;;
-    *=*)
-      export "$1"
-      shift
-      ;;
-    *)
-      break
-      ;;
-  esac
-done
-
-[ "$#" -eq 0 ] && exit 0
-
-if [ "$bg" -eq 0 ]; then
-  "$@"
-else
-  "$@" &
-fi
-EOF
-chmod 755 /usr/bin/sudo
 . /etc/os-release
 cd ~
 apt update
@@ -86,7 +7,7 @@ case "$ID" in
     add-apt-repository ppa:zhangsongcui3371/fastfetch -y
     ;;
 esac
-apt install alsa-utils aptitude aria2 autoconf automake bash bear bc bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils fastfetch ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep gtkwave g++ inkscape iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libheif-examples libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools ngspice openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml pulseaudio-utils procps pv python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tmux tree valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal xmlstarlet x11-utils x11-xserver-utils zsh -y
+apt install alsa-utils aptitude aria2 autoconf automake bash bear bc bison build-essential bzip2 clang clang-format cmake command-not-found curl dbus dbus-x11 default-jdk dnsutils fastfetch ffmpeg file flex gcc gdb gh ghostscript git gnucobol golang gperf gpg grep gtkwave g++ inkscape iproute2 iverilog libboost-all-dev libeigen3-dev libgsl-dev libheif-examples libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev jpegoptim jq make maven mc nano neovim net-tools ngspice openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml pulseaudio-utils procps pv python3-pip python3-all-dev python3-venv rust-all sudo tar tigervnc-standalone-server tmux tree valgrind verilator vim wget xfce4 xfce4-goodies xfce4-terminal xmlstarlet x11-utils x11-xserver-utils zsh -y
 case "$ID" in
   ubuntu)
     apt install unrar -y

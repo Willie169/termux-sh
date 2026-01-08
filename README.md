@@ -31,29 +31,29 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 ### Prerequisites
 
 <ul>
-<li>Sufficient storage: (calculated on December 30, 2025)
+<li>Sufficient storage: (calculated on January 8, 2026)
 <ul>
-<li>Approximately 7.6 GB for configuration:
-<pre><code>DEBIAN='debian'
-DEBIANINSTALL=0
-UBUNTU='ubuntu'
+<li>Approximately 7.6 GB for the configuration:
+<pre><code>UBUNTU='ubuntu'
 UBUNTUINSTALL=0
+DEBIAN='debian'
+DEBIANINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
-<li>Approximately 28.2 GB for default configuration:
-<pre><code>DEBIAN='debian'
-DEBIANINSTALL=1
-UBUNTU='ubuntu'
-UBUNTUINSTALL=0
+<li>Approximately 28.2 GB for the default configuration:
+<pre><code>UBUNTU='ubuntu'
+UBUNTUINSTALL=1
+DEBIAN='debian'
+DEBIANINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
 <li>Approximately 48.8 GB for configuration:
-<pre><code>DEBIAN='debian'
-DEBIANINSTALL=1
-UBUNTU='ubuntu'
+<pre><code>UBUNTU='ubuntu'
 UBUNTUINSTALL=1
+DEBIAN='debian'
+DEBIANINSTALL=1
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
@@ -105,7 +105,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
-- [`ubuntu-debian.sh`](ubuntu-debian.sh): Mimics `sudo`, configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, TigerVNC server, XFCE desktop environment, PlantUML, PostgreSQL, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian or Ubuntu ARM64. Invoked for the Debian ARM64 proot-distro environment with alias `$DEBIAN` and Ubuntu ARM64 proot-distro environment with alias `$UBUNTU`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
+- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, TigerVNC server, XFCE desktop environment, PlantUML, PostgreSQL, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian or Ubuntu ARM64. Invoked for the Debian ARM64 proot-distro environment with alias `$DEBIAN` and Ubuntu ARM64 proot-distro environment with alias `$UBUNTU`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
 - [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian ARM64 proot-distro instance with alias `$DEBIANBOX`. (No longer actively maintained.)
 
 ---
