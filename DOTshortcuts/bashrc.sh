@@ -30,19 +30,24 @@ pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymou
 pacmd load-module module-sles-sink
 
 __git_repo_reminder() {
-    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-        if [ "$__IN_GIT_REPO" != "1" ]; then
+    local repo_root
+    repo_root=$(git rev-parse --show-toplevel 2>/dev/null)
+    if [ -n "$repo_root" ]; then
+        if [ "$__LAST_REPO_ROOT" != "$repo_root" ]; then
+            if [ -n "$__LAST_REPO_ROOT" ]; then
+                echo "Leaving Git repository: consider running 'git push'"
+            fi
             echo "Entered Git repository: consider running 'git pull'"
-            __IN_GIT_REPO=1
+            __LAST_REPO_ROOT="$repo_root"
         fi
     else
-        if [ "$__IN_GIT_REPO" = "1" ]; then
+        if [ -n "$__LAST_REPO_ROOT" ]; then
             echo "Leaving Git repository: consider running 'git push'"
-            __IN_GIT_REPO=0
+            unset __LAST_REPO_ROOT
         fi
     fi
 }
-PROMPT_COMMAND="__git_repo_reminder;$PROMPT_COMMAND"
+PROMPT_COMMAND="__git_repo_reminder${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
 
 actenv() {
     if [ -z "$1" ]; then
