@@ -208,6 +208,21 @@ alias httpp='http-server -p'
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+__git_repo_reminder() {
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        if [ "$__IN_GIT_REPO" != "1" ]; then
+            echo "Entered Git repository: consider running 'git pull'"
+            __IN_GIT_REPO=1
+        fi
+    else
+        if [ "$__IN_GIT_REPO" = "1" ]; then
+            echo "Leaving Git repository: consider running 'git push'"
+            __IN_GIT_REPO=0
+        fi
+    fi
+}
+PROMPT_COMMAND="__git_repo_reminder;$PROMPT_COMMAND"
+
 actenv() {
     if [ -z "$1" ]; then
         echo "Usage: actenv <venv_path>"
