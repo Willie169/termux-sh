@@ -62,7 +62,6 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 cd ~ && pkg update && pkg upgrade -y && pkg install curl git x11-repo -y
 [ -n "$PKG" ] && pkg install $PKG -y
 mkdir -p ~/.shortcuts
-chmod +x ~/termux-sh/DOTshortcuts/*.sh
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~
 mv ~/bashrc.sh ~/.bashrc
