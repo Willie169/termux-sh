@@ -76,7 +76,7 @@ apt update
 apt install clang-uml -y
 fi
 apt install postgresql-common -y
-/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
 apt install postgresql-17 -y
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
