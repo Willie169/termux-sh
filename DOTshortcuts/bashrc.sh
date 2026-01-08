@@ -1,20 +1,14 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 export PATH="$PREFIX/bin:$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PREFIX/glibc/bin:$HOME/.cargo/bin:/data/data/com.termux/files/usr/lib/node_modules"
-export NODE_PATH="/data/data/com.termux/files/usr/lib/node_modules"
-export CLASSPATH="$PREFIX/lib/antlr-4.13.2-complete.jar"
 export GOROOT="$PREFIX/lib/go"
 export GOPATH="$HOME/go"
+export NVM_DIR="$HOME/.nvm"
 export TORPATH="$PREFIX/etc/tor"
 export PDROOTFS="$PREFIX/var/lib/proot-distro/installed-rootfs"
 export EMU="/storage/emulated/0"
 export DOW="/storage/emulated/0/Download"
 export DOC="/storage/emulated/0/Documents"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-alias antlr4='java -jar $PREFIX/lib/antlr-4.13.2-complete.jar'
-alias grun='java org.antlr.v4.runtime.misc.TestRig'
 alias src=source
 alias deact='deactivate'
 alias g++20='g++ -std=gnu++20'
@@ -28,12 +22,27 @@ alias c++203='clang++ -std=gnu++20 -O3'
 alias cfm='clang-format'
 alias cfmi='clang-format -i'
 alias httpp='http-server -p'
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 pulseaudio --start --exit-idle-time=-1
 pacmd load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1
 pacmd load-module module-sles-sink
 
+actenv() {
+    if [ -z "$1" ]; then
+        echo "Usage: actenv <venv_path>"
+        return 1
+    fi
+    if [ -f "$1/bin/activate" ]; then
+        source "$1/bin/activate"
+    else
+        echo "Error: $1/bin/activate not found"
+        return 1
+    fi
+}
+
 gh-latest() {
-    curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -L -O
+    curl -fsSL "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -fsSL -O
 }
 
 gpull() {

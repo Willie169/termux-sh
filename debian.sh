@@ -30,7 +30,7 @@ cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
   <dir>/usr/local/texlive/2025/texmf-dist/fonts</dir>
 </fontconfig>
 EOF
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 \. "$HOME/.nvm/nvm.sh"
 nvm install 22
 corepack enable yarn
@@ -79,17 +79,15 @@ cat > ~/.bashrc << 'EOF'
 # alias cp='cp -i'
 # alias mv='mv -i'
 
-export GOROOT="$PREFIX/lib/go"
-export GOPATH="$HOME/go"
 export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:/usr/glibc/bin:$HOME/.cargo/bin:/usr/local/texlive/2025/bin/aarch64-linux:$HOME/.pyenv/bin"
-export CPLUS_INCLUDE_PATH="/usr/include/SDL2:$CPLUS_INCLUDE_PATH"
+export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include:/usr/include/SDL2"
+export GOROOT="$PREFIX/lib/go"
+export GOPATH="$GOPATH:$HOME/go"
+export NVM_DIR="$HOME/.nvm"
 export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
-export PULSE_SERVER=127.0.0.1
-export NVM_DIR="$HOME/.nvm"
 export PLANTUML_JAR="$HOME/plantuml.jar"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PULSE_SERVER='127.0.0.1'
 alias src='source'
 alias deact='deactivate'
 alias sshd='/usr/sbin/sshd'
@@ -107,6 +105,8 @@ alias vnc='vncserver'
 alias vnck='vncserver -kill'
 alias vncl='vncserver -list'
 alias httpp='http-server -p'
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 actenv() {
     if [ -z "$1" ]; then
@@ -186,7 +186,7 @@ vncclean() {
 }
 
 gh-latest() {
-    curl -s "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -L -O
+    curl -fsSL "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -fsSL -O
 }
 
 gpull() {
