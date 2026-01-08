@@ -1,22 +1,21 @@
 . /etc/os-release
 cd ~
 apt update
-apt upgrade -y
-case "$ID" in
-  ubuntu)
-    add-apt-repository ppa:zhangsongcui3371/fastfetch -y
-    ;;
-esac
+if [ "$ID" = "ubuntu" ]; then
+add-apt-repository universe -y
+add-apt-repository multiverse -y
+add-apt-repository restricted -y
+add-apt-repository ppa:zhangsongcui3371/fastfetch -y
+fi
+apt update
+apt full-upgrade -y
 apt install alsa-utils aptitude apt-transport-https aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex flatpak gcc gdb gh ghostscript git glab gnucobol golang gperf gpg grep gtkwave gzip g++ inkscape iverilog libboost-all-dev libconfig-dev libeigen3-dev libffi-dev libfuse2t64 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 libosmesa6 libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev llvm iproute2 iverilog jpegoptim jq make maven mc nano ncompress neovim ngspice openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml procps pv python3-pip python3-all-dev python3-venv rust-all tar tk-dev tmux tree unzip uuid-dev valgrind verilator vim wget xmlstarlet xz-utils x11-utils x11-xserver-utils zip zlib1g zsh -y
 apt install tigervnc-standalone-server xfce4 xfce4-goodies xfce4-terminal -y
-case "$ID" in
-  ubuntu)
-    apt install unrar -y
-    ;;
-  debian)
-    apt install unrar-free -y
-    ;;
-esac
+if [ "$ID" = "ubuntu" ]; then
+apt install unrar -y
+else
+apt install unrar-free -y
+fi
 wget -q https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download -O SDL2_bgi-3.0.4.tar.gz
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
@@ -49,6 +48,8 @@ nvm install 22
 corepack enable yarn
 corepack enable pnpm
 npm install -g http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex
+mkdir -p /usr/local/lib
+sudo curl -fsSL -o /usr/local/lib/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 pipx install poetry uv
 python3 -m venv .env
 source .env/bin/activate
@@ -69,6 +70,11 @@ let &packpath = &runtimepath
 source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
 wget -qO plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+if [ "$ID" = "ubuntu" ]; then
+add-apt-repository ppa:bkryza/clang-uml
+apt update
+apt install clang-uml -y
+fi
 apt install postgresql-common -y
 /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
 apt install postgresql-17 -y
