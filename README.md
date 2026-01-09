@@ -47,7 +47,7 @@ DEBIANBOXINSTALL=0
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
 <li>Approximately  GB more for <code>UBUNTUINSTALL=1</code>.</li>
 <li>Approximately  GB more for <code>DEBIANINSTALL=1</code>.</li>
-<li>Approximately  GB for in total for the default configuration.</li>
+<li>Approximately  GB in total for the default configuration.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
