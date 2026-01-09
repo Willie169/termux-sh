@@ -100,11 +100,14 @@ gtr() {
 
 git-upstream-pr() {
   if [ -z "$1" ]; then
-    echo "Usage: git-upstream-pr <PR_NUMBER>"       return 1                                      fi                                              git fetch upstream pull/$1/head:pr-$1 || { ech
-o "Fetch failed"; return 1; }
-  git merge pr-$1 || { echo "Merge conflict! Res
-olve manually."; return 1; }
-  git push || { echo "Push failed"; return 1; }   git branch -D pr-$1                           }
+    echo "Usage: git-upstream-pr <PR_NUMBER>"
+    return 1
+  fi
+  git fetch upstream pull/$1/head:pr-$1 || { echo "Fetch failed"; return 1; }
+  git merge pr-$1 || { echo "Merge conflict! Resolve manually."; return 1; }
+  git push || { echo "Push failed"; return 1; }
+  git branch -D pr-$1
+}
 
 pdssh() {
     ssh -p 2022 root@"$1" -L 3300:localhost:3000 -L 5500:localhost:5000 -L 5901:localhost:5901 -L 5902:localhost:5902
