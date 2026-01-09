@@ -33,30 +33,17 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 <ul>
 <li>Sufficient storage: (calculated on January 8, 2026)
 <ul>
-<li>Approximately 7.6 GB for the configuration:
-<pre><code>UBUNTU='ubuntu'
+<li>Approximately 7.2 GB for the configuration:
+<pre><code>UBUNTU=''
 UBUNTUINSTALL=0
-DEBIAN='debian'
+DEBIAN=''
 DEBIANINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
-<li>Approximately 28.2 GB for the default configuration:
-<pre><code>UBUNTU='ubuntu'
-UBUNTUINSTALL=1
-DEBIAN='debian'
-DEBIANINSTALL=0
-DEBIANBOX=''
-DEBIANBOXINSTALL=0
-</code></pre></li>
-<li>Approximately 48.8 GB for configuration:
-<pre><code>UBUNTU='ubuntu'
-UBUNTUINSTALL=1
-DEBIAN='debian'
-DEBIANINSTALL=1
-DEBIANBOX=''
-DEBIANBOXINSTALL=0
-</code></pre></li>
+<li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
+<li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
+<li>Approximately  GB more for <code>UBUNTUINSTALL=1</code>.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
