@@ -328,6 +328,14 @@ gtr() {
     gh release create v"$1" --title "Version $1 release" --notes ''
 }
 
+git-upstream-pr() {
+  if [ -z "$1" ]; then
+    echo "Usage: git-upstream-pr <PR_NUMBER>"       return 1                                      fi                                              git fetch upstream pull/$1/head:pr-$1 || { ech
+o "Fetch failed"; return 1; }
+  git merge pr-$1 || { echo "Merge conflict! Res
+olve manually."; return 1; }
+  git push || { echo "Push failed"; return 1; }   git branch -D pr-$1                           }
+
 updatetex() {
     cd /usr/share/LaTeX-ToolKit
     git pull
