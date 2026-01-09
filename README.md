@@ -33,7 +33,7 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 <ul>
 <li>Sufficient storage:
 <ul>
-<li>Approximately 7.2 GB in total for the minimal configuration:
+<li>Approximately 5.7 GB in total for the minimal configuration:
 <pre><code>UBUNTU=''
 UBUNTUINSTALL=0
 DEBIAN=''
