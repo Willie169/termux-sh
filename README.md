@@ -82,7 +82,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default ones include tools for C, C++, COBOL, Python3, Java17, Java21, Node.js, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, Termux-X11, TigerVNC, XFCE4, PRoot, RARLAB UnRAR, Icarus Verilog, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, Matplotlib, Ninja, SciPy, PostgreSQL, and more.
 2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `.shortcuts` (for **Termux:Widget**) and the home directory (`~`) and renames [`~/bashrc.sh`](DOTshortcuts/.bashrc) to `~/.bashrc`.
-2. **Vim configuration**: Install [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim if not `VIMRC=0`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
+2. **Vim configuration**: Install [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim if not `VIMRC=0`.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
 2. **Termux PRoot environment**: Installs [termux-proot by Yonle](https://github.com/Yonle/termux-proot), a Termux PRoot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
 2. **Node.js tools**: Installs nvm, pnpm, and Yarn, and installs NPM packages set in `$NPM` globally. The default ones including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML
@@ -97,8 +97,8 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
-- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4, TigerVNC server, XFCE desktop environment, PlantUML, clang-uml on Ubuntu, PostgreSQL 17, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian derivatives ARM64 with extra features for Ubuntu. See [Vimrc](#vimrc) section for Vim and Nvim usage.
-- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on Debian derivatives ARM64. (No longer actively maintained.)
+- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4, TigerVNC server, XFCE desktop environment, PlantUML, clang-uml on Ubuntu, PostgreSQL 17, [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian derivatives ARM64 with extra features for Ubuntu.
+- [`box63-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on Debian derivatives ARM64. (No longer actively maintained.)
 
 ---
 
@@ -115,7 +115,6 @@ Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intend
 ### Utility Scripts
 
 - [`bashrc.sh`](DOTshortcuts/bashrc.sh): A customized `.bashrc` for Termux with pre-defined aliases, functions, environment variables for development tools and human usages, PulseAudio setup, etc.
-- [`vimrc`](DOTshortcuts/vimrc): A customized `.vimrc`.
 - [`gitPull.sh`](DOTshortcuts/gitPull.sh): `git pull` all repositories in `~/gh`.
 - [`code.sh`](DOTshortcuts/code.sh), [`download.sh`](DOTshortcuts/download.sh): `cd /storage/emulated/0/Documents/code` and `cd /storage/emulated/0/Download` respectively.
 - [`xmrig.sh`](DOTshortcuts/xmrig.sh): Mines XMR to [the repository owner](https://github.com/Willie169)'s wallet, `48j6iQDeCSDeH46gw4dPJnMsa6TQzPa6WJaYbBS9JJucKqg9Mkt5EDe9nSkES3b8u7V6XJfL8neAPAtbEpmV2f4XC7bdbkv`, using [xmrig](https://github.com/xmrig/xmrig), which is not installed in the [Termux Setup](#termux-setup) and can be installed with [`xmrig-install.sh`](xmrig-install.sh). Change the wallet address and other configurations if you need.
@@ -140,13 +139,6 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 ---
 
 ## Instructions
-### Vimrc
-
-* Edit your customizations in `~/vim_runtime/my_configs.vim`.
-* Setup GitHub Copilot with `:Copilot setup`.
-* [`install-tools-first.sh`](install-tools-first.sh) disable GitHub Copilot by default. To enable it, remove `let g:copilot_enabled = v:false` from `~/vim_runtime/my_configs.vim`. Run `:let g:copilot_enabled = v:false` to disable GitHub Copilot temporarily. Run `:let g:copilot_enabled = v:true` to enable GitHub Copilot temporarily. Add `let g:copilot_enabled = v:false` to `~/vim_runtime/my_configs.vim` to disable GitHub Copilot globally.
-* See [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for more information.
-
 ### My Related Repositories
 
 * [**LinuxAndTermuxTips**](https://github.com/Willie169/LinuxAndTermuxTips)
