@@ -33,7 +33,7 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 <ul>
 <li>Sufficient storage:
 <ul>
-<li>Approximately 5.7 GB in total for the minimal configuration:
+<li>Approximately 5.7 GB in total for the minimal configuration with <code>XFCE=0</code> and
 <pre><code>UBUNTU=''
 UBUNTUINSTALL=0
 DEBIAN=''
@@ -43,6 +43,7 @@ UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
+<li>Approximately  GB more for <code>XFCE=1</code>.</li>
 <li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
 <li>Approximately  GB more for <code>UBUNTUINSTALL=1</code>.</li>

@@ -1,5 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
-PKG='alsa-utils android-tools apksigner aria2 autoconf automake bash bc bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep gtkwave inkscape iproute2 iverilog jpegoptim jq libheif-progs make matplotlib maven mc nano ncurses-utils neovim net-tools ngspice ninja nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl postgresql pulseaudio procps proot proot-distro pv python-ensurepip-wheels python-pip python-scipy python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree unrar valgrind vim wget which xmlstarlet yarn zsh'
+PKG='alsa-utils android-tools apksigner aria2 autoconf automake bash bc bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype firefox gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep gtkwave inkscape iproute2 iverilog jpegoptim jq libheif-progs make matplotlib maven mc nano ncurses-utils neovim net-tools ngspice ninja nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl postgresql pulseaudio procps proot proot-distro pv python-ensurepip-wheels python-pip python-scipy python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tmux tor torsocks tree tur-repo unrar valgrind vim wget which xmlstarlet yarn zsh'
+XFCE=1
 VIMRC=1
 NPM='http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex'
 PIPINSTALL='jupyter meson numpy pandas pipx pydub selenium setuptools sympy'
@@ -79,8 +80,9 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
-cd ~ && pkg update && pkg upgrade -y && pkg install curl git x11-repo -y
+cd ~ && pkg update && pkg upgrade -y && pkg install curl git tur-repo x11-repo -y && pkg update
 [ -n "$PKG" ] && pkg install $PKG -y
+[ "$XFCE" -eq 0 ] || pkg install glmark2 firefox tigervnc -y && apt install virglrender-mesa-zink -y && virgl_test_server
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~
