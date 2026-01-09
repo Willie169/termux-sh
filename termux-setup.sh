@@ -87,7 +87,7 @@ cp ~/termux-sh/DOTshortcuts/* ~
 mv ~/bashrc.sh ~/.bashrc
 source ~/.bashrc
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
-[ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
+[ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 [ -n "$NPM" ] && npm install -g $NPM
 [ -n "$PIPINSTALL" ] && pip install $PIPINSTALL
 [ "$PROOTTERMUX" -eq 0 ] || echo 'pkg update && pkg upgrade -y && exit' | bash ~/proot-termux.sh
