@@ -22,6 +22,9 @@ alias g++203='g++ -std=gnu++20 -O3'
 alias c++203='clang++ -std=gnu++20 -O3'
 alias cfm='clang-format'
 alias cfmi='clang-format -i'
+alias vnc='vncserver'
+alias vnck='vncserver -kill'
+alias vncl='vncserver -list'
 alias httpp='http-server -p'
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
@@ -60,6 +63,22 @@ actenv() {
         echo "Error: $1/bin/activate not found"
         return 1
     fi
+}
+
+xdgset() {
+    export XDG_RUNTIME_DIR=/tmp/runtime-root
+    mkdir -p $XDG_RUNTIME_DIR
+    export DISPLAY="$1"
+}
+
+vncclean() {
+  if [ $# -ne 1 ] || ! [[ $1 =~ ^[0-9]+$ ]]; then
+    echo "Usage: vncclean <display_number>" >&2
+    return 1
+  fi
+
+  rm -f "/tmp/.X${1}-lock"
+  rm -f "/tmp/.X11-unix/.X${1}"
 }
 
 gh-latest() {

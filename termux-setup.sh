@@ -80,30 +80,33 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
+[ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 cd ~ && pkg update && pkg upgrade -y && pkg install curl git tur-repo x11-repo -y && pkg update
 [ -n "$PKG" ] && pkg install $PKG -y
-[ "$XFCE" -eq 0 ] || pkg install glmark2 firefox tigervnc -y && apt install virglrender-mesa-zink -y && virgl_test_server
+[ "$XFCE" -eq 0 ] || pkg install firefox tigervnc xfce4 -y && mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
+#!/data/data/com.termux/files/usr/bin/sh
+xfce4-session &
+EOF
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~
 mv ~/bashrc.sh ~/.bashrc
 source ~/.bashrc
-[ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 [ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 [ -n "$NPM" ] && npm install -g $NPM
 [ -n "$PIPINSTALL" ] && pip install $PIPINSTALL
 [ "$PROOTTERMUX" -eq 0 ] || echo 'pkg update && pkg upgrade -y && exit' | bash ~/proot-termux.sh
-[ -n "$UBUNTU" ] && [ $UBUNTU != ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU
-[ $UBUNTU == ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu
-[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-debian.sh <(echo -e "\nexit") | proot-distro login $UBUNTU --isolated --fix-low-ports
-[ -n "$DEBIAN" ] && [ $DEBIAN != debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIAN
-[ $DEBIAN == debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian
-[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-debian.sh <(echo -e "\nexit") | proot-distro login $DEBIAN --isolated --fix-low-ports
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" != ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTUBOX
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | proot-distro login $UBUNTUBOX --isolated --fix-low-ports
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIANBOX
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | proot-distro login $DEBIANBOX --isolated --fix-low-ports
+[ -n "$UBUNTU" ] && [ $UBUNTU != ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU
+[ $UBUNTU == ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu
+[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-debian.sh <(echo -e "\nexit") | proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning
+[ -n "$DEBIAN" ] && [ $DEBIAN != debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIAN
+[ $DEBIAN == debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian
+[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-debian.sh <(echo -e "\nexit") | proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" != ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTUBOX
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIANBOX
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
 rm -rf ~/termux-sh
 exit
