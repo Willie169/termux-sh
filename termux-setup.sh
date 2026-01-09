@@ -8,11 +8,14 @@ UBUNTU='ubuntu'
 UBUNTUINSTALL=1
 DEBIAN='debian'
 DEBIANINSTALL=0
+UBUNTUBOX=''
+UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
+UBUNTUBOX=$(echo "$UBUNTUBOX" | tr ' ' '_')
 DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$UBUNTU" == "adelie" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "alpine" ] && UBUNTU="${UBUNTU}1"
@@ -42,6 +45,20 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$DEBIAN" == "rockylinux" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "ubuntu" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "void" ] && DEBIAN="${DEBIAN}1"
+[ "$UBUNTUBOX" == "adelie" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "alpine" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "archlinux" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "artix" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "chimera" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "debian" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "deepin" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "fedora" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "manjaro" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "openkylin" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "opensuse" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "pardus" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "rockylinux" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "void" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$DEBIANBOX" == "adelie" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "alpine" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "archlinux" ] && DEBIANBOX="${DEBIANBOX}1"
@@ -57,8 +74,11 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$DEBIANBOX" == "ubuntu" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "void" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTU" ] && [ "$UBUNTU" == "$DEBIAN" ] && DEBIAN="${DEBIAN}1"
+[ -n "$UBUNTU" ] && [ "$UBUNTU" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$UBUNTU" ] && [ "$UBUNTU" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
+[ -n "$DEBIAN" ] && [ "$DEBIAN" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 cd ~ && pkg update && pkg upgrade -y && pkg install curl git x11-repo -y
 [ -n "$PKG" ] && pkg install $PKG -y
 mkdir -p ~/.shortcuts
@@ -89,6 +109,9 @@ source ~/.vimrc
 [ -n "$DEBIAN" ] && [ $DEBIAN != debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIAN
 [ $DEBIAN == debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian
 [ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-debian.sh <(echo -e "\nexit") | proot-distro login $DEBIAN --isolated --fix-low-ports
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" != ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTUBOX
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | proot-distro login $UBUNTUBOX --isolated --fix-low-ports
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIANBOX
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh <(echo -e "\nexit") | proot-distro login $DEBIANBOX --isolated --fix-low-ports

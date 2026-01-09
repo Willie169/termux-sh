@@ -31,19 +31,23 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 ### Prerequisites
 
 <ul>
-<li>Sufficient storage: (calculated on January 8, 2026)
+<li>Sufficient storage:
 <ul>
-<li>Approximately 7.2 GB for the configuration:
+<li>Approximately 7.2 GB in total for the minimal configuration:
 <pre><code>UBUNTU=''
 UBUNTUINSTALL=0
 DEBIAN=''
 DEBIANINSTALL=0
+UBUNTUBOX=''
+UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
 <li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
 <li>Approximately  GB more for <code>UBUNTUINSTALL=1</code>.</li>
+<li>Approximately  GB more for <code>DEBIANINSTALL=1</code>.</li>
+<li>Approximately  GB for in total for the default configuration.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
@@ -84,16 +88,17 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Node.js tools**: Installs nvm, pnpm, and Yarn, and installs NPM packages set in `$NPM` globally. The default ones including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML
 2. **Python3 packages**: Installs Python3 packages set in `PIPINSTALL` in it if `PIPINSTALL` is not empty. The default ones are `jupyter meson numpy pandas pipx pydub selenium setuptools sympy`.
 2. **Fabric installation**: Installs Go package [fabric](https://github.com/danielmiessler/fabric), an open-source modular framework for augmenting humans using Al using a crowdsourced set of Al prompts.
-2. **Proot-distro Debian Bookworm environment with development tools**: Installs Debian ARM64 proot-distro environment with alias `$DEBIAN` if `$DEBIAN` is not empty string, and runs [`ubuntu-debian.sh`](ubuntu-debian.sh) in it if `$DEBIAN` is not empty string and `$DEBIANINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
 2. **Proot-distro Ubuntu environment with development tools**: Installs an Ubuntu ARM64 proot-distro environment with alias `$UBUNTU` if `$UBUNTU` is not empty string, and runs [`ubuntu-debian.sh`](ubuntu-debian.sh) in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
-2. **Proot-distro Debian Bookworm environment with Box64, Wine64, and Winetricks**: Installs Debian ARM64 proot-distro environment with alias `$DEBIANBOX` if `$DEBIANBOX` is not empty string, and runs [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh) in it if `$DEBIANBOX` is not empty string and `$DEBIANBOXINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
+2. **Proot-distro Debian Bookworm environment with development tools**: Installs Debian ARM64 proot-distro environment with alias `$DEBIAN` if `$DEBIAN` is not empty string, and runs [`ubuntu-debian.sh`](ubuntu-debian.sh) in it if `$DEBIAN` is not empty string and `$DEBIANINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
+2. **Proot-distro Ubuntu Bookworm environment with Box64, Wine64, and Winetricks (defaulted to not invoked)**: Installs Ubuntu ARM64 proot-distro environment with alias `$UBUNTUBOX` if `$UBUNTUBOX` is not empty string, and runs [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh) (no longer actively maintained) in it if `$UBUNTUBOX` is not empty string and `$UBUNTUBOXINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
+2. **Proot-distro Debian Bookworm environment with Box64, Wine64, and Winetricks (defaulted to not invoked)**: Installs Debian ARM64 proot-distro environment with alias `$DEBIANBOX` if `$DEBIANBOX` is not empty string, and runs [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh) (no longer actively maintained) in it if `$DEBIANBOX` is not empty string and `$DEBIANBOXINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section the script.
 
 ### Invoked VM Setup Scripts
 
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
-- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4, TigerVNC server, XFCE desktop environment, PlantUML, clang-uml on Ubuntu, PostgreSQL 17, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian or Ubuntu ARM64. Invoked for the Debian ARM64 proot-distro environment with alias `$DEBIAN` and Ubuntu ARM64 proot-distro environment with alias `$UBUNTU`. See [Vimrc](#vimrc) section for Vim and Nvim usage.
-- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on an ARM64 Linux instance. Invoked for the Debian ARM64 proot-distro instance with alias `$DEBIANBOX`. (No longer actively maintained.)
+- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4, TigerVNC server, XFCE desktop environment, PlantUML, clang-uml on Ubuntu, PostgreSQL 17, [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) with my customization for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian derivatives ARM64 with extra features for Ubuntu. See [Vimrc](#vimrc) section for Vim and Nvim usage.
+- [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on Debian derivatives ARM64. (No longer actively maintained.)
 
 ---
 
