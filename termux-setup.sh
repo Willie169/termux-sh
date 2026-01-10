@@ -81,7 +81,7 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
-cd ~ && pkg update && pkg upgrade -y && pkg install curl git tur-repo x11-repo -y && pkg update
+cd ~ && pkg update && pkg upgrade -y && pkg install curl git x11-repo -y && pkg update
 [ -n "$PKG" ] && pkg install $PKG -y
 [ "$XFCE" -eq 0 ] || pkg install firefox tigervnc xfce4 -y && mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
 #!/data/data/com.termux/files/usr/bin/sh
