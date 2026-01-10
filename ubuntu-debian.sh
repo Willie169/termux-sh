@@ -65,7 +65,7 @@ deactivate
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 wget -qO plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 if [ "$ID" = "ubuntu" ]; then
-add-apt-repository ppa:bkryza/clang-uml
+add-apt-repository ppa:bkryza/clang-uml -y
 apt update
 apt install clang-uml -y
 fi
