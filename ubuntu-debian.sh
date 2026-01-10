@@ -2,6 +2,7 @@
 cd ~
 apt update
 if [ "$ID" = "ubuntu" ]; then
+apt install software-properties-common -y
 add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
