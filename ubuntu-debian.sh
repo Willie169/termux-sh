@@ -23,11 +23,11 @@ apt-mark hold elementary-xfce-icon-theme
 apt install dbus-x11 firefox-esr xfce4 xfce4-goodies xfce4-terminal -y
 cat > ~/.config/tigervnc/xstartup << 'EOF'
 #!/bin/sh
+unset DBUS_SESSION_BUS_ADDRESS
+unset SESSION_MANAGER
 export XDG_RUNTIME_DIR=${TMPDIR}
 export XAUTHORITY="$HOME/.Xauthority"
-unset SESSION_MANAGER
-unset DBUS_SESSION_BUS_ADRESS
-exec startxfce4
+dbus-launch --exit-with-session startxfce4
 EOF
 chmod +x ~/.config/tigervnc/xstartup
 wget -q https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download -O SDL2_bgi-3.0.4.tar.gz
