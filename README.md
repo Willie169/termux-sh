@@ -46,9 +46,9 @@ DEBIANBOXINSTALL=0
 <li>Approximately 0.6 GB more for <code>XFCE=1</code>.</li>
 <li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
-<li>Approximately 19.6 GB more for <code>UBUNTUINSTALL=1</code>.</li>
-<li>Approximately 19.6 GB more for <code>DEBIANINSTALL=1</code>.</li>
-<li>Approximately 26.1 GB in total for the default configuration.</li>
+<li>Approximately 19.9 GB more for <code>UBUNTUINSTALL=1</code>.</li>
+<li>Approximately 19.9 GB more for <code>DEBIANINSTALL=1</code>.</li>
+<li>Approximately 26.4 GB in total for the default configuration.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
@@ -99,7 +99,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
-- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4, TigerVNC server, XFCE desktop environment with fix for stuck `elementary-xfce-icon-theme` (see my [**fix-elementary-xfce-icon-theme**](https://github.com/Willie169/fix-elementary-xfce-icon-theme) repo for more information), PlantUML, clang-uml on Ubuntu, PostgreSQL 17, [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian derivatives ARM64 with extra features on Ubuntu.
+- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java (`default-jdk`), Node.js, Yarn, Rust, Go, Ruby, Perl, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages including http-server, jsdom, OpenAI Codex, and tools for Markdown and HTML, Python3 packages `jupyter librosa matplotlib meson ninja numpy pandas pydub requests scipy selenium setuptools sympy` in `~/.env`, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4, Firefox, TigerVNC server, XFCE desktop environment with fix for stuck `elementary-xfce-icon-theme` (see my [**fix-elementary-xfce-icon-theme**](https://github.com/Willie169/fix-elementary-xfce-icon-theme) repo for more information), PlantUML, clang-uml on Ubuntu, PostgreSQL 17, [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian derivatives ARM64 with extra features on Ubuntu.
 - [`box63-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on Debian derivatives ARM64. (No longer actively maintained.)
 
 ---
