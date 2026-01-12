@@ -18,11 +18,9 @@ apt install unrar-free -y
 fi
 wget -q http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
+rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
 apt install xfce4 xfce4-goodies xfce4-terminal -y
-mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
-dbus-launch --exit-with-session startxfce4 &
-EOF
 wget -q https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download -O SDL2_bgi-3.0.4.tar.gz
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
