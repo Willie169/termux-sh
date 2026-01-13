@@ -1,6 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
-PKG='alsa-utils android-tools apksigner aria2 autoconf automake bash bc bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype firefox gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep gtkwave inkscape iproute2 iverilog jpegoptim jq libheif-progs make matplotlib maven mc nano ncurses-utils neovim net-tools ngspice ninja nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl postgresql pulseaudio procps proot proot-distro pv python-ensurepip-wheels python-pip python-scipy python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tmux tor torsocks tree tur-repo unrar valgrind vim wget which xmlstarlet yarn zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype firefox gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep gtkwave inkscape iproute2 iverilog jpegoptim jq libheif-progs make matplotlib maven mc nano ncurses-utils neovim net-tools ngspice ninja nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl postgresql pulseaudio procps proot proot-distro pv python-ensurepip-wheels python-pip python-scipy python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tmux tor torsocks tree tur-repo unrar valgrind vim wget which xmlstarlet yarn zsh'
 XFCE=1
+ANDROID=1
 VIMRC=1
 NPM='http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex'
 PIPINSTALL='jupyter meson numpy pandas pipx pydub selenium setuptools sympy'
@@ -14,6 +15,7 @@ UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 
+set -eu
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
 UBUNTUBOX=$(echo "$UBUNTUBOX" | tr ' ' '_')
@@ -80,18 +82,51 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
+cd ~
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
-cd ~ && pkg update && pkg upgrade -y && pkg install curl git x11-repo -y && pkg update
-[ -n "$PKG" ] && pkg install $PKG -y
-[ "$XFCE" -eq 0 ] || pkg install firefox tigervnc xfce4 -y && mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
-#!/data/data/com.termux/files/usr/bin/sh
-xfce4-session &
-EOF
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~
 mv ~/bashrc.sh ~/.bashrc
 source ~/.bashrc
+pkg update && pkg upgrade -y && pkg install curl git x11-repo -y && pkg update
+[ -n "$PKG" ] && pkg install $PKG -y
+[ "$XFCE" -eq 0 ] || pkg install firefox tigervnc xfce4 -y && mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
+#!/data/data/com.termux/files/usr/bin/sh
+xfce4-session &
+EOF
+if [ "$ANDROID" -ne 0 ]; then
+pkg install aapt aapt2 aidl android-tools apksigner aria2 curl d8 jq openjdk-17 unzip -y
+cd $HOME
+aria2c -q https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+unzip commandlinetools-linux-13114758_latest.zip
+rm commandlinetools-linux-13114758_latest.zip
+mkdir Android
+cd Android
+mkdir Sdk
+cd Sdk
+export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+mkdir cmdline-tools
+cd cmdline-tools
+mkdir latest
+cd latest
+mv $HOME/cmdline-tools/* .
+rm -r $HOME/cmdline-tools
+cd bin
+echo y | ./sdkmanager "platform-tools" "platforms;android-36"
+cd $HOME
+mkdir gradle
+cd gradle
+aria2c -q https://services.gradle.org/distributions/gradle-8.13-bin.zip
+unzip gradle-8.13-bin.zip
+rm gradle-8.13-bin.zip
+curl -fsSL "https://api.github.com/repos/lzhiyong/termux-ndk/releases/latest" | jq -r ".assets[].browser_download_url" | grep -E "$(printf '%s' "android-ndk-*-aarch64.7z" | sed -e 's/\./\\./g' -e 's/\*/.*/g' -e 's/\?/./g')" | xargs -r aria2c -q
+7z x android-ndk-*.7z -o$HOME/Android
+rm android-ndk-*.7z
+cd $HOME/Android
+mv android-ndk-* android-ndk
+cd $HOME
+fi
 [ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 [ -n "$NPM" ] && npm install $NPM
 [ -n "$PIPINSTALL" ] && pip install $PIPINSTALL

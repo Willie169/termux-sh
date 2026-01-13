@@ -2,12 +2,11 @@
 
 This repository contains Shell scripts for [Termux](https://github.com/termux/termux-app), a terminal emulator for Android. These scripts include setup automation, shortcuts, installations and configurations of development tools and emulation environments such as proot, proot-distro, QEMU system emulation, and box64, and more.
 
-My tutorials for Termux, some of my scripts in this repository, and other related stuff are in [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root), which includes tutorials for a range of powerful, open-source tools such as [Termux](https://github.com/termux/termux-app), [F-Droid](https://f-droid.org), [Shizuku](https://github.com/RikkaApps/Shizuku), [Tor](https://www.torproject.org), [TrackerControl](https://github.com/TrackerControl/tracker-control-android), [InviZible Pro](https://github.com/Gedsh/InviZible), [QEMU](https://www.qemu.org), [Tailscale](https://github.com/tailscale/tailscale), [OpenSSH](https://www.openssh.com), and [PipePipe](https://github.com/InfinityLoop1308/PipePipe) to enhance Android device’s functionality, security, privacy, and customization without the need for root access.
-
 ---
 
 ## Table of Contents
 
+* [Termux](#termux)
 * [Termux Setup](#termux-setup)
   + [Prerequisites](#prerequisites)
   + [Execution](#execution)
@@ -24,6 +23,16 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 
 ---
 
+## Termux
+
+Termux (`com.termux`) can be installed from [F-Droid](https://f-droid.org/packages/com.termux).
+
+**WARNING**: If you installed termux from Google Play or a very old version, then you will receive package command errors. Google Play builds are deprecated and no longer supported. It is highly recommended that you update to termux-app v0.118.0 or higher as soon as possible for various bug fixes, including a critical world-readable vulnerability reported at <https://termux.github.io/general/2022/02/15/termux-apps-vulnerability-disclosures.html>. It is recommended that you shift to F-Droid or GitHub releases.
+
+Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) for more information.
+
+---
+
 ## Termux Setup
 
 [`termux-setup.sh`](termux-setup.sh)
@@ -33,7 +42,7 @@ My tutorials for Termux, some of my scripts in this repository, and other relate
 <ul>
 <li>Sufficient storage:
 <ul>
-<li>Approximately 5.5 GB in total for the minimal configuration with <code>XFCE=0</code> and
+<li>Approximately 5.4 GB in total for the minimal configuration with <code>XFCE=0</code>, <code>ANDROID=0</code>, and
 <pre><code>UBUNTU=''
 UBUNTUINSTALL=0
 DEBIAN=''
@@ -44,11 +53,12 @@ DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
 <li>Approximately 0.6 GB more for <code>XFCE=1</code>.</li>
+<li>Approximately 2.1 GB more for <code>ANDROID=1</code>.</li>
 <li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
 <li>Approximately 19.9 GB more for <code>UBUNTUINSTALL=1</code>.</li>
 <li>Approximately 19.9 GB more for <code>DEBIANINSTALL=1</code>.</li>
-<li>Approximately 26.4 GB in total for the default configuration.</li>
+<li>Approximately 28.4 GB in total for the default configuration.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
@@ -83,6 +93,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default ones include tools for C, C++, COBOL, Python3, Java17, Java21, Node.js, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, PRoot, RARLAB UnRAR, Icarus Verilog, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, Matplotlib, Ninja, SciPy, PostgreSQL, and more.
 2. **XFCE desktop environment**: Installs Firefox, TigerVNC server, and XFCE desktop environment, and configures `vncserver` to launch XFCE4 desktop environment if not `XFCE=0`.
+2. **Android Build Environment Setup**: Setup Android applications build environment if not `ANDROID=0` using script from my [**termux-android-sdk-ndk**](https://github.com/Willie169/termux-android-sdk-ndk) repo.
 2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `~/.shortcuts` folder (for **Termux:Widget**) and the home directory (`~`), and renames [`~/bashrc.sh`](DOTshortcuts/bashrc.sh) to `~/.bashrc`.
 2. **Vim configuration**: Install [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim if not `VIMRC=0`.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
