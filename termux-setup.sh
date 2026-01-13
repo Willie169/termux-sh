@@ -98,7 +98,7 @@ EOF
 if [ "$ANDROID" -ne 0 ]; then
 pkg install aapt aapt2 aidl android-tools apksigner aria2 curl d8 jq openjdk-17 unzip -y
 cd $HOME
-aria2c -q https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+aria2c https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
 unzip commandlinetools-linux-13114758_latest.zip
 rm commandlinetools-linux-13114758_latest.zip
 mkdir Android
@@ -117,15 +117,12 @@ echo y | ./sdkmanager "platform-tools" "platforms;android-36"
 cd $HOME
 mkdir gradle
 cd gradle
-aria2c -q https://services.gradle.org/distributions/gradle-8.13-bin.zip
+aria2c https://services.gradle.org/distributions/gradle-8.13-bin.zip
 unzip gradle-8.13-bin.zip
 rm gradle-8.13-bin.zip
-curl -fsSL "https://api.github.com/repos/lzhiyong/termux-ndk/releases/latest" | jq -r ".assets[].browser_download_url" | grep -E "$(printf '%s' "android-ndk-*-aarch64.7z" | sed -e 's/\./\\./g' -e 's/\*/.*/g' -e 's/\?/./g')" | xargs -r aria2c -q
-7z x android-ndk-*.7z -o$HOME/Android
-rm android-ndk-*.7z
-cd $HOME/Android
-mv android-ndk-* android-ndk
-cd $HOME
+aria2c https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
+7z x android-ndk-r29.7z -o$HOME/Android/Sdk/ndk
+rm android-ndk-r29.7z
 fi
 [ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 [ -n "$NPM" ] && npm install $NPM
