@@ -204,9 +204,9 @@ add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 fi
 apt update
 apt full-upgrade -y
-apt install alsa-utils apksigner aptitude apt-transport-https aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex flatpak gcc gdb gh ghostscript git glab gnucobol golang gperf gpg grep gtkwave gzip g++ inkscape iverilog libboost-all-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 libosmesa6 libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev llvm iproute2 iverilog jpegoptim jq make maven mc nano ncompress neovim ngspice openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml procps pv python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tk-dev tmux tree unzip uuid-dev valgrind verilator vim wget xmlstarlet xz-utils x11-utils x11-xserver-utils zip zlib1g zsh -y
+apt install alsa-utils apksigner aptitude apt-transport-https aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex flatpak gcc gdb gh ghostscript git glab gnucobol golang gperf gpg grep gtkwave gzip g++ inkscape iverilog libboost-all-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 libosmesa6 libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev llvm iproute2 iverilog jpegoptim jq make maven mc nano ncompress neovim ngspice openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml procps pv python3-pip python3-all-dev python3-venv rust-all tar tigervnc-standalone-server tk-dev tmux tree unzip uuid-dev valgrind verilator vim wget xmlstarlet xz-utils x11-utils x11-xserver-utils zip zlib1g zsh -y
 if [ "$ID" = "ubuntu" ]; then
-apt install unrar -y
+apt install unrar openjdk-17-jdk -y
 else
 apt install unrar-free -y
 fi
@@ -374,11 +374,12 @@ fi
 #    . /etc/bash_completion
 #fi
 
-export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:/usr/glibc/bin:$HOME/.cargo/bin:/usr/local/texlive/2025/bin/aarch64-linux:$HOME/.pyenv/bin"
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include:/usr/include/SDL2"
 export GOROOT="$PREFIX/lib/go"
 export GOPATH="$GOPATH:$HOME/go"
+export JAVA_HOME="/usr/lib/jvm/openjdk-21"
 export NVM_DIR="$HOME/.nvm"
+export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:/usr/glibc/bin:$HOME/.cargo/bin:/usr/local/texlive/2025/bin/aarch64-linux:$HOME/.pyenv/bin"
 export KIT="/usr/share/LaTeX-ToolKit"
 export PATCH="$HOME/texmf/tex/latex/physics-patch"
 export PLANTUML_JAR="$HOME/plantuml.jar"
