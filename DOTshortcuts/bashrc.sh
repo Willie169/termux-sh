@@ -89,15 +89,19 @@ dl() {
 
   while [ $# -gt 0 ]; do
     case "$1" in
-      -o)
+      -o|--output)
         out="$2"
         shift 2
         ;;
-      -q)
+      --output=*)
+        out="${1#*=}"
+        shift
+        ;;
+      -q|--quiet)
         quiet=1
         shift
         ;;
-      -v)
+      -v|--verbose)
         verbose=1
         shift
         ;;
@@ -106,7 +110,7 @@ dl() {
         break
         ;;
       -*)
-        echo "Usage: download [-q|-v] [-o FILE] URL" >&2
+        echo "Usage: download [-q|--quiet] [-v|--verbose] [-o|--output FILE | --output=FILE] URL" >&2
         return 2
         ;;
       *)
@@ -116,8 +120,10 @@ dl() {
     esac
   done
 
+  [ "$quiet" -eq 1 ] && verbose=0
+
   if [ -z "$url" ]; then
-    echo "Usage: download [-q|-v] [-o FILE] URL" >&2
+    echo "Usage: download [-q|--quiet] [-v|--verbose] [-o|--output FILE | --output=FILE] URL" >&2
     return 2
   fi
 
@@ -152,13 +158,120 @@ dl() {
     fi
 
   else
-    echo "Error: no downloader available, aria2c, curl, or wget is required" >&2
+    echo "Error: no downloader available, either aria2c, curl, or wget is required" >&2
     return 127
   fi
 }
 
 gh-latest() {
-  curl -fsSL "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test("$(printf '%s' "$2" | sed -e 's/./\\./g' -e 's/*/.*/g')"))" | xargs -r dl -q
+  local repo=""
+  local pattern=""
+  local quiet=0
+  local verbose=0
+
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -q|--quiet)
+        quiet=1
+        shift
+        ;;
+      -v|--verbose)
+        verbose=1
+        shift
+        ;;
+      -*)
+        echo "Usage: gh-latest [-q|--quiet] [-v|--verbose] <repo> [pattern]" >&2
+        echo "Example: gh-latest cli/cli '*.deb'" >&2
+        return 1
+        ;;
+      *)
+        if [ -z "$repo" ]; then
+          repo="$1"
+        else
+          pattern="$1"
+        fi
+        shift
+        ;;
+    esac
+  done
+
+  [ "$quiet" -eq 1 ] && verbose=0
+
+  if [ -z "$repo" ]; then
+    echo "Usage: gh-latest [-q|--quiet] [-v|--verbose] <repo> [pattern]" >&2
+    echo "Example: gh-latest cli/cli '*.deb'" >&2
+    return 1
+  fi
+
+  if [ "$quiet" -eq 0 ]; then
+    echo "Fetching latest release for $repo..." >&2
+  fi
+
+  local curl_opts=()
+  if [ "$quiet" -eq 1 ]; then
+    curl_opts+=(-sS)
+  fi
+
+  local urls
+  urls=$(curl -fsSL "${curl_opts[@]}" "https://api.github.com/repos/$repo/releases/latest" | \
+    jq -r ".assets[].browser_download_url" 2>/dev/null)
+
+  if [ -z "$urls" ]; then
+    echo "Error: failed to get release information or no assets found" >&2
+    return 1
+  fi
+
+  if [ -n "$pattern" ]; then
+    local regex
+    regex=$(printf '%s' "$pattern" | sed -e 's/\./\\./g' -e 's/\*/.*/g' -e 's/\?/./g')
+    urls=$(echo "$urls" | grep -E "$regex")
+  fi
+
+  if [ -z "$urls" ]; then
+    echo "Error: no matching assets found" >&2
+    return 1
+  fi
+
+  local count
+  count=$(echo "$urls" | grep -cve '^\s*$')
+
+  if [ "$quiet" -eq 0 ] && [ "$count" -gt 1 ]; then
+    echo "Found $count matching assets. Downloading all" >&2
+    if [ "$verbose" -eq 1 ]; then
+      echo "$urls" | sed 's/^/  /' >&2
+    fi
+  elif [ "$quiet" -eq 0 ] && [ "$verbose" -eq 1 ]; then
+    echo "Found $count matching asset(s)" >&2
+    echo "$urls" | sed 's/^/  /' >&2
+  fi
+
+  local dl_opts=()
+  if [ "$quiet" -eq 1 ]; then
+    dl_opts+=(-q)
+  elif [ "$verbose" -eq 1 ]; then
+    dl_opts+=(-v)
+  fi
+
+  local success=true
+  local downloaded=0
+  while IFS= read -r url; do
+    if [ -n "$url" ]; then
+      downloaded=$((downloaded + 1))
+      if [ "$quiet" -eq 0 ]; then
+        echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
+      fi
+      if ! dl "${dl_opts[@]}" "$url"; then
+        echo "Error: failed to download $url" >&2
+        success=false
+      fi
+    fi
+  done <<< "$urls"
+
+  if [ "$success" = false ]; then
+    return 1
+  elif [ "$quiet" -eq 0 ]; then
+    echo "Download completed successfully" >&2
+  fi
 }
 
 gpull() {
