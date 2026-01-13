@@ -2,11 +2,11 @@
 
 export GOROOT="$PREFIX/lib/go"
 export GOPATH="$HOME/go"
+export JAVA_HOME="$PREFIX/lib/jvm/java-17-openjdk"
+export NVM_DIR="$HOME/.nvm"
 export ANDROID_SDK_ROOT="$HOME/Android/Sdk"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 export ANDROID_NDK_HOME="$HOME/Android/android-ndk"
-export JAVA_HOME="$PREFIX/lib/jvm/java-17-openjdk"
-export NVM_DIR="$HOME/.nvm"
 export PATH="$PREFIX/bin:$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PREFIX/glibc/bin:$HOME/.cargo/bin:/data/data/com.termux/files/usr/lib/node_modules:$JAVA_HOME/bin:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_NDK_HOME:$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-aarch64/bin:$HOME/gradle/gradle-8.13/bin:$PATH"
 export PGDATA="$PREFIX/var/lib/postgresql"
 export TORPATH="$PREFIX/etc/tor"
