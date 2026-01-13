@@ -306,8 +306,66 @@ vncclean() {
   rm -f "/tmp/.X11-unix/.X${1}"
 }
 
+dl() {
+  local out=
+  local url=
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -o)
+        out="$2"
+        shift 2
+        ;;
+      --)
+        shift
+        break
+        ;;
+      -*)
+        echo "Usage: download [-o FILE] URL" >&2
+        return 2
+        ;;
+      *)
+        url="$1"
+        shift
+        ;;
+    esac
+  done
+
+  if [ -z "$url" ]; then
+    echo "Usage: download [-o FILE] URL" >&2
+    return 2
+  fi
+
+  if command -v aria2c >/dev/null 2>&1; then
+    if [ -n "$out" ]; then
+      aria2c -q -c -o "$out" "$url"
+    else
+      aria2c -q -c "$url"
+    fi
+  elif command -v curl >/dev/null 2>&1; then
+    if [ -n "$out" ]; then
+      curl -fsL -o "$out" "$url"
+    else
+      curl -fsL -O "$url"
+    fi
+  elif command -v wget >/dev/null 2>&1; then
+    if [ -n "$out" ]; then
+      wget -q -O "$out" "$url"
+    else
+      wget -q "$url"
+    fi
+  else
+    echo "Error: aria2c, curl, or wget is required" >&2
+    return 127
+  fi
+}
+
 gh-latest() {
-    curl -fsSL "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test(\"$(printf '%s' "$2" | sed -e 's/\./\\\\./g' -e 's/\*/.*/g')\"))" | xargs curl -fsSL -O
+  if command -v aria2c >/dev/null 2>&1; then
+    _dl() { aria2c -q -c "$@"; }
+  else
+    _dl() { curl -fsL -O "$@"; }
+  fi
+  curl -fsL "https://api.github.com/repos/$1/releases/latest" | jq -r ".assets[].browser_download_url | select(test("$(printf '%s' "$2" | sed -e 's/./\\./g' -e 's/*/.*/g')"))" | xargs -r _dl
 }
 
 gpull() {
