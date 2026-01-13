@@ -694,7 +694,6 @@ gh-latest() {
   fi
 }
 
-
 gpull() {
     level="${1:-0}"
     if [ "$level" -eq 0 ]; then
