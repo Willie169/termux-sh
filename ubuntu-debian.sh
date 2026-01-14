@@ -721,9 +721,40 @@ gacp() {
 }
 
 gtr() {
-    git tag -a v"$1" -m "Version $1 release"
-    git push origin v"$1"
-    gh release create v"$1" --title "Version $1 release" --notes ''
+    if [ $# -lt 1 ]; then
+        echo "Usage: gtr <version> [-n|--notes 'notes'] [files...]"
+        return 1
+    fi
+    local version="$1"
+    shift
+    local notes=""
+    local files=()
+
+    while [ $# -gt 0 ]; do
+        case "$1" in
+            -n|--notes)
+                shift
+                if [ $# -eq 0 ]; then
+                    echo "Error: Missing notes after -n|--notes"
+                    return 1
+                fi
+                notes="$1"
+                ;;
+            *)
+                files+=("$1")
+                ;;
+        esac
+        shift
+    done
+
+    git tag -a "v$version" -m "Version $version release"
+    git push origin "v$version"
+
+    if [ -n "$notes" ]; then
+        gh release create "v$version" --title "Version $version release" --notes "$notes" "${files[@]}"
+    else
+        gh release create "v$version" --title "Version $version release" "${files[@]}"
+    fi
 }
 
 git-upstream-pr() {
