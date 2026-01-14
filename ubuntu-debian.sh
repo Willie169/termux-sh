@@ -265,14 +265,7 @@ pip3 install jupyter librosa matplotlib meson ninja numpy pandas pydub requests 
 deactivate
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 dl -o plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-if [ "$ID" = "ubuntu" ]; then
-add-apt-repository ppa:bkryza/clang-uml -y
-apt update
-apt install clang-uml -y
-fi
-apt install postgresql-common -y
-/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
-apt install postgresql-17 -y
+apt install postgresql-common postgresql-17 -y
 cat > ~/.bashrc << 'EOF'
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
