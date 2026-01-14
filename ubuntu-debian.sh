@@ -271,12 +271,12 @@ apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
 dl 'https://downloads.godotengine.org/?version=4.5.1&flavor=stable&slug=mono_linux_arm64.zip&platform=linux.arm64'
 unzip Godot_v4.5.1-stable_mono_linux_arm64.zip
 rm Godot_v4.5.1-stable_mono_linux_arm64.zip
-sudo ln -s ~/Godot_v4.5.1-stable_mono_linux_arm64/Godot_v4.5.1-stable_mono_linux_arm64 /usr/local/bin/godot
+ln -s ~/Godot_v4.5.1-stable_mono_linux_arm64/Godot_v4.5.1-stable_mono_linux_arm64 /usr/local/bin/godot
 else
 dl 'https://downloads.godotengine.org/?version=4.5.1&flavor=stable&slug=linux.arm64.zip&platform=linux.arm64'
 unzip Godot_v4.5.1-stable_linux.arm64.zip
 rm Godot_v4.5.1-stable_linux.arm64.zip
-sudo ln -s ~/Godot_v4.5.1-stable_linux.arm64 /usr/local/bin/godot
+ln -s ~/Godot_v4.5.1-stable_linux.arm64 /usr/local/bin/godot
 fi
 dl -o plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
