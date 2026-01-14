@@ -121,9 +121,6 @@ rm android-ndk-r29.7z
 mkdir -p ~/.gradle
 cat > ~/.gradle/gradle.properties << 'EOF'
 android.aapt2FromMavenOverride=/data/data/com.termux/files/usr/bin/aapt2
-android.aaptFromMavenOverride=/data/data/com.termux/files/usr/bin/aapt
-android.zipAlignOverride=/data/data/com.termux/files/usr/bin/zipalign
-android.d8Override=/data/data/com.termux/files/usr/bin/d8
 EOF
 fi
 [ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh

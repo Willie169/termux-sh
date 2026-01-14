@@ -93,7 +93,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default ones include tools for C, C++, COBOL, Python3, Java17, Java21, Node.js, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, PRoot, RARLAB UnRAR, Icarus Verilog, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, Matplotlib, Ninja, SciPy, PostgreSQL, and more.
 2. **XFCE desktop environment**: Installs Firefox, TigerVNC server, and XFCE desktop environment, and configures `vncserver` to launch XFCE4 desktop environment if not `XFCE=0`.
-2. **Android Build Environment Setup**: Setup Android applications build environment if not `ANDROID=0` using script from my [**termux-android-sdk-ndk**](https://github.com/Willie169/termux-android-sdk-ndk) repo.
+2. **Android Build Environment Setup**: Setup Android apps build environment if not `ANDROID=0` using script modified from my [**termux-android-sdk-ndk**](https://github.com/Willie169/termux-android-sdk-ndk) repo. Refer to it for more information.
 2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `~/.shortcuts` folder (for **Termux:Widget**) and the home directory (`~`), and renames [`~/bashrc.sh`](DOTshortcuts/bashrc.sh) to `~/.bashrc`.
 2. **Vim configuration**: Install [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim if not `VIMRC=0`.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
