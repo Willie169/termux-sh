@@ -271,7 +271,7 @@ apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
 wget 'https://downloads.godotengine.org/?version=4.5.1&flavor=stable&slug=mono_linux_arm64.zip&platform=linux.arm64' -O Godot_v4.5.1-stable_mono_linux_arm64.zip # aria2c may fail due to unknown reason
 unzip Godot_v4.5.1-stable_mono_linux_arm64.zip
 rm Godot_v4.5.1-stable_mono_linux_arm64.zip
-ln -s ~/Godot_v4.5.1-stable_mono_linux_arm64/Godot_v4.5.1-stable_mono_linux_arm64 /usr/local/bin/godot
+ln -s ~/Godot_v4.5.1-stable_mono_linux_arm64/Godot_v4.5.1-stable_mono_linux.arm64 /usr/local/bin/godot
 else
 wget 'https://downloads.godotengine.org/?version=4.5.1&flavor=stable&slug=linux.arm64.zip&platform=linux.arm64' -O Godot_v4.5.1-stable_linux.arm64.zip # aria2c may fail due to unknown reason
 unzip Godot_v4.5.1-stable_linux.arm64.zip
