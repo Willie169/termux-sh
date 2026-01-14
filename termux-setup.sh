@@ -115,11 +115,6 @@ rm -r $HOME/cmdline-tools
 cd bin
 echo y | ./sdkmanager "platform-tools" "platforms;android-36"
 cd $HOME
-mkdir gradle
-cd gradle
-aria2c https://services.gradle.org/distributions/gradle-8.13-bin.zip
-unzip gradle-8.13-bin.zip
-rm gradle-8.13-bin.zip
 aria2c https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
 7z x android-ndk-r29.7z -o$HOME/Android/Sdk/ndk
 rm android-ndk-r29.7z
