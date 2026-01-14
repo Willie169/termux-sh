@@ -113,7 +113,7 @@ cd latest
 mv $HOME/cmdline-tools/* .
 rm -r $HOME/cmdline-tools
 cd bin
-echo y | ./sdkmanager "platform-tools" "platforms;android-36"
+echo y | ./sdkmanager "build-tools;30.0.3" "platform-tools" "platforms;android-33"
 cd $HOME
 aria2c https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
 7z x android-ndk-r29.7z -o$HOME/Android/Sdk/ndk
