@@ -753,7 +753,7 @@ gtr() {
     if [ -n "$notes" ]; then
         gh release create "v$version" --title "Version $version release" --notes "$notes" "${files[@]}"
     else
-        gh release create "v$version" --title "Version $version release" "${files[@]}"
+        gh release create "v$version" --title "Version $version release" --notes "" "${files[@]}"
     fi
 }
 
