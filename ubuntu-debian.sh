@@ -373,6 +373,7 @@ fi
 #fi
 
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include:/usr/include/SDL2"
+export GOPROXY=direct
 export GOROOT="$PREFIX/lib/go"
 export GOPATH="$GOPATH:$HOME/go"
 export NVM_DIR="$HOME/.nvm"
