@@ -204,7 +204,7 @@ add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 fi
 apt update
 apt full-upgrade -y
-apt install alsa-utils apksigner aptitude apt-transport-https aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex flatpak gcc gdb gh ghostscript git glab gnucobol gnupg golang gperf gpg grep gtkwave gzip g++ inkscape iverilog libboost-all-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 libosmesa6 libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev llvm iproute2 iverilog jpegoptim jq make maven mc nano ncompress neovim ngspice openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml procps pv python3-pip python3-all-dev python3-venv rust-all sudo tar tigervnc-standalone-server tk-dev tmux tree unzip uuid-dev valgrind verilator vim wget xmlstarlet xz-utils x11-utils x11-xserver-utils zip zlib1g zsh -y
+apt install alsa-utils apksigner aptitude apt-transport-https aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex flatpak gcc gdb gh ghostscript git glab gnucobol gnupg golang gperf gpg grep gtkwave gzip g++ inkscape iverilog libboost-all-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 libosmesa6 libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libssl-dev llvm iproute2 iverilog jpegoptim jq make maven mc nano ncompress neovim ngspice openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml procps pv python3-pip python3-all-dev python3-venv rust-all sudo tar tk-dev tmux tree unzip uuid-dev valgrind verilator vim wget xmlstarlet xz-utils x11-utils x11-xserver-utils zip zlib1g zsh -y
 if [ "$ID" = "ubuntu" ]; then
 apt install openjdk-17-jdk unrar -y
 else
@@ -214,7 +214,7 @@ dl http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
-apt install dbus-x11 firefox-esr xfce4 xfce4-goodies xfce4-terminal -y
+apt install dbus-x11 firefox-esr tigervnc-standalone-server xfce4 xfce4-goodies xfce4-terminal -y
 cat > ~/.config/tigervnc/xstartup << 'EOF'
 #!/bin/sh
 unset DBUS_SESSION_BUS_ADDRESS
