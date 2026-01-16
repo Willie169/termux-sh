@@ -104,18 +104,7 @@ dl() {
   old_int=$(trap -p INT)
   old_term=$(trap -p TERM)
 
-  for arg in "$@"; do
-    case "$arg" in
-      -*)
-        has_option=1
-        break
-        ;;
-    esac
-  done
-
-  if [ "$has_option" -eq 0 ]; then
-    set -- ${DLFLAGS:-} "$@"
-  fi
+  set -- ${DLFLAGS:-} "$@"
 
   while [ $# -gt 0 ]; do
     case "$1" in
