@@ -15,8 +15,7 @@ export PDROOTFS="$PREFIX/var/lib/proot-distro/installed-rootfs"
 export EMU="/storage/emulated/0"
 export DOW="/storage/emulated/0/Download"
 export DOC="/storage/emulated/0/Documents"
-alias src=source
-alias deact='deactivate'
+alias src='source'
 alias g++20='g++ -std=gnu++20'
 alias c++20='clang++ -std=gnu++20'
 alias g++201='g++ -std=gnu++20 -O1'
@@ -69,6 +68,7 @@ actenv() {
         return 1
     fi
 }
+alias deact='deactivate'
 
 xdgset() {
     export XDG_RUNTIME_DIR=/tmp/runtime-root
@@ -87,10 +87,35 @@ vncclean() {
 }
 
 dl() {
+  local has_option=0
   local out=
   local quiet=0
   local verbose=0
   local url=
+  local to_stdout=0
+  local no_fallback=0
+  local use_aria2=1
+  local use_curl=1
+  local use_wget=1
+  local tmp_file
+  tmp_file=$(mktemp "$TMPDIR/dl.XXXXXXXXXX") || return 1
+  local old_exit old_int old_term
+  old_exit=$(trap -p EXIT)
+  old_int=$(trap -p INT)
+  old_term=$(trap -p TERM)
+
+  for arg in "$@"; do
+    case "$arg" in
+      -*)
+        has_option=1
+        break
+        ;;
+    esac
+  done
+
+  if [ "$has_option" -eq 0 ]; then
+    set -- ${DLFLAGS:-} "$@"
+  fi
 
   while [ $# -gt 0 ]; do
     case "$1" in
@@ -98,8 +123,8 @@ dl() {
         out="$2"
         shift 2
         ;;
-      --output=*)
-        out="${1#*=}"
+      -O|--stdout)
+        to_stdout=1
         shift
         ;;
       -q|--quiet)
@@ -110,12 +135,41 @@ dl() {
         verbose=1
         shift
         ;;
+      -a|--aria2)
+        use_aria2=1; use_curl=0; use_wget=0
+        shift
+        ;;
+      -A|--no-aria2)
+        use_aria2=0
+        shift
+        ;;
+      -c|--curl)
+        use_curl=1; use_aria2=0; use_wget=0
+        shift
+        ;;
+      -C|--no-curl)
+        use_curl=0
+        shift
+        ;;
+      -w|--wget)
+        use_wget=1; use_aria2=0; use_curl=0
+        shift
+        ;;
+      -W|--no-wget)
+        use_wget=0
+        shift
+        ;;
+      --no-fallback)
+        no_fallback=1
+        shift
+        ;;
       --)
         shift
         break
         ;;
       -*)
-        echo "Usage: download [-q|--quiet] [-v|--verbose] [-o|--output FILE | --output=FILE] URL" >&2
+        echo "Unknown option: $1" >&2
+        echo "Usage: dl [-o|--output FILE] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] URL" >&2
         return 2
         ;;
       *)
@@ -128,72 +182,164 @@ dl() {
   [ "$quiet" -eq 1 ] && verbose=0
 
   if [ -z "$url" ]; then
-    echo "Usage: download [-q|--quiet] [-v|--verbose] [-o|--output FILE | --output=FILE] URL" >&2
+    echo "Usage: dl [-o|--output FILE] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] URL" >&2
     return 2
   fi
 
-  if command -v aria2c >/dev/null 2>&1; then
+  if [ -n "$out" ] && [ "$to_stdout" -eq 0 ]; then
+    mkdir -p "$(dirname "$out")" || return 1
+  fi
+
+  cleanup() {
+    [ -n "$tmp_file" ] && rm -f "$tmp_file"
+  }
+
+  if [ "$to_stdout" -eq 1 ] && [ "$use_aria2" -eq 1 ]; then
+    trap cleanup EXIT INT TERM
+  fi
+
+  try_aria2() {
+    command -v aria2c >/dev/null 2>&1 || return 127
     local opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
-    if [ -n "$out" ]; then
+
+    if [ "$to_stdout" -eq 1 ]; then
+      aria2c "${opts[@]}" -c -o "$tmp_file" "$url"
+    elif [ -n "$out" ]; then
       aria2c "${opts[@]}" -c -o "$out" "$url"
     else
       aria2c "${opts[@]}" -c "$url"
     fi
+  }
 
-  elif command -v curl >/dev/null 2>&1; then
-    local opts=()
+  try_curl() {
+    command -v curl >/dev/null 2>&1 || return 127
+    local opts=(-fL)
     [ "$quiet" -eq 1 ] && opts+=(-sS)
     [ "$verbose" -eq 1 ] && opts+=(-v)
-    if [ -n "$out" ]; then
-      curl -fL "${opts[@]}" -o "$out" "$url"
-    else
-      curl -fL "${opts[@]}" -O "$url"
-    fi
 
-  elif command -v wget >/dev/null 2>&1; then
+    if [ "$to_stdout" -eq 1 ]; then
+      curl "${opts[@]}" "$url"
+    elif [ -n "$out" ]; then
+      curl "${opts[@]}" -o "$out" "$url"
+    else
+      curl "${opts[@]}" -O "$url"
+    fi
+  }
+
+  try_wget() {
+    command -v wget >/dev/null 2>&1 || return 127
     local opts=()
     [ "$quiet" -eq 1 ] && opts+=(-q)
     [ "$verbose" -eq 1 ] && opts+=(-v)
-    if [ -n "$out" ]; then
+
+    if [ "$to_stdout" -eq 1 ]; then
+      wget "${opts[@]}" -O - "$url"
+    elif [ -n "$out" ]; then
       wget "${opts[@]}" -O "$out" "$url"
     else
       wget "${opts[@]}" "$url"
     fi
+  }
 
-  else
-    echo "Error: no downloader available, either aria2c, curl, or wget is required" >&2
-    return 127
+  local rc=1
+
+  if [ "$use_aria2" -eq 1 ]; then
+    if try_aria2; then
+      if [ "$to_stdout" -eq 1 ]; then
+        cat "$tmp_file" || return 1
+      fi
+      [ "$verbose" -eq 1 ] && echo "aria2 used"
+      return 0
+    fi
+    rc=$?
+    rm -f "$tmp_file"
+    trap - EXIT INT TERM
+    [ -n "$old_exit" ] && eval "$old_exit"
+    [ -n "$old_int" ]  && eval "$old_int"
+    [ -n "$old_term" ] && eval "$old_term"
+    [ "$no_fallback" -eq 1 ] && return "$rc"
   fi
+
+  if [ "$use_curl" -eq 1 ]; then
+    if try_curl; then
+      [ "$verbose" -eq 1 ] && echo "curl used"
+      return 0
+    fi
+    rc=$?
+    [ "$no_fallback" -eq 1 ] && return "$rc"
+  fi
+
+  if [ "$use_wget" -eq 1 ]; then
+    if try_wget; then
+      [ "$verbose" -eq 1 ] && echo "wget used"
+      return 0
+    fi
+    rc=$?
+    [ "$no_fallback" -eq 1 ] && return "$rc"
+  fi
+
+  echo "Error: all enabled downloaders failed" >&2
+  return "$rc"
 }
 
 gh-latest() {
-  local repo=""
-  local pattern=""
+  local dl_args=()
   local quiet=0
   local verbose=0
+  local repo=""
+  local file=""
+  local name=""
+  local tag=""
+  local index=""
 
   while [ $# -gt 0 ]; do
     case "$1" in
       -q|--quiet)
         quiet=1
+        dl_args+=("$1")
         shift
         ;;
       -v|--verbose)
         verbose=1
+        dl_args+=("$1")
+        shift
+        ;;
+      -n|--name)
+        name="$2"
+        shift 2
+        ;;
+      -t|--tag)
+        tag="$2"
+        shift 2
+        ;;
+      -i|--index)
+        index="$2"
+        shift 2
+        ;;
+      -o|--output|--stdout|-a|--aria2|-A|--no-aria2|-c|--curl|-C|--no-curl|-w|--wget|-W|--no-wget|--no-fallback)
+        dl_args+=("$1")
+        if [[ "$1" == -o || "$1" == --output ]]; then
+          dl_args+=("$2")
+          shift
+        fi
         shift
         ;;
       -*)
-        echo "Usage: gh-latest [-q|--quiet] [-v|--verbose] <repo> [pattern]" >&2
-        echo "Example: gh-latest cli/cli '*.deb'" >&2
+        echo "Unknown option: $1" >&2
+        echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-o|--output FILE] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <repo> [file-pattern]" >&2
+        echo "Example: gh-latest cli/cli *.deb" >&2
+        echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+        echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+        echo "Example: gh-latest cli/cli -i 0" >&2
         return 1
         ;;
       *)
         if [ -z "$repo" ]; then
           repo="$1"
         else
-          pattern="$1"
+          file="$1"
         fi
         shift
         ;;
@@ -202,35 +348,151 @@ gh-latest() {
 
   [ "$quiet" -eq 1 ] && verbose=0
 
-  if [ -z "$repo" ]; then
-    echo "Usage: gh-latest [-q|--quiet] [-v|--verbose] <repo> [pattern]" >&2
-    echo "Example: gh-latest cli/cli '*.deb'" >&2
+  repo="${repo#https://}"
+  repo="${repo#http://}"
+  repo="${repo#github.com/}"
+  repo="${repo%.git}"
+  repo="${repo%/}"
+
+  if ! echo "$repo" | grep -Eq '^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$'; then
+    echo "Error: invalid repo format. Expected 'user/repo' or URL" >&2
+    echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
+    echo "Example: gh-latest cli/cli *.deb" >&2
+    echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+    echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+    echo "Example: gh-latest cli/cli -i 0" >&2
     return 1
   fi
 
-  if [ "$quiet" -eq 0 ]; then
-    echo "Fetching latest release for $repo..." >&2
+  if [ -z "$repo" ]; then
+    echo "Error: invalid repo format. Expected 'user/repo' or URL" >&2
+    echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
+    echo "Example: gh-latest cli/cli *.deb" >&2
+    echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+    echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+    echo "Example: gh-latest cli/cli -i 0" >&2
+    return 1
   fi
 
-  local curl_opts=()
-  if [ "$quiet" -eq 1 ]; then
-    curl_opts+=(-sS)
+  [ "$quiet" -eq 0 ] && echo "Fetching latest release for $repo..." >&2
+
+  local file_regex=""
+  if [ -n "$file" ]; then
+    file_regex=$(printf '%s' "$file" | sed '
+      s/\\/\\\\\\\\/g
+      s/\[/\\\\[/g
+      s/\]/\\\\]/g
+      s/\./[.]/g
+      s/\*/.*/g
+      s/\?/./g
+      s/(/\\\\(/g
+      s/)/\\\\)/g
+      s/|/\\\\|/g
+      s/+/\\\\+/g
+      s/\$/\\\\$/g
+      s/\^/\\\\^/g
+    ')
+    file_regex="^${file_regex}\$"
+  fi
+
+  local release_json
+  if [ -n "$name" ] || [ -n "$tag" ]; then
+    release_json=$(curl -fsSL "https://api.github.com/repos/$repo/releases" 2>/dev/null)
+    if [ -z "$release_json" ]; then
+      echo "Error: failed to fetch releases or repo not found" >&2
+      return 1
+    fi
+  else
+    release_json=$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" 2>/dev/null)
+    if [ -z "$release_json" ] || [ "$release_json" = "null" ]; then
+      echo "Error: no releases found or repo not found" >&2
+      return 1
+    fi
+  fi
+
+  if [ -n "$name" ]; then
+    local name_regex
+    name_regex=$(printf '%s' "^$name\$" | sed '
+      s/\\/\\\\\\\\/g
+      s/\[/\\\\[/g
+      s/\]/\\\\]/g
+      s/\./[.]/g
+      s/\*/.*/g
+      s/\?/./g
+      s/(/\\\\(/g
+      s/)/\\\\)/g
+      s/|/\\\\|/g
+      s/+/\\\\+/g
+      s/\$/\\\\$/g
+      s/\^/\\\\^/g
+    ')
+    name_regex="^${name_regex}\$"
+
+    release_json=$(echo "$release_json" | jq -r --arg NAME "$name_regex" '
+      map(select(
+        .name != null and 
+        (.name | test($NAME))
+      ))
+      | max_by(.published_at)
+    ')
+    
+    if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
+      echo "Error: no release found with name matching: $name" >&2
+      return 1
+    fi
+  fi
+
+  if [ -n "$tag" ]; then
+    local tag_regex
+    tag_regex=$(printf '%s' "^$tag\$" | sed '
+      s/\\/\\\\\\\\/g
+      s/\[/\\\\[/g
+      s/\]/\\\\]/g
+      s/\./[.]/g
+      s/\*/.*/g
+      s/\?/./g
+      s/(/\\\\(/g
+      s/)/\\\\)/g
+      s/|/\\\\|/g
+      s/+/\\\\+/g
+      s/\$/\\\\$/g
+      s/\^/\\\\^/g
+    ')
+    tag_regex="^${tag_regex}\$"
+
+    release_json=$(echo "$release_json" | jq -r --arg TAG "$tag_regex" '
+      map(select(
+        .tag_name != null and 
+        (.tag_name | test($TAG))
+      ))
+      | max_by(.published_at)
+    ')
+    
+    if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
+      echo "Error: no release found with tag name matching: $tag" >&2
+      return 1
+    fi
   fi
 
   local urls
-  urls=$(curl -fsSL "${curl_opts[@]}" "https://api.github.com/repos/$repo/releases/latest" | \
-    jq -r ".assets[].browser_download_url" 2>/dev/null)
-
-  if [ -z "$urls" ]; then
-    echo "Error: failed to get release information or no assets found" >&2
-    return 1
-  fi
-
-  if [ -n "$pattern" ]; then
-    local regex
-    regex=$(printf '%s' "$pattern" | sed -e 's/\./\\./g' -e 's/\*/.*/g' -e 's/\?/./g')
-    urls=$(echo "$urls" | grep -E "$regex")
-  fi
+  urls=$(echo "$release_json" | jq -r --arg FILE "$file_regex" --arg INDEX "$index" '
+    if .assets then
+      .assets
+      | map(select(
+          .name != null and 
+          ($FILE == "" or (.name | test($FILE)))
+        ))
+      | if $INDEX != "" then
+          [.[($INDEX|tonumber)]?]
+        else
+          .
+        end
+      | .[]
+      | .browser_download_url
+    else
+      empty
+    end
+  ')
 
   if [ -z "$urls" ]; then
     echo "Error: no matching assets found" >&2
@@ -240,35 +502,32 @@ gh-latest() {
   local count
   count=$(echo "$urls" | grep -cve '^\s*$')
 
-  if [ "$quiet" -eq 0 ] && [ "$count" -gt 1 ]; then
-    echo "Found $count matching assets. Downloading all" >&2
-    if [ "$verbose" -eq 1 ]; then
+  if [ "$quiet" -eq 0 ]; then
+    local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
+    echo "Release: $release_name" >&2
+    
+    if [ "$count" -gt 1 ]; then
+      echo "Found $count matching assets. Downloading all" >&2
+      if [ "$verbose" -eq 1 ]; then
+        echo "$urls" | nl -w2 -s': ' | sed 's/^/  /' >&2
+      fi
+    elif [ "$verbose" -eq 1 ]; then
+      echo "Found 1 matching asset:" >&2
       echo "$urls" | sed 's/^/  /' >&2
     fi
-  elif [ "$quiet" -eq 0 ] && [ "$verbose" -eq 1 ]; then
-    echo "Found $count matching asset(s)" >&2
-    echo "$urls" | sed 's/^/  /' >&2
-  fi
-
-  local dl_opts=()
-  if [ "$quiet" -eq 1 ]; then
-    dl_opts+=(-q)
-  elif [ "$verbose" -eq 1 ]; then
-    dl_opts+=(-v)
   fi
 
   local success=true
   local downloaded=0
   while IFS= read -r url; do
-    if [ -n "$url" ]; then
-      downloaded=$((downloaded + 1))
-      if [ "$quiet" -eq 0 ]; then
-        echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
-      fi
-      if ! dl "${dl_opts[@]}" "$url"; then
-        echo "Error: failed to download $url" >&2
-        success=false
-      fi
+    [ -z "$url" ] && continue
+    
+    downloaded=$((downloaded + 1))
+    [ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
+    
+    if ! dl "${dl_args[@]}" "$url"; then
+      echo "Error: failed to download $url" >&2
+      success=false
     fi
   done <<< "$urls"
 
