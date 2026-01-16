@@ -12,7 +12,11 @@ dl() {
   local use_curl=1
   local use_wget=1
   local tmp_file
-  tmp_file=$(mktemp "$TMPDIR/dl.XXXXXXXXXX") || return 1
+  if [ -z "$TMPDIR" ]; then
+    tmp_file=$(mktemp "/tmp/dl.XXXXXXXXXX") || return 1
+  else
+    tmp_file=$(mktemp "$TMPDIR/dl.XXXXXXXXXX") || return 1
+  fi
   local old_exit old_int old_term
   old_exit=$(trap -p EXIT)
   old_int=$(trap -p INT)
@@ -469,7 +473,7 @@ cat > ~/.config/tigervnc/xstartup << 'EOF'
 #!/bin/sh
 unset DBUS_SESSION_BUS_ADDRESS
 unset SESSION_MANAGER
-export XDG_RUNTIME_DIR=${TMPDIR}
+export XDG_RUNTIME_DIR=/tmp
 export XAUTHORITY="$HOME/.Xauthority"
 dbus-launch --exit-with-session startxfce4
 EOF
@@ -608,6 +612,7 @@ fi
 #    . /etc/bash_completion
 #fi
 
+export TMPDIR="/tmp"
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include:/usr/include/SDL2"
 export CXXFLAGS='-std=gnu++20 -O2'
 export CFLAGS='-std=c17 -O2'
@@ -737,7 +742,11 @@ dl() {
   local use_curl=1
   local use_wget=1
   local tmp_file
-  tmp_file=$(mktemp "$TMPDIR/dl.XXXXXXXXXX") || return 1
+  if [ -z "$TMPDIR" ]; then
+    tmp_file=$(mktemp "/tmp/dl.XXXXXXXXXX") || return 1
+  else
+    tmp_file=$(mktemp "$TMPDIR/dl.XXXXXXXXXX") || return 1
+  fi
   local old_exit old_int old_term
   old_exit=$(trap -p EXIT)
   old_int=$(trap -p INT)
