@@ -508,6 +508,8 @@ corepack enable pnpm
 npm install -g http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex
 mkdir -p /usr/local/lib
 sudo curl -fsSL -o /usr/local/lib/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+pipx ensurepath
+pipx ensurepath --global
 pipx install poetry uv
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 if [ "$ID" = "ubuntu" ]; then
