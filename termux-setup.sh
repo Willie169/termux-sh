@@ -4,7 +4,8 @@ XFCE=1
 ANDROID=1
 VIMRC=1
 NPM='http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex'
-PIPINSTALL='jupyter meson numpy pandas pipx pydub selenium setuptools sympy'
+PIP='jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy'
+GO='github.com/danielmiessler/fabric@latest'
 PROOTTERMUX=1
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
@@ -125,7 +126,12 @@ EOF
 fi
 [ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 [ -n "$NPM" ] && npm install $NPM
-[ -n "$PIPINSTALL" ] && pip install $PIPINSTALL
+[ -n "$PIP" ] && pip install $PIP
+mkdir $PREFIX/local/go
+export GOPROXY='direct'
+export GOROOT="$PREFIX/local/go"
+export GOPATH="$GOPATH:$HOME/go"
+[ -n "$GO" ] && go install $GO
 [ "$PROOTTERMUX" -eq 0 ] || echo 'pkg update && pkg upgrade -y && exit' | bash ~/proot-termux.sh
 [ -n "$UBUNTU" ] && [ $UBUNTU != ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU
 [ $UBUNTU == ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu
