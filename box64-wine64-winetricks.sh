@@ -34,3 +34,4 @@ cp x64/*.dll $WINEPREFIX/drive_c/windows/system32
 cp x32/*.dll $WINEPREFIX/drive_c/windows/syswow64
 cd ~/
 rm -rf wine-9.21-amd64.tar.xz dxvk-2.4.1.tar.gz dxvk-2.4.1
+exit

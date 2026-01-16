@@ -1399,3 +1399,4 @@ cd latex
 rm -rf physics-patch
 git clone https://github.com/Willie169/physics-patch
 cd ~
+exit
