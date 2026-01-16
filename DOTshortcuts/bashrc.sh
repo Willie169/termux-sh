@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+export CXXFLAGS='-std=gnu++20 -O2'
+export CFLAGS='-std=c17 -O2'
 export GOPROXY='direct'
 export GOROOT="$PREFIX/local/go"
 export GOPATH="$GOPATH:$HOME/go"

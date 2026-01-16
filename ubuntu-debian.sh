@@ -333,12 +333,12 @@ gh-latest() {
 
     release_json=$(echo "$release_json" | jq -r --arg NAME "$name_regex" '
       map(select(
-        .name != null and 
+        .name != null and
         (.name | test($NAME))
       ))
       | max_by(.published_at)
     ')
-    
+
     if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
       echo "Error: no release found with name matching: $name" >&2
       return 1
@@ -365,12 +365,12 @@ gh-latest() {
 
     release_json=$(echo "$release_json" | jq -r --arg TAG "$tag_regex" '
       map(select(
-        .tag_name != null and 
+        .tag_name != null and
         (.tag_name | test($TAG))
       ))
       | max_by(.published_at)
     ')
-    
+
     if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
       echo "Error: no release found with tag name matching: $tag" >&2
       return 1
@@ -382,7 +382,7 @@ gh-latest() {
     if .assets then
       .assets
       | map(select(
-          .name != null and 
+          .name != null and
           ($FILE == "" or (.name | test($FILE)))
         ))
       | if $INDEX != "" then
@@ -408,7 +408,7 @@ gh-latest() {
   if [ "$quiet" -eq 0 ]; then
     local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
     echo "Release: $release_name" >&2
-    
+
     if [ "$count" -gt 1 ]; then
       echo "Found $count matching assets. Downloading all" >&2
       if [ "$verbose" -eq 1 ]; then
@@ -424,10 +424,10 @@ gh-latest() {
   local downloaded=0
   while IFS= read -r url; do
     [ -z "$url" ] && continue
-    
+
     downloaded=$((downloaded + 1))
     [ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
-    
+
     if ! dl "${dl_args[@]}" "$url"; then
       echo "Error: failed to download $url" >&2
       success=false
@@ -619,9 +619,11 @@ fi
 #fi
 
 export CPLUS_INCLUDE_PATH="$CPLUS_INCLUDE_PATH:/usr/include:/usr/include/SDL2"
-export GOPROXY=direct
-export GOROOT="$PREFIX/lib/go"
-export GOPATH="$GOPATH:$HOME/go"
+export CXXFLAGS='-std=gnu++20 -O2'
+export CFLAGS='-std=c17 -O2'
+export GOPROXY='direct'
+export GOROOT="/usr/local/go"
+export GOPATH="$HOME/go:$GOPATH"
 export NVM_DIR="$HOME/.nvm"
 export JAVA_HOME="/usr/lib/jvm/openjdk-21"
 export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:$GOROOT/bin:/usr/glibc/bin:$HOME/.cargo/bin:/usr/local/texlive/2025/bin/aarch64-linux"
@@ -1066,12 +1068,12 @@ gh-latest() {
 
     release_json=$(echo "$release_json" | jq -r --arg NAME "$name_regex" '
       map(select(
-        .name != null and 
+        .name != null and
         (.name | test($NAME))
       ))
       | max_by(.published_at)
     ')
-    
+
     if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
       echo "Error: no release found with name matching: $name" >&2
       return 1
@@ -1098,12 +1100,12 @@ gh-latest() {
 
     release_json=$(echo "$release_json" | jq -r --arg TAG "$tag_regex" '
       map(select(
-        .tag_name != null and 
+        .tag_name != null and
         (.tag_name | test($TAG))
       ))
       | max_by(.published_at)
     ')
-    
+
     if [ "$release_json" = "null" ] || [ -z "$release_json" ]; then
       echo "Error: no release found with tag name matching: $tag" >&2
       return 1
@@ -1115,7 +1117,7 @@ gh-latest() {
     if .assets then
       .assets
       | map(select(
-          .name != null and 
+          .name != null and
           ($FILE == "" or (.name | test($FILE)))
         ))
       | if $INDEX != "" then
@@ -1141,7 +1143,7 @@ gh-latest() {
   if [ "$quiet" -eq 0 ]; then
     local release_name=$(echo "$release_json" | jq -r '.name // .tag_name')
     echo "Release: $release_name" >&2
-    
+
     if [ "$count" -gt 1 ]; then
       echo "Found $count matching assets. Downloading all" >&2
       if [ "$verbose" -eq 1 ]; then
@@ -1157,10 +1159,10 @@ gh-latest() {
   local downloaded=0
   while IFS= read -r url; do
     [ -z "$url" ] && continue
-    
+
     downloaded=$((downloaded + 1))
     [ "$quiet" -eq 0 ] && echo "[$downloaded/$count] Downloading: $(basename "$url")" >&2
-    
+
     if ! dl "${dl_args[@]}" "$url"; then
       echo "Error: failed to download $url" >&2
       success=false
