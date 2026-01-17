@@ -191,7 +191,7 @@ dl() {
   return "$rc"
 }
 
-gh-latest() {
+gh_latest() {
   local dl_args=()
   local quiet=0
   local verbose=0
@@ -235,11 +235,11 @@ gh-latest() {
         ;;
       -*)
         echo "Unknown option: $1" >&2
-        echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-o|--output FILE] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <repo> [file-pattern]" >&2
-        echo "Example: gh-latest cli/cli *.deb" >&2
-        echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-        echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-        echo "Example: gh-latest cli/cli -i 0" >&2
+        echo "Usage: gh_latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-o|--output FILE] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <repo> [file-pattern]" >&2
+        echo "Example: gh_latest cli/cli *.deb" >&2
+        echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+        echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+        echo "Example: gh_latest cli/cli -i 0" >&2
         return 1
         ;;
       *)
@@ -263,21 +263,21 @@ gh-latest() {
 
   if ! echo "$repo" | grep -Eq '^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$'; then
     echo "Error: invalid repo format. Expected 'user/repo' or URL" >&2
-    echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
-    echo "Example: gh-latest cli/cli *.deb" >&2
-    echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest cli/cli -i 0" >&2
+    echo "Usage: gh_latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
+    echo "Example: gh_latest cli/cli *.deb" >&2
+    echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest cli/cli -i 0" >&2
     return 1
   fi
 
   if [ -z "$repo" ]; then
     echo "Error: invalid repo format. Expected 'user/repo' or URL" >&2
-    echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
-    echo "Example: gh-latest cli/cli *.deb" >&2
-    echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest cli/cli -i 0" >&2
+    echo "Usage: gh_latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
+    echo "Example: gh_latest cli/cli *.deb" >&2
+    echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest cli/cli -i 0" >&2
     return 1
   fi
 
@@ -921,7 +921,7 @@ dl() {
   return "$rc"
 }
 
-gh-latest() {
+gh_latest() {
   local dl_args=()
   local quiet=0
   local verbose=0
@@ -965,11 +965,11 @@ gh-latest() {
         ;;
       -*)
         echo "Unknown option: $1" >&2
-        echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-o|--output FILE] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <repo> [file-pattern]" >&2
-        echo "Example: gh-latest cli/cli *.deb" >&2
-        echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-        echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-        echo "Example: gh-latest cli/cli -i 0" >&2
+        echo "Usage: gh_latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-o|--output FILE] [-q|--quiet] [-v|--verbose] [-a|--aria2] [-A|--no-aria2] [-c|--curl] [-C|--no-curl] [-w|--wget] [-W|--no-wget] [--no-fallback] <repo> [file-pattern]" >&2
+        echo "Example: gh_latest cli/cli *.deb" >&2
+        echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+        echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+        echo "Example: gh_latest cli/cli -i 0" >&2
         return 1
         ;;
       *)
@@ -993,21 +993,21 @@ gh-latest() {
 
   if ! echo "$repo" | grep -Eq '^[a-zA-Z0-9_.-]+/[a-zA-Z0-9_.-]+$'; then
     echo "Error: invalid repo format. Expected 'user/repo' or URL" >&2
-    echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
-    echo "Example: gh-latest cli/cli *.deb" >&2
-    echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest cli/cli -i 0" >&2
+    echo "Usage: gh_latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
+    echo "Example: gh_latest cli/cli *.deb" >&2
+    echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest cli/cli -i 0" >&2
     return 1
   fi
 
   if [ -z "$repo" ]; then
     echo "Error: invalid repo format. Expected 'user/repo' or URL" >&2
-    echo "Usage: gh-latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
-    echo "Example: gh-latest cli/cli *.deb" >&2
-    echo "Example: gh-latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
-    echo "Example: gh-latest cli/cli -i 0" >&2
+    echo "Usage: gh_latest [-n|--name NAME] [-t|--tag TAG_NAME] [-i|--index N] [-q|--quiet] [-v|--verbose] [dl-options] <repo> [file-pattern]" >&2
+    echo "Example: gh_latest cli/cli *.deb" >&2
+    echo "Example: gh_latest https://github.com/cli/cli/ gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest github.com/cli/cli -n '*CLI 2.85.0*' gh_*_linux_amd64.deb" >&2
+    echo "Example: gh_latest cli/cli -i 0" >&2
     return 1
   fi
 
