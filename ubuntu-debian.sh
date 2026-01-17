@@ -1,27 +1,7 @@
 #!/bin/bash
 
-local user="user"
-while [ $# -gt 0 ]; do
-  case "$1" in
-    -h|--help)
-      echo "Usage: $0 [-h|--help] [-u|--user USER_NAME]"
-      exit 0
-      ;;
-    -u|--user)
-      user=$2
-      shift 2
-      ;;
-    *)
-      echo "Usage: $0 [-h|--help] [-u|--user USER_NAME]"
-      exit 1
-      ;;
-  esac
-done
 cd ~
 apt install sudo -y
-
-
-
 
 dl() {
   local has_option=0
