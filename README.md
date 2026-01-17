@@ -2,8 +2,6 @@
 
 This repository contains Shell scripts for [Termux](https://github.com/termux/termux-app), a terminal emulator for Android. These scripts include setup automation, shortcuts, installations and configurations of development tools and emulation environments such as proot, proot-distro, QEMU system emulation, and box64, and more.
 
----
-
 ## Table of Contents
 
 * [Termux](#termux)
@@ -21,8 +19,6 @@ This repository contains Shell scripts for [Termux](https://github.com/termux/te
 * [License](#license)
 * [References](#references)
 
----
-
 ## Termux
 
 Termux (`com.termux`) can be installed from [F-Droid](https://f-droid.org/packages/com.termux).
@@ -30,8 +26,6 @@ Termux (`com.termux`) can be installed from [F-Droid](https://f-droid.org/packag
 **WARNING**: If you installed termux from Google Play or a very old version, then you will receive package command errors. Google Play builds are deprecated and no longer supported. It is highly recommended that you update to termux-app v0.118.0 or higher as soon as possible for various bug fixes, including a critical world-readable vulnerability reported at <https://termux.github.io/general/2022/02/15/termux-apps-vulnerability-disclosures.html>. It is recommended that you shift to F-Droid or GitHub releases.
 
 Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) for more information.
-
----
 
 ## Termux Setup
 
@@ -115,8 +109,6 @@ These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding 
 - [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java 17 on Ubuntu, Java 21, Node.js, Yarn, Rust, Go, Ruby, Perl, Fortran, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages `http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex`, Miniforge, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4 (`jar` in `/usr/local/java`), Firefox, TigerVNC server, XFCE desktop environment with fix for stuck `elementary-xfce-icon-theme` (see my [**fix-elementary-xfce-icon-theme**](https://github.com/Willie169/fix-elementary-xfce-icon-theme) repo for more information), .NET SDK 10, ASP.NET 10 on Ubuntu, PlantUML (`jar` in `/usr/local/java`), PostgreSQL 17, [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and copies `~/.bashrc.d` and `~/.bashrc` from my [**bashrc**](https://github.com/Willie169/bashrc) repo, on Ubuntu or Debian ARM64 Proot environment.
 - [`box63-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on Debian derivatives ARM64. (No longer actively maintained.)
 
----
-
 ## Shortcuts
 
 Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intended for tools that is not installed or configured in the [Termux Setup](#termux-setup), such as QEMU. Some related scripts are in [Additional Scripts](#additional-scripts).
@@ -135,8 +127,6 @@ Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intend
 - [`shizuku.sh`](DOTshortcuts/shizuku.sh): `cd shizuku` and `sh rish`. This is a shortcuts for [Shizuku](https://github.com/RikkaApps/Shizuku), which is not configured in the scripts in this repository. Please refer to [the section of my tutorial "Android-Non-Root" about it](https://willie169.github.io/Android-Non-Root/#shizuku-systemui-tuner-and-ashell-use-local-adb-of-android-device-on-terminals-such-as-termux-without-another-device-with-shizuku-leave-developer-options-off-when-doing-so-with-systemui-tuner-and-use-adb-with-features-like-autocomplete-suggestion-with-ashell) for more information.
 - [`termux-backup-bz.sh`](DOTshortcuts/termux-backup-bz.sh): Creates a compressed backup with the highest compression level of BZIP2 of the `/data/data/com.termux/files/home` and `/data/data/com.termux/files/usr`, then splits the resulting archive into parts, each 4000MB in size.
 
----
-
 ## Additional Scripts
 
 These scripts are not invoked by [Termux Setup](#termux-setup). Run it separately if you need it.
@@ -150,15 +140,11 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 - [`proot-install-buster-cli.sh`](proot-install-buster-cli.sh): Installs Andronix Debian Buster ARM64 PRoot CLI-only environment in `~/$BUSTERCLI` if `$BUSTERCLI` is not empty string using [`Andronix's debian.sh`](https://github.com/AndronixApp/AndronixOrigin/blob/master/Installer%2FDebian%2Fdebian.sh). Configure the `BUSTERCLI` variable in the file to change the directory.
 - [`proot-install-buster-xfce.sh`](proot-install-buster-xfce.sh): Installs Andronix Debian Buster ARM64 PRoot environment with XFCE desktop environment and VNC server in `~/$BUSTERXFCE` if `$BUSTERXFCE` is not empty string using [`debian-buster-xfce-mod.sh`](debian-buster-xfce-mod.sh).
 
----
-
 ## License
 
 This repository is licensed under GNU General Public License General Public License, see [LICENSE.md](LICENSE.md) for details.
 
----
-
-## References
+## Credits
 
 - [https://andronix.app](https://andronix.app)
 - [https://github.com/amix/vimrc](https://github.com/amix/vimrc)
