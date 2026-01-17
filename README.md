@@ -42,8 +42,9 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 <ul>
 <li>Sufficient storage:
 <ul>
-<li>Approximately 5.7 GB in total for the minimal configuration with <code>XFCE=0</code>, <code>ANDROID=0</code>, and
-<pre><code>UBUNTU=''
+<li>Approximately 5.6 GB in total for the minimal configuration with <code>XFCE=0</code>, <code>ANDROID=0</code>, and
+<pre><code>TERMUX=''
+UBUNTU=''
 UBUNTUINSTALL=0
 DEBIAN=''
 DEBIANINSTALL=0
@@ -54,6 +55,7 @@ DEBIANBOXINSTALL=0
 </code></pre></li>
 <li>Approximately 0.7 GB more for <code>XFCE=1</code>.</li>
 <li>Approximately 2.2 GB more for <code>ANDROID=1</code>.</li>
+<li>Approximately 0.1 GB more for a nonempty <code>TERMUX</code>.</li>
 <li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
 <li>Approximately 0.3 GB more for a nonempty <code>DEBIAN</code>.</li>
 <li>Approximately 20.0 GB more for <code>UBUNTUINSTALL=1</code>.</li>
@@ -94,10 +96,10 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 1. **Termux packages installation**: Installs Termux packages set in `$PKG`. The default ones include tools for C, C++, COBOL, Python3, Java17, Java21, Node.js, Rust, Go, Ruby, Perl, GitHub CLI, GitLab CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Maven, Zsh, PRoot, RARLAB UnRAR, Icarus Verilog, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, Matplotlib, Ninja, SciPy, PostgreSQL, and more.
 2. **XFCE desktop environment**: Installs Firefox, TigerVNC server, and XFCE desktop environment, and configures `vncserver` to launch XFCE4 desktop environment if not `XFCE=0`.
 2. **Android Build Environment Setup**: Setup Android apps build environment if not `ANDROID=0` using script modified from my [**termux-android-sdk-ndk**](https://github.com/Willie169/termux-android-sdk-ndk) repo. Refer to it for more information.
-2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `~/.shortcuts` folder (for **Termux:Widget**) and the home directory (`~`), and renames [`~/bashrc.sh`](DOTshortcuts/bashrc.sh) to `~/.bashrc`.
+2. **Shortcut configuration**: Copies shortcuts (including all VM-boosting shortcuts even if those VMs are not configured to be installed) from **[`DOTshortcuts`](DOTshortcuts)** into `~/.shortcuts` folder (for **Termux:Widget**) and the home directory (`~`).
+2. **Bashrc configuration**: Copies `~/.bashrc.d` and `~/.bashrc` from my [**bashrc**](https://github.com/Willie169/bashrc) repo.
 2. **Vim configuration**: Install [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim if not `VIMRC=0`.
 2. **Termux properties adjustments**: Enables external app access in `termux.properties`.
-2. **Termux PRoot environment**: Installs [termux-proot by Yonle](https://github.com/Yonle/termux-proot), a Termux PRoot environment, with [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), if not `PROOTTERMUX=0`.
 2. **NPM packages**: Installs nvm, pnpm, and Yarn, and installs NPM packages set in `$NPM` in `~`. The default one is `http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex`.
 2. **Pip packages**: Installs pip packages set in `PIP`. The default one is `jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy`.
 2. **Go packages**: Installs Go packages set in `GO`. The default one is `github.com/danielmiessler/fabric@latest`.
@@ -110,7 +112,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 
 These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding configuration is set.
 
-- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java 17 on Ubuntu, Java 21, Node.js, Yarn, Rust, Go, Ruby, Perl, Fortran, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages `http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex`, Miniforge, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4 (`jar` in `/usr/local/java`), Firefox, TigerVNC server, XFCE desktop environment with fix for stuck `elementary-xfce-icon-theme` (see my [**fix-elementary-xfce-icon-theme**](https://github.com/Willie169/fix-elementary-xfce-icon-theme) repo for more information), .NET SDK 10, ASP.NET 10 on Ubuntu, PlantUML (`jar` in `/usr/local/java`), PostgreSQL 17, [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and adds custom `~/.bashrc` on Debian derivatives ARM64 with extra features on Ubuntu.
+- [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and installs development tools, runtime environments, and utilities for C, C++, COBOL, Python3, Java 17 on Ubuntu, Java 21, Node.js, Yarn, Rust, Go, Ruby, Perl, Fortran, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, Ghostscript, FFMPEG, Pandoc, TeX Live, Maven, Zsh, iproute2, net-tools, aria2, nvm, pnpm, Yarn, NPM packages `http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex`, Miniforge, pipx, Poetry, uv, XITS fonts, Noto CJK fonts, RARLAB UnRAR on Ubuntu or UnRAR-free on Debian, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, Inkscape, XMLStarlet, GTKWave, SDL2, SDL2 BGI, ANTLR 4 (`jar` in `/usr/local/java`), Firefox, TigerVNC server, XFCE desktop environment with fix for stuck `elementary-xfce-icon-theme` (see my [**fix-elementary-xfce-icon-theme**](https://github.com/Willie169/fix-elementary-xfce-icon-theme) repo for more information), .NET SDK 10, ASP.NET 10 on Ubuntu, PlantUML (`jar` in `/usr/local/java`), PostgreSQL 17, [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim, my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit), and more, and copies `~/.bashrc.d` and `~/.bashrc` from my [**bashrc**](https://github.com/Willie169/bashrc) repo, on Ubuntu or Debian ARM64 Proot environment.
 - [`box63-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on Debian derivatives ARM64. (No longer actively maintained.)
 
 ---
@@ -123,7 +125,6 @@ Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intend
 
 - [`qemu-alpine-aarch64.sh`](DOTshortcuts/qemu-alpine-aarch64.sh), [`qemu-alpine-aarch64-vnc.sh`](DOTshortcuts/qemu-alpine-aarch64-vnc.sh), [`qemu-alpine-x86_64.sh`](DOTshortcuts/qemu-alpine-x86_64.sh), [`qemu-alpine-x86_64-vnc.sh`](DOTshortcuts/qemu-alpine-x86_64-vnc.sh), [`qemu-debian-aarch64.sh`](DOTshortcuts/qemu-debian-aarch64.sh), [`qemu-debian-aarch64-vnc.sh`](DOTshortcuts/qemu-debian-aarch64-vnc.sh), [`qemu-alpine-amd64.sh`](DOTshortcuts/qemu-alpine-amd64.sh), [`qemu-debian-amd64-vnc.sh`](DOTshortcuts/qemu-debian-amd64-vnc.sh), [`qemu-bliss-vnc.sh`](DOTshortcuts/qemu-bliss-vnc.sh): Boot respective QEMU system emulation VMs with `-netdev user,id=n1,dns=8.8.8.8,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1` option, where files with `-vnc` in their names start VNC server at the host's `localhost:0` and others are `-nographic`. Those VMs can be installed with [`qemu-alpine-aarch64-install.sh`](qemu-alpine-aarch64-install.sh), [`qemu-alpine-x86_64-install.sh`](qemu-alpine-x86_64-install.sh), [`qemu-debian-arm64-install.sh`](qemu-debian-arm64-install.sh), [`qemu-debian-amd64-install.sh`](qemu-debian-amd64-install.sh), and [`qemu-bliss-install.sh`](qemu-bliss-install.sh) respectively. See [Additional Scripts](#additional-scripts) for details.
 - [`nethunter.sh`](DOTshortcuts/nethunter.sh): Boots the Kali Nethunter proot-distro instance with the alias `kali-default` as user `kali` with `isolated` and `fix-low-ports` options.
-- [`proot-termux.sh`](DOTshortcuts/proot-termux.sh): Boot the Termux proot.
 
 ### Utility Scripts
 
@@ -151,24 +152,6 @@ These scripts are not invoked by [Termux Setup](#termux-setup). Run it separatel
 
 ---
 
-## Instructions
-### My Related Repositories
-
-* [**LinuxAndTermuxTips**](https://github.com/Willie169/LinuxAndTermuxTips)
-* [**Android Non Root**](https://github.com/Willie169/Android-Non-Root) and its [site](https://willie169.github.io/Android-Non-Root)
-* [**physics-patch**](https://github.com/Willie169/physics-patch)
-* [**LaTeX-ToolKit**](https://github.com/Willie169/LaTeX-ToolKit)
-
----
-
-## TODO
-
-- Make the configuration in [termux-setup.sh](termux-setup.sh) more customizable.
-- Modularize scripts for flexibility and reusability.
-- Expand VMs and development tools support.
-
----
-
 ## License
 
 This repository is licensed under GNU General Public License General Public License, see [LICENSE.md](LICENSE.md) for details.
@@ -177,27 +160,12 @@ This repository is licensed under GNU General Public License General Public Lice
 
 ## References
 
-- [https://alpinelinux.org](https://alpinelinux.org).
-- [https://andronix.app](https://andronix.app).
-- [https://blissos.org](https://blissos.org).
-- [https://github.com/amix/vimrc](https://github.com/amix/vimrc).
-- [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin).
-- [https://github.com/cyberkernelofficial/docker-in-termux](https://github.com/cyberkernelofficial/docker-in-termux).
-- [https://github.com/diogok/termux-qemu-alpine-docker](https://github.com/diogok/termux-qemu-alpine-docker).
-- [https://github.com/hugomd/parrot.live](https://github.com/hugomd/parrot.live).
-- [https://github.com/notofonts/noto-cjk](https://github.com/notofonts/noto-cjk).
-- [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter).
-- [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro).
-- [https://github.com/termux/termux-app](https://github.com/termux/termux-app).
-- [https://github.com/termux/termux-widget](https://github.com/termux/termux-widget).
-- [https://github.com/willie169/Android-Non-Root](https://github.com/willie169/Android-Non-Root).
-- [https://github.com/Willie169/LaTeX-ToolKit](https://github.com/Willie169/LaTeX-ToolKit).
-- [https://github.com/zanjie1999/windows-fonts](https://github.com/zanjie1999/windows-fonts).
-- [https://ivonblog.com](https://ivonblog.com).
-- [https://ryanfortner.github.io](https://ryanfortner.github.io).
-- [https://wiki.termux.com](https://wiki.termux.com).
-- [https://willie169.github.io](https://willie169.github.io).
-- [https://www.debian.org](https://www.debian.org).
-- [https://www.docker.com](https://www.docker.com).
-- [https://www.qemu.org](https://www.qemu.org).
-- [https://waydro.id](https://waydro.id).
+- [https://andronix.app](https://andronix.app)
+- [https://github.com/amix/vimrc](https://github.com/amix/vimrc)
+- [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin)
+- [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter)
+- [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro)
+- [https://ivonblog.com](https://ivonblog.com)
+- [https://wiki.termux.com](https://wiki.termux.com)
+- [https://www.qemu.org](https://www.qemu.org)
+- [https://waydro.id](https://waydro.id)
