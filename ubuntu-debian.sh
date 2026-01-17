@@ -1,10 +1,19 @@
 #!/bin/bash
 
 cd ~
+apt update
+apt full-upgrade -y
+apt install wget -y
+if [ "$ID" = "ubuntu" ]; then
+apt install software-properties-common -y
+add-apt-repository universe -y
+add-apt-repository multiverse -y
+add-apt-repository restricted -y
+add-apt-repository ppa:zhangsongcui3371/fastfetch -y
+apt update
+fi
 rm -f .bashrc
 mkdir ~/.bashrc.d
-apt update
-apt install wget -y
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -28,15 +37,6 @@ fi
 EOF
 mkdir -p /usr/local/go
 mkdir -p /usr/local/java
-if [ "$ID" = "ubuntu" ]; then
-apt install software-properties-common -y
-add-apt-repository universe -y
-add-apt-repository multiverse -y
-add-apt-repository restricted -y
-add-apt-repository ppa:zhangsongcui3371/fastfetch -y
-apt update
-fi
-apt full-upgrade -y
 apt install alsa-utils apksigner apt-transport-https aptitude aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghostscript git glab gnucobol gnupg golang gperf gpg grep gtkwave gzip info inkscape iproute2 iverilog iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 liblzma-dev libncursesw5-dev libosmesa6 libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libzstd-dev llvm make maven mc nano ncompress neovim ngspice openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc pipx plantuml procps pv python3-all-dev python3-pip python3-venv rust-all sudo tar tk-dev tmux tree unzip uuid-dev uuid-runtime valgrind verilator vim wget x11-utils x11-xserver-utils xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh -y
 if [ "$ID" = "ubuntu" ]; then
 apt install openjdk-17-jdk unrar -y
