@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+## CONFIG START
+
 PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fdroidcl ffmpeg file flex fontconfig-utils fontconfig freetype firefox gdb gh ghostscript git glab-cli gnucobol gnupg golang gperf grep gtkwave inkscape iproute2 iverilog jpegoptim jq libheif-progs make matplotlib maven mc nano ncurses-utils neovim net-tools ngspice ninja nodejs openjdk-17 openjdk-21 openssh-sftp-server openssh openssl-tool openssl optipng perl postgresql pulseaudio procps proot proot-distro pv python-ensurepip-wheels python-pip python-scipy python ruby rust tar termux-am-socket termux-am termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tmux tor torsocks tree tur-repo unrar uuid-utils valgrind vim wget which xmlstarlet yarn zsh'
 XFCE=1
 ANDROID=1
@@ -7,7 +9,7 @@ VIMRC=1
 NPM='http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex'
 PIP='jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy'
 GO='github.com/danielmiessler/fabric@latest'
-PROOTTERMUX=1
+TERMUX='termux'
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
 DEBIAN='debian'
@@ -17,12 +19,32 @@ UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 
-set -eu
+## CONFIG END
+
+TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
 UBUNTUBOX=$(echo "$UBUNTUBOX" | tr ' ' '_')
 DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
+[ "$TERMUX" == "adelie" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "almalinux" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "alpine" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "archlinux" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "artix" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "chimera" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "debian" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "deepin" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "fedora" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "manjaro" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "opensuse" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "oracle" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "pardus" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "rockylinux" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "trisquel" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "ubuntu" ] && TERMUX="${TERMUX}1"
+[ "$TERMUX" == "void" ] && TERMUX="${TERMUX}1"
 [ "$UBUNTU" == "adelie" ] && UBUNTU="${UBUNTU}1"
+[ "$UBUNTU" == "almalinux" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "alpine" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "archlinux" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "artix" ] && UBUNTU="${UBUNTU}1"
@@ -31,12 +53,15 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$UBUNTU" == "deepin" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "fedora" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "manjaro" ] && UBUNTU="${UBUNTU}1"
-[ "$UBUNTU" == "openkylin" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "opensuse" ] && UBUNTU="${UBUNTU}1"
+[ "$UBUNTU" == "oracle" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "pardus" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "rockylinux" ] && UBUNTU="${UBUNTU}1"
+[ "$UBUNTU" == "termux" ] && UBUNTU="${UBUNTU}1"
+[ "$UBUNTU" == "trisquel" ] && UBUNTU="${UBUNTU}1"
 [ "$UBUNTU" == "void" ] && UBUNTU="${UBUNTU}1"
 [ "$DEBIAN" == "adelie" ] && DEBIAN="${DEBIAN}1"
+[ "$DEBIAN" == "almalinux" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "alpine" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "archlinux" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "artix" ] && DEBIAN="${DEBIAN}1"
@@ -44,13 +69,16 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$DEBIAN" == "deepin" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "fedora" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "manjaro" ] && DEBIAN="${DEBIAN}1"
-[ "$DEBIAN" == "openkylin" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "opensuse" ] && DEBIAN="${DEBIAN}1"
+[ "$DEBIAN" == "oracle" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "pardus" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "rockylinux" ] && DEBIAN="${DEBIAN}1"
+[ "$DEBIAN" == "termux" ] && DEBIAN="${DEBIAN}1"
+[ "$DEBIAN" == "trisquel" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "ubuntu" ] && DEBIAN="${DEBIAN}1"
 [ "$DEBIAN" == "void" ] && DEBIAN="${DEBIAN}1"
 [ "$UBUNTUBOX" == "adelie" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "almalinux" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "alpine" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "archlinux" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "artix" ] && UBUNTUBOX="${UBUNTUBOX}1"
@@ -59,12 +87,15 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$UBUNTUBOX" == "deepin" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "fedora" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "manjaro" ] && UBUNTUBOX="${UBUNTUBOX}1"
-[ "$UBUNTUBOX" == "openkylin" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "opensuse" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "oracle" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "pardus" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "rockylinux" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "termux" ] && UBUNTUBOX="${UBUNTUBOX}1"
+[ "$UBUNTUBOX" == "trisquel" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$UBUNTUBOX" == "void" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ "$DEBIANBOX" == "adelie" ] && DEBIANBOX="${DEBIANBOX}1"
+[ "$DEBIANBOX" == "almalinux" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "alpine" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "archlinux" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "artix" ] && DEBIANBOX="${DEBIANBOX}1"
@@ -72,12 +103,18 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ "$DEBIANBOX" == "deepin" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "fedora" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "manjaro" ] && DEBIANBOX="${DEBIANBOX}1"
-[ "$DEBIANBOX" == "openkylin" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "opensuse" ] && DEBIANBOX="${DEBIANBOX}1"
+[ "$DEBIANBOX" == "oracle" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "pardus" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "rockylinux" ] && DEBIANBOX="${DEBIANBOX}1"
+[ "$DEBIANBOX" == "termux" ] && DEBIANBOX="${DEBIANBOX}1"
+[ "$DEBIANBOX" == "trisquel" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "ubuntu" ] && DEBIANBOX="${DEBIANBOX}1"
 [ "$DEBIANBOX" == "void" ] && DEBIANBOX="${DEBIANBOX}1"
+[ -n "$TERMUX" ] && [ "$TERMUX" == "$UBUNTU" ] && UBUNTU="${UBUNTU}1"
+[ -n "$TERMUX" ] && [ "$TERMUX" == "$DEBIAN" ] && DEBIAN="${DEBIAN}1"
+[ -n "$TERMUX" ] && [ "$TERMUX" == "$TERMUXBOX" ] && TERMUXBOX="${TERMUXBOX}1"
+[ -n "$TERMUX" ] && [ "$TERMUX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTU" ] && [ "$UBUNTU" == "$DEBIAN" ] && DEBIAN="${DEBIAN}1"
 [ -n "$UBUNTU" ] && [ "$UBUNTU" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$UBUNTU" ] && [ "$UBUNTU" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
@@ -89,18 +126,34 @@ cd ~
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~
-mv ~/bashrc.sh ~/.bashrc
+pkg update
+pkg upgrade -y
+pkg install curl git wget x11-repo -y
+pkg update
+rm -f .bashrc
+mkdir ~/.bashrc.d
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
+wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc.sh -O ~/.bashrc
 source ~/.bashrc
-pkg update && pkg upgrade -y && pkg install curl git x11-repo -y && pkg update
+mkdir $PREFIX/local/go
+mkdir $PREFIX/local/java
 [ -n "$PKG" ] && pkg install $PKG -y
 [ "$XFCE" -eq 0 ] || pkg install firefox tigervnc xfce4 -y && mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
 #!/data/data/com.termux/files/usr/bin/sh
 xfce4-session &
 EOF
 if [ "$ANDROID" -ne 0 ]; then
-pkg install aapt aapt2 aidl android-tools apksigner aria2 curl d8 jq openjdk-17 unzip -y
+pkg install aapt aapt2 aidl android-tools apksigner curl d8 jq openjdk-17 unzip -y
 cd $HOME
-aria2c https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
+wget https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
 unzip commandlinetools-linux-13114758_latest.zip
 rm commandlinetools-linux-13114758_latest.zip
 mkdir Android
@@ -117,7 +170,7 @@ rm -r $HOME/cmdline-tools
 cd bin
 echo y | ./sdkmanager "build-tools;30.0.3" "platform-tools" "platforms;android-33"
 cd $HOME
-aria2c https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
+wget https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
 7z x android-ndk-r29.7z -o$HOME/Android/Sdk/ndk
 rm android-ndk-r29.7z
 mkdir -p ~/.gradle
@@ -128,12 +181,9 @@ fi
 [ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 [ -n "$NPM" ] && npm install $NPM
 [ -n "$PIP" ] && pip install $PIP
-mkdir $PREFIX/local/go
-export GOPROXY='direct'
-export GOROOT="$PREFIX/local/go"
-export GOPATH="$GOPATH:$HOME/go"
 [ -n "$GO" ] && go install $GO
-[ "$PROOTTERMUX" -eq 0 ] || echo 'pkg update && pkg upgrade -y && exit' | bash ~/proot-termux.sh
+[ -n "$TERMUX" ] && [ $TERMUX != termux ] && echo "proot-distro login $TERMUX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$TERMUX.sh && chmod +x ~/proot-$TERMUX.sh && cp ~/proot-$TERMUX.sh ~/.shortcuts && proot-distro install termux --override-alias $TERMUX
+[ $TERMUX == termux ] && echo "proot-distro login $TERMUX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$TERMUX.sh && chmod +x ~/proot-$TERMUX.sh && cp ~/proot-$TERMUX.sh ~/.shortcuts && proot-distro install termux
 [ -n "$UBUNTU" ] && [ $UBUNTU != ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU
 [ $UBUNTU == ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu
 [ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -eq 0 ] || cat ~/termux-sh/ubuntu-debian.sh | proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning
