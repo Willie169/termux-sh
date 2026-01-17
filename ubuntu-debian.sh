@@ -2,8 +2,6 @@
 
 cd ~
 apt update
-apt full-upgrade -y
-apt install wget -y
 if [ "$ID" = "ubuntu" ]; then
 apt install software-properties-common -y
 add-apt-repository universe -y
@@ -12,6 +10,8 @@ add-apt-repository restricted -y
 add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 apt update
 fi
+apt full-upgrade -y
+apt install wget -y
 rm -f .bashrc
 mkdir ~/.bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
