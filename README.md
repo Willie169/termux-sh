@@ -94,7 +94,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **XFCE desktop environment**: Installs Firefox, TigerVNC server, and XFCE desktop environment, and configures `vncserver` to launch XFCE4 desktop environment if not `XFCE=0`.
 2. **Android Build Environment Setup**: Setup Android apps build environment if not `ANDROID=0` using script modified from my [**termux-android-sdk-ndk**](https://github.com/Willie169/termux-android-sdk-ndk) repo. Refer to it for more information.
 2. **Vim configuration**: Install [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim if not `VIMRC=0`.
-2. **NPM packages**: Installs nvm, pnpm, and Yarn, and installs NPM packages set in `$NPM` in `~`. The default one is `http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex`.
+2. **NPM packages**: Installs NPM packages set in `$NPM` in `~`. The default one is `http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex`.
 2. **Pip packages**: Installs pip packages set in `PIP`. The default one is `jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy`.
 2. **Go packages**: Installs Go packages set in `GO`. The default one is `github.com/danielmiessler/fabric@latest`.
 2. **JARs**: Installs ANTLR 4 (JAR in `/usr/local/java`) if not `ANTLR=0` and PlantUML (JAR in `/usr/local/java`) if not `PLANTUML=0`.
