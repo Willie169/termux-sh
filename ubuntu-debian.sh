@@ -98,13 +98,13 @@ source "${HOME}/miniforge3/etc/profile.d/mamba.sh"
 conda init
 exec bash
 rm Miniforge3-Linux-aarch64.sh
-curl -fsSL -o /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 if [ "$ID" = "ubuntu" ]; then
 add-apt-repository ppa:dotnet/backports -y
 apt update
 apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
 fi
+wget -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
 mkdir -p /usr/share/fonts/opentype/xits

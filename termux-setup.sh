@@ -9,6 +9,8 @@ VIMRC=1
 NPM='http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex'
 PIP='jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy'
 GO='github.com/danielmiessler/fabric@latest'
+ANTLR=1
+PLANTUML=1
 TERMUX='termux'
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
@@ -133,7 +135,7 @@ pkg upgrade -y
 pkg install curl git wget x11-repo -y
 pkg update
 rm -f .bashrc
-mkdir ~/.bashrc.d
+mkdir .bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
@@ -184,6 +186,8 @@ fi
 [ -n "$NPM" ] && npm install $NPM
 [ -n "$PIP" ] && pip install $PIP
 [ -n "$GO" ] && go install $GO
+[ "$ANTLR" -eq 0 ] || wget -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+[ "$PLANTUML" -eq 0 ] || wget -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 [ -n "$TERMUX" ] && [ $TERMUX != termux ] && echo "proot-distro login $TERMUX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$TERMUX.sh && chmod +x ~/proot-$TERMUX.sh && cp ~/proot-$TERMUX.sh ~/.shortcuts && proot-distro install termux --override-alias $TERMUX
 [ $TERMUX == termux ] && echo "proot-distro login $TERMUX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$TERMUX.sh && chmod +x ~/proot-$TERMUX.sh && cp ~/proot-$TERMUX.sh ~/.shortcuts && proot-distro install termux
 [ -n "$UBUNTU" ] && [ $UBUNTU != ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU
@@ -198,5 +202,20 @@ fi
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIANBOX
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -eq 0 ] || cat ~/termux-sh/box64-wine64-winetricks.sh | proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
+rm -f ~/.bashrc.d/11-proot.sh
+[ -n "$TERMUX" ] || TERMUX="termux"
+[ -n "$UBUNTU" ] || UBUNTU="ubuntu"
+[ -n "$DEBIAN" ] || DEBIAN="debian"
+[ -n "$UBUNTUBOX" ] || UBUNTUBOX="ubuntubox"
+[ -n "$DEBIANBOX" ] || DEBIANBOX="debianbox"
+cat > ~/.bashrc.d/11-proot.sh <<EOF
+#!/data/data/com.termux/files/usr/bin/bash
+
+export TERMUX="$TERMUX"
+export UBUNTU="$UBUNTU"
+export DEBIAN="$DEBIAN"
+export UBUNTUBOX="$UBUNTUBOX"
+export DEBIANBOX="$DEBIANBOX"
+EOF
 rm -rf ~/termux-sh
 exit
