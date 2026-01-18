@@ -99,6 +99,11 @@ conda init
 exec bash
 rm Miniforge3-Linux-aarch64.sh
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
+mkdir -p ~/.config/nvim
+echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+' | tee ~/.config/nvim/init.vim > /dev/null
 if [ "$ID" = "ubuntu" ]; then
 add-apt-repository ppa:dotnet/backports -y
 apt update

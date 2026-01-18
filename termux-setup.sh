@@ -182,7 +182,14 @@ cat > ~/.gradle/gradle.properties << 'EOF'
 android.aapt2FromMavenOverride=/data/data/com.termux/files/usr/bin/aapt2
 EOF
 fi
-[ "$VIMRC" -eq 0 ] || git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
+if [ "$VIMRC" -ne 0 ]; then
+git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
+mkdir -p ~/.config/nvim
+echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
+let &packpath = &runtimepath
+source ~/.vimrc
+' | tee ~/.config/nvim/init.vim > /dev/null
+fi
 [ -n "$NPM" ] && npm install $NPM
 [ -n "$PIP" ] && pip install $PIP
 [ -n "$GO" ] && go install $GO
