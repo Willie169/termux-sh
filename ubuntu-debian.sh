@@ -84,8 +84,8 @@ cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
 </fontconfig>
 EOF
 curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-\. "$HOME/.nvm/nvm.sh"
-nvm install 22
+source .bashrc
+nvm install 24
 corepack enable yarn
 corepack enable pnpm
 npm install -g http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex
