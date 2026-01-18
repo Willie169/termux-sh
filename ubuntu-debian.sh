@@ -95,7 +95,10 @@ bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/miniforge3
 source "${HOME}/miniforge3/etc/profile.d/conda.sh"
 source "${HOME}/miniforge3/etc/profile.d/mamba.sh"
 conda init
+conda config --set auto_activate false
 rm Miniforge3-Linux-aarch64.sh
+rm ~/miniforge3/bin/tput
+hash -r
 source .bashrc
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim
