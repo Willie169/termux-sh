@@ -10,7 +10,6 @@ NPM='http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown 
 PIP='jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy'
 GO='github.com/danielmiessler/fabric@latest'
 TERMUX='termux'
-TERMUXINSTALL=1
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
 DEBIAN='debian'
