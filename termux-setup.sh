@@ -10,6 +10,7 @@ NPM='http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown 
 PIP='jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy'
 GO='github.com/danielmiessler/fabric@latest'
 TERMUX='termux'
+TERMUXINSTALL=1
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
 DEBIAN='debian'
@@ -125,7 +126,9 @@ cd ~
 [ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
-cp ~/termux-sh/DOTshortcuts/* ~
+cp ~/termux-sh/DOTshortcuts/Documents.sh ~
+cp ~/termux-sh/DOTshortcuts/Download.sh ~
+cp ~/termux-sh/DOTshortcuts/Storage.sh ~
 pkg update
 pkg upgrade -y
 pkg install curl git wget x11-repo -y

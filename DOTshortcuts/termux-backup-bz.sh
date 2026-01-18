@@ -1,1 +1,1 @@
-BZIP2='-9' tar -cvjf - /data/data/com.termux/files/home /data/data/com.termux/files/usr | split -b 4000M - /sdcard/termux-backup.tar.bz2.part
+tar -cvf - /data/data/com.termux/files/home /data/data/com.termux/files/usr | pv | bzip2 -9 | pv | split -b 4000M -d -a 3 - /sdcard/termux-backup.tar.bz2.part.
