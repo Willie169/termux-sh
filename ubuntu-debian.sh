@@ -91,15 +91,14 @@ corepack enable pnpm
 npm install -g http-server jsdom marked marked-gfm-heading-id node-html-markdown showdown @openai/codex
 pipx install poetry uv
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
-bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/miniforge3
-source "${HOME}/miniforge3/etc/profile.d/conda.sh"
-source "${HOME}/miniforge3/etc/profile.d/mamba.sh"
-conda init
-conda config --set auto_activate false
-rm Miniforge3-Linux-aarch64.sh
-rm ~/miniforge3/bin/tput
-hash -r
+bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
+cat >> .bashrc << 'EOF'
+source "${HOME}/conda/etc/profile.d/conda.sh"
+source "${HOME}/conda/etc/profile.d/mamba.sh"
+EOF
 source .bashrc
+conda config --set auto_activate_base false
+rm Miniforge3-Linux-aarch64.sh
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim
 echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
