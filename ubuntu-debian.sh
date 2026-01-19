@@ -93,6 +93,8 @@ pipx install poetry uv
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
 cat >> .bashrc << 'EOF'
+
+export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh"
 source "${HOME}/conda/etc/profile.d/mamba.sh"
 EOF
