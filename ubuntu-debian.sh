@@ -10,7 +10,7 @@ add-apt-repository restricted -y
 add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 apt update
 fi
-apt purge texlive-base -y
+apt purge texlive* -y
 apt full-upgrade -y
 apt install wget -y
 rm -f .bashrc
