@@ -108,11 +108,11 @@ echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
-if [ "$ID" = "ubuntu" ]; then
-add-apt-repository ppa:dotnet/backports -y
+wget "https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
+apt install ./packages-microsoft-prod.deb -y
+rm packages-microsoft-prod.deb
 apt update
 apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
-fi
 wget -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
