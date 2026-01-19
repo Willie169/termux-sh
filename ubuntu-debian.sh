@@ -210,7 +210,6 @@ wget https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSan
 wget https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKkr-Bold.otf
 fc-cache -fv
 cd /usr/share
-rm -rf LaTeX-ToolKit
 git clone https://github.com/Willie169/LaTeX-ToolKit
 cd ~
 mkdir -p texmf
@@ -219,7 +218,6 @@ mkdir -p tex
 cd tex
 mkdir -p latex
 cd latex
-rm -rf physics-patch
 git clone https://github.com/Willie169/physics-patch
 cd ~
 exit
