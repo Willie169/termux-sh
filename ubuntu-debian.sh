@@ -35,6 +35,11 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 EOF
+if [ -d "$HOME/.bashrc.d"  ];  then
+  for f in "$HOME/.bashrc.d/"*; do
+    [ -r "$f"  ] && . "$f"
+  done
+fi
 mkdir -p /usr/local/go
 mkdir -p /usr/local/java
 apt install alsa-utils apksigner apt-transport-https aptitude aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghostscript git glab gnucobol gnupg golang gperf gpg grep gtkwave gzip info inkscape iproute2 iverilog iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 liblzma-dev libncursesw5-dev libosmesa6 libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libzstd-dev llvm make maven mc nano ncompress neovim ngspice openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc perl-tk pipx plantuml procps pv python3-all-dev python3-pip python3-venv rust-all sudo tar tk-dev tmux tree unzip uuid-dev uuid-runtime valgrind verilator vim wget x11-utils x11-xserver-utils xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh -y
@@ -69,7 +74,7 @@ sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#\?Permit
 mkdir -p /run/sshd
 chmod 755 /run/sshd
 dl https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-tar -xvzf install-tl-unx.tar.gz
+tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
 cd install-tl-*
 perl install-tl --no-interaction
@@ -83,8 +88,10 @@ cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
   <dir>/usr/local/texlive/2025/texmf-dist/fonts</dir>
 </fontconfig>
 EOF
-curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-source .bashrc
+PROFILE=/dev/null bash -c 'curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash'
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm install 24
 corepack enable yarn
 corepack enable pnpm
@@ -92,12 +99,6 @@ npm install -g http-server jsdom marked marked-gfm-heading-id node-html-markdown
 pipx install poetry uv
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
-cat >> .bashrc << 'EOF'
-
-export MAMBA_ROOT_PREFIX="${HOME}/conda"
-source "${HOME}/conda/etc/profile.d/conda.sh"
-source "${HOME}/conda/etc/profile.d/mamba.sh"
-EOF
 source .bashrc
 conda config --set auto_activate_base false
 rm Miniforge3-Linux-aarch64.sh
