@@ -71,22 +71,6 @@ rm -rf SDL2_bgi-3.0.4 SDL2_bgi-3.0.4.tar.gz
 sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 mkdir -p /run/sshd
 chmod 755 /run/sshd
-wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-tar -xzf install-tl-unx.tar.gz
-rm install-tl-unx.tar.gz
-cd install-tl-*
-perl install-tl --no-interaction
-cd ~
-rm -rf install-tl-*
-/usr/local/texlive/2025/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
-mkdir -p ~/.config/fontconfig/conf.d
-cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-  <dir>/usr/local/texlive/2025/texmf-dist/fonts</dir>
-</fontconfig>
-EOF
 PROFILE=/dev/null bash -c 'curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -115,6 +99,22 @@ apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
 wget -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+tar -xzf install-tl-unx.tar.gz
+rm install-tl-unx.tar.gz
+cd install-tl-*
+perl install-tl --no-interaction
+cd ~
+rm -rf install-tl-*
+/usr/local/texlive/2025/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
+mkdir -p ~/.config/fontconfig/conf.d
+cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <dir>/usr/local/texlive/2025/texmf-dist/fonts</dir>
+</fontconfig>
+EOF
 mkdir -p /usr/share/fonts/opentype/xits
 cd /usr/share/fonts/opentype/xits
 wget https://github.com/aliftype/xits/releases/download/v1.302/XITS-1.302.zip
