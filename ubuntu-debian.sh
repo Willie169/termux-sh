@@ -99,7 +99,7 @@ apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
 wget -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
-wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
 cd install-tl-*
