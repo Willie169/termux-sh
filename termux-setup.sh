@@ -146,7 +146,11 @@ wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/23-
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc.sh -O ~/.bashrc
-source ~/.bashrc
+if [ -d "$HOME/.bashrc.d"  ];  then
+  for f in "$HOME/.bashrc.d/"*; do
+    [ -r "$f"  ] && . "$f"
+  done
+fi
 mkdir $PREFIX/local/go
 mkdir $PREFIX/local/java
 [ -n "$PKG" ] && pkg install $PKG -y
