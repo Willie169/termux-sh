@@ -195,7 +195,10 @@ source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
 fi
 [ -n "$NPM" ] && npm install $NPM
-[ -n "$PIP" ] && pip3 install $PIP
+if [ -n "$PIP" ]; then
+pip3 install $PIP || true
+pip3 install $PIP
+fi
 [ -n "$GO" ] && go install $GO
 [ "$ANTLR" -eq 0 ] || wget -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 [ "$PLANTUML" -eq 0 ] || wget -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
