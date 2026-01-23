@@ -81,6 +81,8 @@ nano ~/termux-sh/termux-setup.sh
 </code></pre>
 </li>
 <li>Follow the prompts until it exits automatically.</li>
+<li>Run <code>gh auth login --scopes repo,read:org,admin:org,workflow,gist,notifications,delete_repo,write:packages,read:packages</code> to login to GitHub.</li>
+<li>Run <code>git config --global user.name [your_name] && git config --global user.email [your_email]</code> to config git.</li>
 </ol>
 
 ### Content
