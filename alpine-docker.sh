@@ -4,4 +4,3 @@ apk update && apk upgrade
 apk add docker
 service docker start
 rc-update add docker
-docker run hello-world
