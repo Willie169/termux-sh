@@ -48,7 +48,7 @@ UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre></li>
-<li>Approximately  GB more for <code>XFCE=1</code>.</li>
+<li>Approximately 0.4 GB more for <code>XFCE=1</code>.</li>
 <li>Approximately  GB more for <code>ANDROID=1</code>.</li>
 <li>Approximately 0.1 GB more for a nonempty <code>TERMUX</code>.</li>
 <li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
