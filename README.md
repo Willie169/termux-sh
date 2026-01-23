@@ -34,7 +34,7 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 ### Prerequisites
 
 <ul>
-<li>Sufficient storage (calculated on Termux 0.118.3, excluding cache):
+<li>Sufficient storage (calculated on Termux 0.118.3, excluding cleanable caches):
 <ul>
 <li>Approximately 0.2 GB for the Termux app itself.
 <li>Approximately 6.4 GB in total for the minimal configuration with <code>XFCE=0</code>, <code>ANDROID=0</code>, and
