@@ -67,7 +67,6 @@ DEBIANBOXINSTALL=0
 ### Execution
 
 <ol>
-<li>It is recommended to run <code>termux-change-repo</code> and choose a mirror close to your geographic location.</li>
 <li><pre><code>termux-setup-storage
 pkg update &amp;&amp; pkg install git -y
 cd ~ &amp;&amp; git clone https://github.com/Willie169/termux-sh.git
