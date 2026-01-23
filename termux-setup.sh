@@ -179,8 +179,8 @@ cd bin
 echo y | ./sdkmanager "build-tools;30.0.3" "platform-tools" "platforms;android-33" "sources;android-33"
 cd $HOME
 wget https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
-7z x android-ndk-r29.7z -o$HOME/Android/Sdk/ndk
-rm android-ndk-r29.7z
+7z x android-ndk-r29-aarch64.7z -o$HOME/Android/Sdk/ndk
+rm android-ndk-r29-aarch64.7z
 mkdir -p ~/.gradle
 cat > ~/.gradle/gradle.properties << 'EOF'
 android.aapt2FromMavenOverride=/data/data/com.termux/files/usr/bin/aapt2
