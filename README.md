@@ -51,11 +51,11 @@ DEBIANBOXINSTALL=0
 <li>Approximately 0.4 GB more for <code>XFCE=1</code>.</li>
 <li>Approximately 2.6 GB more for <code>ANDROID=1</code>.</li>
 <li>Approximately 0.1 GB more for a nonempty <code>TERMUX</code>.</li>
-<li>Approximately 0.4 GB more for a nonempty <code>UBUNTU</code>.</li>
+<li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
-<li>Approximately  GB more for <code>UBUNTUINSTALL=1</code>.</li>
-<li>Approximately  GB more for <code>DEBIANINSTALL=1</code>.</li>
-<li>Approximately  GB in total for the default configuration.</li>
+<li>Approximately 20.5 GB more for <code>UBUNTUINSTALL=1</code>.</li>
+<li>Approximately 20.5 GB more for <code>DEBIANINSTALL=1</code>.</li>
+<li>Approximately 30.6 GB in total for the default configuration.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
