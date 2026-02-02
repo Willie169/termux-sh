@@ -78,7 +78,8 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 24
 corepack enable yarn
 corepack enable pnpm
-npm install -g http-server jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown @openai/codex
+npm install jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
+npm install -g http-server @openai/codex
 pipx install poetry uv
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda

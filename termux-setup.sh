@@ -6,7 +6,8 @@ PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chro
 XFCE=1
 ANDROID=1
 VIMRC=1
-NPM='http-server jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown @openai/codex'
+NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
+NPMG='http-server @openai/codex'
 PIP='jupyter meson plotly pydub requests selenium==4.9.1 setuptools sympy'
 GO='github.com/danielmiessler/fabric@latest'
 ANTLR=1
@@ -195,6 +196,7 @@ source ~/.vimrc
 ' | tee ~/.config/nvim/init.vim > /dev/null
 fi
 [ -n "$NPM" ] && npm install $NPM
+[ -n "$NPMG" ] && npm install -g $NPMG
 if [ -n "$PIP" ]; then
 pip3 install $PIP || true
 pip3 install $PIP
