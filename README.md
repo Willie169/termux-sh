@@ -108,7 +108,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Vim configuration**: Install [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim if not `VIMRC=0`.
 2. **NPM packages**: Installs NPM packages set in `$NPM` locally in `~` and NPM packages set in `$NPMG` globally. The default `$NPM` is `jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown`. The default `$NPMG` is `http-server @openai/codex`.
 2. **Pip packages**: Installs pip packages set in `PIP`. The default one is `jupyter matplotlib meson numpy pandas plotly pydub requests selenium setuptools sympy`.
-2. **Go packages**: Installs Go packages set in `GO`. The default one is `github.com/danielmiessler/fabric@latest`.
+2. **Go packages**: Installs Go packages set in `GO`. The default one is empty.
 2. **JARs**: Installs ANTLR 4 (JAR in `/usr/local/java`) if not `ANTLR=0` and PlantUML (JAR in `/usr/local/java`) if not `PLANTUML=0`.
 2. **Proot-distro Termux environment**: Installs an Termux proot-distro environment with alias `$TERMUX` and add boot script `proot-$TERMUX.sh` into home directory `~` and `~/.shortcuts` folder (for **Termux:Widget**) if `$TERMUX` is not empty string.
 2. **Proot-distro Ubuntu environment**: Installs an Ubuntu ARM64 proot-distro environment with alias `$UBUNTU` and add boot script `proot-$UBUNTU.sh` into home directory `~` and `~/.shortcuts` folder (for **Termux:Widget**) if `$UBUNTU` is not empty string, and runs [`ubuntu-debian.sh`](ubuntu-debian.sh) in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section for more information.

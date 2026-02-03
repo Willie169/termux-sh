@@ -9,7 +9,7 @@ VIMRC=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='http-server @openai/codex'
 PIP='jupyter meson plotly pydub requests selenium==4.9.1 setuptools sympy'
-GO='github.com/danielmiessler/fabric@latest'
+GO=''
 ANTLR=1
 PLANTUML=1
 TERMUX='termux'
