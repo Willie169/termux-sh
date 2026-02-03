@@ -78,6 +78,7 @@ corepack enable pnpm
 npm install jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm install -g http-server @openai/codex
 pipx install poetry uv
+curl -fsSL https://bun.com/install | bash
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
 source .bashrc
@@ -95,6 +96,7 @@ rm packages-microsoft-prod.deb
 apt update
 apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
 wget -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+It is recommended to check `Active By Default` to use it by default.
 wget -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
