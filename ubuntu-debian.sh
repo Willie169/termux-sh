@@ -78,6 +78,7 @@ corepack enable pnpm
 npm install jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm install -g http-server @openai/codex
 pipx install poetry uv
+uv tool install --force --python python3.12 --with pip aider-chat@latest --with playwright --with aider-chat[help]
 curl -fsSL https://bun.com/install | bash
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
