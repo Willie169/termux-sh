@@ -118,7 +118,6 @@ wget https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96
 cd ..
 git clone https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy
-git checkout 2.5.3
 mvn clean package
 cd ..
 mkdir .lizzieyzy
