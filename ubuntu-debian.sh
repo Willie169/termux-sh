@@ -135,10 +135,7 @@ StartupWMClass=featurecat-lizzie-Lizzie
 EOF
 mkdir -p Desktop
 cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop && chmod +x ~/Desktop/lizzieyzy.desktop
-cd .lizzieyzy
-wget https://raw.githubusercontent.com/Willie169/bashrc/main/lizzieyzy/config.txt
-sed -i "s|\$HOME|$HOME|g" config.txt
-cd ..
+update_lizzieyzy_config
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
