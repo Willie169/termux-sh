@@ -112,8 +112,8 @@ cd KataGo/cpp
 cmake . -G Ninja -DUSE_BACKEND=EIGEN
 ninja
 cd ../..
-mkdir kata-models
-cd kata-models
+mkdir katago-networks
+cd katago-networks
 wget https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
 cd ..
 git clone https://github.com/yzyray/lizzieyzy.git
