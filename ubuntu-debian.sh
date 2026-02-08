@@ -123,13 +123,13 @@ mvn clean package
 cd ..
 mkdir .lizzieyzy
 mkdir -p ~/.local/share/applications
-cat > ~/.local/share/applications/lizzieyzy.desktop <<'EOF'
+cat > ~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=LizzieYzy
 Comment=LizzieYzy - GUI for Game of Go
 Exec=sh -c 'cd $HOME/.lizzieyzy && java -jar "$HOME/lizzieyzy/target/lizzie-yzy2.5.3-shaded.jar"'
-Icon=/root/lizzieyzy/src/main/resources/assets/logo.png
+Icon=$HOME/lizzieyzy/src/main/resources/assets/logo.png
 Terminal=false
 Categories=Game;
 StartupWMClass=featurecat-lizzie-Lizzie
