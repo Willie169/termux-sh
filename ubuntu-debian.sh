@@ -136,7 +136,7 @@ StartupWMClass=featurecat-lizzie-Lizzie
 EOF
 mkdir -p Desktop
 cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop
-cat > ~/.lizzieyzy/config.txt <<'EOF'
+cat > ~/.lizzieyzy/config.txt <<EOF
 {
   "leelaz": {
     "limit-max-suggestion": 10,
@@ -150,7 +150,7 @@ cat > ~/.lizzieyzy/config.txt <<'EOF'
       "initialCommand": "",
       "userName": "",
       "preload": false,
-      "command": "/root/KataGo/cpp/katago gtp -model /root/kata-models/kata1-b6c96-s175395328-d26788732.txt.gz -config /root/KataGo/cpp/configs/gtp_example.cfg",
+      "command": "$HOME/KataGo/cpp/katago gtp -model $HOME/kata-models/kata1-b6c96-s175395328-d26788732.txt.gz -config $HOME/KataGo/cpp/configs/gtp_example.cfg",
       "komi": 7.5,
       "isDefault": true,
       "password": "",
