@@ -135,7 +135,7 @@ Categories=Game;
 StartupWMClass=featurecat-lizzie-Lizzie
 EOF
 mkdir -p Desktop
-cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop
+cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop && chmod +x ~/Desktop/lizzieyzy.desktop
 cat > ~/.lizzieyzy/config.txt <<EOF
 {
   "leelaz": {
