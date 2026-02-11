@@ -39,6 +39,7 @@ if [ -d "$HOME/.bashrc.d"  ];  then
     [ -r "$f"  ] && . "$f"
   done
 fi
+mkdir -p ~/.local/share/applications
 mkdir -p /usr/local/go
 mkdir -p /usr/local/java
 apt upgrade -y
@@ -120,7 +121,6 @@ git clone https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy
 mvn clean package
 cd ..
-mkdir -p ~/.local/share/applications
 cat > ~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -135,6 +135,52 @@ EOF
 update_lizzieyzy_config
 mkdir -p Desktop
 cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop && chmod +x ~/Desktop/lizzieyzy.desktop
+git clone https://github.com/fairy-stockfish/Fairy-Stockfish.git
+cd Fairy-Stockfish/src
+ARCH=$(uname -m)
+if [ "$ARCH" == "x86_64" ]; then
+ARCH="x86-64"
+elif [ "$ARCH" == "aarch64" ]; then
+ARCH="armv8"
+elif [ "$ARCH" == "arm" ]; then
+ARCH="armv7"
+fi
+make -j ARCH="$ARCH" profile-build largeboards=yes nnue=yes
+cd ~
+git clone https://github.com/cutechess/cutechess.git
+cd cutechess
+mkdir build
+cd build
+cmake -G Ninja ..
+ninja
+cd ~
+cat > ~/.local/share/applications/cutechess.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Cute Chess
+Comment=Cute Chess - GUI for Playing Chess
+Exec=$HOME/cutechess/build/cutechess
+Icon=$HOME/cutechess/projects/gui/res/icons/cutechess_128x128.png
+Terminal=false
+Categories=Game;
+EOF
+cp ~/.local/share/applications/cutechess.desktop ~/Desktop/cutechess.desktop && chmod +x ~/Desktop/cutechess.desktop
+git clone https://github.com/hotfics/Sylvan.git
+cd Sylvan
+qmake
+make
+cd ~
+cat > ~/.local/share/applications/Sylvan.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Sylvan
+Comment=Sylvan - GUI for Playing Xiangqi
+Exec=$HOME/Sylvan/projects/gui/sylvan
+Icon=$HOME/Sylvan/projects/gui/res/icons/app.ico
+Terminal=false
+Categories=Game;
+EOF
+cp ~/.local/share/applications/Sylvan.desktop ~/Desktop/Sylvan.desktop && chmod +x ~/Desktop/Sylvan.desktop
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
