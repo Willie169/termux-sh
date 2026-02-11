@@ -170,7 +170,7 @@ cd Sylvan
 qmake
 make
 cd ~
-cat > ~/.local/share/applications/Sylvan.desktop <<EOF
+cat > ~/.local/share/applications/sylvan.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Sylvan
@@ -180,7 +180,7 @@ Icon=$HOME/Sylvan/projects/gui/res/icons/app.ico
 Terminal=false
 Categories=Game;
 EOF
-cp ~/.local/share/applications/Sylvan.desktop ~/Desktop/Sylvan.desktop && chmod +x ~/Desktop/Sylvan.desktop
+cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
