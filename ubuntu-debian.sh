@@ -39,9 +39,11 @@ if [ -d "$HOME/.bashrc.d"  ];  then
     [ -r "$f"  ] && . "$f"
   done
 fi
-mkdir -p ~/.local/share/applications
 mkdir -p /usr/local/go
 mkdir -p /usr/local/java
+mkdir -p ~/.local
+mkdir -p ~/.local/share/applications
+mkdir -p ~/Desktop
 apt upgrade -y
 apt install aisleriot alsa-utils apksigner apt-transport-https aptitude aria2 autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghc ghostscript git glab gnuchess gnucobol gnugo gnupg golang gperf gpg grep gtkwave gzip info inkscape iproute2 iverilog iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm make maven mc nano ncompress neovim ngspice ninja-build openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc perl-tk pipx plantuml poppler-utils procps pv python3-all-dev python3-pip python3-venv qtbase5-dev qtbase5-dev-tools rust-all sudo tar tk-dev tmux tree unrar unzip uuid-dev uuid-runtime valgrind verilator vim wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh -y
 wget http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
@@ -116,11 +118,11 @@ cd ../..
 mkdir katago-networks
 cd katago-networks
 wget https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
-cd ..
+cd ~
 git clone https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy
 mvn clean package
-cd ..
+cd ~
 cat > ~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -133,7 +135,6 @@ Categories=Game;
 StartupWMClass=featurecat-lizzie-Lizzie
 EOF
 update_lizzieyzy_config
-mkdir -p Desktop
 cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop && chmod +x ~/Desktop/lizzieyzy.desktop
 git clone https://github.com/fairy-stockfish/Fairy-Stockfish.git
 cd Fairy-Stockfish/src
@@ -164,6 +165,7 @@ Icon=$HOME/cutechess/projects/gui/res/icons/cutechess_128x128.png
 Terminal=false
 Categories=Game;
 EOF
+update_cutechess_config
 cp ~/.local/share/applications/cutechess.desktop ~/Desktop/cutechess.desktop && chmod +x ~/Desktop/cutechess.desktop
 git clone https://github.com/hotfics/Sylvan.git
 cd Sylvan
@@ -180,6 +182,7 @@ Icon=$HOME/Sylvan/projects/gui/res/icons/app.ico
 Terminal=false
 Categories=Game;
 EOF
+update_sylvan_config
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzf install-tl-unx.tar.gz
