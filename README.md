@@ -53,9 +53,9 @@ DEBIANBOXINSTALL=0
 <li>Approximately 0.1 GB more for a nonempty <code>TERMUX</code>.</li>
 <li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
-<li>Approximately 24.2 GB more for <code>UBUNTUINSTALL=1</code>.</li>
-<li>Approximately 24.2 GB more for <code>DEBIANINSTALL=1</code>.</li>
-<li>Approximately 34.3 GB in total for the default configuration with <code>XFCE=1</code>, <code>ANDROID=1</code>, and
+<li>Approximately 24.3 GB more for <code>UBUNTUINSTALL=1</code>.</li>
+<li>Approximately 24.3 GB more for <code>DEBIANINSTALL=1</code>.</li>
+<li>Approximately 34.4 GB in total for the default configuration with <code>XFCE=1</code>, <code>ANDROID=1</code>, and
 <pre><code>TERMUX='termux'
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
