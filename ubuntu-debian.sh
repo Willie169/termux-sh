@@ -184,6 +184,8 @@ Categories=Game;
 EOF
 update_sylvan_config
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
+curl -fsSL https://ollama.com/install.sh | sh
+curl -fsSL https://opencode.ai/install | bash
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
