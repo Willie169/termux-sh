@@ -188,25 +188,6 @@ cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod 
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2:1b
 ollama pull nomic-embed-text:latest
-git clone --depth=1 https://github.com/indigo-dc/udocker.git
-(cd udocker/udocker; ln -s maincmd.py udocker)
-udocker install
-mkdir .open-notebook
-udocker pull --platform=linux/arm64 surrealdb/surrealdb:v2
-udocker pull --platform=linux/arm64 lfnovo/open_notebook:v1-latest
-udocker create --name=surrealdb surrealdb/surrealdb:v2
-udocker create --name=open-notebook lfnovo/open_notebook:v1-latest
-udocker setup --execmode=P1 surrealdb
-udocker setup --execmode=P1 open-notebook
-cd ~/.open-notebook
-udocker run surrealdb start --log info --user root --pass root rocksdb:~/.open-notebook/surreal_data/mydatabase.db 2>/dev/null &
-SURREAL_PID=$!
-sleep 5
-OPEN_NOTEBOOK_ENCRYPTION_KEY=change-me-to-a-secret-string SURREAL_URL=ws://localhost:8000/rpc SURREAL_USER=root SURREAL_PASSWORD=root SURREAL_NAMESPACE=open_notebook SURREAL_DATABASE=open_notebook OLLAMA_API_BASE=http://localhost:11434 udocker run open-notebook 2>/dev/null &
-NOTEBOOK_PID=$!
-kill $SURREAL_PID 2>/dev/null
-kill $NOTEBOOK_PID 2>/dev/null
-cd ~
 curl -fsSL https://opencode.ai/install | bash
 curl -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
