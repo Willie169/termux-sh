@@ -187,6 +187,7 @@ cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod 
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2:1b
 curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
