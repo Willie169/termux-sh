@@ -1,5 +1,6 @@
 #!/bin/bash
 
+shopt -s expand_aliases
 cd ~
 apt update
 if [ "$ID" = "ubuntu" ]; then
@@ -45,7 +46,7 @@ mkdir -p ~/.local
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
 apt upgrade -y
-apt install aisleriot alsa-utils apksigner apt-transport-https aptitude autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghc ghostscript git glab gnupg golang gperf gpg grep gtkwave gzip info imagemagick inkscape iproute2 iverilog iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm make maven mc nano ncompress neovim ngspice ninja-build openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc perl-tk pipx plantuml poppler-utils procps pv python3-all-dev python3-pip python3-venv qtbase5-dev qtbase5-dev-tools rust-all sqlite3 sudo tar tk-dev tmux tree unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y
+apt install aisleriot alsa-utils apksigner apt-transport-https aptitude autoconf automake bash bc bear bison build-essential bzip2 ca-certificates clang clang-format cmake command-not-found curl dbus default-jdk dnsutils dvipng dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghc ghostscript git glab gnupg golang gperf gpg grep gtkwave gzip info imagemagick inkscape iproute2 iverilog iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libheif-examples libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm make maven mc nano ncompress neovim ngspice ninja-build openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc perl-tk pipx plantuml poppler-utils procps pv python-is-python3 python3-all-dev python3-pip python3-venv qtbase5-dev qtbase5-dev-tools rust-all sqlite3 sudo tar tk-dev tmux tree unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y
 wget http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb
@@ -186,6 +187,26 @@ update_sylvan_config
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2:1b
+ollama pull nomic-embed-text:latest
+git clone --depth=1 https://github.com/indigo-dc/udocker.git
+(cd udocker/udocker; ln -s maincmd.py udocker)
+udocker install
+mkdir .open-notebook
+udocker pull --platform=linux/arm64 surrealdb/surrealdb:v2
+udocker pull --platform=linux/arm64 lfnovo/open_notebook:v1-latest
+udocker create --name=surrealdb surrealdb/surrealdb:v2
+udocker create --name=open-notebook lfnovo/open_notebook:v1-latest
+udocker setup --execmode=P1 surrealdb
+udocker setup --execmode=P1 open-notebook
+cd ~/.open-notebook
+udocker run surrealdb start --log info --user root --pass root rocksdb:~/.open-notebook/surreal_data/mydatabase.db 2>/dev/null &
+SURREAL_PID=$!
+sleep 5
+OPEN_NOTEBOOK_ENCRYPTION_KEY=change-me-to-a-secret-string SURREAL_URL=ws://localhost:8000/rpc SURREAL_USER=root SURREAL_PASSWORD=root SURREAL_NAMESPACE=open_notebook SURREAL_DATABASE=open_notebook OLLAMA_API_BASE=http://localhost:11434 udocker run open-notebook 2>/dev/null &
+NOTEBOOK_PID=$!
+kill $SURREAL_PID 2>/dev/null
+kill $NOTEBOOK_PID 2>/dev/null
+cd ~
 curl -fsSL https://opencode.ai/install | bash
 curl -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
