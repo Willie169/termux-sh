@@ -190,11 +190,67 @@ EOF
 fi
 if [ "$VIMRC" -ne 0 ]; then
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
-mkdir -p ~/.config/nvim
-echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
-let &packpath = &runtimepath
-source ~/.vimrc
-' | tee ~/.config/nvim/init.vim > /dev/null
+mkdir -p ~/.config/nvim/lua/config
+mkdir -p ~/.config/nvim/lua/plugins
+cat > ~/.config/nvim/init.lua <<'EOF'
+vim.cmd("set runtimepath^=~/.vim runtimepath+=~/.vim/after")
+vim.cmd("let &packpath = &runtimepath")
+vim.cmd("source ~/.vimrc")
+require("config.lazy")
+EOF
+cat > ~/.config/nvim/lua/config/lazy.lua <<'EOF'
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- Setup lazy.nvim
+require("lazy").setup({
+  spec = {
+    -- import your plugins
+    { import = "plugins" },
+  },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "habamax" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true },
+})
+EOF
+cat > ~/.config/nvim/lua/plugins/jupytext.lua <<'EOF'
+return {
+    {
+        'goerz/jupytext.nvim',
+        version = '0.2.0',
+        opts = {
+            jupytext = 'jupytext',
+            format = "auto",
+            update = true,
+            sync_patterns = { '*.md', '*.py', '*.jl', '*.R', '*.Rmd', '*.qmd' },
+            autosync = true,
+            handle_url_schemes = true,
+        }
+    }
+}
+EOF
 fi
 [ -n "$NPM" ] && npm install $NPM
 [ -n "$NPMG" ] && npm install -g $NPMG
