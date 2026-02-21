@@ -7,7 +7,7 @@ XFCE=1
 ANDROID=1
 VIMRC=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
-NPMG='http-server @openai/codex'
+NPMG='http-server'
 PIP='jupyter meson plotly pydub requests selenium==4.9.1 setuptools sympy'
 GO=''
 ANTLR=1

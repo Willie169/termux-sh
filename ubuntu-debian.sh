@@ -80,7 +80,7 @@ nvm install 24
 corepack enable yarn
 corepack enable pnpm
 npm install jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
-npm install -g http-server @openai/codex
+npm install -g http-server @google/gemini-cli @openai/codex
 pipx install poetry uv
 uv tool install --force --python python3.12 --with pip aider-chat@latest --with playwright
 uv tool run playwright install --with-deps chromium
@@ -188,8 +188,9 @@ cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod 
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2:1b
 curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://claude.ai/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
-wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz --no-check-certificate
+wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
 cd install-tl-*
