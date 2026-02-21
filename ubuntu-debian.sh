@@ -81,7 +81,7 @@ corepack enable yarn
 corepack enable pnpm
 npm install jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm install -g http-server @google/gemini-cli @openai/codex
-pipx install poetry uv
+pipx install uv notebook jupyterlab jupytext meson
 uv tool install --force --python python3.12 --with pip aider-chat@latest --with playwright
 uv tool run playwright install --with-deps chromium
 curl -fsSL https://bun.com/install | bash

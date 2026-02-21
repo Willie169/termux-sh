@@ -8,7 +8,8 @@ ANDROID=1
 VIMRC=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='http-server'
-PIP='jupyter meson plotly pydub requests selenium==4.9.1 setuptools sympy'
+PIP='pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
+PIPX='notebook jupyterlab jupytext meson'
 GO=''
 ANTLR=1
 PLANTUML=1
@@ -200,6 +201,10 @@ fi
 if [ -n "$PIP" ]; then
 pip3 install $PIP || true
 pip3 install $PIP
+fi
+if [ -n "$PIPX" ]; then
+pip3 install pipx
+pipx install $PIPX
 fi
 [ -n "$GO" ] && go install $GO
 [ "$ANTLR" -eq 0 ] || wget -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
