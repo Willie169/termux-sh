@@ -171,7 +171,7 @@ apt install postgresql-common postgresql-17 -y
 mkdir -p /var/log/postgresql
 chown -R postgres:postgres /var/log/postgresql
 chmod 755 /var/log/postgresql
-chmod 640 /var/log/postgresql/*
+chmod 640 /var/log/postgresql/* 2>/dev/null || true
 git clone https://github.com/lightvector/KataGo.git
 cd KataGo/cpp
 cmake . -G Ninja -DUSE_BACKEND=EIGEN
