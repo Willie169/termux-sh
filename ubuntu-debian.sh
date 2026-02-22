@@ -168,6 +168,10 @@ wget -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download
 It is recommended to check `Active By Default` to use it by default.
 wget -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
+mkdir -p /var/log/postgresql
+chown -R postgres:postgres /var/log/postgresql
+chmod 755 /var/log/postgresql
+chmod 640 /var/log/postgresql/*
 git clone https://github.com/lightvector/KataGo.git
 cd KataGo/cpp
 cmake . -G Ninja -DUSE_BACKEND=EIGEN
