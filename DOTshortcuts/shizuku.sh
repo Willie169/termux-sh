@@ -1,2 +1,0 @@
-cd shizuku
-sh rish
