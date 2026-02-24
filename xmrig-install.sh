@@ -5,4 +5,3 @@ mkdir xmrig/build
 cd xmrig/build
 cmake .. -DWITH_HWLOC=OFF
 make -j$(nproc)
-cd ~
