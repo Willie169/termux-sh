@@ -53,7 +53,7 @@ wget http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-ico
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
-apt install dbus-x11 firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal -y
+apt install dbus-x11 firefox mesa-utils tigervnc-standalone-server xfce4 xfce4-goodies xfce4-terminal -y
 cat > ~/.vnc/xstartup << 'EOF'
 #!/bin/sh
 unset DBUS_SESSION_BUS_ADDRESS
