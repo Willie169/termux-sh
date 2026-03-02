@@ -54,6 +54,21 @@ apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
 apt install dbus-x11 firefox xfce4 xfce4-goodies xfce4-terminal -y
+wget http://ports.ubuntu.com/pool/universe/m/mesa/libegl1-mesa_23.0.4-0ubuntu1~22.04.1_arm64.deb
+apt install ./libegl1-mesa_23.0.4-0ubuntu1~22.04.1_arm64.deb
+rm libegl1-mesa_23.0.4-0ubuntu1~22.04.1_arm64.deb
+wget https://sourceforge.net/projects/virtualgl/files/3.1/virtualgl_3.1_arm64.deb
+apt install ./virtualgl_3.1_arm64.deb
+rm virtualgl_3.1_arm64.deb
+wget https://sourceforge.net/projects/turbovnc/files/3.1/turbovnc_3.1_arm64.deb
+apt install ./turbovnc_3.1_arm64.deb
+rm turbovnc_3.1_arm64.deb
+wget https://sourceforge.net/projects/libjpeg-turbo/files/3.0.1/libjpeg-turbo-official_3.0.1_arm64.deb
+apt install ./libjpeg-turbo-official_3.0.1_arm64.deb
+rm libjpeg-turbo-official_3.0.1_arm64.deb
+apt install dbus-x11 libglu1-mesa mesa-utils -y
+mkdir -p /etc/opt/VirtualGL
+chmod 750 /etc/opt/VirtualGL
 mkdir -p ~/.vnc
 cat > ~/.vnc/xstartup << 'EOF'
 #!/bin/sh
