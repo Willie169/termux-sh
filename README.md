@@ -37,7 +37,7 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 <li>Sufficient storage (calculated on Termux 0.118.3):
 <ul>
 <li>Approximately 0.2 GB for the Termux app itself.
-<li>Approximately 6.4 GB in total for the minimal configuration with <code>XFCE=0</code>, <code>ANDROID=0</code>, and
+<li>Approximately 6.5 B in total for the minimal configuration with <code>XFCE=0</code>, <code>ANDROID=0</code>, and
 <pre><code>TERMUX=''
 UBUNTU=''
 UBUNTUINSTALL=0
@@ -55,7 +55,7 @@ DEBIANBOXINSTALL=0
 <li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
 <li>Approximately 30.8 GB more for <code>UBUNTUINSTALL=1</code>.</li>
 <li>Approximately 30.8 GB more for <code>DEBIANINSTALL=1</code>.</li>
-<li>Approximately 38.9 GB in total for the default configuration with <code>XFCE=1</code>, <code>ANDROID=1</code>, and
+<li>Approximately 39.0 GB in total for the default configuration with <code>XFCE=1</code>, <code>ANDROID=1</code>, and
 <pre><code>TERMUX='termux'
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1

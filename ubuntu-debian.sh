@@ -61,8 +61,6 @@ unset DBUS_SESSION_BUS_ADDRESS
 unset SESSION_MANAGER
 export XDG_RUNTIME_DIR=/tmp/runtime-root
 export XAUTHORITY="$HOME/.Xauthority"
-export GALLIUM_DRIVER=zink
-export MESA_GL_VERSION_OVERRIDE=4.3
 mkdir -p $XDG_RUNTIME_DIR
 chmod 700 $XDG_RUNTIME_DIR
 dbus-launch --exit-with-session xfce4-session
