@@ -8,6 +8,7 @@ apt install software-properties-common -y
 add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
+add-apt-repository ppa:mozillateam/ppa -y
 add-apt-repository ppa:neovim-ppa/unstable -y
 add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
@@ -52,8 +53,9 @@ wget http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-ico
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
-apt install dbus-x11 firefox-esr tigervnc-standalone-server xfce4 xfce4-goodies xfce4-terminal -y
-cat > ~/.config/tigervnc/xstartup << 'EOF'
+apt install dbus-x11 firefox xfce4 xfce4-goodies xfce4-terminal -y
+mkdir -p ~/.vnc
+cat > ~/.vnc/xstartup << 'EOF'
 #!/bin/sh
 unset DBUS_SESSION_BUS_ADDRESS
 unset SESSION_MANAGER
