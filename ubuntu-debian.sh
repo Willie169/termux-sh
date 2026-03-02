@@ -251,6 +251,34 @@ ollama pull llama3.2:1b
 curl -fsSL https://opencode.ai/install | bash
 curl -fsSL https://claude.ai/install.sh | bash
 curl -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
+mkdir -p ~/dev/llm
+cd ~/dev/llm
+git clone https://github.com/KhronosGroup/OpenCL-Headers && cd OpenCL-Headers
+mkdir build && cd build
+cmake .. -G Ninja \
+  -DBUILD_TESTING=OFF \
+  -DOPENCL_HEADERS_BUILD_TESTING=OFF \
+  -DOPENCL_HEADERS_BUILD_CXX_TESTS=OFF \
+  -DCMAKE_INSTALL_PREFIX="$HOME/dev/llm/opencl"
+cmake --build . --target install
+cd ~/dev/llm
+git clone https://github.com/KhronosGroup/OpenCL-ICD-Loader && cd OpenCL-ICD-Loader
+mkdir build && cd build
+cmake .. -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_PREFIX_PATH="$HOME/dev/llm/opencl" \
+  -DCMAKE_INSTALL_PREFIX="$HOME/dev/llm/opencl"
+cmake --build . --target install
+cd ~/dev/llm
+git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
+mkdir build && cd build
+cmake .. -G Ninja \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_PREFIX_PATH="$HOME/dev/llm/opencl" \
+  -DBUILD_SHARED_LIBS=OFF \
+  -DGGML_OPENCL=ON
+ninja
+cd ~
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
