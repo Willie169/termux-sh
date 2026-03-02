@@ -1,1 +1,1 @@
-export DISPLAY=$DISPLAY | proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
+proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
