@@ -53,18 +53,21 @@ wget http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-ico
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
-apt install dbus-x11 firefox mesa-utils tigervnc-standalone-server xfce4 xfce4-goodies xfce4-terminal -y
-cat > ~/.vnc/xstartup << 'EOF'
+apt install dbus-x11 firefox glmark2-x11 mesa-utils tigervnc-standalone-server xfce4 xfce4-goodies xfce4-terminal -y
+mkdir -p ~/.config/tigervnc
+cat > ~/.config/tigervnc/xstartup << 'EOF'
 #!/bin/sh
 unset DBUS_SESSION_BUS_ADDRESS
 unset SESSION_MANAGER
-export XDG_RUNTIME_DIR=/tmp
+export XDG_RUNTIME_DIR=/tmp/runtime-root
 export XAUTHORITY="$HOME/.Xauthority"
-export GALLIUM_DRIVER=virpipe
-export MESA_GL_VERSION_OVERRIDE=4.0
-dbus-launch --exit-with-session startxfce4
+export GALLIUM_DRIVER=zink
+export MESA_GL_VERSION_OVERRIDE=4.3
+mkdir -p $XDG_RUNTIME_DIR
+chmod 700 $XDG_RUNTIME_DIR
+dbus-launch --exit-with-session xfce4-session
 EOF
-chmod +x ~/.vnc/xstartup
+chmod +x ~/.config/tigervnc/xstartup
 wget -O SDL2_bgi-3.0.4.tar.gz https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
