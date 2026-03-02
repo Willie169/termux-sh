@@ -2,7 +2,7 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy ruby rust sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget which xmlstarlet yarn zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy ruby rust sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools tigervnc tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget which xmlstarlet yarn zsh'
 XFCE=1
 ANDROID=1
 VIMRC=1
@@ -131,7 +131,9 @@ mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/Documents.sh ~
 cp ~/termux-sh/DOTshortcuts/Download.sh ~
+cp ~/termux-sh/DOTshortcuts/Scripts.sh ~
 cp ~/termux-sh/DOTshortcuts/Storage.sh ~
+cp ~/termux-sh/DOTshortcuts/proot-*.sh ~
 pkg update
 pkg upgrade -y
 pkg install curl git wget x11-repo tur-repo -y
@@ -156,8 +158,7 @@ fi
 mkdir -p $PREFIX/local/go
 mkdir -p $PREFIX/local/java
 [ -n "$PKG" ] && pkg install $PKG -y
-[ "$XFCE" -eq 0 ] || pkg install tigervnc xfce4 -y && mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
-#!/data/data/com.termux/files/usr/bin/sh
+[ "$XFCE" -eq 0 ] || pkg install xfce4 -y && mkdir -p ~/.vnc && cat > ~/.vnc/xstartup << 'EOF'
 xfce4-session &
 EOF
 if [ "$ANDROID" -ne 0 ]; then
@@ -265,19 +266,19 @@ fi
 [ -n "$GO" ] && go install $GO
 [ "$ANTLR" -eq 0 ] || wget -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 [ "$PLANTUML" -eq 0 ] || wget -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-[ -n "$TERMUX" ] && [ "$TERMUX" != termux ] && echo "proot-distro login $TERMUX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$TERMUX.sh && chmod +x ~/proot-$TERMUX.sh && cp ~/proot-$TERMUX.sh ~/.shortcuts && proot-distro install termux --override-alias $TERMUX
-[ -n "$TERMUX" ] && [ "$TERMUX" == termux ] && echo "proot-distro login $TERMUX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$TERMUX.sh && chmod +x ~/proot-$TERMUX.sh && cp ~/proot-$TERMUX.sh ~/.shortcuts && proot-distro install termux
-[ -n "$UBUNTU" ] && [ "$UBUNTU" != ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTU
-[ -n "$UBUNTU" ] && [ "$UBUNTU" == ubuntu ] && echo "proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTU.sh && chmod +x ~/proot-$UBUNTU.sh && cp ~/proot-$UBUNTU.sh ~/.shortcuts && proot-distro install ubuntu
+[ -n "$TERMUX" ] && [ "$TERMUX" != termux ] && proot-distro install termux --override-alias $TERMUX
+[ -n "$TERMUX" ] && [ "$TERMUX" == termux ] && proot-distro install termux
+[ -n "$UBUNTU" ] && [ "$UBUNTU" != ubuntu ] && proot-distro install ubuntu --override-alias $UBUNTU
+[ -n "$UBUNTU" ] && [ "$UBUNTU" == ubuntu ] && proot-distro install ubuntu
 [ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cat ~/termux-sh/ubuntu-debian.sh | proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning
-[ -n "$DEBIAN" ] && [ "$DEBIAN" != debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIAN
-[ -n "$DEBIAN" ] && [ "$DEBIAN" == debian ] && echo "proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIAN.sh && chmod +x ~/proot-$DEBIAN.sh && cp ~/proot-$DEBIAN.sh ~/.shortcuts && proot-distro install debian
+[ -n "$DEBIAN" ] && [ "$DEBIAN" != debian ] && proot-distro install debian --override-alias $DEBIAN
+[ -n "$DEBIAN" ] && [ "$DEBIAN" == debian ] && proot-distro install debian
 [ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cat ~/termux-sh/ubuntu-debian.sh | proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" != ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu --override-alias $UBUNTUBOX
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == ubuntu ] && echo "proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$UBUNTUBOX.sh && chmod +x ~/proot-$UBUNTUBOX.sh && cp ~/proot-$UBUNTUBOX.sh ~/.shortcuts && proot-distro install ubuntu
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" != ubuntu ] && proot-distro install ubuntu --override-alias $UBUNTUBOX
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == ubuntu ] && proot-distro install ubuntu
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cat ~/termux-sh/box64-wine64-winetricks.sh | proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian --override-alias $DEBIANBOX
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && echo "proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning" >> ~/proot-$DEBIANBOX.sh && chmod +x ~/proot-$DEBIANBOX.sh && cp ~/proot-$DEBIANBOX.sh ~/.shortcuts && proot-distro install debian
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && proot-distro install debian --override-alias $DEBIANBOX
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && proot-distro install debian
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cat ~/termux-sh/box64-wine64-winetricks.sh | proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
 rm -f ~/.bashrc.d/11-proot.sh
 [ -n "$TERMUX" ] || TERMUX="termux"

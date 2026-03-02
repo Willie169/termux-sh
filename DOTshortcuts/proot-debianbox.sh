@@ -1,1 +1,1 @@
-proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
+export DISPLAY=$DISPLAY | proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
