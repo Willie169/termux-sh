@@ -76,9 +76,11 @@ unset DBUS_SESSION_BUS_ADDRESS
 unset SESSION_MANAGER
 export XDG_RUNTIME_DIR=/tmp
 export XAUTHORITY="$HOME/.Xauthority"
+export GALLIUM_DRIVER=virpipe
+export MESA_GL_VERSION_OVERRIDE=4.0
 dbus-launch --exit-with-session startxfce4
 EOF
-chmod +x ~/.config/tigervnc/xstartup
+chmod +x ~/.vnc/xstartup
 wget -O SDL2_bgi-3.0.4.tar.gz https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
