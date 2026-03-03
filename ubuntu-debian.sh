@@ -77,7 +77,6 @@ npm install -g http-server @google/gemini-cli @openai/codex
 pipx install uv notebook jupyterlab jupytext meson
 uv tool install --force --python python3.12 --with pip aider-chat@latest --with playwright
 uv tool run playwright install --with-deps chromium
-uv tool install --force --python python3.11 open-webui@latest 2>/dev/null || true
 curl -fsSL https://bun.com/install | bash
 wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
@@ -90,6 +89,7 @@ conda config --add channels microsoft
 conda config --add channels defaults
 conda config --add channels conda-forge
 rm Miniforge3-Linux-aarch64.sh
+conda update -n base -c conda-forge conda -y
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
 mkdir -p ~/.config/nvim/lua/plugins
