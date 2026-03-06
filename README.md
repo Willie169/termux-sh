@@ -77,6 +77,7 @@ DEBIANBOXINSTALL=0
 ### Execution
 
 <ol>
+<li>It is suggested to run <code>termux-change-repo</code> and select repo(s) closer to your geographical location for faster download.
 <li><pre><code>termux-setup-storage
 pkg update &amp;&amp; pkg install git -y
 cd ~ &amp;&amp; git clone https://github.com/Willie169/termux-sh.git
