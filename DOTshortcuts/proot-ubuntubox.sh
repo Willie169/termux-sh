@@ -1,1 +1,1 @@
-proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning --env THIS="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/$UBUNTUBOX"
+proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning --env THIS="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/$UBUNTUBOX" --env TERMUX_HOME="$HOME" --env TERMUX_PREFIX="$PREFIX"

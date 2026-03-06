@@ -1,1 +1,1 @@
-proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning --env THIS="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/$DEBIAN"
+proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning --env THIS="/data/data/com.termux/files/usr/var/lib/proot-distro/installed-rootfs/$DEBIAN" --env TERMUX_HOME="$HOME" --env TERMUX_PREFIX="$PREFIX"
