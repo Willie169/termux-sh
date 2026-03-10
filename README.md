@@ -110,7 +110,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Android Build Environment Setup**: Setup Android apps build environment if not `ANDROID=0` using script modified from my [**termux-android-sdk-ndk**](https://github.com/Willie169/termux-android-sdk-ndk) repo. Refer to it for more information.
 2. **Vim and Neovim configuration**: Installs lazy.nvim, jupytext.nvim, and [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim if not `VIMRC=0`.
 2. **NPM packages**: Installs NPM packages set in `$NPM` locally in `~` and NPM packages set in `$NPMG` globally. The default `$NPM` is `jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown`. The default `$NPMG` is `http-server`.
-2. **Pip packages**: Installs pip packages set in `PIP`. The default one is `pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy`.
+2. **Pip packages**: Installs pip packages set in `PIP`. The default one is `pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy`.
 2. **Pipx packages**: Installs pip packages set in `PIPX`. The default one is `notebook jupyterlab jupytext meson`.
 2. **Go packages**: Installs Go packages set in `GO`. The default one is empty.
 2. **JARs**: Installs ANTLR 4 (JAR in `/usr/local/java`) if not `ANTLR=0` and PlantUML (JAR in `/usr/local/java`) if not `PLANTUML=0`.
