@@ -2,13 +2,13 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pcregrep perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy ruby rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget which xmlstarlet yarn zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pcregrep perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pip python-scipy ruby rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget which xmlstarlet yarn zsh'
 XFCE=1
 ANDROID=1
 VIMRC=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='http-server'
-PIP='pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
+PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
 PIPX='notebook jupyterlab jupytext meson'
 GO=''
 ANTLR=1
