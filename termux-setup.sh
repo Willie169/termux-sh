@@ -2,14 +2,14 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pcregrep perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pip python-scipy ruby rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget which xmlstarlet yarn zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gopls gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pcregrep perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pip python-scipy ruby rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget which xmlstarlet yarn zsh'
 XFCE=1
 ANDROID=1
 VIMRC=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
-NPMG='http-server'
+NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright tree-sitter-cli'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
-PIPX='notebook jupyterlab jupytext meson'
+PIPX='cmake-language-server notebook jupyterlab jupytext meson pylatexenc'
 GO=''
 ANTLR=1
 PLANTUML=1
@@ -157,7 +157,18 @@ if [ -d "$HOME/.bashrc.d"  ];  then
 fi
 mkdir -p $PREFIX/local/go
 mkdir -p $PREFIX/local/java
+mkdir -p ~/.local/bin
 [ -n "$PKG" ] && pkg install $PKG -y
+gh_latest -A -C kristoff-it/superhtml aarch64-linux.tar.xz
+tar -xJf aarch64-linux.tar.xz
+rm aarch64-linux.tar.xz
+mv superhtml ~/.local/bin
+mkdir eclipse.jdt.ls
+cd eclipse.jdt.ls
+wget 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
+tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
+rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
+cd ~
 [ "$XFCE" -eq 0 ] || pkg install xfce4 -y
 if [ "$ANDROID" -ne 0 ]; then
 pkg install aapt aapt2 aidl android-tools apksigner curl d8 jq openjdk-17 unzip -y
@@ -234,22 +245,7 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 EOF
-cat > ~/.config/nvim/lua/plugins/jupytext.lua <<'EOF'
-return {
-    {
-        'goerz/jupytext.nvim',
-        version = '0.2.0',
-        opts = {
-            jupytext = 'jupytext',
-            format = "auto",
-            update = true,
-            sync_patterns = { '*.md', '*.py', '*.jl', '*.R', '*.Rmd', '*.qmd' },
-            autosync = true,
-            handle_url_schemes = true,
-        }
-    }
-}
-EOF
+curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 fi
 [ -n "$NPM" ] && npm install $NPM
 [ -n "$NPMG" ] && npm install -g $NPMG
