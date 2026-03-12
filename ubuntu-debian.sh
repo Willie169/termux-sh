@@ -5,7 +5,7 @@ cd ~
 source /etc/os-release
 apt update
 if [ "$ID" = "ubuntu" ]; then
-apt install software-properties-common -y
+apt install software-properties-common -y </dev/null
 add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
@@ -17,8 +17,8 @@ else
 sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.list
 fi
 apt update
-apt purge texlive* -y
-apt install wget -y
+apt purge texlive* -y </dev/null
+apt install wget -y </dev/null
 rm -f .bashrc
 mkdir ~/.bashrc.d
 wget https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
@@ -48,19 +48,19 @@ mkdir -p /usr/local/java
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
-apt upgrade -y
-apt install aisleriot alien alsa-utils apksigner apt-transport-https aptitude autoconf automake bash bc bear bison build-essential bzip2 caneda ca-certificates clang clangd clang-format cmake command-not-found curl dbus default-jdk dmg2img dnsutils dvipng dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghc ghostscript git glab gnupg golang-go gopls gperf gpg grep gtkwave gzip info imagemagick inkscape iproute2 iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libguestfs-tools libheif-examples libhwloc-dev libhwloc-plugins libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libuv1t64 libuv1-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm make maven mc nano ncompress neovim netcat-openbsd ngspice ninja-build nmap openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc pcregrep perl perl-doc perl-tk pipx plantuml poppler-utils procps pv python-is-python3 python3-all-dev python3-neovim python3-pip python3-venv qtbase5-dev qtbase5-dev-tools rust-all socat sqlite3 sudo tar tk-dev tmux tree unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y
+apt upgrade -y </dev/null
+apt install aisleriot alien alsa-utils apksigner apt-transport-https aptitude autoconf automake bash bc bear bison build-essential bzip2 caneda ca-certificates clang clangd clang-format cmake command-not-found curl dbus default-jdk dmg2img dnsutils dvipng dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghc ghostscript git glab gnupg golang-go gopls gperf gpg grep gtkwave gzip info imagemagick inkscape iproute2 iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libguestfs-tools libheif-examples libhwloc-dev libhwloc-plugins libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libuv1t64 libuv1-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm make maven mc nano ncompress neovim netcat-openbsd ngspice ninja-build nmap openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc pcregrep perl perl-doc perl-tk pipx plantuml poppler-utils procps pv python-is-python3 python3-all-dev python3-neovim python3-pip python3-venv qtbase5-dev qtbase5-dev-tools rust-all socat sqlite3 sudo tar tk-dev tmux tree unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y </dev/null
 wget http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
-apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
+apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y </dev/null
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
-apt install dbus-x11 firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y
+apt install dbus-x11 firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y </dev/null
 wget -O SDL2_bgi-3.0.4.tar.gz https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
 ./mkpkg.sh
 cd build
-apt install ./sdl2_bgi_3.0.4-1_arm64.deb
+apt install ./sdl2_bgi_3.0.4-1_arm64.deb -y </dev/null
 cd ../..
 rm -rf SDL2_bgi-3.0.4 SDL2_bgi-3.0.4.tar.gz
 sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#\?PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
@@ -139,13 +139,13 @@ require("lazy").setup({
 EOF
 curl -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 wget "https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
-apt install ./packages-microsoft-prod.deb -y
+apt install ./packages-microsoft-prod.deb -y </dev/null
 rm packages-microsoft-prod.deb
 apt update
-apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
+apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y </dev/null
 wget -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-apt install postgresql-common postgresql-17 -y
+apt install postgresql-common postgresql-17 -y </dev/null
 mkdir -p /var/log/postgresql
 chown -R postgres:postgres /var/log/postgresql
 chmod 755 /var/log/postgresql
@@ -363,9 +363,9 @@ cd latex
 git clone https://github.com/Willie169/physics-patch
 cd ~
 apt update
-apt install -f -y
-apt upgrade -y
-apt autoremove --purge -y
+apt install -f -y </dev/null
+apt upgrade -y </dev/null
+apt autoremove --purge -y </dev/null
 apt clean
 rm ubuntu-debian.sh || true
 exit
