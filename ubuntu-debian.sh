@@ -368,4 +368,5 @@ apt install -f -y
 apt upgrade -y
 apt autoremove --purge -y
 apt clean
+rm ubuntu-debian.sh || true
 exit
