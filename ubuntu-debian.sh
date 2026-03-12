@@ -245,10 +245,10 @@ cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
 wget https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-tar -xzf install-tl-unx.tar.gz
+zcat < install-tl-unx.tar.gz | tar xf -
 rm install-tl-unx.tar.gz
 cd install-tl-*
-perl install-tl --no-interaction
+perl ./install-tl --no-interaction
 cd ~
 rm -rf install-tl-*
 /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
