@@ -2,6 +2,7 @@
 
 shopt -s expand_aliases
 cd ~
+source /etc/os-release
 apt update
 if [ "$ID" = "ubuntu" ]; then
 apt install software-properties-common -y
