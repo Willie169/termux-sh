@@ -159,7 +159,7 @@ mkdir -p $PREFIX/local/go
 mkdir -p $PREFIX/local/java
 mkdir -p ~/.local/bin
 [ -n "$PKG" ] && pkg install $PKG -y
-gh_latest -A -C kristoff-it/superhtml aarch64-linux.tar.xz
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz
 mv superhtml ~/.local/bin

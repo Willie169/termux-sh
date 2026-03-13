@@ -150,7 +150,7 @@ mkdir -p /var/log/postgresql
 chown -R postgres:postgres /var/log/postgresql
 chmod 755 /var/log/postgresql
 chmod 640 /var/log/postgresql/* 2>/dev/null || true
-gh_latest -A -C kristoff-it/superhtml aarch64-linux.tar.xz
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz
 mv superhtml ~/.local/bin
