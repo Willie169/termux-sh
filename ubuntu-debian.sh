@@ -21,16 +21,16 @@ apt purge texlive* -y </dev/null
 apt install wget -y </dev/null
 rm -f .bashrc
 mkdir ~/.bashrc.d
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc.sh -O ~/.bashrc
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/10-exports.sh -O ~/.bashrc.d/10-exports.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/15-color.sh -O ~/.bashrc.d/15-color.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/20-aliases.sh -O ~/.bashrc.d/20-aliases.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/21-cxx.sh -O ~/.bashrc.d/21-cxx.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/22-java.sh -O ~/.bashrc.d/22-java.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc.sh -O ~/.bashrc
 cat > ~/.profile <<'EOF'
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "$HOME/.bashrc" ]; then
@@ -50,12 +50,12 @@ mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
 apt upgrade -y </dev/null
 apt install aisleriot alien alsa-utils apksigner apt-transport-https aptitude autoconf automake bash bc bear bison build-essential bzip2 caneda ca-certificates clang clangd clang-format cmake command-not-found curl dbus default-jdk dmg2img dnsutils dvisvgm fastfetch ffmpeg file flex g++ gcc gdb gfortran gh ghc ghostscript git glab gnupg golang-go gopls gperf gpg grep gtkwave gzip info imagemagick inkscape iproute2 iverilog jpegoptim jq libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libguestfs-tools libheif-examples libhwloc-dev libhwloc-plugins libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-net-dev libsdl2-ttf-dev libsqlite3-dev libssl-dev libuv1t64 libuv1-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm make maven mc nano ncompress neovim netcat-openbsd ngspice ninja-build nmap openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc pcregrep perl perl-doc perl-tk pipx plantuml poppler-utils procps pv python-is-python3 python3-all-dev python3-neovim python3-pip python3-venv qtbase5-dev qtbase5-dev-tools rust-all socat sqlite3 sudo tar tk-dev tmux tree unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y </dev/null
-wget -c --tries=0 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
+wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y </dev/null
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
 apt install dbus-x11 firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y </dev/null
-wget -c --tries=0 --retry-connrefused --waitretry=5 -O SDL2_bgi-3.0.4.tar.gz https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download
+wget --tries=100 --retry-connrefused --waitretry=5 -O SDL2_bgi-3.0.4.tar.gz https://sourceforge.net/projects/sdl-bgi/files/SDL2_bgi-3.0.4.tar.gz/download
 tar -xzf SDL2_bgi-3.0.4.tar.gz
 cd SDL2_bgi-3.0.4
 ./mkpkg.sh
@@ -78,8 +78,8 @@ npm install -g bash-language-server dockerfile-language-server-nodejs http-serve
 pipx install uv notebook jupyterlab jupytext meson pylatexenc
 uv tool install --force --python python3.12 --with pip aider-chat@latest --with playwright
 uv tool run playwright install --with-deps chromium
-curl --retry 999999 --retry-connrefused --retry-delay 5 -fsSL https://bun.com/install | bash
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
+curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://bun.com/install | bash
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
 source .bashrc
 conda config --set auto_activate_base false
@@ -137,14 +137,14 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 EOF
-curl --retry 999999 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
-wget -c --tries=0 --retry-connrefused --waitretry=5 "https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
+curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+wget --tries=100 --retry-connrefused --waitretry=5 "https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
 apt install ./packages-microsoft-prod.deb -y </dev/null
 rm packages-microsoft-prod.deb
 apt update
 apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y </dev/null
-wget -c --tries=0 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
-wget -c --tries=0 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y </dev/null
 mkdir -p /var/log/postgresql
 chown -R postgres:postgres /var/log/postgresql
@@ -156,7 +156,7 @@ rm aarch64-linux.tar.xz
 mv superhtml ~/.local/bin
 mkdir eclipse.jdt.ls
 cd eclipse.jdt.ls
-wget -c --tries=0 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
+wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
 tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 cd ~
@@ -167,7 +167,7 @@ ninja
 cd ../..
 mkdir katago-networks
 cd katago-networks
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
+wget --tries=100 --retry-connrefused --waitretry=5 https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
 cd ~
 git clone https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy
@@ -234,17 +234,17 @@ Categories=Game;
 EOF
 update_sylvan_config
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
-curl --retry 999999 --retry-connrefused --retry-delay 5 -fsSL https://ollama.com/install.sh | sh
-curl --retry 999999 --retry-connrefused --retry-delay 5 -fsSL https://opencode.ai/install | bash
-curl --retry 999999 --retry-connrefused --retry-delay 5 -fsSL https://claude.ai/install.sh | bash
-curl --retry 999999 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
+curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://ollama.com/install.sh | sh
+curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://opencode.ai/install | bash
+curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://claude.ai/install.sh | bash
+curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
 mkdir -p ~/dev/llm
 cd ~/dev/llm
 git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
 cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 zcat < install-tl-unx.tar.gz | tar xf -
 rm install-tl-unx.tar.gz
 cd install-tl-*
@@ -262,7 +262,7 @@ cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
 EOF
 mkdir -p /usr/share/fonts/opentype/xits
 cd /usr/share/fonts/opentype/xits
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://github.com/aliftype/xits/releases/download/v1.302/XITS-1.302.zip
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/aliftype/xits/releases/download/v1.302/XITS-1.302.zip
 unzip XITS-1.302.zip
 cd XITS-1.302
 mv *.otf ..
@@ -270,86 +270,86 @@ cd ..
 rm -rf XITS-1.302*
 mkdir -p /usr/share/fonts/noto-cjk
 cd /usr/share/fonts/noto-cjk
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Thin.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-DemiLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Thin.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-DemiLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Thin.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-DemiLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Thin.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-DemiLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Thin.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-DemiLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-ExtraLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-SemiBold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-ExtraLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-SemiBold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-ExtraLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-SemiBold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-ExtraLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-SemiBold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-ExtraLight.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Medium.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Light.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-SemiBold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Black.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKtc-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKtc-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKsc-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKsc-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKhk-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKhk-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKjp-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKjp-Bold.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKkr-Regular.otf
-wget -c --tries=0 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKkr-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Thin.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-DemiLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/TC/NotoSansTC-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Thin.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-DemiLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/SC/NotoSansSC-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Thin.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-DemiLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/HK/NotoSansHK-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Thin.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-DemiLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/JP/NotoSansJP-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Thin.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-DemiLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/SubsetOTF/KR/NotoSansKR-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-ExtraLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-SemiBold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/TC/NotoSerifTC-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-ExtraLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-SemiBold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/SC/NotoSerifSC-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-ExtraLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-SemiBold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/HK/NotoSerifHK-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-ExtraLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-SemiBold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/JP/NotoSerifJP-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-ExtraLight.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Medium.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Light.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-SemiBold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Serif/SubsetOTF/KR/NotoSerifKR-Black.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKtc-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKtc-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKsc-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKsc-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKhk-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKhk-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKjp-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKjp-Bold.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKkr-Regular.otf
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/notofonts/noto-cjk/main/Sans/Mono/NotoSansMonoCJKkr-Bold.otf
 fc-cache -fv
 cd /usr/share
 git clone https://github.com/Willie169/LaTeX-ToolKit
