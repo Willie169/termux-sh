@@ -81,7 +81,10 @@ uv tool run playwright install --with-deps chromium
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://bun.com/install | bash
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
-source .bashrc
+rm Miniforge3-Linux-aarch64.sh
+export MAMBA_ROOT_PREFIX="${HOME}/conda"
+source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
+source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 conda config --set auto_activate_base false
 conda config --add channels bioconda
 conda config --add channels pypi
@@ -89,7 +92,6 @@ conda config --add channels pytorch
 conda config --add channels microsoft
 conda config --add channels defaults
 conda config --add channels conda-forge
-rm Miniforge3-Linux-aarch64.sh
 conda update -n base -c conda-forge conda -y
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
