@@ -92,7 +92,6 @@ conda config --add channels pytorch
 conda config --add channels microsoft
 conda config --add channels defaults
 conda config --add channels conda-forge
-conda update -n base -c conda-forge conda -y
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
 mkdir -p ~/.config/nvim/lua/plugins
