@@ -246,7 +246,7 @@ cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-zcat < install-tl-unx.tar.gz | tar xf -
+tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
 cd install-tl-*
 perl ./install-tl --no-interaction
