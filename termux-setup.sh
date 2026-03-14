@@ -9,7 +9,7 @@ VIMRC=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright tree-sitter-cli'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
-PIPX='cmake-language-server notebook jupyterlab jupytext meson pylatexenc'
+PIPX='cmake-language-server libretranslate notebook jupyterlab jupytext meson pylatexenc'
 GO=''
 ANTLR=1
 PLANTUML=1
