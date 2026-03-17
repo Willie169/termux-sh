@@ -2,14 +2,14 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gopls gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pcregrep perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pip python-scipy ruby runit rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yarn zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli gnupg golang gopls gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq libheif-progs libwebp libzmq llvm luv make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pcregrep perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pip python-scipy ruby runit rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yarn zig zsh'
 XFCE=1
 ANDROID=1
 VIMRC=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright tree-sitter-cli'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
-PIPX='cmake-language-server meson poetry pylatexenc'
+PIPX='cmake-language-server meson pylatexenc'
 GO=''
 ANTLR=1
 PLANTUML=1
