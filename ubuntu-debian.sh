@@ -361,6 +361,8 @@ cd tex
 mkdir -p latex
 cd latex
 git clone https://github.com/Willie169/physics-patch
+cd physics-patch
+git checkout dev
 cd ~
 apt update
 apt install -f -y </dev/null
