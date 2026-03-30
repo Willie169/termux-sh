@@ -2,6 +2,10 @@
 
 shopt -s expand_aliases
 cd ~
+tee /etc/resolv.conf >/dev/null <<'EOF'
+nameserver 1.1.1.1
+nameserver 1.0.0.1
+EOF
 source /etc/os-release
 apt update
 if [ "$ID" = "ubuntu" ]; then
