@@ -5,6 +5,12 @@ cd ~
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
 nameserver 1.0.0.1
+nameserver 2606:4700:4700::1111
+nameserver 2606:4700:4700::1001
+nameserver 94.140.14.140
+nameserver 94.140.14.141
+nameserver 2a10:50c0::1:ff
+nameserver 2a10:50c0::2:ff
 EOF
 source /etc/os-release
 apt update
