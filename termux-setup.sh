@@ -216,6 +216,7 @@ EOF
 fi
 if [ "$VIMRC" -ne 0 ]; then
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
+rm -rf ~/.vim_runtime/sources_non_forked/vim-ollama
 mkdir -p ~/.config/nvim/lua/config
 mkdir -p ~/.config/nvim/lua/plugins
 cat > ~/.config/nvim/init.lua <<'EOF'
