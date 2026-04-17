@@ -19,6 +19,7 @@ apt install software-properties-common -y </dev/null
 add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
+add-apt-repository ppa:libreoffice/ppa -y
 add-apt-repository ppa:longsleep/golang-backports -y
 add-apt-repository ppa:mozillateam/ppa -y
 add-apt-repository ppa:neovim-ppa/unstable -y
