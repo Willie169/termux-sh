@@ -161,6 +161,10 @@ apt install ./packages-microsoft-prod.deb -y
 rm packages-microsoft-prod.deb
 apt update
 apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
+curl -fsSL https://repo.charm.sh/apt/gpg.key | gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | tee /etc/apt/sources.list.d/charm.list >/dev/null
+apt update
+apt install glow -y
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 apt install postgresql-common postgresql-17 -y
