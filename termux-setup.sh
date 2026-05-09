@@ -171,6 +171,7 @@ wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/ryanoasis/
 mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
 cd ~
 rm -rf .JetBrainsMono
+termux-reload-settings
 mkdir -p $PREFIX/local/go
 mkdir -p $PREFIX/local/java
 mkdir -p ~/.local/bin
