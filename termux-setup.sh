@@ -2,7 +2,7 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fd ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq lazygit libheif-progs libwebp libzmq llvm luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pip python-scipy qemu-system-x86-64-headless qpdf ruby runit rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yarn zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fd ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq lazygit libheif-progs libwebp libzmq llvm luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv python python-ensurepip-wheels python-numpy python-pip python-scipy qemu-system-x86-64-headless qpdf ruby runit rust socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yarn zip zsh'
 XFCE=1
 ANDROID=1
 VIMRC=1
@@ -126,7 +126,7 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 cd ~
-[ -f ~/.termux/termux.properties ] && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
+mkdir -p ~/.termux && touch ~/.termux/termux.properties && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/Documents.sh ~
@@ -146,7 +146,7 @@ nameserver 2a10:50c0::2:ff
 EOF
 pkg update
 pkg upgrade -y
-pkg install curl git wget x11-repo tur-repo -y
+pkg install curl git wget zip x11-repo tur-repo -y
 pkg update
 rm -f .bashrc
 mkdir .bashrc.d
@@ -165,6 +165,12 @@ if [ -d "$HOME/.bashrc.d"  ];  then
     [ -r "$f"  ] && . "$f"
   done
 fi
+mkdir ~/.JetBrainsMono
+cd ~/.JetBrainsMono
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
+cd ~
+rm -rf .JetBrainsMono
 mkdir -p $PREFIX/local/go
 mkdir -p $PREFIX/local/java
 mkdir -p ~/.local/bin
