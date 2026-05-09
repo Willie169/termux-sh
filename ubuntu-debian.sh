@@ -110,8 +110,6 @@ touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew install bat fd fzf git-delta gurgeous/tap/tennis resvg ripgrep sevenzip starship yazi zoxide
-brew install --cask font-hack-nerd-font
-fc-cache -fv
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
