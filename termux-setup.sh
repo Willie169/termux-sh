@@ -126,8 +126,15 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 cd ~
-mkdir -p ~/.termux && touch ~/.termux/termux.properties && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
-perl -0777 -pe 's/(###############\n# Extra keys\n###############\n)/$1\nextra-keys = \[ \\\n  \[ \\\n    \{ key: ESC, popup: ":q" \}, \\\n    \{ key: DRAWER, popup: ":wq" \}, \\\n    \{ key: "\/", popup: ":" \}, \\\n    \{ key: "-", popup: "_" \}, \\\n    \{ key: HOME, popup: "\\\\\\\\\[" \}, \\\n    \{ key: UP, popup: "^" \}, \\\n    \{ key: END, popup: "\`" \}, \\\n    \{ key: PGUP, popup: "gg" \} \\\n  \], \\\n  \[ \\\n    \{ key: TAB, popup: ":q\\n" \}, \\\n    \{ key: "~", popup: ":wq\\n" \}, \\\n    \{ key: CTRL, popup: "\\\\\\\\" \}, \\\n    \{ key: ALT, popup: "\$" \}, \\\n    \{ key: LEFT, popup: "\\\\\\\\\]" \}, \\\n    \{ key: DOWN, popup: "!" \}, \\\n    \{ key: RIGHT, popup: "\`\`\`" \}, \\\n    \{ key: PGDN, popup: "G" \} \\\n  \] \\\n\]\n/s' ~/.termux/termux.properties > tmp
+mkdir -p ~/.termux && touch ~/.termux/termux.properties
+sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties
+sed '/shortcut.create-session/s/^# //' -i ~/.termux/termux.properties
+sed '/shortcut.next-session/s/^# //' -i ~/.termux/termux.properties
+sed '/shortcut.previous-session/s/^# //' -i ~/.termux/termux.properties
+sed 's/^# extra-keys-text-all-caps = true/extra-keys-text-all-caps = false/' -i ~/.termux/termux.properties
+termux-reload-settings
+sed '/^extra-keys/{N;d;}' -i ~/.termux/termux.properties
+perl -0777 -pe 's/(###############\n# Extra keys\n###############\n)/$1\nextra-keys = \[ \[ \{ key: DRAWER, popup: ":q" \}, \{ key: KEYBOARD, popup: ":q\\n" \}, \{ key: "EOF", popup: ":wq" \}, \{ key: "Z", popup: ":V" \}, \{ key: "CTRL t", popup: "yy" \}, \{ key: "CTRL 1", popup: "d\\\$" \}, \{ key: "CTRL 2", popup: "\\\\\\\\\[" \}, \{ key: "^", popup: "\\\\\\\\\]" \} \], \[ \{ key: ESC, popup: ":" \}, \{ key: "\/", popup: "\\\\\\\\" \}, \{ key: "\`", popup: "\`\`\`" \}, \{ key: DEL, popup: BKSP \}, \{ key: HOME, popup: "clear" \}, \{ key: UP, popup: \{ macro: "CTRL UP", display: "Up" \} \}, \{ key: END, popup: ENTER \}, \{ key: PGUP, popup: "gg" \} \], \[ \{ key: TAB, popup: \{ macro: "CTRL d", display: "Send EOF" \} \}, \{ key: "~", popup: \{ macro: "CTRL \\\\\\\\", display: "SIGQUIT" \} \}, \{ key: CTRL, popup: \{ macro: "CTRL c", display: "SIGINT" \} \}, \{ key: ALT, popup: \{ macro: "CTRL z", display: "SIGTSTP" \} \}, \{ key: LEFT, popup: \{ macro: "CTRL LEFT", display: "Left" \} \}, \{ key: DOWN, popup: \{ macro: "CTRL DOWN", display: "Down" \} \}, \{ key: RIGHT, popup: \{ macro: "CTRL RIGHT", display: "Right" \} \}, \{ key: PGDN, popup: "G" \} \] \]\n/s' ~/.termux/termux.properties > tmp
 mv tmp ~/.termux/termux.properties
 termux-reload-settings
 mkdir -p ~/.shortcuts
