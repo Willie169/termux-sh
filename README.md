@@ -100,7 +100,7 @@ nano ~/termux-sh/termux-setup.sh
 
 The variables below refer to the variables set in the beginning of [`termux-setup.sh`](termux-setup.sh).
 
-1. **Termux properties adjustments**: Enables external app access in `termux.properties`.
+1. **Termux properties adjustments**: Enables external app access and adjusts extra keys to my configuration designed for swipe gesture navigation, Vim, and LaTeX user (need relaunching Termux to take effect) in `termux.properties`.
 2. **JetBrainsMono Nerd Font**: Download and change terminal font to JetBrainsMono Nerd Font.
 2. **Shortcut configuration**: Copies shortcuts from **[`DOTshortcuts`](DOTshortcuts)** into `~/.shortcuts` folder (for **Termux:Widget**) and [`Documents.sh`](DOTshortcuts/Documents.sh), [`Download.sh`](DOTshortcuts/Download.sh), [`Scripts.sh`](DOTshortcuts/Scripts.sh), [`Storage.sh`](DOTshortcuts/Storage.sh), [`proot-termux.sh`](DOTshortcuts/proot-termux.sh), [`proot-ubuntu.sh`](DOTshortcuts/proot-ubuntu.sh), [`proot-debian.sh`](DOTshortcuts/proot-debian.sh), [`proot-ubuntubox.sh`](DOTshortcuts/proot-ubuntubox.sh), [`proot-debianbox.sh`](DOTshortcuts/proot-debianbox.sh) into home directory `~`. See [Shortcuts](#shortcuts) section for more information.
 2. **Bashrc configuration**: Copies `~/.bashrc.d` and `~/.bashrc` from my [**bashrc**](https://github.com/Willie169/bashrc) repo (can be updated with `update_bashrc`).

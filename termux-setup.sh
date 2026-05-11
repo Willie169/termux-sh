@@ -127,6 +127,9 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 cd ~
 mkdir -p ~/.termux && touch ~/.termux/termux.properties && sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties && termux-reload-settings
+perl -0777 -pe 's/(###############\n# Extra keys\n###############\n)/$1\nextra-keys = \[ \\\n  \[ \\\n    \{ key: ESC, popup: ":q" \}, \\\n    \{ key: DRAWER, popup: ":wq" \}, \\\n    \{ key: "\/", popup: ":" \}, \\\n    \{ key: "-", popup: "_" \}, \\\n    \{ key: HOME, popup: "\\\\\\\\\[" \}, \\\n    \{ key: UP, popup: "^" \}, \\\n    \{ key: END, popup: "\`" \}, \\\n    \{ key: PGUP, popup: "gg" \} \\\n  \], \\\n  \[ \\\n    \{ key: TAB, popup: ":q\\n" \}, \\\n    \{ key: "~", popup: ":wq\\n" \}, \\\n    \{ key: CTRL, popup: "\\\\\\\\" \}, \\\n    \{ key: ALT, popup: "\$" \}, \\\n    \{ key: LEFT, popup: "\\\\\\\\\]" \}, \\\n    \{ key: DOWN, popup: "!" \}, \\\n    \{ key: RIGHT, popup: "\`\`\`" \}, \\\n    \{ key: PGDN, popup: "G" \} \\\n  \] \\\n\]\n/s' ~/.termux/termux.properties > tmp
+mv tmp ~/.termux/termux.properties
+termux-reload-settings
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/Documents.sh ~
@@ -146,7 +149,7 @@ nameserver 2a10:50c0::2:ff
 EOF
 pkg update
 pkg upgrade -y
-pkg install curl git wget zip x11-repo tur-repo -y
+pkg install curl git perl wget zip x11-repo tur-repo -y
 pkg update
 rm -f .bashrc
 mkdir .bashrc.d
