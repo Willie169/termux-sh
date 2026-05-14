@@ -144,6 +144,7 @@ cp ~/termux-sh/DOTshortcuts/Download.sh ~
 cp ~/termux-sh/DOTshortcuts/Scripts.sh ~
 cp ~/termux-sh/DOTshortcuts/Storage.sh ~
 cp ~/termux-sh/DOTshortcuts/proot-*.sh ~
+mkdir ~/shared
 tee $PREFIX/etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
 nameserver 1.0.0.1
