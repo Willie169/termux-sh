@@ -139,10 +139,10 @@ mv tmp ~/.termux/termux.properties
 termux-reload-settings
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
-cp ~/termux-sh/DOTshortcuts/Documents.sh ~
-cp ~/termux-sh/DOTshortcuts/Download.sh ~
-cp ~/termux-sh/DOTshortcuts/Scripts.sh ~
-cp ~/termux-sh/DOTshortcuts/Storage.sh ~
+cp ~/termux-sh/DOTshortcuts/documents.sh ~
+cp ~/termux-sh/DOTshortcuts/download.sh ~
+cp ~/termux-sh/DOTshortcuts/scripts.sh ~
+cp ~/termux-sh/DOTshortcuts/storage.sh ~
 cp ~/termux-sh/DOTshortcuts/proot-*.sh ~
 mkdir ~/shared
 tee $PREFIX/etc/resolv.conf >/dev/null <<'EOF'
