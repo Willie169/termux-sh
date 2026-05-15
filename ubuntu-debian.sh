@@ -92,7 +92,6 @@ npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdow
 npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright tree-sitter-cli @openai/codex
 pipx install cmake-language-server gh2md libretranslate notebook jupyterlab jupytext meson poetry pylatexenc uv
 uv tool install --force --python python3.12 markitdown[all]
-curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://bun.com/install | bash
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
 rm Miniforge3-Linux-aarch64.sh
