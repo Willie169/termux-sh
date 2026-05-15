@@ -54,6 +54,7 @@ if [ -d "$HOME/.bashrc.d"  ];  then
     [ -r "$f"  ] && . "$f"
   done
 fi
+[ -r ~/API_KEY.sh  ] && source ~/API_KEY.sh
 mkdir -p /usr/local/go
 mkdir -p /usr/local/java
 mkdir -p /etc/apt/keyrings
@@ -108,7 +109,8 @@ conda config --add channels conda-forge
 touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
-brew install bat fd fzf git-delta gurgeous/tap/tennis resvg ripgrep sevenzip starship yazi zoxide
+brew install fzf gurgeous/tap/tennis resvg sevenzip starship yazi zoxide
+brew install ripgrep
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
@@ -268,6 +270,8 @@ git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
 cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
+curl -fsSL https://raw.githubusercontent.com/wimpysworld/deb-get/main/deb-get | bash -s install deb-get
+deb-get install bat fd git-delta
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
