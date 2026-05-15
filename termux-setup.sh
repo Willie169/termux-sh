@@ -179,6 +179,7 @@ fi
 mkdir ~/.JetBrainsMono
 cd ~/.JetBrainsMono
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+unzip JetBrainsMono.zip
 mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
 cd ~
 rm -rf .JetBrainsMono
