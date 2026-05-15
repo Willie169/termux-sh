@@ -187,7 +187,7 @@ mkdir -p $PREFIX/local/go
 mkdir -p $PREFIX/local/java
 mkdir -p ~/.local/bin
 [ -n "$PKG" ] && pkg install $PKG -y
-[ -f $PREFIX/etc/ssh/sshd_config ] && sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#\?PermitRootLogin.*/PermitRootLogin yes/' $PREFIX/etc/ssh/sshd_config
+[ -f $PREFIX/etc/ssh/sshd_config ] && sed -Ei 's/^#?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#?Port.*/Port 8022/' $PREFIX/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
 Host *
