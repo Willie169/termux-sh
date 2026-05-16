@@ -95,7 +95,7 @@ npm i -g bash-language-server dockerfile-language-server-nodejs http-server open
 pipx install cmake-language-server gh2md libretranslate notebook jupyterlab jupytext meson poetry pylatexenc uv
 uv tool install --force --python python3.12 markitdown[all]
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
-bash Miniforge3-Linux-aarch64.sh -b -p ${HOME}/conda
+bash Miniforge3-Linux-aarch64.sh -b -p "${HOME}/conda"
 rm Miniforge3-Linux-aarch64.sh
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
