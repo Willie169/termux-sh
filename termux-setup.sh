@@ -26,7 +26,7 @@ DEBIANBOXINSTALL=0
 ## CONFIG END
 
 pkg upgrade -y
-pkg install coreutils curl git perl proot-distro wget zip x11-repo tur-repo -y
+pkg install build-essential clang cmake coreutils curl git gzip make ninja nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar wget zip x11-repo tur-repo -y
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -298,16 +298,16 @@ fi
 [ -n "$TERMUX" ] && [ "$TERMUX" == termux ] && proot-distro install termux
 [ -n "$UBUNTU" ] && [ "$UBUNTU" != ubuntu ] && proot-distro install ubuntu --override-alias $UBUNTU
 [ -n "$UBUNTU" ] && [ "$UBUNTU" == ubuntu ] && proot-distro install ubuntu
-[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$UBUNTU/root/" && echo './ubuntu-debian.sh' | proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning
+[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $UBUNTU --isolated --fix-low-ports --shared-tmp --no-arch-warning
 [ -n "$DEBIAN" ] && [ "$DEBIAN" != debian ] && proot-distro install debian --override-alias $DEBIAN
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == debian ] && proot-distro install debian
-[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$DEBIAN/root/" && echo './ubuntu-debian.sh' | proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning
+[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $DEBIAN --isolated --fix-low-ports --shared-tmp --no-arch-warning
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" != ubuntu ] && proot-distro install ubuntu --override-alias $UBUNTUBOX
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == ubuntu ] && proot-distro install ubuntu
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$UBUNTUBOX/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $UBUNTUBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && proot-distro install debian --override-alias $DEBIANBOX
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && proot-distro install debian
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$DEBIANBOX/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $DEBIANBOX --isolated --fix-low-ports --shared-tmp --no-arch-warning
 rm -f ~/.bashrc.d/11-proot.sh
 [ -n "$TERMUX" ] || TERMUX="termux"
 [ -n "$UBUNTU" ] || UBUNTU="ubuntu"
