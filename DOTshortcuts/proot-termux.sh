@@ -1,1 +1,2 @@
-proot-distro login $TERMUX --isolated --fix-low-ports
+[ -z "$TERMUX" ] && TERMUX='termux'
+proot-distro login $TERMUX --redirect-ports --isolated
