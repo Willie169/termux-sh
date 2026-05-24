@@ -46,7 +46,7 @@ jobs:
           cd ~
       - name: Main
         run: |
-          bash ~/termux-sh/termux-setup.sh > ~/termux-setup.log 2>&1
+          bash ~/termux-sh/termux-setup.sh 2>&1 | tee ~/termux-setup.log
       - name: Upload log file
         uses: actions/upload-artifact@v4.6.0
         with:
