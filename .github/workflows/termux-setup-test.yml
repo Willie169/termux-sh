@@ -46,7 +46,7 @@ jobs:
       - name: Patch script
         run: |
           cd ~/termux-sh
-          sed -Ei 's/DEBIANINSTALL=0/DEBIANINSTALL=1/; s/^(pkg|pip|npm|proot-distro)/\/entrypoint.sh \1/; s/\&\& (pkg|pip|npm|proot-distro)/\&\& \/entrypoint.sh \1/; s/\|\| (pkg|pip|npm|proot-distro)/|| \/entrypoint.sh \1/; s/pkg install ($PKG|xfce4) -y/pkg install \1 -y --dry-run/' termux-setup.sh
+          sed -Ei 's/DEBIANINSTALL=0/DEBIANINSTALL=1/; s/^( ? )(pkg|pip|npm|proot-distro)/\1\/entrypoint.sh \2/; s/\&\& (pkg|pip|npm|proot-distro)/\&\& \/entrypoint.sh \1/; s/\|\| (pkg|pip|npm|proot-distro)/|| \/entrypoint.sh \1/; s/pkg install ($PKG|xfce4) -y/pkg install \1 -y --dry-run/' termux-setup.sh
           cd ~
       - name: Main
         run: |
