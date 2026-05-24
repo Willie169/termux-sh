@@ -106,6 +106,7 @@ bind=(
   "/data/data/com.termux/files/usr/libexec/termux-api"
   "/data/data/com.termux/files/usr/libexec/termux-api-broadcast"
   "/data/data/com.termux/files/usr/libexec/termux-callback"
+  "/data/data/com.termux/files/usr/lib"
   "/data/data/com.termux/files/home/shared	/root/shared"
 )
 for item in "${bind[@]}"; do
