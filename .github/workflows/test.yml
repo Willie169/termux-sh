@@ -19,6 +19,8 @@ jobs:
     runs-on: ${{ matrix.runner }}
     container:
       image: termux/termux-docker:${{ matrix.architecture }}
+      volumes: 
+        - /tmp/node20:/__e/node20
     env:
       TERMUX_MAIN_PACKAGE_FORMAT: debian
       ANDROID_ROOT: /system
@@ -30,10 +32,13 @@ jobs:
       LANG: en_US.UTF-8
       TZ: UTC
     steps:
-      - name: Set pkg command to use the packages-cf.termux.dev mirror
-        run: ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
-      - name: Fix executable bit for all binaries in $PREFIX/bin for all users
-        run: chmod -R o+x ${PREFIX}/bin
+      - name: Prepare
+        run: |
+          ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
+          /entrypoint.sh pkg upgrade -y
+          chmod -R o+x ${PREFIX}/bin
+          /entrypoint.sh pkg install nodejs-lts -y
+          ln -sf ${PREFIX}/bin /__e/node20/bin
       - name: Setup
         run: |
           /entrypoint.sh pkg install git -y
@@ -48,7 +53,7 @@ jobs:
           cd ~
           bash ~/termux-sh/termux-setup.sh > termux-setup.log
       - name: Upload log file
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4.6.0
         with:
-          name: termux-setup.log
+          name: termux-setup-${{ matrix.architecture }}.log
           path: termux-setup.log

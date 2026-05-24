@@ -28,7 +28,7 @@ DEBIANBOXINSTALL=0
 pkg upgrade -y
 pkg install coreutils curl git perl wget zip x11-repo tur-repo -y
 if [ -n "$TERMUX" ] || [ -n "$UBUNTU" ] || [ -n "$DEBIAN" ] || [ -n "$UBUNTUBOX" ] || [ -n "$DEBIANBOXINSTALL" ]; then
-  apt install proot-distro -y
+  pkg install proot-distro -y
 fi
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
