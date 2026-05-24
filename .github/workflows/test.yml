@@ -41,8 +41,14 @@ jobs:
       - name: Patch script
         run: |
           cd ~/termux-sh
-          sed -Ei 's/DEBIANINSTALL=0/DEBIANINSTALL=1/; s/^(pkg|pip|npm)/\/entrypoint.sh \1/; s/\&\& (pkg|pip|npm)/\&\& \/entrypoint.sh \1/; s/\|\| (pkg|pip|npm)/|| \/entrypoint.sh \1/' termux-setup.sh
+          sed -Ei 's/DEBIANINSTALL=0/DEBIANINSTALL=1/; s/^(pkg|pip|npm|proot-distro)/\/entrypoint.sh \1/; s/\&\& (pkg|pip|npm|proot-distro)/\&\& \/entrypoint.sh \1/; s/\|\| (pkg|pip|npm|proot-distro)/|| \/entrypoint.sh \1/; s/pkg install ($PKG|xfce4) -y/pkg install \1 -y --dry-run/' termux-setup.sh
           cd ~
       - name: Main
         run: |
-          bash ~/termux-sh/termux-setup.sh
+          cd ~
+          bash ~/termux-sh/termux-setup.sh > termux-setup.log
+      - name: Upload log file
+        uses: actions/upload-artifact@v4
+        with:
+          name: termux-setup.log
+          path: termux-setup.log
