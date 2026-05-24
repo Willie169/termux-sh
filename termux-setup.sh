@@ -25,6 +25,8 @@ DEBIANBOXINSTALL=0
 
 ## CONFIG END
 
+pkg upgrade -y
+pkg install coreutils curl git perl wget zip x11-repo tur-repo -y
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -155,10 +157,6 @@ nameserver 94.140.14.141
 nameserver 2a10:50c0::1:ff
 nameserver 2a10:50c0::2:ff
 EOF
-pkg update
-pkg upgrade -y
-pkg install curl git perl wget zip x11-repo tur-repo -y
-pkg update
 rm -f .bashrc
 mkdir .bashrc.d
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
