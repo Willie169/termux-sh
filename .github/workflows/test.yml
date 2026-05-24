@@ -30,19 +30,19 @@ jobs:
       LANG: en_US.UTF-8
       TZ: UTC
     steps:
-      - name: set pkg command to use the packages-cf.termux.dev mirror
+      - name: Set pkg command to use the packages-cf.termux.dev mirror
         run: ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
-      - name: fix executable bit for all binaries in $PREFIX/bin for all users
+      - name: Fix executable bit for all binaries in $PREFIX/bin for all users
         run: chmod -R o+x ${PREFIX}/bin
-      - name: setup
+      - name: Setup
         run: |
           /entrypoint.sh pkg install git -y
           cd ~ && git clone https://github.com/Willie169/termux-sh.git
-      - name: patch script
+      - name: Patch script
         run: |
           cd ~/termux-sh
           sed -Ei 's/DEBIANINSTALL=0/DEBIANINSTALL=1/; s/^(pkg|pip|npm)/\/entrypoint.sh \1/; s/\&\& (pkg|pip|npm)/\&\& \/entrypoint.sh \1/; s/\|\| (pkg|pip|npm)/|| \/entrypoint.sh \1/' termux-setup.sh
           cd ~
-      - name: main
+      - name: Main
         run: |
           bash ~/termux-sh/termux-setup.sh
