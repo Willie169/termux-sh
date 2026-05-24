@@ -40,7 +40,7 @@ jobs:
           cd ~ && git clone https://github.com/Willie169/termux-sh.git
       - name: patch script
         run: |
-          cd termux-sh
+          cd ~/termux-sh
           sed -Ei 's/DEBIANINSTALL=0/DEBIANINSTALL=1/; s/^(pkg|pip|npm)/\/entrypoint.sh \1/; s/\&\& (pkg|pip|npm)/\&\& \/entrypoint.sh \1/; s/\|\| (pkg|pip|npm)/|| \/entrypoint.sh \1/' termux-setup.sh
           cd ~
       - name: main
