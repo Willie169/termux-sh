@@ -2,7 +2,7 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fd ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq lazygit lftp libheif-progs libwebp libzmq llvm luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy qemu-system-x86-64-headless qpdf ruby runit rust shellcheck socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yarn zip zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison build-essential bzip2 chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg fastfetch fd ffmpeg file firefox flex fontconfig fontconfig-utils freetype gdb geckodriver gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gtkwave gzip inkscape iproute2 iverilog jpegoptim jq lazygit lftp libheif-progs libwebp libzmq llvm luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy p7zip qemu-system-x86-64-headless qpdf ruby runit rust shellcheck socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree unrar uuid-utils valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yarn zip zsh'
 XFCE=1
 ANDROID=1
 VIMRC=1
@@ -208,7 +208,7 @@ rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.
 cd ~
 [ "$XFCE" -eq 0 ] || pkg install xfce4 -y
 if [ "$ANDROID" -ne 0 ]; then
-pkg install aapt aapt2 aidl android-tools apksigner curl d8 jq openjdk-17 unzip -y
+pkg install aapt aapt2 aidl android-tools apksigner curl d8 jq openjdk-17 p7zip unzip -y
 cd $HOME
 wget --tries=100 --retry-connrefused --waitretry=5 https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
 unzip commandlinetools-linux-13114758_latest.zip
