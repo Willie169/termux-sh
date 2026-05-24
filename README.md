@@ -177,10 +177,12 @@ This repository is licensed under GNU General Public License General Public Lice
 
 ## Credits
 
-- [https://andronix.app](https://andronix.app)
-- [https://github.com/AndronixApp/AndronixOrigin](https://github.com/AndronixApp/AndronixOrigin)
-- [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter)
-- [https://github.com/termux/proot-distro](https://github.com/termux/proot-distro)
-- [https://ivonblog.com](https://ivonblog.com)
-- [https://wiki.termux.com](https://wiki.termux.com)
-- [https://www.qemu.org](https://www.qemu.org)
+- <https://andronix.app>
+- <https://github.com/AndronixApp/AndronixOrigin>
+- <https://github.com/sagar040/proot-distro-nethunter>
+- <https://github.com/robertkirkman/termux-on-gha>
+- <https://github.com/termux/proot-distro>
+- <https://github.com/termux/termux-app>
+- <https://ivonblog.com>
+- <https://wiki.termux.com>
+- <https://www.qemu.org>
