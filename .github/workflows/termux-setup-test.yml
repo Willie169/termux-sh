@@ -53,7 +53,7 @@ jobs:
           cd ~
           bash ~/termux-sh/termux-setup.sh > termux-setup.log
       - name: Upload log file
-      - uses: actions/upload-artifact@v4.6.0
+        uses: actions/upload-artifact@v4.6.0
         with:
           name: termux-setup-${{ matrix.architecture }}.log
           path: termux-setup.log
