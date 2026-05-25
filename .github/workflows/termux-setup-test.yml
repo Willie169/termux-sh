@@ -32,9 +32,8 @@ jobs:
         run: |
           ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
           /entrypoint.sh pkg upgrade -y
-          chmod -R o+x ${PREFIX}/bin
-          mkdir -p $HOME/.local/bin
-          chmod -R o+x $HOME/.local/bin
+          chmod -R o+x ${PREFIX}
+          chmod -R o+x ${HOME}
           /entrypoint.sh pkg install nodejs-lts git perl -y
           ln -sf ${PREFIX}/bin /__e/node20/bin
       - name: Checkout
