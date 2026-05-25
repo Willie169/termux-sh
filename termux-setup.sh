@@ -281,8 +281,8 @@ require("lazy").setup({
 EOF
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 fi
-[ -n "$NPM" ] && npm install $NPM
-[ -n "$NPMG" ] && npm install -g $NPMG
+[ -n "$NPM" ] && npm i $NPM
+[ -n "$NPMG" ] && npm i -g $NPMG
 if [ -n "$PIP" ]; then
 pip3 install $PIP || true
 pip3 install $PIP
