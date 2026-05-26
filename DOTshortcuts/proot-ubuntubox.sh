@@ -120,5 +120,5 @@ for item in "${bind[@]}"; do
     cmd+=(--bind "$first")
   fi
 done
-cmd+=(--env TERMUX_PREFIX="/data/data/com.termux/files/usr")
+cmd+=(--env PREFIX="/data/data/com.termux/files/usr")
 "${cmd[@]}"
