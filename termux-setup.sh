@@ -128,7 +128,7 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
-cd ~
+cd ~ || exit
 mkdir -p ~/.termux && touch ~/.termux/termux.properties
 sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties
 sed '/shortcut.create-session/s/^# //' -i ~/.termux/termux.properties
@@ -176,11 +176,11 @@ if [ -d "$HOME/.bashrc.d"  ];  then
   done
 fi
 mkdir ~/.JetBrainsMono
-cd ~/.JetBrainsMono
+cd ~/.JetBrainsMono || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
 unzip JetBrainsMono.zip
 mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
-cd ~
+cd ~ || exit
 rm -rf .JetBrainsMono
 termux-reload-settings
 mkdir -p $PREFIX/local/go
@@ -199,32 +199,32 @@ tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz
 mv superhtml ~/.local/bin
 mkdir eclipse.jdt.ls
-cd eclipse.jdt.ls
+cd eclipse.jdt.ls || exit
 wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
 tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
-cd ~
+cd ~ || exit
 [ "$XFCE" -eq 0 ] || pkg install xfce4 -y
 if [ "$ANDROID" -ne 0 ]; then
 pkg install aapt aapt2 aidl android-tools apksigner curl d8 jq openjdk-17 p7zip unzip -y
-cd $HOME
+cd ~ || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
 unzip commandlinetools-linux-13114758_latest.zip
 rm commandlinetools-linux-13114758_latest.zip
 mkdir Android
-cd Android
+cd Android || exit
 mkdir Sdk
-cd Sdk
+cd Sdk || exit
 export ANDROID_SDK_ROOT=$HOME/Android/Sdk
 mkdir cmdline-tools
-cd cmdline-tools
+cd cmdline-tools || exit
 mkdir latest
-cd latest
+cd latest || exit
 mv $HOME/cmdline-tools/* .
 rm -r $HOME/cmdline-tools
-cd bin
+cd bin || exit
 echo y | ./sdkmanager "build-tools;30.0.3" "platform-tools" "platforms;android-33" "sources;android-33"
-cd $HOME
+cd ~ || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
 7z x android-ndk-r29-aarch64.7z -o$HOME/Android/Sdk/ndk
 rm android-ndk-r29-aarch64.7z
@@ -284,10 +284,11 @@ curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubuse
 fi
 if [ "$PHICE" -ne 0 ]; then
 pkg install uv -y
-git clone https://codeberg.org/c4ffe14e/phice
-cd phice
+git clone https://codeberg.org/c4ffe14e/phice.git
+cd phice || exit
 uv sync
 cp config.example.toml config.toml
+cd ~ || exit
 fi
 [ -n "$NPM" ] && npm i $NPM
 [ -n "$NPMG" ] && npm i -g $NPMG
