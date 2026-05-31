@@ -232,10 +232,10 @@ cat > ~/.bashrc.d/11-proot.sh <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
 
 EOF
-[ -n "$TERMUX" ] && echo "export TERMUX=$TERMUX" | tee -a ~/.bashrc.d/11-proot.sh
-[ -n "$UBUNTU"  ] && echo "export UBUNTU=$UBUNTU" | tee -a ~/.bashrc.d/11-proot.sh
-[ -n "$DEBIAN"  ] && echo "export DEBIAN=$DEBIAN" | tee -a ~/.bashrc.d/11-proot.sh
-[ -n "$UBUNTUBOX"  ] && echo "export UBUNTUBOX=$UBUNTUBOX" | tee -a ~/.bashrc.d/11-proot.sh
-[ -n "$DEBIANBOX"  ] && echo "export DEBIANBOX=$DEBIANBOX" | tee -a ~/.bashrc.d/11-proot.sh
+[ -n "$TERMUX" ] && echo "export TERMUX=$TERMUX" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$UBUNTU"  ] && echo "export UBUNTU=$UBUNTU" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$DEBIAN"  ] && echo "export DEBIAN=$DEBIAN" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$UBUNTUBOX"  ] && echo "export UBUNTUBOX=$UBUNTUBOX" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$DEBIANBOX"  ] && echo "export DEBIANBOX=$DEBIANBOX" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
 rm -rf ~/termux-sh
 exit
