@@ -218,34 +218,24 @@ fi
 [ -n "$GO" ] && go install $GO
 [ "$ANTLR" -eq 0 ] || wget -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 [ "$PLANTUML" -eq 0 ] || wget -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-[ -n "$TERMUX" ] && [ "$TERMUX" != termux ] && proot-distro install termux --override-alias $TERMUX
-[ -n "$TERMUX" ] && [ "$TERMUX" == termux ] && proot-distro install termux
-[ -n "$UBUNTU" ] && [ "$UBUNTU" != ubuntu ] && proot-distro install ubuntu --override-alias $UBUNTU
-[ -n "$UBUNTU" ] && [ "$UBUNTU" == ubuntu ] && proot-distro install ubuntu
+[ -n "$TERMUX" ] && proot-distro install termux/termux-docker:aarch64 --name $TERMUX
+[ -n "$UBUNTU" ] && proot-distro install ubuntu:rolling --name $UBUNTU
 [ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $UBUNTU --redirect-ports --shared-tmp --isolated
-[ -n "$DEBIAN" ] && [ "$DEBIAN" != debian ] && proot-distro install debian --override-alias $DEBIAN
-[ -n "$DEBIAN" ] && [ "$DEBIAN" == debian ] && proot-distro install debian
+[ -n "$DEBIAN" ] && proot-distro install debian:stable --name $DEBIAN
 [ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $DEBIAN --redirect-ports --shared-tmp --isolated
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" != ubuntu ] && proot-distro install ubuntu --override-alias $UBUNTUBOX
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == ubuntu ] && proot-distro install ubuntu
+[ -n "$UBUNTUBOX" ] && proot-distro install ubuntu:rolling --name $UBUNTUBOX
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $UBUNTUBOX --redirect-ports --shared-tmp --isolated
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" != debian ] && proot-distro install debian --override-alias $DEBIANBOX
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOX" == debian ] && proot-distro install debian
+[ -n "$DEBIANBOX" ] && proot-distro install debian:stable --name $DEBIANBOX
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $DEBIANBOX --redirect-ports --shared-tmp --isolated
 rm -f ~/.bashrc.d/11-proot.sh
-[ -n "$TERMUX" ] || TERMUX="termux"
-[ -n "$UBUNTU" ] || UBUNTU="ubuntu"
-[ -n "$DEBIAN" ] || DEBIAN="debian"
-[ -n "$UBUNTUBOX" ] || UBUNTUBOX="ubuntubox"
-[ -n "$DEBIANBOX" ] || DEBIANBOX="debianbox"
 cat > ~/.bashrc.d/11-proot.sh <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
 
-export TERMUX="$TERMUX"
-export UBUNTU="$UBUNTU"
-export DEBIAN="$DEBIAN"
-export UBUNTUBOX="$UBUNTUBOX"
-export DEBIANBOX="$DEBIANBOX"
 EOF
+[ -n "$TERMUX" ] && echo "export TERMUX=$TERMUX" | tee -a ~/.bashrc.d/11-proot.sh
+[ -n "$UBUNTU"  ] && echo "export UBUNTU=$UBUNTU" | tee -a ~/.bashrc.d/11-proot.sh
+[ -n "$DEBIAN"  ] && echo "export DEBIAN=$DEBIAN" | tee -a ~/.bashrc.d/11-proot.sh
+[ -n "$UBUNTUBOX"  ] && echo "export UBUNTUBOX=$UBUNTUBOX" | tee -a ~/.bashrc.d/11-proot.sh
+[ -n "$DEBIANBOX"  ] && echo "export DEBIANBOX=$DEBIANBOX" | tee -a ~/.bashrc.d/11-proot.sh
 rm -rf ~/termux-sh
 exit
