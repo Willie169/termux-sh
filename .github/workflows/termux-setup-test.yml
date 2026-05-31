@@ -2,7 +2,7 @@ name: termux-setup-test
 on:
   workflow_dispatch:
 jobs:
-  working:
+  termux-setup-test:
     strategy:
       matrix:
         include:
