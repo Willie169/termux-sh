@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   termux-setup-test:
+    timeout-minutes: 360
     strategy:
       matrix:
         include:
@@ -27,6 +28,7 @@ jobs:
       TZ: UTC
     steps:
       - name: Prepare
+        timeout-minutes: 360
         run: |
           ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
           /entrypoint.sh pkg upgrade -y
@@ -35,8 +37,10 @@ jobs:
           /entrypoint.sh pkg install nodejs-lts git perl -y
           ln -sf ${PREFIX}/bin /__e/node20/bin
       - name: Checkout
+        timeout-minutes: 360
         run: cd ~ && git clone https://github.com/Willie169/termux-sh.git
       - name: Patch script
+        timeout-minutes: 360
         run: |
           cd ~/termux-sh
           perl -i -pe '
@@ -71,9 +75,11 @@ jobs:
           }
           ' ubuntu-debian.sh
       - name: Main
+        timeout-minutes: 360
         run: |
           bash ~/termux-sh/termux-setup.sh
       - name: Upload log file
+        timeout-minutes: 360
         uses: actions/upload-artifact@v4.6.0
         with:
           name: termux-setup-${{ matrix.architecture }}.log
