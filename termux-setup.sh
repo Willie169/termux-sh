@@ -12,6 +12,7 @@ NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
 PIPX='cmake-language-server gh2md meson pylatexenc tldr yamllint'
 GO=''
+YTDLP=1
 ANTLR=1
 PLANTUML=1
 TERMUX='termux'
@@ -216,6 +217,12 @@ pip3 install pipx
 pipx install $PIPX
 fi
 [ -n "$GO" ] && go install $GO
+if [ "$YTDLP" -ne 0 ]; then
+pip3 install pipx
+pkg install ffmpeg -y
+pipx install yt-dlp
+pipx runpip yt-dlp install yt-dlp-ejs
+fi
 [ "$ANTLR" -eq 0 ] || wget -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 [ "$PLANTUML" -eq 0 ] || wget -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker:aarch64 --name $TERMUX

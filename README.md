@@ -112,8 +112,9 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Vim and Neovim configuration**: Installs [my modified version](https://github.com/Willie169/vimrc) of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim, and lazy.nvim and Neovim plugins from my [**bashrc**](https://github.com/Willie169/bashrc) repo (can be updated by running `update_nvim`) for Neovim, if not `$VIMRC=0`.
 2. **Phice**: Installs Phice, a lightweight privacy-friendly alternative front-end for Facebook, if not `$PHICE=0`. It can be started by running `cd ~/phice && uv run gunicorn -b 127.0.0.1:<port> -w 4 "app:app"` or `phice [port]` (defined in my [**bashrc**](https://github.com/Willie169/bashrc), if port not specified, `5000` is used) and accessed on `localhost:<port>`.
 2. **NPM packages**: Installs NPM packages set in `$NPM` locally in `~` and NPM packages set in `$NPMG` globally.
-2. **Pip packages**: Installs pip packages set in `$PIP`.
-2. **Pipx packages**: Installs pip packages set in `$PIPX`.
+2. **pip packages**: Installs pip packages set in `$PIP`.
+2. **pipx packages**: Installs pip packages set in `$PIPX`.
+2. **yt-dlp**: Installs yt-dlp with yt-dlp-ejs using pipx if not `$YTDLP=0`.
 2. **Go packages**: Installs Go packages set in `$GO`.
 2. **JARs**: Installs ANTLR 4 (JAR in `/usr/local/java`) if not `$ANTLR=0` and PlantUML (JAR in `/usr/local/java`) if not `$PLANTUML=0`.
 2. **Proot-distro Termux environment**: Installs an Termux proot-distro environment with alias `$TERMUX`, which can be booted using script `proot-termux.sh` in home directory `~` and `~/.shortcuts` folder (for **Termux:Widget**), if `$TERMUX` is not empty string.
