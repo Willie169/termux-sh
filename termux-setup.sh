@@ -2,13 +2,13 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison broot build-essential bzip2 calcurse chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file firefox flex fontconfig fontconfig-utils freetype fzf gdb geckodriver gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gtkwave gzip hyperfine inkscape iproute2 iverilog jpegoptim jq lazygit lftp libheif-progs libwebp libzmq llvm lsd luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nnn nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy p7zip qemu-system-x86-64-headless qpdf ruby runit rust shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yq zip zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison broot build-essential bzip2 calcurse chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fontconfig fontconfig-utils freetype fzf gdb geckodriver gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gtkwave gzip hyperfine inkscape iproute2 iverilog jpegoptim jq lazygit lftp libheif-progs libwebp libzmq llvm lsd luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink nano ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nnn nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy p7zip qemu-system-x86-64-headless qpdf ruby runit rust shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv valgrind vim virglrenderer-mesa-zink wget wget2 which xmlstarlet yq zip zsh'
 XFCE=1
 ANDROID=1
 VIMRC=1
 PHICE=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
-NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright'
+NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
 PIPX='cmake-language-server gh2md meson pylatexenc tldr yamllint'
 GO=''

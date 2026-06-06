@@ -84,7 +84,7 @@ chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 apt update
 apt install eza -y
 npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
-npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @openai/codex
+npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
 pipx install cmake-language-server fdroidserver gh2md libretranslate notebook jupyterlab jupytext meson poetry pylatexenc tldr uv yamllint
 uv tool install --force --python python3.12 markitdown[all]
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
