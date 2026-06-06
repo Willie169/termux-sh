@@ -63,7 +63,7 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
 apt upgrade -y
-apt install abcde alien alsa-utils apksigner apt-transport-https aptitude audacity autoconf automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl dbus debian-archive-keyring debian-keyring default-jdk dmg2img dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji g++ gcc gdb gfortran gh ghc ghostscript git git-lfs glab gnupg gnupg2 golang-go gopls gperf gpg grep gtkwave gzip hyperfine info imagemagick inkscape iproute2 iverilog jpegoptim jq lftp libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libguestfs-tools libheif-examples libhwloc-dev libhwloc-plugins libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libreoffice libsqlite3-dev libssl-dev libuv1t64 libuv1-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm lsb-release lsd lzip make maven mc nano ncompress neovim netcat-openbsd ngspice ninja-build nmap nnn octave openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc perl-tk pipx pkg-config plantuml poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qtbase5-dev qtbase5-dev-tools rustup shellcheck shfmt socat sqlite3 sudo tar tk-dev tmux tree tree-sitter-cli tsocks ttf-mscorefonts-installer unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y
+apt install abcde alien alsa-utils apksigner apt-transport-https aptitude audacity autoconf automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl dbus debian-archive-keyring debian-keyring default-jdk dmg2img dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gfortran gh ghc ghostscript git git-lfs glab gnupg gnupg2 golang-go gopls gperf gpg grep gtkwave gzip hyperfine info imagemagick inkscape iproute2 iverilog jpegoptim jq lftp libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libguestfs-tools libheif-examples libhwloc-dev libhwloc-plugins libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libreoffice libsqlite3-dev libssl-dev libuv1t64 libuv1-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm lsb-release lsd lzip make maven mc nano ncompress neovim netcat-openbsd ngspice ninja-build nmap nnn octave openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc perl-tk pipx pkg-config plantuml poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qtbase5-dev qtbase5-dev-tools rustup shellcheck shfmt socat sqlite3 sudo tar tk-dev tmux tree tree-sitter-cli tsocks ttf-mscorefonts-installer unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y
 apt install nodejs npm -y
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
@@ -280,6 +280,100 @@ cd ~
 rm -rf install-tl-*
 /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
 mkdir -p ~/.config/fontconfig/conf.d
+cat > ~/.config/fontconfig/conf.d/00-noto.conf <<'EOF'
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<match target="pattern">
+  <test name="family">
+    <string>system-ui</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>sans-serif</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>sans-serif</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>Noto Sans</string>
+    <string>Noto Sans CJK TC</string>
+    <string>Noto Sans CJK SC</string>
+    <string>Noto Sans CJK JP</string>
+    <string>Noto Sans CJK KR</string>
+    <string>Noto Sans CJK HK</string>
+    <string>Noto Color Emoji</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>serif</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>Noto Serif</string>
+    <string>Noto Serif CJK TC</string>
+    <string>Noto Serif CJK SC</string>
+    <string>Noto Serif CJK JP</string>
+    <string>Noto Serif CJK KR</string>
+    <string>Noto Serif CJK HK</string>
+    <string>Noto Color Emoji</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>monospace</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>Noto Sans Mono</string>
+    <string>Noto Sans Mono CJK TC</string>
+    <string>Noto Sans Mono CJK SC</string>
+    <string>Noto Sans Mono CJK JP</string>
+    <string>Noto Sans Mono CJK KR</string>
+    <string>Noto Sans Mono CJK HK</string>
+    <string>Noto Color Emoji</string>
+  </edit>
+</match>
+</fontconfig>
+EOF
+cat > ~/.config/fontconfig/conf.d/01-replace.conf <<'EOF'
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<match target="pattern">
+  <test name="family">
+    <string>DFKai-SB</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>TW-Kai</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>MingLiu</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>TW-Sung</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>PMingLiu</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>TW-Sung</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>Microsoft JhengHei</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>WenQuanYi Zen Hei</string>
+  </edit>
+</match>
+</fontconfig>
+EOF
 cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
