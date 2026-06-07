@@ -10,7 +10,7 @@ PHICE=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
-PIPX='cmake-language-server gh2md meson pylatexenc tldr yamllint'
+PIPX='cmake-language-server gallery-dl gh2md meson pylatexenc tldr yamllint'
 GO=''
 ANTLR=1
 PLANTUML=1
