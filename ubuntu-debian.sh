@@ -94,12 +94,10 @@ export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
 conda config --set auto_activate_base false
-conda config --add channels bioconda
 conda config --add channels pypi
 conda config --add channels pytorch
-conda config --add channels microsoft
-conda config --add channels defaults
 conda config --add channels conda-forge
+conda config --remove channels defaults || true
 touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
