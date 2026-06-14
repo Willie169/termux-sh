@@ -93,6 +93,14 @@ mv apktool /usr/local/bin/
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool apktool_*.jar
 chmod +x apktool_*.jar
 mv apktool_*.jar /usr/local/bin/
+mkdir jadx
+cd jadx || exit
+gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
+unzip jadx*.zip
+rm jadx*.zip
+chmod +x bin/jadx
+chmod +x bin/jadx-gui
+cd ~ || exit
 npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
 pipx install cmake-language-server gh2md libretranslate notebook jupyterlab jupytext meson poetry pylatexenc tldr uv yamllint
