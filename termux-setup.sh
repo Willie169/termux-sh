@@ -12,6 +12,7 @@ NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
 PIPX='cmake-language-server gallery-dl gh2md meson pylatexenc tldr yamllint'
 GO=''
+APKTOOL=1
 ANTLR=1
 PLANTUML=1
 TERMUX='termux'
@@ -217,6 +218,14 @@ pip3 install pipx
 pipx install $PIPX
 fi
 [ -n "$GO" ] && go install $GO
+if [ "$APKTOOL" -ne 0 ]; then
+wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
+chmod +x apktool
+mv apktool $PREFIX/local/bin/
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool apktool_*.jar
+chmod +x apktool_*.jar
+mv apktool_*.jar $PREFIX/local/bin/
+fi
 [ "$ANTLR" -eq 0 ] || wget -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 [ "$PLANTUML" -eq 0 ] || wget -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker:aarch64 --name $TERMUX

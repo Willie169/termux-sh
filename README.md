@@ -115,6 +115,7 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **pip packages**: Installs pip packages set in `$PIP`.
 2. **pipx packages**: Installs pip packages set in `$PIPX`.
 2. **Go packages**: Installs Go packages set in `$GO`.
+2. **Apktool**: Installs Apktool in `/$PREFIX/local/bin` if not `$APKTOOL=0`
 2. **JARs**: Installs ANTLR 4 (JAR in `/usr/local/java`) if not `$ANTLR=0` and PlantUML (JAR in `/usr/local/java`) if not `$PLANTUML=0`.
 2. **Proot-distro Termux environment**: Installs an Termux proot-distro environment with alias `$TERMUX`, which can be booted using script `proot-termux.sh` in home directory `~` and `~/.shortcuts` folder (for **Termux:Widget**), if `$TERMUX` is not empty string.
 2. **Proot-distro Ubuntu environment**: Installs an Ubuntu ARM64 proot-distro environment with alias `$UBUNTU` if `$UBUNTU` is not empty string, and runs [`ubuntu-debian.sh`](ubuntu-debian.sh) in it if `$UBUNTU` is not empty string and `$UBUNTUINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section for more information. 
@@ -128,7 +129,7 @@ These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding 
 
 - [`ubuntu-debian.sh`](ubuntu-debian.sh): Configures PulseAudio and VirGL (according to my <https://github.com/Willie169/termux-x11-virgl-gpu-acceleration> repo and with variables exported in `~/.bashrc`) and installs development tools, runtime environments, and utilities for C, C++, Python3, Java 21, 
   Rust, Go, Ruby, Perl, Fortran, Qt5, .NET SDK 10, ASP.NET Core Runtime 10, Aptitude, GitHub CLI, OpenSSL, OpenSSH, JQ, DMG2IMG, libguestfs, GHC Filesystem, FFMPEG, Pandoc, TeX Live (via regular installation instead of APT for unrestricted `tlmgr` and updates, can be updated with `update_texlive`), Maven, Zsh, iproute2, 
-  net-tools, Nmap, Alien, Node.js and NPM (via APT), NPM packages `jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown` locally in `~`, http-server, LintHTML, OpenCode, Codex, Lazygit, Homebrew, Glow, bat, fd, dust, fzf, Delta, Tennis, ripgrep (rg), starship, Yazi, zoxide, eza, Miniforge, pipx, uv, Poetry, MarkItDown, procs, tldr, apktool, broot, bottom (btm), hyperfine, nnn, xplr, lsd, 
+  net-tools, Nmap, Alien, Node.js and NPM (via APT), NPM packages `jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown` locally in `~`, http-server, LintHTML, OpenCode, Codex, Lazygit, Homebrew, Glow, bat, fd, dust, fzf, Delta, Tennis, ripgrep (rg), starship, Yazi, zoxide, eza, Miniforge, pipx, uv, Poetry, MarkItDown, procs, tldr, Apktool, broot, bottom (btm), hyperfine, nnn, xplr, lsd, 
   gh2md, LibreTranslate, Jupyter Notebook, JupyterLab, Jupytext, Meson, Tree-sitter CLI, pylatexenc, lazy.nvim and Neovim plugins from my [**bashrc**](https://github.com/Willie169/bashrc) repo (can be updated by running `update_nvim`), LSP servers, 
   RARLAB UnRAR, Icarus Verilog, Verilator, Ngspice, jpegoptim, optipng, libheif, LibWebP, ImageMagick, Inkscape, Poppler, qpdf, PDFtk, Ghostscript, Bookletimposer, Audacity, abcde, 
   w3m, XMLStarlet, Git LFS, GTKWave, llmfit, ANTLR 4 (JAR in `/usr/local/java`), Firefox, Octave, XFCE desktop environment (can be started with Termux:X11 by running `termux-x11 :0 &`, logging into Proot-distro with `--shared-tmp` option, and running `export DISPLAY=:0` 
