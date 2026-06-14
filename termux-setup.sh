@@ -98,6 +98,7 @@ mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
 cd ~ || exit
 rm -rf .JetBrainsMono
 termux-reload-settings
+mkdir -p $PREFIX/local/bin
 mkdir -p $PREFIX/local/go
 mkdir -p $PREFIX/local/java
 mkdir -p ~/.local/bin

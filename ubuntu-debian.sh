@@ -87,6 +87,12 @@ echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable
 chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
 apt update
 apt install eza -y
+wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
+chmod +x apktool
+mv apktool /usr/local/bin/
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool apktool_*.jar
+chmod +x apktool_*.jar
+mv apktool_*.jar /usr/local/bin/
 npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
 pipx install cmake-language-server gh2md libretranslate notebook jupyterlab jupytext meson poetry pylatexenc tldr uv yamllint
@@ -106,7 +112,7 @@ touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew trust gurgeous/tap
-echo y | brew install apktool broot dust fzf gurgeous/tap/tennis procs resvg sevenzip starship xplr yazi yq zoxide
+echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg sevenzip starship xplr yazi yq zoxide
 brew install ripgrep
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
