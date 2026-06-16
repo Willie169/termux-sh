@@ -119,7 +119,7 @@ touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew trust gurgeous/tap || true
-echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide
+echo y | brew install broot fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
 mkdir -p ~/.config/nvim/lua/plugins
