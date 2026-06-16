@@ -144,7 +144,7 @@ These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding 
   全字庫正宋體 TW-Sung (set as fallback font for 細明體 MingLiu and 新細明體 PMingLiu), 文泉驛正黑 WenQuanYi Zen Hei (set as fallback font for 微軟正黑體 Microsoft JhengHei), [my modified version](https://github.com/Willie169/vimrc) 
   of [vimrc by Amir Salihefendic (amix)](https://github.com/amix/vimrc) for both Vim and Neovim (can be updated by running `update_vimrc`), my LaTeX package [`physics-patch`](https://github.com/Willie169/physics-patch) (in `~/texmf/tex/latex/physics-patch`, checked out `dev` branch, and can be updated with `update_latex`), my LaTeX template [`LaTeX-ToolKit`](https://github.com/Willie169/LaTeX-ToolKit) (in `/usr/share/LaTeX-ToolKit/template.tex` and can be updated
   with `update_latex`), copies `~/.bashrc.d` and `~/.bashrc` from my [**bashrc**](https://github.com/Willie169/bashrc) 
-  repo (can be updated by running `update_bashrc`, tools installed by this script that is not managed by a package manager can be updated by running `update_tools`), and more, on Ubuntu or Debian ARM64 Proot environment.
+  repo (can be updated by running `update_bashrc`, tools installed by this script that is not managed by a package manager can be updated by running `update_tools`, tools installed by this script and package managers can be updated by running `update_all`), and more, on Ubuntu or Debian ARM64 Proot environment.
 - [`box64-wine64-winetricks.sh`](box64-wine64-winetricks.sh): Installs `box64`, `wine64`, and `winetricks` for running x86\_64 Linux and Windows applications on Debian derivatives ARM64. (No longer actively maintained.)
 
 ## Shortcuts
