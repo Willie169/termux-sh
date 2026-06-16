@@ -103,7 +103,7 @@ chmod +x bin/jadx-gui
 cd ~ || exit
 npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
-pipx install cmake-language-server gh2md libretranslate notebook jupyterlab jupytext meson poetry pylatexenc tldr uv yamllint
+pipx install cmake-language-server gh2md jupyterlab jupytext libretranslate meson notebook poetry pylatexenc tldr uv yamllint
 uv tool install --force --python python3.12 markitdown[all]
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p "${HOME}/conda"
@@ -122,11 +122,11 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew trust gurgeous/tap
 echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg sevenzip starship xplr yazi yq zoxide
 brew install ripgrep
+brew vendor-gems
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
-brew vendor-gems
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
 mkdir -p ~/.config/nvim/lua/plugins

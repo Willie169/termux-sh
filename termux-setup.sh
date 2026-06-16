@@ -2,7 +2,8 @@
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 autoconf automake bash bc bison broot build-essential bzip2 calcurse chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fontconfig fontconfig-utils freetype fzf gdb geckodriver gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gtkwave gzip hyperfine inkscape iproute2 iverilog jadx jpegoptim jq lazygit lftp libheif-progs libwebp libzmq llvm lsd luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano ncdu ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nnn nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy python-yt-dlp p7zip qemu-system-x86-64-headless qpdf ruby runit rust scrcpy shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv valgrind vim virglrenderer-mesa-zink wget wget2 which w3m xmlstarlet yazi yq yt-dlp-ejs zip zsh'
+PKG='alsa-utils aria2 autoconf automake bash bc bison broot build-essential bzip2 calcurse chromium clang cmake command-not-found curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fontconfig fontconfig-utils freetype fzf gdb geckodriver gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gtkwave gzip hyperfine inkscape iproute2 iverilog jadx jpegoptim jq lazygit lftp libheif-progs libwebp libzmq llvm lsd luv lzip make mandoc matplotlib maven mc mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano ncdu ncurses-utils neovim netcat-openbsd net-tools ngspice ninja nmap nnn nodejs-lts npm octave-x openjdk-21 openssh openssh-sftp-server openssl openssl-tool optipng pdftk perl poppler procps proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy python-yt-dlp p7zip qemu-system-x86-64-headless qpdf ruby runit rust scrcpy shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-licenses termux-tools termux-x11-nightly tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv valgrind vim virglrenderer-mesa-zink wget wget2 which w3m xmlstarlet yazi yq yt-dlp-ejs zip zsh'
+GITDELTA=1
 XFCE=1
 ANDROID=1
 VIMRC=1
@@ -121,6 +122,13 @@ wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/down
 tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 cd ~ || exit
+if [ "$GITDELTA" -ne 0 ]; then
+pkg install git-delta -y
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global merge.conflictStyle zdiff3
+fi
 [ "$XFCE" -eq 0 ] || pkg install xfce4 -y
 if [ "$ANDROID" -ne 0 ]; then
 pkg install aapt aapt2 aidl android-tools apksigner curl d8 jq openjdk-17 p7zip unzip -y
