@@ -250,10 +250,10 @@ cat > ~/.bashrc.d/11-proot.sh <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
 
 EOF
-[ -n "$TERMUX" ] && echo "export TERMUX=$TERMUX" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
-[ -n "$UBUNTU"  ] && echo "export UBUNTU=$UBUNTU" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
-[ -n "$DEBIAN"  ] && echo "export DEBIAN=$DEBIAN" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
-[ -n "$UBUNTUBOX"  ] && echo "export UBUNTUBOX=$UBUNTUBOX" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
-[ -n "$DEBIANBOX"  ] && echo "export DEBIANBOX=$DEBIANBOX" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$TERMUX" ] && echo -e "export TERMUX=$TERMUX\nexport TERMUX_HOME=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files/home\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$UBUNTU"  ] && echo -e "export UBUNTU=$UBUNTU\nexport UBUNTU_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTU/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$DEBIAN"  ] && echo -e "export DEBIAN=$DEBIAN\nexport DEBIAN_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIAN/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$UBUNTUBOX"  ] && echo -e "export UBUNTUBOX=$UBUNTUBOX\nexport UBUNTUBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTUBOX/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
+[ -n "$DEBIANBOX"  ] && echo -e "export DEBIANBOX=$DEBIANBOX\nexport DEBIANBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIANBOX/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
 rm -rf ~/termux-sh
 exit
