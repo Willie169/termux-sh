@@ -56,7 +56,6 @@ if [ -d "$HOME/.bashrc.d"  ];  then
     [ -r "$f"  ] && . "$f"
   done
 fi
-[ -r ~/API_KEY.sh  ] && source ~/API_KEY.sh
 mkdir -p /usr/local/java
 mkdir -p /etc/apt/keyrings
 mkdir -p ~/.local/bin
