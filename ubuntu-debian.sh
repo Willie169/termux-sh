@@ -105,7 +105,7 @@ chmod +x bin/jadx-gui
 cd ~ || exit
 corepack enable yarn
 npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
-npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
+npm i -g --allow-scripts=opencode-ai bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
 pipx install cmake-language-server gh2md jupyterlab jupytext libretranslate meson notebook poetry pylatexenc tldr uv yamllint
 uv tool install --force --python python3.12 markitdown[all]
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
