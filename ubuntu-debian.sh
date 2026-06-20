@@ -118,7 +118,6 @@ conda config --set auto_activate_base false
 conda config --add channels pypi
 conda config --add channels pytorch
 conda config --add channels conda-forge
-conda config --remove channels defaults || true
 touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
