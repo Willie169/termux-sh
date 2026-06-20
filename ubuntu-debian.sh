@@ -68,7 +68,7 @@ mkdir -p ~/Desktop
 apt upgrade -y
 apt install apparmor-utils apt-transport-https build-essential ca-certificates clinfo cmake curl dbus default-jdk dnscrypt-proxy g++ gcc git gnupg jq libeigen3-dev libqt5svg5-dev make maven ninja-build ocl-icd-opencl-dev perl perl-tk python-is-python3 python3 qtbase5-dev qtbase5-dev-tools ufw wget -y
 PKG='alsa-utils apksigner apt-transport-https aptitude audacity autoconf automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl dbus dbus-x11 debian-archive-keyring debian-keyring default-jdk distro-info dmg2img dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gtkwave gzip hyperfine info imagemagick inkscape iotop-c iproute2 jpegoptim jq lftp libeigen3-dev libguestfs-tools libheif-examples libqt5svg5-dev libreoffice lsb-release lsd lzip make maven mpv nano neovim netcat-openbsd ngspice ninja-build nmap nnn octave openssh-client openssh-server openssl optipng pandoc perl perl-tk pipx pkg-config poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qtbase5-dev qtbase5-dev-tools rustup shellcheck shfmt socat sqlite3 sudo tar tk-dev tmux tree tree-sitter-cli tsocks ttf-mscorefonts-installer unrar unzip uuid-runtime verilator vim vim-gtk3 webp wget wget2 w3m xdotool xmlstarlet zip zsh zstd'
-if [ "$TEST" -eq 1 ]; then
+if [ "$TEST" -eq 0 ]; then
 apt install $PKG -y
 else
 apt install $PKG -y -s
@@ -104,8 +104,8 @@ chmod +x bin/jadx
 chmod +x bin/jadx-gui
 cd ~ || exit
 corepack enable yarn
-[ "$TEST" -eq 1 ] && npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
-[ "$TEST" -eq 1 ] && npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
+npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
+npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
 pipx install cmake-language-server gh2md jupyterlab jupytext libretranslate meson notebook poetry pylatexenc tldr uv yamllint
 uv tool install --force --python python3.12 markitdown[all]
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
@@ -123,7 +123,7 @@ touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew trust gurgeous/tap || true
-if [ "$TEST" -eq 1 ]; then
+if [ "$TEST" -eq 0 ]; then
 echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide
 else
 echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide --dry-run
@@ -286,7 +286,7 @@ git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
-if [ "$TEST" -eq 1 ]; then
+if [ "$TEST" -eq 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
@@ -398,7 +398,7 @@ cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
   <dir>/usr/local/texlive/2026/texmf-dist/fonts</dir>
 </fontconfig>
 EOF
-[ "$TEST" -eq 1 ] && fc-cache -fv
+[ "$TEST" -eq 0 ] && fc-cache -fv
 cd /usr/share
 git clone https://github.com/Willie169/LaTeX-ToolKit
 cd ~
