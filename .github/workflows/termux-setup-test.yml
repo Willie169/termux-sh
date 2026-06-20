@@ -45,35 +45,10 @@ jobs:
           cd ~/termux-sh
           perl -i -pe '
           s/^DEBIANINSTALL=0/DEBIANINSTALL=1/;
-          s/tur-repo -y/-y/;
           s/^( *)(pkg|pip|npm|proot-distro)/$1\/entrypoint.sh $2/;
           s/(\&\&|\|\|) (pkg|pip|npm|proot-distro)/$1 \/entrypoint.sh $2/; 
-          s/(\&\&|\|\|) npm i\b(.*)/$1 \/entrypoint.sh npm i$2 --dry-run/;
-          s/pkg install (\$PKG|xfce4) -y/pkg install $1 -y --dry-run/' termux-setup.sh
-          perl -0777 -i -pe '
-          s/wget --tries=100 --retry-connrefused --waitretry=5 https:\/\/mirror\.ctan\.org.*<\/fontconfig>\nEOF\nfc-cache -fv//s;
-          ' ubuntu-debian.sh
-          perl -i -pe '
-          s/^npm i\b(.*)/npm i$1 --dry-run/;
-          s/^brew install\b(.*)/brew install$1 --dry-run/;
-          s/^deb-get install.*//;
-          s/^fc-cache -fv//;
-          s/^apt install (dbus-x11 firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit|lazygit|eza|dotnet-sdk-10.0 aspnetcore-runtime-10.0|glow) -y/apt install $1 -y --dry-run/;
-          BEGIN { $seen = 0; $count = 0 }
-          if (!$seen && /apt upgrade -y/) {
-            $seen = 1;
-            $count = 2;
-          }
-          if ($seen && $count > 0) {
-            if ($count < 2) {
-              s/$/ --dry-run/;
-            }
-            $count--;
-            if ($count == 0) {
-                $_ .= "apt install apt-transport-https build-essential ca-certificates cmake curl dbus debian-archive-keyring debian-keyring default-jdk g++ gcc git gpg jq libeigen3-dev libqt5svg5-dev make maven ninja-build perl python-is-python3 python3 qtbase5-dev qtbase5-dev-tools wget -y\n";
-            }
-          }
-          ' ubuntu-debian.sh
+          s/pkg install (\$PKG|xfce4) -y/pkg install $1 -y --dry-run/;
+          s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
       - name: Main
         timeout-minutes: 360
         run: |

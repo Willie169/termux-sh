@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ "$1" = '--test' ] && TEST=1 || TEST=0
+
 shopt -s expand_aliases
 cd ~
 tee /etc/resolv.conf >/dev/null <<'EOF'
@@ -19,7 +21,6 @@ apt install software-properties-common -y
 add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
-add-apt-repository ppa:colin-king/stress-ng -y
 add-apt-repository ppa:git-core/ppa -y
 add-apt-repository ppa:libreoffice/ppa -y
 add-apt-repository ppa:longsleep/golang-backports -y
@@ -65,13 +66,19 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
 apt upgrade -y
-apt install abcde alien alsa-utils apksigner apt-transport-https aptitude audacity autoconf automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl dbus debian-archive-keyring debian-keyring default-jdk distro-info dmg2img dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gfortran gh ghc ghostscript git git-lfs glab gnupg gnupg2 golang-go gopls gperf gpg grep gtkwave gzip hyperfine info imagemagick inkscape iotop-c iproute2 iverilog jpegoptim jq lftp libboost-all-dev libbz2-dev libconfig-dev libeigen3-dev libffi-dev libfuse2 libgdbm-compat-dev libgdbm-dev libgsl-dev libguestfs-tools libheif-examples libhwloc-dev libhwloc-plugins libllvm19 liblzma-dev libncursesw5-dev libopenblas-dev libosmesa6 libportaudio2 libqt5svg5-dev libreadline-dev libreoffice libsqlite3-dev libssl-dev libuv1t64 libuv1-dev libxml2-dev libxmlsec1-dev libzip-dev libzstd-dev llvm lsb-release lsd lzip make maven mc mpv nano ncdu ncompress neovim netcat-openbsd ngspice ninja-build nmap nnn octave openjdk-21-jdk openssh-client openssh-server openssl optipng pandoc perl perl-doc perl-tk pipx pkg-config plantuml poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qtbase5-dev qtbase5-dev-tools rustup shellcheck shfmt socat sqlite3 stress-ng sudo tar tk-dev tmux tree tree-sitter-cli tsocks ttf-mscorefonts-installer unrar unzip uuid-dev uuid-runtime valgrind verilator vim webp wget wget2 w3m x11-utils x11-xserver-utils xdotool xmlstarlet xz-utils zip zlib1g zlib1g-dev zsh zstd -y
+apt install apparmor-utils apt-transport-https build-essential ca-certificates clinfo cmake curl dbus default-jdk dnscrypt-proxy g++ gcc git gpg jq libeigen3-dev libqt5svg5-dev make maven ninja-build ocl-icd-opencl-dev perl python-is-python3 python3 qtbase5-dev qtbase5-dev-tools ufw wget -y
+PKG='alsa-utils apksigner apt-transport-https aptitude audacity autoconf automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl dbus dbus-x11 debian-archive-keyring debian-keyring default-jdk distro-info dmg2img dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gtkwave gzip hyperfine info imagemagick inkscape iotop-c iproute2 jpegoptim jq lftp libeigen3-dev libguestfs-tools libheif-examples libqt5svg5-dev libreoffice lsb-release lsd lzip make maven mpv nano neovim netcat-openbsd ngspice ninja-build nmap nnn octave openssh-client openssh-server openssl optipng pandoc perl perl-tk pipx pkg-config poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qtbase5-dev qtbase5-dev-tools rustup shellcheck shfmt socat sqlite3 sudo tar tk-dev tmux tree tree-sitter-cli tsocks ttf-mscorefonts-installer unrar unzip uuid-runtime verilator vim vim-gtk3 webp wget wget2 w3m xdotool xmlstarlet zip zsh zstd'
+if [ "$TEST" -eq 1 ]; then
+apt install $PKG -y
+else
+apt install $PKG -y -s
+fi
 apt install nodejs npm -y
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb
 apt-mark hold elementary-xfce-icon-theme
-apt install dbus-x11 firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y
+apt install firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y
 rustup update stable
 curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
 echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | tee /etc/apt/sources.list.d/debian.griffo.io.list >/dev/null
@@ -97,8 +104,8 @@ chmod +x bin/jadx
 chmod +x bin/jadx-gui
 cd ~ || exit
 corepack enable yarn
-npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
-npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
+[ "$TEST" -eq 1 ] && npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
+[ "$TEST" -eq 1 ] && npm i -g bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
 pipx install cmake-language-server gh2md jupyterlab jupytext libretranslate meson notebook poetry pylatexenc tldr uv yamllint
 uv tool install --force --python python3.12 markitdown[all]
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
@@ -116,7 +123,11 @@ touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew trust gurgeous/tap || true
+if [ "$TEST" -eq 1 ]; then
 echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide
+else
+echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide --dry-run
+fi
 gh_latest marcosnils/bin 'bin_*_linux_arm64'
 chmod +x bin_*_linux_arm64
 echo ~/.local/bin | ./bin_*_linux_arm64 install github.com/marcosnils/bin
@@ -168,24 +179,12 @@ require("lazy").setup({
 })
 EOF
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
-wget --tries=100 --retry-connrefused --waitretry=5 "https://packages.microsoft.com/config/$ID/$VERSION_ID/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
-apt install ./packages-microsoft-prod.deb -y
-rm packages-microsoft-prod.deb
-apt update
-apt install dotnet-sdk-10.0 aspnetcore-runtime-10.0 -y
 curl -fsSL https://repo.charm.sh/apt/gpg.key | gpg --dearmor -o /etc/apt/keyrings/charm.gpg
 echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | tee /etc/apt/sources.list.d/charm.list >/dev/null
 apt update
 apt install glow -y
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-apt install postgresql-common -y
-/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
-apt install postgresql -y
-mkdir -p /var/log/postgresql
-chown -R postgres:postgres /var/log/postgresql
-chmod 755 /var/log/postgresql
-chmod 640 /var/log/postgresql/* 2>/dev/null || true
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz
@@ -287,6 +286,7 @@ git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
+if [ "$TEST" -eq 1 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz
@@ -295,6 +295,7 @@ perl ./install-tl --no-interaction
 cd ~
 rm -rf install-tl-*
 /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
+fi
 mkdir -p ~/.config/fontconfig/conf.d
 cat > ~/.config/fontconfig/conf.d/00-noto.conf <<'EOF'
 <?xml version="1.0"?>
@@ -397,7 +398,7 @@ cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
   <dir>/usr/local/texlive/2026/texmf-dist/fonts</dir>
 </fontconfig>
 EOF
-fc-cache -fv
+[ "$TEST" -eq 1 ] && fc-cache -fv
 cd /usr/share
 git clone https://github.com/Willie169/LaTeX-ToolKit
 cd ~
