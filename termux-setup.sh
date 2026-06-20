@@ -111,7 +111,7 @@ mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
 Host *
     ServerAliveInterval 15
-    ServerAliveCountMax 3
+    ServerAliveCountMax 8
 EOF
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 tar -xJf aarch64-linux.tar.xz

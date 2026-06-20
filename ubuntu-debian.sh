@@ -278,7 +278,7 @@ cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
 git clone https://github.com/wimpysworld/deb-get.git
-cd deb-get/docs/
+cd deb-get/docs || exit
 make install
 cd ~
 deb-get install bat bottom fd git-delta
