@@ -9,6 +9,7 @@ ANDROID=1
 VIMRC=1
 PHICE=1
 CYBERCHEF=1
+STIRLINGPDF=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
@@ -195,6 +196,22 @@ cd ~ || exit
 fi
 if [ "$CYBERCHEF" -ne 0 ]; then
 proot-distro install ghcr.io/gchq/cyberchef:latest
+fi
+if [ "$STIRLINGPDF" -ne 0 ]; then
+proot-distro install stirlingtools/stirling-pdf:latest
+cd $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tesseract-ocr/5/tessdata || exit
+rm chi_sim.traineddata || true
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/chi_sim.traineddata
+rm chi_sim_vert.traineddata || true
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/chi_sim_vert.traineddata
+rm chi_tra.traineddata || true
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/chi_tra.traineddata
+rm chi_tra_vert.traineddata || true
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/chi_tra_vert.traineddata
+rm eng.traineddata || true
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/eng.traineddata
+cd ~ || exit
+echo -e 'server:\n  port: 9000' | tee $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
 fi
 [ -n "$NPM" ] && npm i $NPM
 [ -n "$NPMG" ] && npm i -g $NPMG
