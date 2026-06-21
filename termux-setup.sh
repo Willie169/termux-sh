@@ -238,7 +238,7 @@ fi
 [ "$ANTLR" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 [ "$PLANTUML" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 [ "$EFFLIST" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
-[ -n "$TERMUX" ] && proot-distro install termux/termux-docker:aarch64 --name $TERMUX
+[ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name $TERMUX
 [ -n "$UBUNTU" ] && proot-distro install ubuntu:rolling --name $UBUNTU
 [ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $UBUNTU --redirect-ports --shared-tmp --isolated
 [ -n "$DEBIAN" ] && proot-distro install debian:stable --name $DEBIAN
