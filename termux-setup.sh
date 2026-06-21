@@ -8,6 +8,7 @@ XFCE=1
 ANDROID=1
 VIMRC=1
 PHICE=1
+CYBERCHEF=1
 NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
@@ -191,6 +192,9 @@ cd phice || exit
 uv sync
 cp config.example.toml config.toml
 cd ~ || exit
+fi
+if [ "$CYBERCHEF" -ne 0 ]; then
+proot-distro install ghcr.io/gchq/cyberchef:latest
 fi
 [ -n "$NPM" ] && npm i $NPM
 [ -n "$NPMG" ] && npm i -g $NPMG
