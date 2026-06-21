@@ -33,8 +33,7 @@ fi
 apt update
 apt purge texlive* yq -y
 apt install locales wget -y
-sed -E -i 's/# (.*UTF-8)/\1/' /etc/locale.gen
-locale-gen
+locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 rm -f .bashrc
 mkdir ~/.bashrc.d
