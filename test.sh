@@ -10,4 +10,5 @@ s/^( *)(pkg|pip|npm|proot-distro)/$1\/entrypoint.sh $2/;
 s/(\&\&|\|\|) (pkg|pip|npm|proot-distro)/$1 \/entrypoint.sh $2/;
 s/pkg install (\$PKG|xfce4 -y)/pkg install $1 -s/;
 s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
-./termux-setup.sh
+./termux-setup.sh --test
+exit
