@@ -132,32 +132,8 @@ git config --global merge.conflictStyle zdiff3
 fi
 [ "$XFCE" -eq 0 ] || pkg install xfce4 -y
 if [ "$ANDROID" -ne 0 ]; then
-pkg install aapt aapt2 aidl android-tools apksigner curl d8 jq openjdk-17 p7zip unzip -y
-cd ~ || exit
-wget --tries=100 --retry-connrefused --waitretry=5 https://dl.google.com/android/repository/commandlinetools-linux-13114758_latest.zip
-unzip commandlinetools-linux-13114758_latest.zip
-rm commandlinetools-linux-13114758_latest.zip
-mkdir Android
-cd Android || exit
-mkdir Sdk
-cd Sdk || exit
-export ANDROID_SDK_ROOT=$HOME/Android/Sdk
-mkdir cmdline-tools
-cd cmdline-tools || exit
-mkdir latest
-cd latest || exit
-mv $HOME/cmdline-tools/* .
-rm -r $HOME/cmdline-tools
-cd bin || exit
-echo y | ./sdkmanager "build-tools;30.0.3" "platform-tools" "platforms;android-33" "sources;android-33"
-cd ~ || exit
-wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/lzhiyong/termux-ndk/releases/download/android-ndk/android-ndk-r29-aarch64.7z
-7z x android-ndk-r29-aarch64.7z -o$HOME/Android/Sdk/ndk
-rm android-ndk-r29-aarch64.7z
-mkdir -p ~/.gradle
-cat > ~/.gradle/gradle.properties << 'EOF'
-android.aapt2FromMavenOverride=/data/data/com.termux/files/usr/bin/aapt2
-EOF
+wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/Willie169/termux-android-sdk-ndk/blob/main/install.sh
+PROFILE=/dev/null ./install.sh "platform-tools"
 fi
 if [ "$VIMRC" -ne 0 ]; then
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
