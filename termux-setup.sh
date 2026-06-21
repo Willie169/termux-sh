@@ -243,7 +243,7 @@ fi
 [ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $UBUNTU --redirect-ports --shared-tmp --isolated
 [ -n "$DEBIAN" ] && proot-distro install debian:stable --name $DEBIAN
 [ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PDROOTFS/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $DEBIAN --redirect-ports --shared-tmp --isolated
-[ -n "$UBUNTUBOX" ] && proot-distro install ubuntu:rolling --name $UBUNTUBOX
+[ -n "$UBUNTUBOX" ] && proot-distro install ubuntu:latest --name $UBUNTUBOX
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $UBUNTUBOX --redirect-ports --shared-tmp --isolated
 [ -n "$DEBIANBOX" ] && proot-distro install debian:stable --name $DEBIANBOX
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PDROOTFS/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $DEBIANBOX --redirect-ports --shared-tmp --isolated
