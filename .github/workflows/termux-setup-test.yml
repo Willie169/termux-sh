@@ -12,50 +12,20 @@ jobs:
           - runner: ubuntu-24.04-arm
             architecture: aarch64
     runs-on: ${{ matrix.runner }}
-    container:
-      image: termux/termux-docker:${{ matrix.architecture }}
-      volumes: 
-        - /tmp/node20:/__e/node20
-    env:
-      TERMUX_MAIN_PACKAGE_FORMAT: debian
-      ANDROID_ROOT: /system
-      ANDROID_DATA: /data
-      PREFIX: /data/data/com.termux/files/usr
-      HOME: /data/data/com.termux/files/home
-      PATH: /data/data/com.termux/files/usr/bin
-      TMPDIR: /data/data/com.termux/files/usr/tmp
-      LANG: en_US.UTF-8
-      TZ: UTC
     steps:
       - name: Prepare
         timeout-minutes: 360
         run: |
-          ln -sf ${PREFIX}/etc/termux/mirrors/default ${PREFIX}/etc/termux/chosen_mirrors
-          /entrypoint.sh pkg upgrade -y
-          chmod -R 777 ${PREFIX}
-          chmod -R 777 ${HOME}
-          /entrypoint.sh pkg install nodejs-lts git perl -y
-          ln -sf ${PREFIX}/bin /__e/node20/bin
-      - name: Checkout
-        timeout-minutes: 360
-        run: cd ~ && git clone https://github.com/Willie169/termux-sh.git
-      - name: Patch script
-        timeout-minutes: 360
-        run: |
-          cd ~/termux-sh
-          perl -i -pe '
-          s/^DEBIANINSTALL=0/DEBIANINSTALL=1/;
-          s/^( *)(pkg|pip|npm|proot-distro)/$1\/entrypoint.sh $2/;
-          s/(\&\&|\|\|) (pkg|pip|npm|proot-distro)/$1 \/entrypoint.sh $2/; 
-          s/pkg install (\$PKG|xfce4) -y/pkg install $1 -y --dry-run/;
+          cd ~
+          sudo apt install git perl pipx proot -y
+          pipx install proot-distro
+          proot-distro install termux/termux-docker --name termux
+          git clone https://github.com/Willie169/termux-sh.git
+          cd termux-sh
+          perl -i -pe 's/^DEBIANINSTALL=0/DEBIANINSTALL=1/;
+          s/pkg install (\$PKG|xfce4 -y)/pkg install $1 -s/;
           s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
+          cp termux-setup.sh ~/.local/share/proot-distro/containers/termux/rootfs/data/data/com.termux/files/home/
       - name: Main
         timeout-minutes: 360
-        run: |
-          bash ~/termux-sh/termux-setup.sh
-      - name: Upload log file
-        timeout-minutes: 360
-        uses: actions/upload-artifact@v4.6.0
-        with:
-          name: termux-setup-${{ matrix.architecture }}.log
-          path: ~/termux-setup.log
+        run: proot-distro run termux -- ./termux-setup.sh
