@@ -276,6 +276,10 @@ git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
 cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
+gh_latest gulp79/rclone-extra rclone-linux-amd64.zip
+unzip rclone-linux-arm64.zip
+rm rclone-linux-arm64.zip*
+mv rclone ~/.local/bin/
 wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 if [ "$TEST" -eq 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
