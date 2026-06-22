@@ -276,7 +276,7 @@ git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
 cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
-gh_latest gulp79/rclone-extra rclone-linux-amd64.zip
+gh_latest gulp79/rclone-extra rclone-linux-arm64.zip
 unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
 mv rclone ~/.local/bin/
