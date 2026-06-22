@@ -122,10 +122,15 @@ touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew trust gurgeous/tap || true
+BREW='bat bottom broot dust fd fzf git-delta gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide'
 if [ "$TEST" -eq 0 ]; then
-echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide
+echo y | brew install $BREW
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global merge.conflictStyle zdiff3
 else
-echo y | brew install broot dust fzf gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide --dry-run
+echo y | brew install $BREW --dry-run
 fi
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
@@ -271,15 +276,6 @@ git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
 cmake -B build
 cmake --build build --config Release -j$(nproc)
 cd ~
-git clone https://github.com/wimpysworld/deb-get.git
-cd deb-get/docs || exit
-make install
-cd ~
-deb-get install bat bottom fd git-delta
-git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global delta.navigate true
-git config --global merge.conflictStyle zdiff3
 wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 if [ "$TEST" -eq 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
