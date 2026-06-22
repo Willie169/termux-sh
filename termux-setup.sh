@@ -7,6 +7,7 @@ GITDELTA=1
 XFCE=1
 ANDROID=1
 VIMRC=1
+RCLONEEXTRA=1
 PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
@@ -185,6 +186,39 @@ require("lazy").setup({
 })
 EOF
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+fi
+if [ "$RCLONEEXTRA" -ne 0 ]; then
+gh_latest gulp79/rclone-extra rclone-android-all.zip
+unzip rclone-android-all.zip
+rm rclone-android-all.zip*
+ARCH=$(uname -m)
+if [[ "$ARCH" == "x86_64" ]]; then
+rm rclone-android-386
+mv rclone-android-amd64 rclone
+rm rclone-android-arm
+rm rclone-android-arm64
+elif [[ "$ARCH" =~ ^i[3-6]86$ ]]; then
+mv rclone-android-386 rclone
+rm rclone-android-amd64
+rm rclone-android-arm
+rm rclone-android-arm64
+elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+rm rclone-android-386
+rm rclone-android-amd64
+rm rclone-android-arm
+mv rclone-android-arm64 rclone
+elif [[ "$ARCH" == arm* ]]; then
+rm rclone-android-386
+rm rclone-android-amd64
+mv rclone-android-arm rclone
+rm rclone-android-arm64
+else
+rm rclone-android-386
+rm rclone-android-amd64
+rm rclone-android-arm
+mv rm rclone-android-arm64 rclone
+fi
+mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
 pkg install uv -y
