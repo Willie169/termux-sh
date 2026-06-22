@@ -32,6 +32,7 @@ DEBIANBOXINSTALL=0
 
 ## CONFIG END
 
+cd ~ || exit
 pkg upgrade -y
 pkg install build-essential clang cmake coreutils curl git gzip make ninja nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar wget zip x11-repo tur-repo -y
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
@@ -49,7 +50,13 @@ DEBIANBOX=$(echo "$DEBIANBOX" | tr ' ' '_')
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$UBUNTUBOX" ] && UBUNTUBOX="${UBUNTUBOX}1"
 [ -n "$DEBIAN" ] && [ "$DEBIAN" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOX" == "$DEBIANBOX" ] && DEBIANBOX="${DEBIANBOX}1"
-cd ~ || exit
+ARCH=$(uname -m)
+if [[ "$ARCH" != "aarch64" && "$ARCH" != "arm64" ]]; then
+UBUNTUINSTALL=0
+DEBIANINSTALL=0
+UBUNTUBOXINSTALL=0
+DEBIANBOXINSTALL=0
+fi
 mkdir -p ~/.termux && touch ~/.termux/termux.properties
 sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties
 sed '/shortcut.create-session/s/^# //' -i ~/.termux/termux.properties
@@ -191,7 +198,6 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
 gh_latest gulp79/rclone-extra rclone-android-all.zip
 unzip rclone-android-all.zip
 rm rclone-android-all.zip*
-ARCH=$(uname -m)
 if [[ "$ARCH" == "x86_64" ]]; then
 rm rclone-android-386
 mv rclone-android-amd64 rclone
