@@ -77,7 +77,7 @@ fi
 apt install nodejs npm -y
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
-rm elementary-xfce-icon-theme_0.19-1_all.deb
+rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
 apt install firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y
 rustup update stable
@@ -100,7 +100,7 @@ mkdir jadx
 cd jadx || exit
 gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
 unzip jadx*.zip
-rm jadx*.zip
+rm jadx*.zip*
 chmod +x bin/jadx
 chmod +x bin/jadx-gui
 cd ~ || exit
@@ -110,7 +110,7 @@ npm i -g --allow-scripts=opencode-ai bash-language-server dockerfile-language-se
 pipx install cmake-language-server gh2md img2pdf jupyterlab jupytext libretranslate meson notebook pylatexenc tldr uv xmljson yamllint
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p "${HOME}/conda"
-rm Miniforge3-Linux-aarch64.sh
+rm Miniforge3-Linux-aarch64.sh*
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
 source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
 source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
@@ -187,7 +187,7 @@ wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 tar -xJf aarch64-linux.tar.xz
-rm aarch64-linux.tar.xz
+rm aarch64-linux.tar.xz*
 mv superhtml ~/.local/bin
 mkdir eclipse.jdt.ls
 cd eclipse.jdt.ls
@@ -280,7 +280,7 @@ wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/201
 if [ "$TEST" -eq 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
-rm install-tl-unx.tar.gz
+rm install-tl-unx.tar.gz*
 cd install-tl-*
 perl ./install-tl --no-interaction
 cd ~
