@@ -120,7 +120,7 @@ touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 brew trust gurgeous/tap || true
-BREW='bat bottom broot dust fd fzf git-delta gurgeous/tap/tennis procs resvg ripgrep sevenzip starship xplr yazi yq zoxide'
+BREW='bat bottom broot dust fd fzf git-delta gurgeous/tap/tennis procs resvg ripgrep sevenzip xplr yazi yq zoxide'
 if [ "$TEST" -eq 0 ]; then
 echo y | brew install $BREW
 git config --global core.pager delta
