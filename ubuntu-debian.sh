@@ -25,7 +25,6 @@ add-apt-repository ppa:git-core/ppa -y
 add-apt-repository ppa:libreoffice/ppa -y
 add-apt-repository ppa:longsleep/golang-backports -y
 add-apt-repository ppa:mozillateam/ppa -y
-add-apt-repository ppa:neovim-ppa/unstable -y
 add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
 sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.list
