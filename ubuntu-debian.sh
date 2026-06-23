@@ -1,8 +1,8 @@
-#!/bin/zsh
+#!/bin/bash
 
 [ "$1" = '--test' ] && TEST=1 || TEST=0
 
-setopt KSH_ARRAYS
+shopt -s expand_aliases
 cd ~ || exit
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
