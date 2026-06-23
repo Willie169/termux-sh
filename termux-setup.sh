@@ -58,7 +58,11 @@ DEBIANINSTALL=0
 UBUNTUBOXINSTALL=0
 DEBIANBOXINSTALL=0
 fi
-mkdir -p ~/.termux && touch ~/.termux/termux.properties
+mkdir -p ~/.termux
+cd ~/.termux || exit
+rm termux.properties || true
+wget https://raw.githubusercontent.com/termux/termux-tools/refs/heads/master/termux.properties
+cd ~ || exit
 sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties
 sed '/shortcut.create-session/s/^# //' -i ~/.termux/termux.properties
 sed '/shortcut.next-session/s/^# //' -i ~/.termux/termux.properties
