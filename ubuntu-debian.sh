@@ -72,7 +72,6 @@ apt install $PKG -y
 else
 apt install $PKG -y -s
 fi
-apt install nodejs npm -y
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb*
@@ -102,6 +101,13 @@ rm jadx*.zip*
 chmod +x bin/jadx
 chmod +x bin/jadx-gui
 cd ~ || exit
+NVM_VERSION=$(curl -fsSL "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r '.tag_name')
+PROFILE=/dev/null bash -c "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm install --lts
+corepack enable npm
 corepack enable yarn
 npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm i -g --allow-scripts=opencode-ai bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
