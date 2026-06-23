@@ -107,8 +107,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 nvm install --lts
-corepack enable npm
-corepack enable yarn
+echo y | corepack enable npm
+echo y | corepack enable yarn
 npm i jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown
 npm i -g --allow-scripts=opencode-ai bash-language-server dockerfile-language-server-nodejs http-server opencode-ai pyright @linthtml/linthtml @openai/codex
 pipx install cmake-language-server gh2md img2pdf jupyterlab jupytext libretranslate meson notebook pylatexenc tldr uv xmljson yamllint
