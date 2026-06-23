@@ -36,6 +36,8 @@ cd ~ || exit
 pkg update
 pkg upgrade -y
 pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar wget which zip xz-utils x11-repo tur-repo -y
+sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/commands/login/proot_cmd.py || true
+sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/helpers/build_engine/run_step.py || true
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -102,7 +104,7 @@ wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/23-vnc.sh -O ~/.bashrc.d/23-vnc.sh
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
-wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc.sh -O ~/.bashrc
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/termux/bashrc.d/bashrc -O ~/.bashrc
 if [ -d "$HOME/.bashrc.d"  ];  then
   for f in "$HOME/.bashrc.d/"*; do
     [ -r "$f"  ] && . "$f"
