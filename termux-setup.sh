@@ -240,7 +240,8 @@ sed -Ei "s/(listen[ \t ]+)[0-9]*;/\18081;/" $PREFIX/var/lib/proot-distro/contain
 fi
 if [ "$STIRLINGPDF" -ne 0 ]; then
 proot-distro install stirlingtools/stirling-pdf:latest
-cd $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tesseract-ocr/5/tessdata || exit
+mkdir -p $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tessdata
+cd $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tessdata || exit
 rm chi_sim.traineddata || true
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/chi_sim.traineddata
 rm chi_sim_vert.traineddata || true
