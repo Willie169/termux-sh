@@ -31,7 +31,7 @@ sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.
 fi
 apt update
 apt purge texlive* yq -y
-apt install locales wget -y
+apt install apt-transport-https build-essential ca-certificates cmake curl dbus openjdk-21-jdk g++ gcc git gnupg jq libeigen3-dev locales make maven ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev wget -y
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 rm -f .bashrc
@@ -64,8 +64,6 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
 apt upgrade -y
-
-apt install apparmor-utils apt-transport-https build-essential ca-certificates clinfo cmake curl dbus openjdk-21-jdk dnscrypt-proxy g++ gcc git gnupg jq libeigen3-dev make maven ninja-build ocl-icd-opencl-dev perl perl-tk python-is-python3 python3 qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev ufw wget -y
 PKG='alsa-utils apksigner apt-transport-https aptitude audacity automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl cronie dbus dbus-x11 openjdk-21-jdk distro-info dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gzip hyperfine info imagemagick inkscape iotop-c iproute2 jpegoptim jq lftp libeigen3-dev libheif-examples libreoffice lsb-release lsd lzip make maven mpv nano neovim netcat-openbsd ngspice ninja-build nmap ocrmypdf octave openssh-client openssh-server openssl optipng pandoc perl perl-tk pipx pkg-config poppler-utils procps procs pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev rustup shellcheck shfmt socat sqlite3 sudo tar tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra tesseract-ocr-chi-tra-vert tesseract-ocr-eng tesseract-ocr-jpn tesseract-ocr-jpn-vert tmux tree tree-sitter-cli tsocks unrar unzip uuid-runtime verilator vim vim-gtk3 webp wget wget2 w3m xdotool xmlstarlet xz-utils zip zsh zstd'
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
 if [ "$TEST" -eq 0 ]; then
