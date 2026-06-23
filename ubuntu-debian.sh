@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/zsh
 
 [ "$1" = '--test' ] && TEST=1 || TEST=0
 
-shopt -s expand_aliases
-cd ~
+setopt KSH_ARRAYS
+cd ~ || exit
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
 nameserver 1.0.0.1
@@ -194,24 +194,24 @@ tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz*
 mv superhtml ~/.local/bin
 mkdir eclipse.jdt.ls
-cd eclipse.jdt.ls
+cd eclipse.jdt.ls || exit
 wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
 tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
-cd ~
+cd ~ || exit
 git clone https://github.com/lightvector/KataGo.git
-cd KataGo/cpp
+cd KataGo/cpp || exit
 cmake . -G Ninja -DUSE_BACKEND=EIGEN
 ninja
-cd ../..
+cd ../.. || exit
 mkdir katago-networks
-cd katago-networks
+cd katago-networks || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
-cd ~
+cd ~ || exit
 git clone https://github.com/yzyray/lizzieyzy.git
-cd lizzieyzy
+cd lizzieyzy || exit
 mvn clean package
-cd ~
+cd ~ || exit
 cat > ~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -226,7 +226,7 @@ EOF
 update_lizzieyzy_config
 cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop && chmod +x ~/Desktop/lizzieyzy.desktop
 git clone https://github.com/fairy-stockfish/Fairy-Stockfish.git
-cd Fairy-Stockfish/src
+cd Fairy-Stockfish/src || exit
 ARCH=$(uname -m)
 if [ "$ARCH" == "x86_64" ]; then
 ARCH="x86-64"
@@ -236,14 +236,14 @@ elif [ "$ARCH" == "arm" ]; then
 ARCH="armv7"
 fi
 make -j ARCH="$ARCH" profile-build largeboards=yes nnue=yes
-cd ~
+cd ~ || exit
 git clone https://github.com/cutechess/cutechess.git
-cd cutechess
+cd cutechess || exit
 mkdir build
-cd build
+cd build || exit
 cmake -G Ninja ..
 ninja
-cd ~
+cd ~ || exit
 cat > ~/.local/share/applications/cutechess.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -257,10 +257,10 @@ EOF
 update_cutechess_config
 cp ~/.local/share/applications/cutechess.desktop ~/Desktop/cutechess.desktop && chmod +x ~/Desktop/cutechess.desktop
 git clone https://github.com/hotfics/Sylvan.git
-cd Sylvan
+cd Sylvan || exit
 qmake
 make
-cd ~
+cd ~ || exit
 cat > ~/.local/share/applications/sylvan.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -275,11 +275,11 @@ update_sylvan_config
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
 mkdir -p ~/dev/llm
-cd ~/dev/llm
-git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp
+cd ~/dev/llm || exit
+git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp || exit
 cmake -B build
-cmake --build build --config Release -j$(nproc)
-cd ~
+cmake --build build --config Release -j"$(nproc)"
+cd ~ || exit
 gh_latest gulp79/rclone-extra rclone-linux-arm64.zip
 unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
@@ -289,9 +289,9 @@ if [ "$TEST" -eq 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz*
-cd install-tl-*
+cd install-tl-* || exit
 perl ./install-tl --no-interaction
-cd ~
+cd ~ || exit
 rm -rf install-tl-*
 /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
 fi
@@ -398,19 +398,19 @@ cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
 </fontconfig>
 EOF
 [ "$TEST" -eq 0 ] && fc-cache -fv
-cd /usr/share
+cd /usr/share || exit
 git clone https://github.com/Willie169/LaTeX-ToolKit
-cd ~
+cd ~ || exit
 mkdir -p texmf
-cd texmf
+cd texmf || exit
 mkdir -p tex
-cd tex
+cd tex || exit
 mkdir -p latex
-cd latex
+cd latex || exit
 git clone https://github.com/Willie169/physics-patch
-cd physics-patch
+cd physics-patch || exit
 git checkout dev
-cd ~
+cd ~ || exit
 apt update
 apt install -f -y
 apt upgrade -y
