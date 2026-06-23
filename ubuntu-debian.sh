@@ -31,7 +31,7 @@ sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.
 fi
 apt update
 apt purge texlive* yq -y
-apt install apt-transport-https build-essential ca-certificates cmake curl dbus openjdk-21-jdk g++ gcc git gnupg jq libeigen3-dev locales make maven ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev wget -y
+apt install apt-transport-https bash build-essential ca-certificates cmake curl dbus openjdk-21-jdk g++ gcc git gnupg jq libeigen3-dev locales make maven ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev wget -y
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 rm -f .bashrc
