@@ -236,6 +236,7 @@ cd ~ || exit
 fi
 if [ "$CYBERCHEF" -ne 0 ]; then
 proot-distro install ghcr.io/gchq/cyberchef:latest
+sed -Ei "s/(listen[ \t ]+)[0-9]*;/\18081;/" $PREFIX/var/lib/proot-distro/containers/cyberchef/rootfs/etc/nginx/conf.d/default.conf
 fi
 if [ "$STIRLINGPDF" -ne 0 ]; then
 proot-distro install stirlingtools/stirling-pdf:latest
