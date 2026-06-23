@@ -35,7 +35,7 @@ DEBIANBOXINSTALL=0
 cd ~ || exit
 pkg update
 pkg upgrade -y
-pkg install build-essential clang cmake coreutils curl git gzip make ninja nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar wget zip x11-repo tur-repo -y
+pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar wget zip xz-utils x11-repo tur-repo -y
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
