@@ -28,4 +28,4 @@ jobs:
           cp termux-setup.sh ~/.local/share/proot-distro/containers/termux/rootfs/data/data/com.termux/files/home/
       - name: Main
         timeout-minutes: 360
-        run: proot-distro run termux -- ./termux-setup.sh
+        run: echo './termux-setup.sh' | bash <(proot-distro login termux --get-proot-cmd)
