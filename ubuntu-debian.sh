@@ -4,6 +4,7 @@
 
 shopt -s expand_aliases
 cd ~ || exit
+export DEBIAN_FRONTEND=noninteractive
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
 nameserver 1.0.0.1
@@ -31,8 +32,8 @@ sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.
 fi
 apt update
 apt purge texlive* yq -y
-apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales make maven ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 vim-gtk3 wget xz-utils -y
-apt install libeigen3-dev qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
+apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales make ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 vim-gtk3 wget xz-utils -y
+apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
 apt install sudo -y
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
@@ -66,7 +67,7 @@ mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
 apt upgrade -y
-PKG='alsa-utils apksigner apt-transport-https aptitude audacity automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl cronie dbus dbus-x11 openjdk-21-jdk distro-info dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gzip hyperfine iftop imagemagick info inkscape iotop-c iproute2 jpegoptim jq lftp libeigen3-dev libheif-examples libreoffice lsb-release lsd lzip make maven mpv nano neovim netcat-openbsd nethogs ngspice ninja-build nmap ocrmypdf octave openssh-client openssh-server openssl optipng pandoc perl perl-tk pipx pkg-config poppler-utils procps procs pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev rustup shellcheck shfmt socat sqlite3 sudo tar tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra tesseract-ocr-chi-tra-vert tesseract-ocr-eng tesseract-ocr-jpn tesseract-ocr-jpn-vert tmux tree tree-sitter-cli tsocks unrar unzip uuid-runtime verilator vim-gtk3 webp wget wget2 w3m xdotool xmlstarlet xz-utils zip zsh zstd'
+PKG='alsa-utils apksigner apt-transport-https aptitude audacity automake bash bc bear bindfs bison bookletimposer build-essential bzip2 calcurse ca-certificates clang clangd clang-format cmake command-not-found curl cronie dbus dbus-x11 openjdk-21-jdk distro-info dnsutils dvisvgm fastfetch ffmpeg file flex fonts-cns11643-kai fonts-cns11643-sung fontconfig fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gzip hyperfine iftop imagemagick info inkscape iotop-c iproute2 jpegoptim jq lftp libheif-examples libreoffice lsb-release lsd lzip make maven mpv nano neovim netcat-openbsd nethogs ngspice ninja-build nmap ocrmypdf octave openssh-client openssh-server openssl optipng pandoc perl perl-tk pipx pkg-config poppler-utils procps procs pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-requests python3-pip python3-venv p7zip-full qpdf qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev rustup shellcheck shfmt socat sqlite3 sudo tar tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra tesseract-ocr-chi-tra-vert tesseract-ocr-eng tesseract-ocr-jpn tesseract-ocr-jpn-vert tmux tree tree-sitter-cli tsocks unrar unzip uuid-runtime verilator vim-gtk3 webp wget wget2 w3m xdotool xmlstarlet xz-utils zip zsh zstd'
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
 if [ "$TEST" -eq 0 ]; then
 apt install $PKG -y
@@ -197,7 +198,8 @@ wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/down
 tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 cd ~ || exit
-git clone https://github.com/lightvector/KataGo.git
+apt install libeigen3-dev libzip-dev zlib1g-dev -y
+git clone --depth=1 https://github.com/lightvector/KataGo.git
 cd KataGo/cpp || exit
 cmake . -G Ninja -DUSE_BACKEND=EIGEN
 ninja
@@ -206,10 +208,12 @@ mkdir katago-networks
 cd katago-networks || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
 cd ~ || exit
-git clone https://github.com/yzyray/lizzieyzy.git
+apt install maven -y
+git clone --depth=1 https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy || exit
 mvn clean package
 cd ~ || exit
+rm -rf ~/.m2/repository
 cat > ~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
@@ -223,7 +227,7 @@ StartupWMClass=featurecat-lizzie-Lizzie
 EOF
 update_lizzieyzy_config
 cp ~/.local/share/applications/lizzieyzy.desktop ~/Desktop/lizzieyzy.desktop && chmod +x ~/Desktop/lizzieyzy.desktop
-git clone https://github.com/fairy-stockfish/Fairy-Stockfish.git
+git clone --depth=1 https://github.com/fairy-stockfish/Fairy-Stockfish.git
 cd Fairy-Stockfish/src || exit
 ARCH=$(uname -m)
 if [ "$ARCH" == "x86_64" ]; then
@@ -235,7 +239,8 @@ ARCH="armv7"
 fi
 make -j ARCH="$ARCH" profile-build largeboards=yes nnue=yes
 cd ~ || exit
-git clone https://github.com/cutechess/cutechess.git
+apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
+git clone --depth=1 https://github.com/cutechess/cutechess.git
 cd cutechess || exit
 mkdir build
 cd build || exit
@@ -254,6 +259,7 @@ Categories=Game;
 EOF
 update_cutechess_config
 cp ~/.local/share/applications/cutechess.desktop ~/Desktop/cutechess.desktop && chmod +x ~/Desktop/cutechess.desktop
+apt install qt5-qmake qtbase5-dev qtbase5-dev-tools -y
 git clone https://github.com/hotfics/Sylvan.git
 cd Sylvan || exit
 qmake
