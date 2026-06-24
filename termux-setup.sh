@@ -277,7 +277,7 @@ if [ "$APKTOOL" -ne 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 chmod +x apktool
 mv apktool $PREFIX/local/bin/
-gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool apktool_*.jar
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 chmod +x apktool_*.jar
 mv apktool_*.jar $PREFIX/local/bin/
 fi
