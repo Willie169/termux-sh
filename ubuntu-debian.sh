@@ -277,7 +277,7 @@ EOF
 update_sylvan_config
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
-gh_latest gulp79/rclone-extra rclone-linux-arm64.zip
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
 unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
 mv rclone ~/.local/bin/

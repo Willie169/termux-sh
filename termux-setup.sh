@@ -200,7 +200,7 @@ EOF
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
 fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
-gh_latest gulp79/rclone-extra rclone-android-all.zip
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
 unzip rclone-android-all.zip
 rm rclone-android-all.zip*
 if [[ "$ARCH" == "x86_64" ]]; then
