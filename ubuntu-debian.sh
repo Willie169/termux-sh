@@ -278,12 +278,6 @@ EOF
 update_sylvan_config
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
-mkdir -p ~/dev/llm
-cd ~/dev/llm || exit
-git clone --depth=1 https://github.com/ggml-org/llama.cpp && cd llama.cpp || exit
-cmake -B build
-cmake --build build --config Release -j"$(nproc)"
-cd ~ || exit
 gh_latest gulp79/rclone-extra rclone-linux-arm64.zip
 unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
