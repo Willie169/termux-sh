@@ -259,7 +259,7 @@ Categories=Game;
 EOF
 update_cutechess_config
 cp ~/.local/share/applications/cutechess.desktop ~/Desktop/cutechess.desktop && chmod +x ~/Desktop/cutechess.desktop
-apt install qt5-qmake qtbase5-dev qtbase5-dev-tools -y
+apt install libqt5svg5-dev qt5-qmake qtbase5-dev qtbase5-dev-tools -y
 git clone --depth=1 https://github.com/hotfics/Sylvan.git
 cd Sylvan || exit
 qmake
