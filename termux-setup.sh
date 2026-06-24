@@ -33,6 +33,7 @@ DEBIANBOXINSTALL=0
 ## CONFIG END
 
 cd ~ || exit
+export DEBIAN_FRONTEND=noninteractive
 pkg update
 pkg upgrade -y
 pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api wget which zip xz-utils x11-repo tur-repo -y
