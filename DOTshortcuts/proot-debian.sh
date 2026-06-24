@@ -1,5 +1,5 @@
 [ -z "$DEBIAN" ] && DEBIAN='debian'
-cmd=(proot-distro login "$DEBIAN" --redirect-ports --shared-tmp --isolated)
+cmd=(proot-distro login "$DEBIAN" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 bind=(
   "/apex"
   "/data/app"
@@ -120,4 +120,4 @@ for item in "${bind[@]}"; do
     cmd+=(--bind "$first")
   fi
 done
-"${cmd[@]}"
+bash <("${cmd[@]}")

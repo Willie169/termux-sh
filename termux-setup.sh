@@ -35,7 +35,7 @@ DEBIANBOXINSTALL=0
 cd ~ || exit
 pkg update
 pkg upgrade -y
-pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar wget which zip xz-utils x11-repo tur-repo -y
+pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api wget which zip xz-utils x11-repo tur-repo -y
 sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/commands/login/proot_cmd.py || true
 sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/helpers/build_engine/run_step.py || true
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
@@ -286,13 +286,13 @@ fi
 [ "$EFFLIST" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name $TERMUX
 [ -n "$UBUNTU" ] && proot-distro install ubuntu:rolling --name $UBUNTU
-[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $UBUNTU --redirect-ports --shared-tmp --isolated
+[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login $UBUNTU --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 [ -n "$DEBIAN" ] && proot-distro install debian:stable --name $DEBIAN
-[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | proot-distro login $DEBIAN --redirect-ports --shared-tmp --isolated
+[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login $DEBIAN --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 [ -n "$UBUNTUBOX" ] && proot-distro install ubuntu:latest --name $UBUNTUBOX
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $UBUNTUBOX --redirect-ports --shared-tmp --isolated
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login $UBUNTUBOX --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 [ -n "$DEBIANBOX" ] && proot-distro install debian:stable --name $DEBIANBOX
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | proot-distro login $DEBIANBOX --redirect-ports --shared-tmp --isolated
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login $DEBIANBOX --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 rm -f ~/.bashrc.d/11-proot.sh
 cat > ~/.bashrc.d/11-proot.sh <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
