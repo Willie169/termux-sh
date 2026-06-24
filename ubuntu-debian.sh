@@ -4,7 +4,6 @@
 
 shopt -s expand_aliases
 cd ~ || exit
-export DEBIAN_FRONTEND=noninteractive
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
 nameserver 1.0.0.1
@@ -18,7 +17,7 @@ EOF
 source /etc/os-release
 apt update
 if [ "$ID" = "ubuntu" ]; then
-apt install software-properties-common -y
+DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y
 add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
@@ -32,9 +31,9 @@ sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.
 fi
 apt update
 apt purge texlive* yq -y
-apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales make ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 vim-gtk3 wget xz-utils -y
-apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
-apt install sudo -y
+DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales make ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 vim-gtk3 wget xz-utils -y
+DEBIAN_FRONTEND=noninteractive apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
+DEBIAN_FRONTEND=noninteractive apt install sudo -y
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 rm -f .bashrc
@@ -66,25 +65,25 @@ mkdir -p /etc/apt/keyrings
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
-apt upgrade -y
+DEBIAN_FRONTEND=noninteractive apt upgrade -y
 PKG='alsa-utils apksigner apt-transport-https aptitude audacity automake bash bc bear bindfs bison bookletimposer build-essential bzip2 ca-certificates calcurse clang clang-format clangd cmake command-not-found cronie curl dbus dbus-x11 debconf-utils distro-info dnsutils dvisvgm fastfetch ffmpeg file flex fontconfig fonts-cns11643-kai fonts-cns11643-sung fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gzip hyperfine iftop imagemagick info inkscape iotop-c iproute2 jpegoptim jq lftp libheif-examples libreoffice lsb-release lsd lzip make maven mpv nano neovim netcat-openbsd nethogs ngspice ninja-build nmap ocrmypdf octave openjdk-21-jdk openssh-client openssh-server openssl optipng p7zip-full pandoc perl perl-tk pipx pkg-config poppler-utils procps procs pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-pip python3-requests python3-venv qpdf qt6-5compat-dev qt6-base-dev qt6-base-dev-tools qt6-svg-dev rustup shellcheck shfmt socat sqlite3 sudo tar tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra tesseract-ocr-chi-tra-vert tesseract-ocr-eng tesseract-ocr-jpn tesseract-ocr-jpn-vert tmux tree tree-sitter-cli tsocks unrar unzip uuid-runtime verilator vim-gtk3 w3m webp wget wget2 xdotool xmlstarlet xz-utils zip zsh zstd'
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
 if [ "$TEST" -eq 0 ]; then
-apt install $PKG -y
+DEBIAN_FRONTEND=noninteractive apt install $PKG -y
 else
-apt install $PKG -y -s
+DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s
 fi
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
-apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
+DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
-apt install firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y
-apt install xfce4 xfce4-goodies -y
+DEBIAN_FRONTEND=noninteractive apt install firefox mesa-utils xfce4 xfce4-goodies xfce4-terminal xinit -y
+DEBIAN_FRONTEND=noninteractive apt install xfce4 xfce4-goodies -y
 rustup update stable
 curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
 echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | tee /etc/apt/sources.list.d/debian.griffo.io.list >/dev/null
 apt update
-apt install lazygit -y
+DEBIAN_FRONTEND=noninteractive apt install lazygit -y
 wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 chmod +x apktool
 mv apktool /usr/local/bin/
@@ -185,7 +184,7 @@ curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubuse
 curl -fsSL https://repo.charm.sh/apt/gpg.key | gpg --dearmor -o /etc/apt/keyrings/charm.gpg
 echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | tee /etc/apt/sources.list.d/charm.list >/dev/null
 apt update
-apt install glow -y
+DEBIAN_FRONTEND=noninteractive apt install glow -y
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
@@ -198,7 +197,7 @@ wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/down
 tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 cd ~ || exit
-apt install libeigen3-dev libzip-dev zlib1g-dev -y
+DEBIAN_FRONTEND=noninteractive apt install libeigen3-dev libzip-dev zlib1g-dev -y
 git clone --depth=1 https://github.com/lightvector/KataGo.git
 cd KataGo/cpp || exit
 cmake . -G Ninja -DUSE_BACKEND=EIGEN
@@ -208,7 +207,7 @@ mkdir katago-networks
 cd katago-networks || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
 cd ~ || exit
-apt install maven -y
+DEBIAN_FRONTEND=noninteractive apt install maven -y
 git clone --depth=1 https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy || exit
 mvn clean package
@@ -239,7 +238,7 @@ ARCH="armv7"
 fi
 make -j ARCH="$ARCH" profile-build largeboards=yes nnue=yes
 cd ~ || exit
-apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
+DEBIAN_FRONTEND=noninteractive apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
 git clone --depth=1 https://github.com/cutechess/cutechess.git
 cd cutechess || exit
 mkdir build
@@ -259,7 +258,7 @@ Categories=Game;
 EOF
 update_cutechess_config
 cp ~/.local/share/applications/cutechess.desktop ~/Desktop/cutechess.desktop && chmod +x ~/Desktop/cutechess.desktop
-apt install libqt5svg5-dev qt5-qmake qtbase5-dev qtbase5-dev-tools -y
+DEBIAN_FRONTEND=noninteractive apt install libqt5svg5-dev qt5-qmake qtbase5-dev qtbase5-dev-tools -y
 git clone --depth=1 https://github.com/hotfics/Sylvan.git
 cd Sylvan || exit
 qmake
@@ -410,8 +409,8 @@ cd physics-patch || exit
 git checkout dev
 cd ~ || exit
 apt update
-apt install -f -y
-apt upgrade -y
+DEBIAN_FRONTEND=noninteractive apt install -f -y
+DEBIAN_FRONTEND=noninteractive apt upgrade -y
 apt autoremove --purge -y
 apt clean
 rm ubuntu-debian.sh || true
