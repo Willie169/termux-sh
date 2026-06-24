@@ -1,6 +1,7 @@
 #!/bin/bash
 [ "$1" = '--test' ] && TEST=1 || TEST=0
 shopt -s expand_aliases
+[ "$TEST" -eq 1 ] && set -euxo pipefail
 cd ~ || exit
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
