@@ -235,7 +235,7 @@ mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
 pkg install uv -y
-git clone https://codeberg.org/c4ffe14e/phice.git
+git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
 uv sync
 cp config.example.toml config.toml

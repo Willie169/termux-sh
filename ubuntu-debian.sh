@@ -280,7 +280,7 @@ cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod 
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
 mkdir -p ~/dev/llm
 cd ~/dev/llm || exit
-git clone https://github.com/ggml-org/llama.cpp && cd llama.cpp || exit
+git clone --depth=1 https://github.com/ggml-org/llama.cpp && cd llama.cpp || exit
 cmake -B build
 cmake --build build --config Release -j"$(nproc)"
 cd ~ || exit
