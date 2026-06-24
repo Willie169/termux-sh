@@ -1,3 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
 [ -z "$UBUNTU" ] && UBUNTU='ubuntu'
 cmd=(proot-distro login "$UBUNTU" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 bind=(
@@ -110,7 +111,7 @@ bind=(
   "/data/data/com.termux/files/home/shared	/root/shared"
 )
 for item in "${bind[@]}"; do
-  set -- $item
+  set -- "$item"
   first=$1
   second=$2
   [[ -e "$first" ]] || continue

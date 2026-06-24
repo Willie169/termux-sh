@@ -35,8 +35,6 @@ cd ~ || exit
 pkg update
 pkg upgrade -y
 pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api wget which zip xz-utils x11-repo tur-repo -y
-sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/commands/login/proot_cmd.py || true
-sed -i '/^[ \t]*"--bind=\/proc\/self\/fd:\/dev\/fd",/d' $PREFIX/lib/python*/site-packages/proot_distro/helpers/build_engine/run_step.py || true
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -82,7 +80,7 @@ cp ~/termux-sh/DOTshortcuts/scripts.sh ~
 cp ~/termux-sh/DOTshortcuts/storage.sh ~
 cp ~/termux-sh/DOTshortcuts/proot-*.sh ~
 mkdir ~/shared
-tee $PREFIX/etc/resolv.conf >/dev/null <<'EOF'
+tee "$PREFIX"/etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
 nameserver 1.0.0.1
 nameserver 2606:4700:4700::1111
@@ -117,12 +115,13 @@ mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
 cd ~ || exit
 rm -rf .JetBrainsMono
 termux-reload-settings
-mkdir -p $PREFIX/local/bin
-mkdir -p $PREFIX/local/go
-mkdir -p $PREFIX/local/java
+mkdir -p "$PREFIX"/local/bin
+mkdir -p "$PREFIX"/local/go
+mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
+# shellcheck disable=2086
 [ -n "$PKG" ] && pkg install $PKG -y
-[ -f $PREFIX/etc/ssh/sshd_config ] && sed -Ei 's/^#?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#?Port.*/Port 8022/' $PREFIX/etc/ssh/sshd_config
+[ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
 Host *
@@ -242,12 +241,12 @@ cd ~ || exit
 fi
 if [ "$CYBERCHEF" -ne 0 ]; then
 proot-distro install ghcr.io/gchq/cyberchef:latest
-sed -Ei "s/(listen[ \t ]+)[0-9]*;/\18081;/" $PREFIX/var/lib/proot-distro/containers/cyberchef/rootfs/etc/nginx/conf.d/default.conf
+sed -Ei "s/(listen[ \t ]+)[0-9]*;/\18081;/" "$PREFIX"/var/lib/proot-distro/containers/cyberchef/rootfs/etc/nginx/conf.d/default.conf
 fi
 if [ "$STIRLINGPDF" -ne 0 ]; then
 proot-distro install stirlingtools/stirling-pdf:latest
-mkdir -p $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tessdata
-cd $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tessdata || exit
+mkdir -p "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tessdata
+cd "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/usr/share/tessdata || exit
 rm chi_sim.traineddata || true
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/chi_sim.traineddata
 rm chi_sim_vert.traineddata || true
@@ -259,38 +258,43 @@ wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-
 rm eng.traineddata || true
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/eng.traineddata
 cd ~ || exit
-echo -e 'server:\n  port: 9000' | tee $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
+echo -e 'server:\n  port: 9000' | tee "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
 fi
+# shellcheck disable=2086
 [ -n "$NPMG" ] && npm i -g $NPMG
 if [ -n "$PIP" ]; then
+# shellcheck disable=2086
 pip3 install $PIP || true
-pip3 install $PIP
+# shellcheck disable=2086
+pip3 install $PIP || true
 fi
 if [ -n "$PIPX" ]; then
 pip3 install pipx
+# shellcheck disable=2086
 pipx install $PIPX
 fi
+# shellcheck disable=2086
 [ -n "$GO" ] && go install $GO
 if [ "$APKTOOL" -ne 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 chmod +x apktool
-mv apktool $PREFIX/local/bin/
+mv apktool "$PREFIX"/local/bin/
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 chmod +x apktool_*.jar
-mv apktool_*.jar $PREFIX/local/bin/
+mv apktool_*.jar "$PREFIX"/local/bin/
 fi
-[ "$ANTLR" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O $PREFIX/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
-[ "$PLANTUML" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O $PREFIX/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
+[ "$ANTLR" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O "$PREFIX"/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
+[ "$PLANTUML" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O "$PREFIX"/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 [ "$EFFLIST" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
-[ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name $TERMUX
-[ -n "$UBUNTU" ] && proot-distro install ubuntu:rolling --name $UBUNTU
-[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login $UBUNTU --redirect-ports --shared-tmp --isolated --get-proot-cmd)
-[ -n "$DEBIAN" ] && proot-distro install debian:stable --name $DEBIAN
-[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login $DEBIAN --redirect-ports --shared-tmp --isolated --get-proot-cmd)
-[ -n "$UBUNTUBOX" ] && proot-distro install ubuntu:latest --name $UBUNTUBOX
-[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login $UBUNTUBOX --redirect-ports --shared-tmp --isolated --get-proot-cmd)
-[ -n "$DEBIANBOX" ] && proot-distro install debian:stable --name $DEBIANBOX
-[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login $DEBIANBOX --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+[ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name "$TERMUX"
+[ -n "$UBUNTU" ] && proot-distro install ubuntu:latest --name "$UBUNTU"
+[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login "$UBUNTU" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+[ -n "$DEBIAN" ] && proot-distro install debian:stable --name "$DEBIAN"
+[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login "$DEBIAN" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+[ -n "$UBUNTUBOX" ] && proot-distro install ubuntu:latest --name "$UBUNTUBOX"
+[ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login "$UBUNTUBOX" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+[ -n "$DEBIANBOX" ] && proot-distro install debian:stable --name "$DEBIANBOX"
+[ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login "$DEBIANBOX" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 rm -f ~/.bashrc.d/11-proot.sh
 cat > ~/.bashrc.d/11-proot.sh <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
