@@ -1,3 +1,4 @@
+#!/data/data/com.termux/files/usr/bin/bash
 cd ~
 pkg install git build-essential cmake luv openssl tor -y
 git clone https://github.com/Willie169/xmrig.git

@@ -1,7 +1,5 @@
 #!/bin/bash
-
 [ "$1" = '--test' ] && TEST=1 || TEST=0
-
 shopt -s expand_aliases
 cd ~ || exit
 tee /etc/resolv.conf >/dev/null <<'EOF'
