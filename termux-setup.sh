@@ -11,7 +11,6 @@ RCLONEEXTRA=1
 PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
-NPM='jsdom markdown-toc marked marked-gfm-heading-id node-html-markdown showdown'
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
 PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
 PIPX='cmake-language-server gallery-dl gh2md meson pylatexenc tldr yamllint'
@@ -263,7 +262,6 @@ wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-
 cd ~ || exit
 echo -e 'server:\n  port: 9000' | tee $PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
 fi
-[ -n "$NPM" ] && npm i $NPM
 [ -n "$NPMG" ] && npm i -g $NPMG
 if [ -n "$PIP" ]; then
 pip3 install $PIP || true
