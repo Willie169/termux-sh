@@ -165,17 +165,7 @@ fi
 if [ "$ANDROID" -ne 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/Willie169/termux-android-sdk-ndk/blob/main/install.sh
 chmod +x install.sh
-#PROFILE=/dev/null . install.sh "platform-tools"
-wget --tries=100 --retry-connrefused --waitretry=5 -O studio.html https://developer.android.com/studio
-# shellcheck disable=2155
-export CMDLINETOOLS="$(awk '/<table class="download">/ { count++ }
-count >= 2 {
-  if (match($0, /commandlinetools-linux-.*zip/)) {
-    print substr($0, RSTART, RLENGTH)
-    exit
-  }
-}' studio.html)" || true
-echo "$CMDLINETOOLS"
+PROFILE=/dev/null . install.sh "platform-tools"
 fi
 if [ "$VIMRC" -ne 0 ]; then
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
@@ -259,7 +249,7 @@ fi
 mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
-pkg install uv -y || true
+pkg install libxml2 libxslt uv -y || true
 git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
 uv sync
