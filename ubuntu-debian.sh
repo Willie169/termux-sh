@@ -2,7 +2,8 @@
 [ "$1" = '--test' ] && TEST=1 || TEST=0
 shopt -s expand_aliases
 [ "$TEST" -eq 1 ] && set -euxo pipefail
-df
+# shellcheck disable=2155
+PREDF=$(df --output=used / | tail -n1 || true)
 cd ~ || exit
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
@@ -425,5 +426,8 @@ DEBIAN_FRONTEND=noninteractive apt upgrade -y
 apt autoremove --purge -y
 apt clean
 rm ubuntu-debian.sh || true
-df
+# shellcheck disable=2155
+POSTDF=$(df --output=used / | tail -n1 || true)
+echo "$PREDF"
+echo "$POSTDF"
 [ "$TEST" -eq 0  ] && exit || true
