@@ -70,11 +70,11 @@ sed '/shortcut.create-session/s/^# //' -i ~/.termux/termux.properties
 sed '/shortcut.next-session/s/^# //' -i ~/.termux/termux.properties
 sed '/shortcut.previous-session/s/^# //' -i ~/.termux/termux.properties
 sed 's/^# extra-keys-text-all-caps = true/extra-keys-text-all-caps = false/' -i ~/.termux/termux.properties
-termux-reload-settings
+termux-reload-settings || true
 sed '/^extra-keys = /{N;d;}' -i ~/.termux/termux.properties
 perl -0777 -pe 's/(###############\n# Extra keys\n###############\n)/$1\nextra-keys = \[ \[ \{ key: ESC, popup: \{ macro: "ALT s", display: "ALT s" \} \}, \{ key: "\`", popup: "\`\`\`" \}, \{ key: "Z", popup: ":wq\\n" \}, \{ key: "Zp", popup: ":q\\n" \}, \{ key: ":%s\/", popup: \{ macro: "CTRL t", display: "CTRL t" \} \}, \{ key: "d\\\$", popup: \{ macro: "CTRL 1", display: "CTRL 1" \} \}, \{ key: "y\\\$", popup: \{ macro: "CTRL 2", display: "CTRL 2" \} \}, \{ key: "yG", popup: \{ macro: "CTRL r", display: "CTRL r" \} \} \], \[ \{ key: DRAWER, popup: \{ macro: "ALT h", display: "ALT h" \} \}, \{ key: KEYBOARD, popup: "–" \}, \{ key: "\/", popup: \{ macro: "CTRL d", display: "CTRL d" \} \}, \{ key: DEL, popup: BKSP \}, \{ key: HOME, popup: "clear" \}, \{ key: UP, popup: \{ macro: "CTRL UP", display: "Up" \} \}, \{ key: END, popup: ENTER \}, \{ key: PGUP, popup: "±" \} \], \[ \{ key: TAB, popup: \{ macro: "ALT b", display: "ALT b" \} \}, \{ key: "~", popup: \{ macro: "CTRL \\\\\\\\", display: "CTRL \\\\\\\\" \} \}, \{ key: CTRL, popup: \{ macro: "CTRL c", display: "CTRL c" \} \}, \{ key: ALT, popup: \{ macro: "CTRL z", display: "CTRL z" \} \}, \{ key: LEFT, popup: \{ macro: "CTRL LEFT", display: "Left" \} \}, \{ key: DOWN, popup: \{ macro: "CTRL DOWN", display: "Down" \} \}, \{ key: RIGHT, popup: \{ macro: "CTRL RIGHT", display: "Right" \} \}, \{ key: PGDN, popup: "EOF" \} \] \]\n/s' ~/.termux/termux.properties > ~/tmp
 mv ~/tmp ~/.termux/termux.properties
-termux-reload-settings
+termux-reload-settings || true
 mkdir -p ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
 cp ~/termux-sh/DOTshortcuts/documents.sh ~
@@ -117,7 +117,7 @@ unzip JetBrainsMono.zip
 mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
 cd ~ || exit
 rm -rf .JetBrainsMono
-termux-reload-settings
+termux-reload-settings || true
 mkdir -p "$PREFIX"/local/bin
 mkdir -p "$PREFIX"/local/go
 mkdir -p "$PREFIX"/local/java
