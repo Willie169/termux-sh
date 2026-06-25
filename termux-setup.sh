@@ -124,24 +124,13 @@ mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
 # shellcheck disable=2086
 [ -n "$PKG" ] && pkg install $PKG -y || true
-[ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
+[ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
 Host *
     ServerAliveInterval 15
     ServerAliveCountMax 8
 EOF
-gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
-# Fix for GitHub Action error:
-# + tar -xJf aarch64-linux.tar.xz
-# tar: Unknown option Jf (see "tar --help")
-# and
-# + tar -xf -
-# tar: chown 501:20 'superhtml': Operation not permitted
-# other tar similarly
-xz -dc aarch64-linux.tar.xz | tar -xf - || true
-rm aarch64-linux.tar.xz*
-mv superhtml ~/.local/bin
 if [ "$GITDELTA" -ne 0 ]; then
 pkg install git-delta -y || true
 git config --global core.pager delta
@@ -209,6 +198,17 @@ require("lazy").setup({
 })
 EOF
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
+# Fix for GitHub Action error:
+# + tar -xJf aarch64-linux.tar.xz
+# tar: Unknown option Jf (see "tar --help")
+# and
+# + tar -xf -
+# tar: chown 501:20 'superhtml': Operation not permitted
+# other tar similarly
+xz -dc aarch64-linux.tar.xz | tar -xf - || true
+rm aarch64-linux.tar.xz*
+mv superhtml ~/.local/bin/
 fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
