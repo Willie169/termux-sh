@@ -38,7 +38,7 @@ sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
 sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' "$f"
 fi
 apt update
-apt purge texlive* yq -y
+apt purge rustup texlive* yq -y
 DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales lsb-release make ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 vim-gtk3 wget xz-utils -y
 DEBIAN_FRONTEND=noninteractive apt install sudo -y
 sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
@@ -87,7 +87,7 @@ DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_a
 rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
 DEBIAN_FRONTEND=noninteractive apt install mesa-utils xfce4 xfce4-goodies xinit -y
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
 echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | tee /etc/apt/sources.list.d/debian.griffo.io.list >/dev/null
 apt update
