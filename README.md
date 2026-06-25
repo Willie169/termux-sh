@@ -34,40 +34,26 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 ### Prerequisites
 
 <ul>
-<li>Sufficient storage: The storage listed below may be outdated.
+<li>Sufficient storage:
 <ul>
-<li>Approximately 0.2 GB for the Termux app itself.
-<li>Approximately 7.3 GB in total for the minimal configuration with <code>XFCE=0</code>, <code>ANDROID=0</code>, and
-<pre><code>TERMUX=''
-UBUNTU=''
-UBUNTUINSTALL=0
-DEBIAN=''
-DEBIANINSTALL=0
-UBUNTUBOX=''
-UBUNTUBOXINSTALL=0
-DEBIANBOX=''
-DEBIANBOXINSTALL=0
-</code></pre></li>
-<li>Approximately 0.4 GB more for <code>XFCE=1</code>.</li>
-<li>Approximately 2.6 GB more for <code>ANDROID=1</code>.</li>
-<li>Approximately 0.1 GB more for a nonempty <code>TERMUX</code>.</li>
-<li>Approximately 0.3 GB more for a nonempty <code>UBUNTU</code>.</li>
-<li>Approximately 0.2 GB more for a nonempty <code>DEBIAN</code>.</li>
-<li>Approximately 23.19 GB more for <code>UBUNTUINSTALL=1</code>.</li>
-<li>Approximately 23.19 GB more for <code>DEBIANINSTALL=1</code>.</li>
-<li>Approximately 59.4 GB in total for the default configuration with <code>XFCE=1</code>, <code>ANDROID=1</code>, and
+<li>Termux app and bootstrap: approximately 0.2 GB.
+<li>Previous rows remain default with
 <pre><code>TERMUX='termux'
 UBUNTU='ubuntu'
-UBUNTUINSTALL=1
+UBUNTUINSTALL=0
 DEBIAN='debian'
 DEBIANINSTALL=0
 UBUNTUBOX=''
 UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
-</code></pre></li>
+</code></pre>
+: approximately  GB.</li>
+<li><code>UBUNTUINSTALL=1</code>: approximately 23.19 GB.</li>
+<li><code>DEBIANINSTALL=1</code>: approximately 23.19 GB.</li>
+<li>Default: approximately  GB.</li>
 </ul></li>
-<li>Sufficient power supply.</li>
+<li>Sufficient power supply and/or battery.</li>
 <li>Stable internet connection.</li>
 <li>It is recommended to turn off the battery optimization for Termux.</li>
 <li>It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping <strong>Acquire wakelock</strong> on the notification of Termux.</li>
