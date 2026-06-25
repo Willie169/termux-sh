@@ -1,8 +1,8 @@
-name: termux-setup-test
+name: termux-setup
 on:
   workflow_dispatch:
 jobs:
-  termux-setup-test:
+  termux-setup:
     timeout-minutes: 360
     strategy:
       matrix:
@@ -30,6 +30,6 @@ jobs:
           s/^DEBIANINSTALL=0/DEBIANINSTALL=1/;
           s/pkg install (\$PKG|xfce4 -y)/pkg install $1 -s/;
           s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
-      - name: Main
+      - name: Run termux-setup.sh
         timeout-minutes: 360
         run: cat termux-setup.sh | docker run -i --privileged termux/termux-docker
