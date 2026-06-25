@@ -32,7 +32,8 @@ DEBIANBOXINSTALL=0
 
 ## CONFIG END
 
-df
+# shellcheck disable=2046,2155
+PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
 pkg update || true
 pkg upgrade -y || true
@@ -314,5 +315,8 @@ EOF
 [ -n "$UBUNTUBOX"  ] && echo -e "export UBUNTUBOX=$UBUNTUBOX\nexport UBUNTUBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTUBOX/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
 [ -n "$DEBIANBOX"  ] && echo -e "export DEBIANBOX=$DEBIANBOX\nexport DEBIANBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIANBOX/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
 rm -rf ~/termux-sh
-df
+# shellcheck disable=2046,2155
+POSTDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
+echo "PREDF: $PREDF"
+echo "POSTDF: $POSTDF"
 exit
