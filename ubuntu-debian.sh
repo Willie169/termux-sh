@@ -203,13 +203,7 @@ wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.j
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz*
-mv superhtml ~/.local/bin
-mkdir eclipse.jdt.ls
-cd eclipse.jdt.ls || exit
-wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
-tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
-rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
-cd ~ || exit
+mv superhtml ~/.local/bin/
 DEBIAN_FRONTEND=noninteractive apt install libeigen3-dev libzip-dev zlib1g-dev -y
 git clone --depth=1 https://github.com/lightvector/KataGo.git
 cd KataGo/cpp || exit
