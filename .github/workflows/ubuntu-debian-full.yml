@@ -1,4 +1,4 @@
-name: ubuntu-debian
+name: ubuntu-debian-full
 on:
   workflow_dispatch:
 jobs:
