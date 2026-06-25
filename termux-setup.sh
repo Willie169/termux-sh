@@ -63,7 +63,7 @@ fi
 mkdir -p ~/.termux
 cd ~/.termux || exit
 rm termux.properties || true
-wget https://raw.githubusercontent.com/termux/termux-tools/refs/heads/master/termux.properties
+wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/termux/termux-tools/refs/heads/master/termux.properties
 cd ~ || exit
 sed '/allow-external-apps/s/^# //' -i ~/.termux/termux.properties
 sed '/shortcut.create-session/s/^# //' -i ~/.termux/termux.properties
