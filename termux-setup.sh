@@ -33,9 +33,9 @@ DEBIANBOXINSTALL=0
 ## CONFIG END
 
 cd ~ || exit
-pkg update
-pkg upgrade -y
-pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api wget which zip xz-utils x11-repo tur-repo -y
+pkg update || true
+pkg upgrade -y || true
+pkg install coreutils curl git gzip nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api wget which zip xz-utils x11-repo tur-repo -y || true
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -121,7 +121,7 @@ mkdir -p "$PREFIX"/local/go
 mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
 # shellcheck disable=2086
-[ -n "$PKG" ] && pkg install $PKG -y
+[ -n "$PKG" ] && pkg install $PKG -y || true
 [ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?PasswordAuthentication.*/PasswordAuthentication yes/; s/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
@@ -140,7 +140,7 @@ tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server
 rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'
 cd ~ || exit
 if [ "$GITDELTA" -ne 0 ]; then
-pkg install git-delta -y
+pkg install git-delta -y || true
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
@@ -152,7 +152,7 @@ gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dl
 chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
 fi
-[ "$XFCE" -eq 0 ] || pkg install xfce4 -y
+[ "$XFCE" -eq 0 ] || pkg install xfce4 -y || true
 if [ "$ANDROID" -ne 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/Willie169/termux-android-sdk-ndk/blob/main/install.sh
 PROFILE=/dev/null ./install.sh "platform-tools"
@@ -239,7 +239,7 @@ fi
 mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
-pkg install uv -y
+pkg install uv -y || true
 git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
 uv sync
