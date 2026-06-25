@@ -135,9 +135,11 @@ gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' krist
 # Fix for GitHub Action error:
 # + tar -xJf aarch64-linux.tar.xz
 # tar: Unknown option Jf (see "tar --help")
-# Process completed with exit code 1.
-xz -dc aarch64-linux.tar.xz | tar -xf -
-rm aarch64-linux.tar.xz
+# and
+# + tar -xf -
+# tar: chown 501:20 'superhtml': Operation not permitted
+xz -dc aarch64-linux.tar.xz | tar -xf - || true
+rm aarch64-linux.tar.xz*
 mv superhtml ~/.local/bin
 mkdir eclipse.jdt.ls
 cd eclipse.jdt.ls || exit
