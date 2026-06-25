@@ -142,12 +142,6 @@ gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' krist
 xz -dc aarch64-linux.tar.xz | tar -xf - || true
 rm aarch64-linux.tar.xz*
 mv superhtml ~/.local/bin
-mkdir eclipse.jdt.ls
-cd eclipse.jdt.ls || exit
-wget --tries=100 --retry-connrefused --waitretry=5 'https://www.eclipse.org/downloads/download.php?file=/jdtls/milestones/1.57.0/jdt-language-server-1.57.0-202602261110.tar.gz'
-tar -xzf 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz' || true
-rm 'download.php?file=%2Fjdtls%2Fmilestones%2F1.57.0%2Fjdt-language-server-1.57.0-202602261110.tar.gz'*
-cd ~ || exit
 if [ "$GITDELTA" -ne 0 ]; then
 pkg install git-delta -y || true
 git config --global core.pager delta
