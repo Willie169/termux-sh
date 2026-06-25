@@ -32,4 +32,4 @@ jobs:
           s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360
-        run: cat termux-setup.sh | sudo docker run -i --privileged termux/termux-docker
+        run: sudo docker run -v "$PWD:/data/data/com.termux/files/home/termux-sh" -w "/data/data/com.termux/files/home/termux-sh" --privileged termux/termux-docker bash termux-setup.sh
