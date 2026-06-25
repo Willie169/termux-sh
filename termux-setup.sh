@@ -249,7 +249,7 @@ fi
 mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
-pkg install libxml2 libxslt uv -y || true
+pkg install libxml2 libxslt rust uv -y || true
 git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
 uv sync
