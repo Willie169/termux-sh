@@ -296,11 +296,11 @@ fi
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name "$TERMUX"
 [ -n "$UBUNTU" ] && proot-distro install ubuntu:latest --name "$UBUNTU"
 [ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$UBUNTU/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login "$UBUNTU" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
-[ -n "$DEBIAN" ] && proot-distro install debian:stable --name "$DEBIAN"
+[ -n "$DEBIAN" ] && proot-distro install debian:latest --name "$DEBIAN"
 [ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "$PRF/$DEBIAN/rootfs/root/" && echo './ubuntu-debian.sh' | bash <(proot-distro login "$DEBIAN" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 [ -n "$UBUNTUBOX" ] && proot-distro install ubuntu:latest --name "$UBUNTUBOX"
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login "$UBUNTUBOX" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
-[ -n "$DEBIANBOX" ] && proot-distro install debian:stable --name "$DEBIANBOX"
+[ -n "$DEBIANBOX" ] && proot-distro install debian:latest --name "$DEBIANBOX"
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "$PRF/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login "$DEBIANBOX" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
 rm -f ~/.bashrc.d/11-proot.sh
 cat > ~/.bashrc.d/11-proot.sh <<EOF
