@@ -132,9 +132,7 @@ Host *
     ServerAliveCountMax 8
 EOF
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
-# fix for armv7
-# tar -xJf aarch64-linux.tar.xz
-xz -dc aarch64-linux.tar.xz | tar -xf -
+tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz
 mv superhtml ~/.local/bin
 mkdir eclipse.jdt.ls

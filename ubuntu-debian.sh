@@ -1,5 +1,6 @@
 #!/bin/bash
 [ "$1" = '--test' ] && TEST=1 || TEST=0
+[ "$1" = '--full' ] && FULL=1 || FULL=0
 shopt -s expand_aliases
 [ "$TEST" -eq 1 ] && set -euxo pipefail
 # shellcheck disable=2155
@@ -430,4 +431,4 @@ rm ubuntu-debian.sh || true
 POSTDF=$(df --output=used / | tail -n1 || true)
 echo "PREDF: $PREDF"
 echo "POSTDF: $POSTDF"
-[ "$TEST" -eq 0  ] && exit || true
+[ "$TEST" -eq 0  ] && [ "$FULL" -eq 0  ] && exit || true
