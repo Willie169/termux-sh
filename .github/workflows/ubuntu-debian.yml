@@ -11,7 +11,6 @@ jobs:
         image:
           - ubuntu:24.04
           - ubuntu:26.04
-          - debian:12
           - debian:13
     runs-on: ${{ matrix.runner }}
     container:
