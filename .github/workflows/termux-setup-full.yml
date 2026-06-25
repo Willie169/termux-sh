@@ -1,4 +1,4 @@
-name: termux-setup
+name: termux-setup-full
 on:
   workflow_dispatch:
 jobs:
@@ -20,9 +20,7 @@ jobs:
           git clone https://github.com/Willie169/termux-sh.git
           cd termux-sh
           perl -i -pe 's/^## CONFIG START/set -euxo pipefail/;
-          s/^DEBIANINSTALL=0/DEBIANINSTALL=1/;
-          s/pkg install (\$PKG|xfce4 -y)/pkg install $1 -s/;
-          s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
+          s/^UBUNTUINSTALL=1/UBUNTUINSTALL=0/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360
         run: docker run --rm -v "$HOME/termux-sh:/data/data/com.termux/files/home/termux-sh" -w "/data/data/com.termux/files/home/termux-sh" --privileged termux/termux-docker bash termux-setup.sh
