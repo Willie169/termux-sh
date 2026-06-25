@@ -418,4 +418,4 @@ DEBIAN_FRONTEND=noninteractive apt upgrade -y
 apt autoremove --purge -y
 apt clean
 rm ubuntu-debian.sh || true
-exit
+[ "$TEST" -eq 0  ] && exit || true
