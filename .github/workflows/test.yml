@@ -1,0 +1,29 @@
+name: test
+on:
+  workflow_dispatch:
+jobs:
+  tar:
+    timeout-minutes: 360
+    strategy:
+      matrix:
+        include:
+          - runner: ubuntu-24.04-arm
+            architecture: arm
+          - runner: ubuntu-24.04-arm
+            architecture: aarch64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Prepare
+        timeout-minutes: 360
+        run: |
+          cd ~
+          sudo apt update
+          sudo DEBIAN_FRONTEND=noninteractive apt install curl git -y
+          source /etc/os-release
+          curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc >/dev/null
+          echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $UBUNTU_CODENAME stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+          sudo apt update
+          sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
+      - name: Test
+        timeout-minutes: 360
+        run: sudo docker run --privileged termux/termux-docker bash -c 'pkg update || true; pkg install wget tar xz-utils -y || true; wget https://github.com/kristoff-it/superhtml/releases/download/v0.7.0/aarch64-linux.tar.xz && tar -xJf aarch64-linux.tar.xz && ls'
