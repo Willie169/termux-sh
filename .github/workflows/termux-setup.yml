@@ -4,14 +4,7 @@ on:
 jobs:
   install:
     timeout-minutes: 360
-    strategy:
-      matrix:
-        include:
-          - runner: ubuntu-24.04-arm
-            architecture: arm
-          - runner: ubuntu-24.04-arm
-            architecture: aarch64
-    runs-on: ${{ matrix.runner }}
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Prepare
         timeout-minutes: 360
