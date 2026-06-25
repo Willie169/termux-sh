@@ -17,16 +17,19 @@ jobs:
         timeout-minutes: 360
         run: |
           cd ~
-          sudo apt install git perl pipx proot -y
-          pipx install proot-distro
-          proot-distro install termux/termux-docker --name termux
+          sudo apt update
+          sudo DEBIAN_FRONTEND=noninteractive apt install curl git perl -y
+          source /etc/os-release
+          curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc >/dev/null
+          echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $UBUNTU_CODENAME stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+          sudo apt update
+          sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
           git clone https://github.com/Willie169/termux-sh.git
           cd termux-sh
           perl -i -pe 's/^## CONFIG START/set -euxo pipefail/;
           s/^DEBIANINSTALL=0/DEBIANINSTALL=1/;
           s/pkg install (\$PKG|xfce4 -y)/pkg install $1 -s/;
           s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
-          cp termux-setup.sh ~/.local/share/proot-distro/containers/termux/rootfs/data/data/com.termux/files/home/
       - name: Main
         timeout-minutes: 360
-        run: echo './termux-setup.sh' | bash <(proot-distro login termux --get-proot-cmd)
+        run: cat termux-setup.sh | docker run -i --privileged termux/termux-docker
