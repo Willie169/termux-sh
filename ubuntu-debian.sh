@@ -25,6 +25,7 @@ add-apt-repository restricted -y
 add-apt-repository ppa:git-core/ppa -y
 add-apt-repository ppa:libreoffice/ppa -y
 add-apt-repository ppa:longsleep/golang-backports -y
+add-apt-repository ppa:openjdk-r/ppa -y
 add-apt-repository ppa:mozillateam/ppa -y
 add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
