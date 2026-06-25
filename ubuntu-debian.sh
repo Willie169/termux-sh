@@ -16,6 +16,8 @@ EOF
 source /etc/os-release
 apt update
 if [ "$ID" = "ubuntu" ]; then
+f=/etc/apt/sources.list.d/ubuntu.sources
+sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
 DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y
 add-apt-repository universe -y
 add-apt-repository multiverse -y
@@ -26,7 +28,9 @@ add-apt-repository ppa:longsleep/golang-backports -y
 add-apt-repository ppa:mozillateam/ppa -y
 add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
-sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.list
+f=/etc/apt/sources.list.d/debian.sources
+sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
+sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' "$f"
 fi
 apt update
 apt purge texlive* yq -y
