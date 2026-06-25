@@ -2,6 +2,7 @@
 [ "$1" = '--test' ] && TEST=1 || TEST=0
 shopt -s expand_aliases
 [ "$TEST" -eq 1 ] && set -euxo pipefail
+df
 cd ~ || exit
 tee /etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
@@ -26,6 +27,8 @@ add-apt-repository ppa:git-core/ppa -y
 add-apt-repository ppa:libreoffice/ppa -y
 add-apt-repository ppa:longsleep/golang-backports -y
 add-apt-repository ppa:openjdk-r/ppa -y
+mv /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-*.sources /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources || true
+sed -i 's/^Suites: .*$/Suites: noble/' /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources
 add-apt-repository ppa:mozillateam/ppa -y
 add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
@@ -422,4 +425,5 @@ DEBIAN_FRONTEND=noninteractive apt upgrade -y
 apt autoremove --purge -y
 apt clean
 rm ubuntu-debian.sh || true
+df
 [ "$TEST" -eq 0  ] && exit || true
