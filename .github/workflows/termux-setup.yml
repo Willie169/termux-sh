@@ -2,7 +2,7 @@ name: termux-setup
 on:
   workflow_dispatch:
 jobs:
-  termux-setup:
+  install:
     timeout-minutes: 360
     strategy:
       matrix:

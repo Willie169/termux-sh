@@ -2,7 +2,7 @@ name: ubuntu-debian
 on:
   workflow_dispatch:
 jobs:
-  ubuntu-debian:
+  install:
     timeout-minutes: 360
     strategy:
       matrix:
