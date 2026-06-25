@@ -1,0 +1,16 @@
+name: ubuntu-debian
+on:
+  workflow_dispatch:
+jobs:
+  install:
+    timeout-minutes: 360
+    runs-on: ubuntu-24.04-arm
+    container:
+      image: ubuntu:26.04
+    steps:
+      - name: Checkout repository
+        timeout-minutes: 360
+        uses: actions/checkout@v4
+      - name: Run ubuntu-debian.sh
+        timeout-minutes: 360
+        run: ./ubuntu-debian.sh --full
