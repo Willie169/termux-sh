@@ -4,10 +4,9 @@ shopt -s expand_aliases
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 automake bash bc bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy python-yt-dlp p7zip qpdf ruby rust scrcpy shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xmlstarlet yazi yq zip zoxide zsh'
+PKG='alsa-utils aria2 automake bash bc bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy python-yt-dlp p7zip qpdf ruby rust scrcpy shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet yazi yq zip zoxide zsh'
 GITDELTA=1
 YTDLP=1
-XFCE=1
 ANDROID=1
 VIMRC=1
 RCLONEEXTRA=1
@@ -42,7 +41,7 @@ pkg upgrade -y
 pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api termux-tools wget which zip xz-utils -y
 pkg install pulseaudio -y
 pkg install x11-repo tur-repo -y
-pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink -y
+pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4 -y
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -150,7 +149,6 @@ gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dl
 chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
 fi
-[ "$XFCE" -eq 0 ] || pkg install xfce4 -y
 if [ "$ANDROID" -ne 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/termux-android-sdk-ndk/refs/heads/main/install.sh
 chmod +x install.sh
@@ -249,7 +247,7 @@ fi
 mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
-pkg install libxml2 libxslt rust uv
+pkg install libxml2 libxslt rust uv -y
 git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
 uv sync
