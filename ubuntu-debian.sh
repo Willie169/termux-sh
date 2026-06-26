@@ -64,9 +64,9 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 EOF
-if [ -d "$HOME/.bashrc.d"  ];  then
+if [ -d "$HOME/.bashrc.d" ];  then
   for f in "$HOME/.bashrc.d/"*; do
-    [ -r "$f"  ] && . "$f"
+    [ -r "$f" ] && . "$f"
   done
 fi
 mkdir -p /usr/local/java
@@ -425,4 +425,4 @@ rm ubuntu-debian.sh || true
 POSTDF=$(df --output=used / | tail -n1)
 echo "PREDF: $PREDF"
 echo "POSTDF: $POSTDF"
-[ "$TEST" -eq 0  ] && [ "$FULL" -eq 0  ] && exit || true
+[ "$TEST" -eq 0 ] && [ "$FULL" -eq 0 ] && exit || true
