@@ -19,8 +19,12 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
           git clone https://github.com/Willie169/termux-sh.git
           cd termux-sh
-          sed -Ei 's/^pkg /apt /; s/ pkg / apt /; s/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|; s|pkg |apt |'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/;
-          s/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' termux-setup.sh
+          wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/termux-android-sdk-ndk/refs/heads/main/install.sh
+          sed -i '/#!\/data\/data\/com\.termux\/files\/usr\/bin\/bash/d' install.sh
+          sed -Ei '/wget --tries=100 --retry-connrefused --waitretry=5 https:\/\/raw.githubusercontent.com\/Willie169\/termux-android-sdk-ndk\/refs\/heads\/main\/install\.sh/d; /chmod \+x install\.sh/d; s/(PROFILE=\/dev\/null) \.\/install\.sh.*/\1/; /PROFILE=\/dev\/null/r install.sh' termux-setup.sh
+          rm install.sh
+          sed -Ei 's/^pkg /apt /; s/ pkg / apt /; s/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|; s|pkg |apt |'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/' termux-setup.sh
+          sed -Ei 's/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360
         run: |
