@@ -35,12 +35,12 @@ DEBIANBOXINSTALL=0
 # shellcheck disable=2046,2155
 PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
-pkg update || true
-pkg upgrade -y || true
-pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api termux-tools wget which zip xz-utils -y || true
-pkg install pulseaudio -y || true
-pkg install x11-repo tur-repo -y || true
-pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink -y || true
+pkg update
+pkg upgrade -y
+pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api termux-tools wget which zip xz-utils -y
+pkg install pulseaudio -y
+pkg install x11-repo tur-repo -y
+pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink -y
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -127,7 +127,7 @@ mkdir -p "$PREFIX"/local/go
 mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
 # shellcheck disable=2086
-[ -n "$PKG" ] && pkg install $PKG -y || true
+[ -n "$PKG" ] && pkg install $PKG -y
 [ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
@@ -136,19 +136,19 @@ Host *
     ServerAliveCountMax 8
 EOF
 if [ "$GITDELTA" -ne 0 ]; then
-pkg install git-delta -y || true
+pkg install git-delta -y
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 fi
 if [ "$YTDLP" -ne 0 ]; then
-pkg install deno -y || true
+pkg install deno -y
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
 fi
-[ "$XFCE" -eq 0 ] || pkg install xfce4 -y || true
+[ "$XFCE" -eq 0 ] || pkg install xfce4 -y
 if [ "$ANDROID" -ne 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/termux-android-sdk-ndk/refs/heads/main/install.sh
 chmod +x install.sh
@@ -247,7 +247,7 @@ fi
 mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
-pkg install libxml2 libxslt rust uv -y || true
+pkg install libxml2 libxslt rust uv
 git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
 uv sync
@@ -281,7 +281,7 @@ if [ -n "$PIP" ]; then
 # shellcheck disable=2086
 pip3 install $PIP || true
 # shellcheck disable=2086
-pip3 install $PIP || true
+pip3 install $PIP
 fi
 if [ -n "$PIPX" ]; then
 pip3 install pipx
