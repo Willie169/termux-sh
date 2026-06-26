@@ -37,7 +37,7 @@ PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
 pkg update || true
 pkg upgrade -y || true
-pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api wget which zip xz-utils -y || true
+pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api termux-tools wget which zip xz-utils -y || true
 pkg install pulseaudio -y || true
 pkg install x11-repo tur-repo -y || true
 pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink -y || true
