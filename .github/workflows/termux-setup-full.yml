@@ -21,6 +21,7 @@ jobs:
           cd termux-sh
           perl -i -pe 's/^## CONFIG START/set -euxo pipefail/;
           s/^UBUNTUINSTALL=1/UBUNTUINSTALL=0/;
+          s/pkg/apt/;
           s/uv sync/ANDROID_API_LEVEL=24 uv sync/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360

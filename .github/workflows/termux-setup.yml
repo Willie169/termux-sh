@@ -22,7 +22,8 @@ jobs:
           perl -i -pe 's/^## CONFIG START/set -euxo pipefail/;
           s/^DEBIANINSTALL=0/DEBIANINSTALL=1/;
           s/uv sync/ANDROID_API_LEVEL=24 uv sync/;
-          s/pkg install (\$PKG|xfce4 -y)/pkg install $1 -s/;
+          s/( install \$PKG|xfce4 -y)/$1 -s/;
+          s/pkg/apt/;
           s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360
