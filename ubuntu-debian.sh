@@ -418,7 +418,7 @@ cd ~ || exit
 apt update
 DEBIAN_FRONTEND=noninteractive apt install -f -y
 DEBIAN_FRONTEND=noninteractive apt upgrade -y
-apt DEBIAN_FRONTEND=noninteractive autoremove --purge -y
+DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y
 apt clean
 rm ubuntu-debian.sh || true
 # shellcheck disable=2155
