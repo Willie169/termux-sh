@@ -4,7 +4,7 @@ shopt -s expand_aliases
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 automake bash bc bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pip python-scipy p7zip qpdf ruby rust scrcpy shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet yazi yq zip zoxide zsh'
+PKG='alsa-utils aria2 automake bash bc bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy p7zip qpdf ruby rust scrcpy shellcheck shfmt socat sqlite tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tree-sitter tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet yazi yq zip zoxide zsh'
 GITDELTA=1
 YTDLP=1
 ANDROID=1
@@ -14,7 +14,7 @@ PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
-PIP='pandas pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
+PIP='pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
 PIPX='cmake-language-server gallery-dl gh2md meson pylatexenc tldr yamllint'
 GO=''
 APKTOOL=1
@@ -38,7 +38,7 @@ PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
 pkg update
 pkg upgrade -y
-pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels python-numpy python-pip python-scipy tar termux-api termux-tools wget which zip xz-utils -y
+pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels python-pip tar termux-api termux-tools wget which zip xz-utils -y
 pkg install pulseaudio -y
 pkg install x11-repo tur-repo -y
 pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4 -y
