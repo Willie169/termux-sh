@@ -1,4 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
+set -euxo pipefail
+shopt -s expand_aliases
 
 ## CONFIG START
 
