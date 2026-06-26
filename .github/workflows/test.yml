@@ -25,6 +25,7 @@ jobs:
             echo "deb https://packages.termux.dev/apt/termux-main stable main" > /data/data/com.termux/files/usr/etc/apt/sources.list
             apt update
             apt upgrade -y
+            apt install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels tar termux-api termux-tools wget which zip xz-utils -y
             apt install x11-repo tur-repo -y
-            apt install perl termux-x11-nightly virglrenderer-mesa-zink -y
+            apt install termux-x11-nightly virglrenderer-mesa-zink -y
           '
