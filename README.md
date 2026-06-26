@@ -34,7 +34,7 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 ### Prerequisites
 
 <ul>
-<li>Sufficient storage: (calculated using GitHub Action)
+<li>Sufficient storage: (calculated using GitHub Action, typically a bit more on a real device)
 <ul>
 <li>Previous rows remain default with
 <pre><code>TERMUX='termux'
@@ -50,7 +50,6 @@ DEBIANBOXINSTALL=0
 : approximately 14.29 GB.</li>
 <li><code>UBUNTUINSTALL=1</code>: approximately 23.19 GB.</li>
 <li><code>DEBIANINSTALL=1</code>: approximately 23.19 GB.</li>
-<li>Default: approximately 37.48 GB.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
