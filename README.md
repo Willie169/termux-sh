@@ -47,11 +47,12 @@ UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre>
-: approximately  GB.</li>
+: approximately 14.27 GB.</li>
 <li><code>UBUNTUINSTALL=1</code>: approximately 23.19 GB.</li>
 <li><code>DEBIANINSTALL=1</code>: approximately 23.19 GB.</li>
+<li>Default: approximately 37.46 GB.</li>
 </ul></li>
-<li>Sufficient power supply and/or battery.</li>
+<li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
 <li>It is recommended to turn off the battery optimization for Termux.</li>
 <li>It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping <strong>Acquire wakelock</strong> on the notification of Termux.</li>
