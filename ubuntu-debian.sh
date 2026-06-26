@@ -87,7 +87,7 @@ wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/
 DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
 rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
-DEBIAN_FRONTEND=noninteractive apt install xfce4 xfce4-goodies xinit -y --no-install-recommends
+DEBIAN_FRONTEND=noninteractive apt install xfce4 xfce4-goodies xinit -y
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
 echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | tee /etc/apt/sources.list.d/debian.griffo.io.list >/dev/null
