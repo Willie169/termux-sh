@@ -126,16 +126,16 @@ wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forg
 bash Miniforge3-Linux-aarch64.sh -b -p "${HOME}/conda"
 rm Miniforge3-Linux-aarch64.sh*
 export MAMBA_ROOT_PREFIX="${HOME}/conda"
-source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null || true
-source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null || true
+source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null
+source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null
 conda config --set auto_activate_base false
 conda config --add channels pypi
 conda config --add channels pytorch
 conda config --add channels conda-forge
 touch /.dockerenv
-NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || true
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
-brew trust gurgeous/tap || true
+brew trust gurgeous/tap
 BREW='bat bottom broot dust fd fzf git-delta gurgeous/tap/tennis procs resvg ripgrep sevenzip yazi yq zoxide'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
