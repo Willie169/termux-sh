@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 shopt -s expand_aliases
-[ "$1" = '--test' ] && TEST=1 || TEST=0
-[ "$1" = '--full' ] && FULL=1 || FULL=0
+[ "${1:-}" = '--test' ] && TEST=1 || TEST=0
+[ "${1:-}" = '--full' ] && FULL=1 || FULL=0
 # shellcheck disable=2155
 PREDF=$(df --output=used / | tail -n1 || true)
 cd ~ || exit
