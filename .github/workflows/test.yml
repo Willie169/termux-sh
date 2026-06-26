@@ -19,21 +19,22 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
       - name: Run test
         timeout-minutes: 360
-        run: sudo docker run --rm -w "/data/data/com.termux/files/home" --privileged termux/termux-docker bash -c '
-          set -x
-          date
-          pkg --version
-          apt --version
-          dpkg -l | grep termux-keyring
-          cat $PREFIX/etc/apt/sources.list
-          for f in $PREFIX/etc/apt/sources.list.d/*; do
-          test -f "$f" && echo "$f" && cat "$f"
-          done
-          ls $PREFIX/etc/apt/trusted.gpg.d
-          pkg update
-          pkg install termux-keyring x11-repo tur-repo -y
-          for f in $PREFIX/etc/apt/sources.list.d/*; do
-          test -f "$f" && echo "$f" && cat "$f"
-          done
-          ls $PREFIX/etc/apt/trusted.gpg.d
-        '
+        run: |
+          sudo docker run --rm -w "/data/data/com.termux/files/home" --privileged termux/termux-docker bash -c '
+            set -x
+            date
+            pkg --version
+            apt --version
+            dpkg -l | grep termux-keyring
+            cat $PREFIX/etc/apt/sources.list
+            for f in $PREFIX/etc/apt/sources.list.d/*; do
+              test -f "$f" && echo "$f" && cat "$f"
+            done
+            ls $PREFIX/etc/apt/trusted.gpg.d
+            pkg update
+            pkg install termux-keyring x11-repo tur-repo -y
+            for f in $PREFIX/etc/apt/sources.list.d/*; do
+            test -f "$f" && echo "$f" && cat "$f"
+            done
+            ls $PREFIX/etc/apt/trusted.gpg.d
+          '
