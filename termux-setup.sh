@@ -152,7 +152,7 @@ fi
 if [ "$ANDROID" -ne 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/termux-android-sdk-ndk/refs/heads/main/install.sh
 chmod +x install.sh
-PROFILE=/dev/null . install.sh "platform-tools"
+PROFILE=/dev/null ./install.sh "platform-tools"
 fi
 if [ "$VIMRC" -ne 0 ]; then
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
