@@ -19,8 +19,8 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
           git clone https://github.com/Willie169/termux-sh.git
           cd termux-sh
-          sed -Ei 's/^(## CONFIG START)/\1\nset -euxo pipefail/; s/pkg /apt /; s/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|; s|pkg |apt |'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/; s/( install [\$PKG|xfce4] -y)/\1 -s/;
-          s/(\.\/ubuntu-debian.sh)/\1 --test/' termux-setup.sh
+          sed -Ei 's/pkg /apt /; s/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|; s|pkg |apt |'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/;
+          s/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360
         run: |
