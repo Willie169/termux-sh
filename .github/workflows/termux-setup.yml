@@ -26,4 +26,9 @@ jobs:
           s/\.\/ubuntu-debian.sh/.\/ubuntu-debian.sh --test/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360
-        run: sudo docker run --rm -v "$HOME/termux-sh:/data/data/com.termux/files/home/termux-sh" -w "/data/data/com.termux/files/home/termux-sh" --privileged termux/termux-docker bash termux-setup.sh
+        run: |
+          sudo docker run --rm -v "$HOME/termux-sh:/data/data/com.termux/files/home/termux-sh" -w "/data/data/com.termux/files/home/termux-sh" --privileged termux/termux-docker bash -c'
+            set -euxo pipefail
+            echo "deb https://packages.termux.dev/apt/termux-main stable main" > /data/data/com.termux/files/usr/etc/apt/sources.list
+            ./termux-setup.sh
+          '
