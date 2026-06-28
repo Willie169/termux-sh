@@ -25,7 +25,7 @@ apt update
 if [ "$ID" = "ubuntu" ]; then
 f=/etc/apt/sources.list.d/ubuntu.sources
 sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
-DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y
+DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y -o Dpkg::Options::="--force-confnew"
 add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
@@ -44,8 +44,8 @@ sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' "$f"
 fi
 apt update
 apt purge rustup texlive* yq -y
-DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales lsb-release make ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 vim-gtk3 wget xz-utils -y
-DEBIAN_FRONTEND=noninteractive apt install sudo -y
+DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales lsb-release make ninja-build openssh-server perl perl-tk pipx python-is-python3 python3 vim-gtk3 wget xz-utils -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive apt install sudo -y -o Dpkg::Options::="--force-confnew"
 sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
@@ -78,25 +78,25 @@ mkdir -p /etc/apt/keyrings
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/share/applications
 mkdir -p ~/Desktop
-DEBIAN_FRONTEND=noninteractive apt upgrade -y
+DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
 PKG='alsa-utils apksigner apt-transport-https aptitude audacity automake bash bc bear bindfs bison bookletimposer build-essential bzip2 ca-certificates calcurse clang clang-format clangd cmake command-not-found cronie curl dbus dbus-x11 debconf-utils distro-info dnsutils dvisvgm fastfetch ffmpeg file flex fontconfig fonts-cns11643-kai fonts-cns11643-sung fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gzip hyperfine iftop imagemagick info inkscape iotop-c iproute2 jpegoptim jq lftp libheif-examples libreoffice lsb-release lsd lzip make maven mesa-utils mpv nano ncdu neovim netcat-openbsd nethogs net-tools ngspice ninja-build nmap ocrmypdf octave openjdk-21-jdk openssh-client openssh-server openssl optipng p7zip-full pandoc perl perl-tk pipx pkg-config poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-pip python3-requests python3-venv qpdf shellcheck shfmt socat sqlite3 sudo tar tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra tesseract-ocr-chi-tra-vert tesseract-ocr-eng tesseract-ocr-jpn tesseract-ocr-jpn-vert tmux tree tree-sitter-cli tsocks unrar unzip uuid-runtime verilator vim-gtk3 w3m webp wget wget2 xdotool xmlstarlet xz-utils zip zsh zstd'
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml x86_64-linux-musl.tar.xz
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
-DEBIAN_FRONTEND=noninteractive apt install $PKG -y
+DEBIAN_FRONTEND=noninteractive apt install $PKG -y -o Dpkg::Options::="--force-confnew"
 else
 DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s
 fi
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
-DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y
+DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y -o Dpkg::Options::="--force-confnew"
 rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
-DEBIAN_FRONTEND=noninteractive apt install xfce4 xfce4-goodies xinit -y
+DEBIAN_FRONTEND=noninteractive apt install xfce4 xfce4-goodies xinit -y -o Dpkg::Options::="--force-confnew"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 curl -sS https://debian.griffo.io/EA0F721D231FDD3A0A17B9AC7808B4DD62C41256.asc | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/debian.griffo.io.gpg
 echo "deb https://debian.griffo.io/apt $(lsb_release -sc 2>/dev/null) main" | tee /etc/apt/sources.list.d/debian.griffo.io.list >/dev/null
 apt update
-DEBIAN_FRONTEND=noninteractive apt install lazygit -y
+DEBIAN_FRONTEND=noninteractive apt install lazygit -y -o Dpkg::Options::="--force-confnew"
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 chmod +x apktool
 mv apktool /usr/local/bin/
@@ -201,14 +201,14 @@ curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubuse
 curl -fsSL https://repo.charm.sh/apt/gpg.key | gpg --dearmor -o /etc/apt/keyrings/charm.gpg
 echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | tee /etc/apt/sources.list.d/charm.list >/dev/null
 apt update
-DEBIAN_FRONTEND=noninteractive apt install glow -y
+DEBIAN_FRONTEND=noninteractive apt install glow -y -o Dpkg::Options::="--force-confnew"
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 tar -xJf aarch64-linux.tar.xz
 rm aarch64-linux.tar.xz*
 mv superhtml ~/.local/bin/
-DEBIAN_FRONTEND=noninteractive apt install libeigen3-dev libzip-dev zlib1g-dev -y
+DEBIAN_FRONTEND=noninteractive apt install libeigen3-dev libzip-dev zlib1g-dev -y -o Dpkg::Options::="--force-confnew"
 git clone --depth=1 https://github.com/lightvector/KataGo.git
 cd KataGo/cpp || exit
 cmake . -G Ninja -DUSE_BACKEND=EIGEN
@@ -218,7 +218,7 @@ mkdir katago-networks
 cd katago-networks || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
 cd ~ || exit
-DEBIAN_FRONTEND=noninteractive apt install maven -y
+DEBIAN_FRONTEND=noninteractive apt install maven -y -o Dpkg::Options::="--force-confnew"
 git clone --depth=1 https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy || exit
 mvn clean package
@@ -249,7 +249,7 @@ ARCH="armv7"
 fi
 make -j ARCH="$ARCH" profile-build largeboards=yes nnue=yes
 cd ~ || exit
-DEBIAN_FRONTEND=noninteractive apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y
+DEBIAN_FRONTEND=noninteractive apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y -o Dpkg::Options::="--force-confnew"
 git clone --depth=1 https://github.com/cutechess/cutechess.git
 cd cutechess || exit
 mkdir build
@@ -269,7 +269,7 @@ Categories=Game;
 EOF
 update_cutechess_config
 cp ~/.local/share/applications/cutechess.desktop ~/Desktop/cutechess.desktop && chmod +x ~/Desktop/cutechess.desktop
-DEBIAN_FRONTEND=noninteractive apt install libqt5svg5-dev qt5-qmake qtbase5-dev qtbase5-dev-tools -y
+DEBIAN_FRONTEND=noninteractive apt install libqt5svg5-dev qt5-qmake qtbase5-dev qtbase5-dev-tools -y -o Dpkg::Options::="--force-confnew"
 git clone --depth=1 https://github.com/hotfics/Sylvan.git
 cd Sylvan || exit
 qmake
@@ -420,9 +420,9 @@ cd physics-patch || exit
 git checkout dev
 cd ~ || exit
 apt update
-DEBIAN_FRONTEND=noninteractive apt install -f -y
-DEBIAN_FRONTEND=noninteractive apt upgrade -y
-DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y
+DEBIAN_FRONTEND=noninteractive apt install -f -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y -o Dpkg::Options::="--force-confnew"
 apt clean
 rm ubuntu-debian.sh || true
 # shellcheck disable=2155
