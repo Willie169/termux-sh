@@ -85,7 +85,7 @@ gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' krist
 if [ "$TEST" -eq 0 ]; then
 DEBIAN_FRONTEND=noninteractive apt install $PKG -y -o Dpkg::Options::="--force-confnew"
 else
-DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s
+DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s -o Dpkg::Options::="--force-confnew"
 fi
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y -o Dpkg::Options::="--force-confnew"
