@@ -37,10 +37,10 @@ DEBIANBOXINSTALL=0
 PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
 apt update
+DEBIAN_FRONTEND=noninteractive apt install x11-repo tur-repo -y
 DEBIAN_FRONTEND=noninteractive apt upgrade -y
 DEBIAN_FRONTEND=noninteractive apt install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels python-pip tar termux-api termux-tools wget which zip xz-utils -y
 DEBIAN_FRONTEND=noninteractive apt install pulseaudio -y
-DEBIAN_FRONTEND=noninteractive apt install x11-repo tur-repo -y
 DEBIAN_FRONTEND=noninteractive apt install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4 -y
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
