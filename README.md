@@ -63,7 +63,7 @@ DEBIANBOXINSTALL=0
 <ol>
 <li>It is suggested to run <code>termux-change-repo</code> and select repo(s) closer to your geographical location for faster download.</li>
 <li><pre><code>termux-setup-storage
-pkg update && pkg install git x11-repo tur-repo -y
+pkg update && pkg install git -y
 cd ~ && git clone https://github.com/Willie169/termux-sh.git
 </code></pre></li>
 <li>Optionally edit the variables in the beginning of <code>~/termux-sh/termux-setup.sh</code> (e.g. <code>pkg install nano -y && nano ~/termux-sh/termux-setup.sh</code>, <code>pkg install vim -y && vim ~/termux-sh/termux-setup.sh</code>). In proot names variables, <code> </code> (space) will be replaced with <code>_</code>, names that are not allowed will be added a suffix <code>1</code>.
