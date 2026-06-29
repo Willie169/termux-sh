@@ -34,7 +34,7 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 ### Prerequisites
 
 <ul>
-<li>Sufficient storage: (calculated using GitHub Action, typically a bit more on a real device)
+<li>Sufficient storage: (calculated using GitHub Action, typically a bit less than that on a real device)
 <ul>
 <li>Previous rows remain default with
 <pre><code>TERMUX='termux'
@@ -55,7 +55,7 @@ DEBIANBOXINSTALL=0
 <li>Stable internet connection.</li>
 <li>It is recommended to turn off the battery optimization for Termux.</li>
 <li>It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping <strong>Acquire wakelock</strong> on the notification of Termux.</li>
-<li>It is recommended to prevent the <code>Process completed (signal 9) - press Enter</code> error in advance. You may encounter it when using Termux, especially when running VMs. To prevent it from occuring, please read tutorial about it in my <strong>Android Non Root</strong>: <a href="https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error">https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error</a> for the fixes.</li>
+<li>It is recommended to disable phantom process killer to prevent <code>Process completed (signal 9) - press Enter</code> error from occuring when using Termux in advance. If you have setup Shizuku with <code>rish</code> available in Termux to access interactive ADB shell, you can simply run <a href="disable-phantom-process-killer-rish.sh"><code>disable-phantom-process-killer-rish.sh</code></a> in this repo. If you have ADB connected with <code>adb shell</code> available, you can simply run <a href="disable-phantom-process-killer-adb.sh"><code>disable-phantom-process-killer-adb.sh</code></a> in this repo. Otherwise, refer to my guide about it in my <a href="https://github.com/Willie169/Android-Non-Root#process-completed-signal-9---press-enter-error"><strong>Android Non Root repo</strong></a> or <a href="https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error"><strong>Android Non Root site</strong></a>.</li>
 </ul>
 
 ### Execution
@@ -66,7 +66,7 @@ DEBIANBOXINSTALL=0
 pkg update &amp;&amp; pkg install git -y
 cd ~ &amp;&amp; git clone https://github.com/Willie169/termux-sh.git
 </code></pre></li>
-<li>Optionally edit the variables in the beginning of <code>~/termux-sh/termux-setup.sh</code> (<code>nano</code> for example). In VM names variables, <code> </code> (space) will be replaced with <code>_</code>, names that are not allowed will be added a suffix <code>1</code>:
+<li>Optionally edit the variables in the beginning of <code>~/termux-sh/termux-setup.sh</code> (<code>nano</code> for example). In proot names variables, <code> </code> (space) will be replaced with <code>_</code>, names that are not allowed will be added a suffix <code>1</code>:
 <pre><code>pkg install nano
 nano ~/termux-sh/termux-setup.sh
 </code></pre>
@@ -155,7 +155,9 @@ Shortcuts are located in [`DOTshortcuts`](DOTshortcuts). Some of them are intend
 
 These scripts are not invoked by [Termux Setup](#termux-setup). Run it separately if you need it.
 
-- [`adb_persistent_notifications.sh`](adb_persistent_notifications.sh): On Android 14+, let persistent notifications posted by all apps of user 0 not be dismissible through the UI (i.e. behave as they did prior to Android 14) (run in ADB shell), assuming that interactive ADB shell can be accessed with `rish`. See my [**Samsung-Android-Debloat-List**](https://github.com/Willie169/Samsung-Android-Debloat-List) repo for more information.
+- [`adb-persistent-notifications.sh`](adb-persistent-notifications.sh): On Android 14+, let persistent notifications posted by all apps of user 0 and user 10 not be dismissible through the UI (i.e. behave as they did prior to Android 14) (run in ADB shell) assuming that interactive ADB shell can be accessed with `rish`. See my [**Samsung-Android-Debloat-List**](https://github.com/Willie169/Samsung-Android-Debloat-List) repo for more information.
+- [`disable-phantom-process-killer-rish.sh`](disable-phantom-process-killer-rish.sh): Disable phantom process killer to resolve `Process completed (signal 9) - press Enter` error assuming that interactive ADB shell can be accessed with `rish`. See <https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error> for more information. 
+- [`disable-phantom-process-killer-adb.sh`](disable-phantom-process-killer-adb.sh): Disable phantom process killer to resolve `Process completed (signal 9) - press Enter` error assuming that ADB is connected with <code>adb shell</code> available. See <https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error> for more information. 
 - [`xmrig-install.sh`](xmrig-install.sh): Builds my modified version of [XMRig](https://github.com/Willie169/xmrig), an open source, cross-platform RandomX, KawPow, CryptoNight and GhostRider CPU/GPU miner, RandomX benchmark, and stratum proxy, on Termux.
 - [`qemu-alpine-aarch64-install.sh`](qemu-alpine-aarch64-install.sh), [`qemu-alpine-x86_64-install.sh`](qemu-alpine-x86_64-install.sh), [`qemu-debian-arm64-install.sh`](qemu-debian-arm64-install.sh), [`qemu-debian-amd64-install.sh`](qemu-debian-amd64-install.sh), [`qemu-bliss-install.sh`](qemu-bliss-install.sh) (no longer actively maintained): Setup and boot the respective QEMU system emulation VMs with `-netdev user,id=n1,dns=8.8.8.8,hostfwd=tcp::2222-:22 -device virtio-net,netdev=n1` option, where the Alpine VMs are created from Virt 3.21.0 ISO images and the Debian VMs are pre-created Bookworm QCOW2 images. [`qemu-bliss-install.sh`](qemu-bliss-install.sh) starts VNC server at the host's `localhost:0` and others are `-nographic`. Remember to `setup-alpine` in Alpine VMs and resize disk in Debian VMs. [Bliss OS](https://blissos.org) is an Android-based open source OS for x86\_64 architecture that incorporates many optimizations, features, and that supports many more devices.
 - [`proot-install-nethunter.sh`](proot-install-nethunter.sh) (no longer actively maintained): Installs Kali Nethunter ARM64 proot-distro environment from [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter). Follow the screen guide and enter wanted Build ID to install, e.g., `KBDEXKMTE` for everything and `KBDEXKMTD` for default. Boot it with `<build id> [` USER `]` or `proot-distro login <build id> [` USER `]`. Open GUI after logged in with `sudo kgui`. Please go to [https://github.com/sagar040/proot-distro-nethunter](https://github.com/sagar040/proot-distro-nethunter) for more information.
