@@ -36,12 +36,12 @@ DEBIANBOXINSTALL=0
 # shellcheck disable=2046,2155
 PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
-apt update
-DEBIAN_FRONTEND=noninteractive apt install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive apt install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels python-pip tar termux-api termux-tools wget which zip xz-utils -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive apt install pulseaudio -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive apt install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4 -y -o Dpkg::Options::="--force-confnew"
+pkg update
+DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels python-pip tar termux-api termux-tools wget which zip xz-utils -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install pulseaudio -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4 -y -o Dpkg::Options::="--force-confnew"
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -128,7 +128,7 @@ mkdir -p "$PREFIX"/local/go
 mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
 # shellcheck disable=2086
-[ -n "$PKG" ] && DEBIAN_FRONTEND=noninteractive apt install $PKG -y -o Dpkg::Options::="--force-confnew"
+[ -n "$PKG" ] && DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -o Dpkg::Options::="--force-confnew"
 [ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
@@ -137,14 +137,14 @@ Host *
     ServerAliveCountMax 8
 EOF
 if [ "$GITDELTA" -ne 0 ]; then
-DEBIAN_FRONTEND=noninteractive apt install git-delta -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew"
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
 fi
 if [ "$YTDLP" -ne 0 ]; then
-DEBIAN_FRONTEND=noninteractive apt install deno -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install deno -y -o Dpkg::Options::="--force-confnew"
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
@@ -247,7 +247,7 @@ fi
 mv rclone ~/.local/bin/
 fi
 if [ "$PHICE" -ne 0 ]; then
-DEBIAN_FRONTEND=noninteractive apt install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"
 git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
 uv sync
@@ -320,7 +320,7 @@ EOF
 [ -n "$DEBIAN" ] && echo -e "export DEBIAN=$DEBIAN\nexport DEBIAN_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIAN/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
 [ -n "$UBUNTUBOX" ] && echo -e "export UBUNTUBOX=$UBUNTUBOX\nexport UBUNTUBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTUBOX/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
 [ -n "$DEBIANBOX" ] && echo -e "export DEBIANBOX=$DEBIANBOX\nexport DEBIANBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIANBOX/rootfs/root\"" | tee -a ~/.bashrc.d/11-proot.sh >/dev/null
-DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg autoremove --purge -y -o Dpkg::Options::="--force-confnew"
 # shellcheck disable=2046,2155
 POSTDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 echo "PREDF: $PREDF"
