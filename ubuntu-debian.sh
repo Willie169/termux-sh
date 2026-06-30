@@ -142,6 +142,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 BREW='bat bottom broot dust fd fzf git-delta procs resvg ripgrep sevenzip yazi yq zoxide'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
+echo y | brew install $BREW || true
 echo y | brew install $BREW
 git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
