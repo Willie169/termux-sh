@@ -140,8 +140,7 @@ conda config --add channels conda-forge
 touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
-brew trust gurgeous/tap
-BREW='bat bottom broot dust fd fzf git-delta gurgeous/tap/tennis procs resvg ripgrep sevenzip yazi yq zoxide'
+BREW='bat bottom broot dust fd fzf git-delta procs resvg ripgrep sevenzip yazi yq zoxide'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
 echo y | brew install $BREW
