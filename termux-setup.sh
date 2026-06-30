@@ -250,6 +250,7 @@ if [ "$PHICE" -ne 0 ]; then
 DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"
 git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 cd phice || exit
+uv sync || true
 uv sync
 cp config.example.toml config.toml
 cd ~ || exit
