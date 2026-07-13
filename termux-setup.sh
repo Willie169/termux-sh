@@ -10,6 +10,7 @@ YTDLP=1
 ANDROID=1
 VIMRC=1
 RCLONEEXTRA=1
+MOZLZ4=1
 PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
@@ -245,6 +246,16 @@ rm rclone-android-arm
 mv rm rclone-android-arm64 rclone
 fi
 mv rclone ~/.local/bin/
+fi
+if [ "$MOZLZ4" -ne 0 ]; then
+git clone https://github.com/jusw85/mozlz4.git
+cd mozlz4 || true
+cargo build --release
+cd target/release || true
+mv mozlz4-bin mozlz4
+mv mozlz4 ~/.local/bin/
+cd ~ || true
+rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
 DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"

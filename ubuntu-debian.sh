@@ -287,6 +287,14 @@ Terminal=false
 Categories=Game;
 EOF
 update_sylvan_config
+git clone https://github.com/jusw85/mozlz4.git
+cd mozlz4 || true
+cargo build --release
+cd target/release || true
+mv mozlz4-bin mozlz4
+mv mozlz4 ~/.local/bin/
+cd ~ || true
+rm -rf mozlz4
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/AlexsJones/llmfit/main/install.sh | sh
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
