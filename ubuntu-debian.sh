@@ -306,7 +306,7 @@ rm rclone-linux-arm64.zip*
 mv rclone ~/.local/bin/
 wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 if [ "$TEST" -eq 0 ]; then
-wget --tries=100 --retry-connrefused --waitretry=5 https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+wget --tries=100 --retry-connrefused --waitretry=5 --no-check-certificate https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
 rm install-tl-unx.tar.gz*
 cd install-tl-* || exit
