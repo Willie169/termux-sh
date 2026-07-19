@@ -47,7 +47,7 @@ UBUNTUBOXINSTALL=0
 DEBIANBOX=''
 DEBIANBOXINSTALL=0
 </code></pre>
-: approximately 14.29 GB.</li>
+: approximately 13.25 GB.</li>
 <li><code>UBUNTUINSTALL=1</code>: approximately 23.19 GB.</li>
 <li><code>DEBIANINSTALL=1</code>: approximately 23.19 GB.</li>
 </ul></li>
