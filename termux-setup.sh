@@ -15,7 +15,7 @@ PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
-PIP='argcomplete pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
+PIP='pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
 PIPX='cmake-language-server gallery-dl gh2md meson pylatexenc tldr yamllint'
 GO=''
 APKTOOL=1
