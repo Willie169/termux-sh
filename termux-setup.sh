@@ -15,8 +15,8 @@ PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
-PIP='pipx pip-autoremove plotly pydub requests selenium==4.9.1 setuptools sympy'
-PIPX='cmake-language-server gallery-dl gh2md meson pylatexenc tldr yamllint'
+PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
+UV='cmake-language-server gallery-dl gh2md meson pylatexenc tldr yamllint'
 GO=''
 APKTOOL=1
 ANTLR=1
@@ -295,10 +295,11 @@ pip3 install $PIP || true
 # shellcheck disable=2086
 pip3 install $PIP
 fi
-if [ -n "$PIPX" ]; then
-pip3 install pipx
+if [ -n "$UV" ]; then
 # shellcheck disable=2086
-pipx install $PIPX
+for pkg in $UV; do
+uv tool install "$pkg"
+done
 fi
 # shellcheck disable=2086
 [ -n "$GO" ] && go install $GO
