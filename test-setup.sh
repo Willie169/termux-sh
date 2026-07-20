@@ -23,9 +23,7 @@ cd ~ || exit
 pkg update
 DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro python python-ensurepip-wheels python-pip tar termux-api termux-tools wget which zip xz-utils -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg install pulseaudio -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4 -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq perl proot proot-distro python python-ensurepip-wheels python-pip rust tar termux-api termux-tools wget which zip xz-utils -y -o Dpkg::Options::="--force-confnew"
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
