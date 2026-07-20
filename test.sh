@@ -34,10 +34,17 @@ ls -li /etc/alternatives/cc
 ls -li /usr/bin/gcc
 ls -li /usr/bin/gcc-15
 ls -li /usr/bin/aarch64-linux-gnu-gcc-15
-#touch /.dockerenv
-#git clone https://github.com/jusw85/mozlz4.git
-#cd mozlz4 || true
-#cargo build --release
+echo "$PATH"
+command -v cc
+which cc
+type -a cc
+ls -l /usr/bin/cc
+bash --version
+apt install strace -y >/dev/null 2>&1
+strace -e execve /usr/bin/cc --version
+git clone https://github.com/jusw85/mozlz4.git
+cd mozlz4 || true
+cargo build --release
 #cd target/release || true
 #mv mozlz4-bin mozlz4
 #mv mozlz4 ~/.local/bin/
