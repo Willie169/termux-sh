@@ -81,26 +81,10 @@ if [ -d "$HOME/.bashrc.d" ];  then
     [ -r "$f" ] && . "$f"
   done
 fi
-mkdir ~/.JetBrainsMono
-cd ~/.JetBrainsMono || exit
-wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
-unzip JetBrainsMono.zip
-mv JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
-cd ~ || exit
-rm -rf .JetBrainsMono
-termux-reload-settings || true
 mkdir -p "$PREFIX"/local/bin
 mkdir -p "$PREFIX"/local/go
 mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
-# shellcheck disable=2086
-[ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
-mkdir -p ~/.ssh
-cat > ~/.ssh/config <<'EOF'
-Host *
-    ServerAliveInterval 15
-    ServerAliveCountMax 8
-EOF
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name "$TERMUX"
 [ -n "$UBUNTU" ] && proot-distro install ubuntu:latest --name "$UBUNTU"
 [ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/test.sh "$PRF/$UBUNTU/rootfs/root/" && echo './test.sh' | bash <(proot-distro login "$UBUNTU" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
