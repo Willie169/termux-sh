@@ -32,6 +32,7 @@ if [ -d "$HOME/.bashrc.d" ];  then
 fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+. ${HOME}/.cargo/env
 touch /.dockerenv
 git clone https://github.com/jusw85/mozlz4.git
 cd mozlz4 || true

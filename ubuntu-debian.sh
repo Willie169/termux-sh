@@ -93,6 +93,7 @@ rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
 DEBIAN_FRONTEND=noninteractive apt install xfce4 xfce4-goodies xinit -y -o Dpkg::Options::="--force-confnew"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
+. ${HOME}/.cargo/env
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 chmod +x apktool
 mv apktool /usr/local/bin/
