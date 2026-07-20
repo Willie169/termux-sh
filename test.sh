@@ -5,7 +5,10 @@ add-apt-repository universe -y
 add-apt-repository multiverse -y
 add-apt-repository restricted -y
 apt purge rustup -y
-DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus g++ gcc git gnupg grep gzip jq lsb-release make ninja-build perl perl-tk wget xz-utils -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus g++ gcc git gnupg grep gzip jq locales lsb-release make ninja-build perl perl-tk wget xz-utils -y -o Dpkg::Options::="--force-confnew"
+sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen en_US.UTF-8
+update-locale LANG=en_US.UTF-8
 rm -f .bashrc
 mkdir ~/.bashrc.d
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/00-env.sh -O ~/.bashrc.d/00-env.sh
@@ -31,11 +34,28 @@ if [ -d "$HOME/.bashrc.d" ];  then
   done
 fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
+set -x
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 . ${HOME}/.cargo/env
 touch /.dockerenv
 git clone https://github.com/jusw85/mozlz4.git
 cd mozlz4 || true
+env | grep -E '^(CC|CXX|AR|LD|RUSTFLAGS|CARGO_)'
+
+cargo rustc -vV
+
+find .cargo -type f -print -exec cat {} \; || true
+
+cat ~/.cargo/config.toml 2>/dev/null || true
+
+cat ~/.cargo/config 2>/dev/null || true
+
+env | grep '^CC='
+env | grep '^CXX='
+env | grep '^RUSTFLAGS='
+env | grep '^CARGO'
+cargo build -vv
+
 cargo build --release
 cd target/release || true
 mv mozlz4-bin mozlz4
