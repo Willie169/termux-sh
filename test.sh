@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euxo pipefail
 shopt -s expand_aliases
 TEST=0
 FULL=0
@@ -104,8 +103,15 @@ conda config --add channels conda-forge
 touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
+set -x
 git clone https://github.com/jusw85/mozlz4.git
 cd mozlz4 || true
+echo "$PATH"
+which -a cc
+which gcc
+ls -l $(which cc)
+readlink -f $(which cc) || true
+namei -l $(which cc) || true
 cargo build --release
 cd target/release || true
 mv mozlz4-bin mozlz4
