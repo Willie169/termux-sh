@@ -80,7 +80,7 @@ if [ -d "$HOME/.bashrc.d" ];  then
   done
 fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
-cd ~ || exit
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 NVM_VERSION=$(curl -fsSL "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r '.tag_name')
 PROFILE=/dev/null bash -c "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash"
 export NVM_DIR="$HOME/.nvm"
@@ -104,19 +104,6 @@ conda config --add channels conda-forge
 touch /.dockerenv
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
-BREW='bat bottom broot dust fd fzf git-delta lazygit procs resvg ripgrep sevenzip yazi yq zoxide'
-# shellcheck disable=2086
-if [ "$TEST" -eq 0 ]; then
-echo y | brew install $BREW || true
-echo y | brew install $BREW
-git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global delta.navigate true
-git config --global merge.conflictStyle zdiff3
-else
-echo y | brew install $BREW --dry-run
-fi
-brew cleanup
 git clone https://github.com/jusw85/mozlz4.git
 cd mozlz4 || true
 cargo build --release
