@@ -40,6 +40,18 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify
 touch /.dockerenv
 git clone https://github.com/jusw85/mozlz4.git
 cd mozlz4 || true
+
+echo "$PATH"
+
+which -a cc
+which gcc
+
+ls -l $(which cc)
+
+readlink -f $(which cc) || true
+
+namei -l $(which cc) || true
+
 env | grep -E '^(CC|CXX|AR|LD|RUSTFLAGS|CARGO_)'
 
 cargo rustc -vV
@@ -54,6 +66,23 @@ env | grep '^CC='
 env | grep '^CXX='
 env | grep '^RUSTFLAGS='
 env | grep '^CARGO'
+
+type -a cc
+command -V cc
+command -v cc
+
+find /usr /usr/local /root/.cargo -name cc -type l -ls
+find /usr /usr/local /root/.cargo -name cc -type f -ls
+
+ls -l /usr/bin/cc
+ls -l /bin/cc
+ls -l /usr/local/bin/cc
+ls -l /root/.cargo/bin/cc
+
+strace -f -e execve cargo build 2>&1 | grep execve
+
+strace -f -e execve /root/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/bin/rustc ...
+
 cargo build -vv
 
 cargo build --release
