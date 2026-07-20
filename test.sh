@@ -2,14 +2,14 @@
 apt update >/dev/null 2>&1
 DEBIAN_FRONTEND=noninteractive apt install gcc strace -y -o Dpkg::Options::="--force-confnew" >/dev/null 2>&1
 set -x
-strace -e execve /usr/bin/cc --version
-strace -e execve /etc/alternatives/cc --version
-strace -e execve /usr/bin/gcc-15 --version
-cp -a /etc/alternatives/cc /tmp/cc-a
-ls -l /tmp/cc-a
-/tmp/cc-a --version
-ln -s /etc/alternatives/cc /tmp/cc-b
-/tmp/cc-b --version
+ln -s /usr/bin/gcc /tmp/gcc-link
+ln -s /tmp/gcc-link /tmp/gcc-link2
+ln -s /tmp/gcc-link2 /tmp/gcc-link3
+ln -s /tmp/gcc-link3 /tmp/gcc-link4
+/tmp/gcc-link --version
+/tmp/gcc-link2 --version
+/tmp/gcc-link3 --version
+/tmp/gcc-link4 --version
 #git clone https://github.com/jusw85/mozlz4.git
 #cd mozlz4 || true
 #cargo build --release
