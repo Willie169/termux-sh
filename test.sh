@@ -96,6 +96,32 @@ readlink -f /usr/bin/gcc
 
 namei -l /usr/bin/cc
 
+echo "$PATH"
+
+for d in $(echo "$PATH" | tr ':' ' '); do
+echo "$d"
+ls "$d/cc" 2>/dev/null
+done
+
+/usr/bin/cc --version
+/usr/bin/gcc --version
+cc --version
+gcc --version
+
+realpath /usr/bin/cc
+realpath /usr/bin/gcc
+
+stat /usr/bin/aarch64-linux-gnu-gcc-15
+
+file /usr/bin/aarch64-linux-gnu-gcc-15
+
+readelf -l /usr/bin/aarch64-linux-gnu-gcc-15 | grep interpreter
+
+realpath /lib/ld-linux-aarch64.so.1
+ls -l /lib/ld-linux-aarch64.so.1
+
+/usr/bin/aarch64-linux-gnu-gcc-15 --version
+
 cargo build -vv
 
 #cargo build --release
