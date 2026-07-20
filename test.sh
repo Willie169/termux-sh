@@ -106,13 +106,24 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 set -x
 git clone https://github.com/jusw85/mozlz4.git
 cd mozlz4 || true
-echo "$PATH"
-which -a cc
-which gcc
-ls -l $(which cc)
-readlink -f $(which cc) || true
-namei -l $(which cc) || true
-cargo build --release
+env | grep -E '^(CC|CXX|AR|LD|RUSTFLAGS|CARGO_)'
+
+cargo rustc -vV
+
+find .cargo -type f -print -exec cat {} \; || true
+
+cat ~/.cargo/config.toml 2>/dev/null || true
+
+cat ~/.cargo/config 2>/dev/null || true
+
+grep -R "linker" .
+grep -R "cc" .cargo
+
+env | grep '^CC='
+env | grep '^CXX='
+env | grep '^RUSTFLAGS='
+env | grep '^CARGO'
+cargo build -vv --release
 cd target/release || true
 mv mozlz4-bin mozlz4
 mv mozlz4 ~/.local/bin/

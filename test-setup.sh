@@ -1,13 +1,12 @@
 #!/data/data/com.termux/files/usr/bin/bash
-set -euxo pipefail
 shopt -s expand_aliases
 
 ## CONFIG START
 
-TERMUX='termux'
+TERMUX=''
 UBUNTU='ubuntu'
 UBUNTUINSTALL=1
-DEBIAN='debian'
+DEBIAN=''
 DEBIANINSTALL=0
 UBUNTUBOX=''
 UBUNTUBOXINSTALL=0
