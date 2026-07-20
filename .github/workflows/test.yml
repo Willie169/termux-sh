@@ -21,6 +21,7 @@ jobs:
           cd termux-sh >/dev/null 2>&1
           sed -Ei 's/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/' test-setup.sh >/dev/null 2>&1
           sed -Ei 's/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' test-setup.sh >/dev/null 2>&1
+          sudo docker pull termux/termux-docker >/dev/null 2>&1
       - name: Run test-setup.sh
         timeout-minutes: 360
         run: |

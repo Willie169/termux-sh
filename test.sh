@@ -1,12 +1,15 @@
 #!/bin/bash
 apt update >/dev/null 2>&1
-DEBIAN_FRONTEND=noninteractive apt install bash g++ gcc git -y -o Dpkg::Options::="--force-confnew" >/dev/null 2>&1
+DEBIAN_FRONTEND=noninteractive apt install gcc strace -y -o Dpkg::Options::="--force-confnew" >/dev/null 2>&1
 set -x
-apt install strace -y >/dev/null 2>&1
 strace -e execve /usr/bin/cc --version
-ln -s /usr/bin/gcc /tmp/mycc
-ls -l /tmp/mycc
-/tmp/mycc --version
+strace -e execve /etc/alternatives/cc --version
+strace -e execve /usr/bin/gcc-15 --version
+cp -a /etc/alternatives/cc /tmp/cc-a
+ls -l /tmp/cc-a
+/tmp/cc-a --version
+ln -s /etc/alternatives/cc /tmp/cc-b
+/tmp/cc-b --version
 #git clone https://github.com/jusw85/mozlz4.git
 #cd mozlz4 || true
 #cargo build --release
