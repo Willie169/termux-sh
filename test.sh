@@ -83,9 +83,22 @@ strace -f -e execve cargo build 2>&1 | grep execve
 
 strace -f -e execve /root/.rustup/toolchains/stable-aarch64-unknown-linux-gnu/bin/rustc ...
 
+ls -l /etc/alternatives/cc
+readlink /etc/alternatives/cc
+readlink -f /etc/alternatives/cc || true
+namei -l /usr/bin/cc
+
+stat /etc/alternatives/cc
+
+ls -l /usr/bin/gcc
+readlink /usr/bin/gcc
+readlink -f /usr/bin/gcc
+
+namei -l /usr/bin/cc
+
 cargo build -vv
 
-cargo build --release
+#cargo build --release
 cd target/release || true
 mv mozlz4-bin mozlz4
 mv mozlz4 ~/.local/bin/
