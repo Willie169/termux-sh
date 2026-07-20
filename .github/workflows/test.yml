@@ -19,13 +19,13 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
           git clone https://github.com/Willie169/termux-sh.git
           cd termux-sh
-          sed -Ei 's/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/' test-setup.sh.sh
-          sed -Ei 's/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' test-setup.sh.sh
-      - name: Run test-setup.sh.sh
+          sed -Ei 's/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/' test-setup.sh
+          sed -Ei 's/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' test-setup.sh
+      - name: Run test-setup.sh
         timeout-minutes: 360
         run: |
           sudo docker run --rm -v "$HOME/termux-sh:/data/data/com.termux/files/home/termux-sh" -w "/data/data/com.termux/files/home/termux-sh" --privileged termux/termux-docker bash -c '
             set -euxo pipefail
             echo "deb https://packages.termux.dev/apt/termux-main stable main" > /data/data/com.termux/files/usr/etc/apt/sources.list
-            ./test-setup.sh.sh
+            ./test-setup.sh
           '
