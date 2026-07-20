@@ -11,16 +11,16 @@ jobs:
         run: |
           cd ~
           sudo apt update >/dev/null 2>&1
-          sudo DEBIAN_FRONTEND=noninteractive apt install curl git -y
-          source /etc/os-release
-          curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc >/dev/null
-          echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $UBUNTU_CODENAME stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
-          sudo apt update
-          sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
-          git clone https://github.com/Willie169/termux-sh.git
-          cd termux-sh
-          sed -Ei 's/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/' test-setup.sh
-          sed -Ei 's/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' test-setup.sh
+          sudo DEBIAN_FRONTEND=noninteractive apt install curl git -y >/dev/null 2>&1
+          source /etc/os-release >/dev/null 2>&1
+          curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/trusted.gpg.d/docker.asc >/dev/null 2>&1
+          echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $UBUNTU_CODENAME stable" | sudo tee /etc/apt/sources.list.d/docker.list >/dev/null 2>&1
+          sudo apt update >/dev/null 2>&1
+          sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y >/dev/null 2>&1
+          git clone https://github.com/Willie169/termux-sh.git >/dev/null 2>&1
+          cd termux-sh >/dev/null 2>&1
+          sed -Ei 's/(chmod \+x install\.sh)/\1\nsed -Ei '"'"'s|(#!\/data\/data\/com\\.termux\/files\/usr\/bin\/bash)|\\1\\nset -euxo pipefail|'"'"' install.sh/; s/(uv sync)/ANDROID_API_LEVEL=24 \1/' test-setup.sh >/dev/null 2>&1
+          sed -Ei 's/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' test-setup.sh >/dev/null 2>&1
       - name: Run test-setup.sh
         timeout-minutes: 360
         run: |
