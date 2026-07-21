@@ -220,18 +220,24 @@ cd katago-networks || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://media.katagotraining.org/uploaded/networks/models/kata1/kata1-b6c96-s175395328-d26788732.txt.gz
 cd ~ || exit
 DEBIAN_FRONTEND=noninteractive apt install maven -y -o Dpkg::Options::="--force-confnew"
+mkdir ~/.local/share/lizzieyzy
 git clone --depth=1 https://github.com/yzyray/lizzieyzy.git
 cd lizzieyzy || exit
 mvn clean package
+cd target || exit
+mv lizzie-yzy*-shaded.jar lizzie-yzy.jar
+mv lizzie-yzy.jar ~/.local/share/lizzieyzy/
 cd ~ || exit
+mv ~/lizzieyzy/src/main/resources/assets/logo.png ~/.local/share/lizzieyzy/
 rm -rf ~/.m2/repository
+rm -rf ~/lizzieyzy
 cat > ~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=LizzieYzy
 Comment=LizzieYzy - GUI for Game of Go
-Exec=sh -c 'cd $HOME/.lizzieyzy && java -jar "$HOME/lizzieyzy/target/lizzie-yzy2.5.3-shaded.jar"'
-Icon=$HOME/lizzieyzy/src/main/resources/assets/logo.png
+Exec=sh -c 'cd $HOME/.local/share/lizzieyzy && java -jar lizzie-yzy.jar'
+Icon=$HOME/.local/share/lizzieyzy/logo.png
 Terminal=false
 Categories=Game;
 StartupWMClass=featurecat-lizzie-Lizzie
