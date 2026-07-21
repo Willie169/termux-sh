@@ -255,22 +255,30 @@ elif [ "$ARCH" == "arm" ]; then
 ARCH="armv7"
 fi
 make -j ARCH="$ARCH" profile-build largeboards=yes nnue=yes
+mv stockfish ~/.local/bin/
 cd ~ || exit
+rm -rf Fairy-Stockfish
 DEBIAN_FRONTEND=noninteractive apt install qt6-base-dev qt6-base-dev-tools qt6-svg-dev qt6-5compat-dev -y -o Dpkg::Options::="--force-confnew"
+mkdir ~/.config/cutechess
 git clone --depth=1 https://github.com/cutechess/cutechess.git
 cd cutechess || exit
 mkdir build
 cd build || exit
 cmake -G Ninja ..
 ninja
+mv cutechess ~/.local/bin/
+mv cutechess-cli ~/.local/bin/
+cd ..
+mv projects/gui/res/icons/cutechess_128x128.png ~/.config/cutechess/
 cd ~ || exit
+rm -rf cutechess
 cat > ~/.local/share/applications/cutechess.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Cute Chess
 Comment=Cute Chess - GUI for Playing Chess
-Exec=$HOME/cutechess/build/cutechess
-Icon=$HOME/cutechess/projects/gui/res/icons/cutechess_128x128.png
+Exec=$HOME/.local/bin/cutechess
+Icon=$HOME/.config/cutechess/cutechess_128x128.png
 Terminal=false
 Categories=Game;
 EOF
