@@ -93,7 +93,7 @@ rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
 DEBIAN_FRONTEND=noninteractive apt install xfce4 xfce4-goodies xinit -y -o Dpkg::Options::="--force-confnew"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
-. ${HOME}/.cargo/env
+. "${HOME}"/.cargo/env
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 chmod +x apktool
 mv apktool /usr/local/bin/
@@ -315,6 +315,14 @@ unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
 mv rclone ~/.local/bin/
 wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
+DEBIAN_FRONTEND=noninteractive apt install gawk git make python3 lld bison clang flex libffi-dev libfl-dev libreadline-dev pkg-config tcl-dev zlib1g-dev graphviz xdot -y -o Dpkg::Options::="--force-confnew"
+git clone --depth=1 https://github.com/YosysHQ/yosys.git
+cd yosys || exit
+git submodule update --init --depth=1
+cmake -B build . -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release --parallel "$(nproc)"
+cmake --install build --strip
+cd ~ || exit
 if [ "$TEST" -eq 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 --no-check-certificate https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
