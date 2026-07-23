@@ -323,6 +323,7 @@ cmake -B build . -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release --parallel "$(nproc)"
 cmake --install build --strip
 cd ~ || exit
+rm -rf yosys
 if [ "$TEST" -eq 0 ]; then
 wget --tries=100 --retry-connrefused --waitretry=5 --no-check-certificate https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
 tar -xzf install-tl-unx.tar.gz
