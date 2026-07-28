@@ -129,7 +129,7 @@ mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
 # shellcheck disable=2086
 [ -n "$PKG" ] && DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -o Dpkg::Options::="--force-confnew"
-command -v broot >/dev/null 2>&1 && broot --set-install-state installed && mkdir -p ${HOME}/.config/broot/launcher/bash && broot --print-shell-function bash > ${HOME}/.config/broot/launcher/bash/br && chmod +x ${HOME}/.config/broot/launcher/bash/br
+command -v broot >/dev/null 2>&1 && broot --set-install-state installed && mkdir -p "${HOME}"/.config/broot/launcher/bash && broot --print-shell-function bash > "${HOME}"/.config/broot/launcher/bash/br && chmod +x "${HOME}"/.config/broot/launcher/bash/br
 [ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat > ~/.ssh/config <<'EOF'
