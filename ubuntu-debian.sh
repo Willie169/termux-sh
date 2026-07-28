@@ -148,7 +148,7 @@ git config --global core.pager delta
 git config --global interactive.diffFilter 'delta --color-only'
 git config --global delta.navigate true
 git config --global merge.conflictStyle zdiff3
-broot --set-install-state installed
+broot --set-install-state installed && mkdir -p ${HOME}/.config/broot/launcher/bash && broot --print-shell-function bash > ${HOME}/.config/broot/launcher/bash/br && chmod +x ${HOME}/.config/broot/launcher/bash/br
 else
 echo y | brew install $BREW --dry-run
 fi
