@@ -156,7 +156,7 @@ chmod +x install.sh
 PROFILE=/dev/null ./install.sh "platform-tools"
 fi
 if [ "$VIMRC" -ne 0 ]; then
-DEBIAN_FRONTEND=noninteractive pkg install binutils neovim tree-sitter -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install neovim tree-sitter -y -o Dpkg::Options::="--force-confnew"
 
 
 
