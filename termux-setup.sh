@@ -161,6 +161,75 @@ if [ "$VIMRC" -ne 0 ]; then
 
 DEBIAN_FRONTEND=noninteractive pkg install neovim tree-sitter -y -o Dpkg::Options::="--force-confnew"
 tree-sitter init-config
+cat > ~/.config/tree-sitter/config.json <<'EOF'
+{
+  "parser-directories": [
+    "/data/data/com.termux/files/usr/share/tree-sitter/queries"
+  ],
+  "theme": {
+    "attribute": {
+      "color": 124,
+      "italic": false
+    },
+    "comment": {
+      "color": 245,
+      "italic": false
+    },
+    "constant": 94,
+    "constant.builtin": {
+      "bold": true,
+      "color": 94
+    },
+    "constructor": 136,
+    "embedded": null,
+    "function": 26,
+    "function.builtin": {
+      "bold": true,
+      "color": 26
+    },
+    "keyword": 56,
+    "module": 136,
+    "number": {
+      "bold": true,
+      "color": 94
+    },
+    "operator": {
+      "bold": true,
+      "color": 239
+    },
+    "property": 124,
+    "property.builtin": {
+      "bold": true,
+      "color": 124
+    },
+    "punctuation": 239,
+    "punctuation.bracket": 239,
+    "punctuation.delimiter": 239,
+    "punctuation.special": 239,
+    "string": 28,
+    "string.special": 30,
+    "tag": 18,
+    "type": 23,
+    "type.builtin": {
+      "bold": true,
+      "color": 23
+    },
+    "variable": 252,
+    "variable.builtin": {
+      "bold": true,
+      "color": 252
+    },
+    "variable.parameter": {
+      "color": 252,
+      "underline": true
+    }
+  }
+}
+EOF
+
+
+
+
 
 
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
