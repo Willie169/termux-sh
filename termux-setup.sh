@@ -160,7 +160,7 @@ if [ "$VIMRC" -ne 0 ]; then
 
 
 DEBIAN_FRONTEND=noninteractive pkg install binutils cargo-binstall neovim -y -o Dpkg::Options::="--force-confnew"
-cargo binstall tree-sitter-cli -y
+echo 'yes' | cargo binstall tree-sitter-cli -y
 
 
 
