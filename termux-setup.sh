@@ -156,6 +156,13 @@ chmod +x install.sh
 PROFILE=/dev/null ./install.sh "platform-tools"
 fi
 if [ "$VIMRC" -ne 0 ]; then
+
+
+
+DEBIAN_FRONTEND=noninteractive pkg install neovim tree-sitter -y -o Dpkg::Options::="--force-confnew"
+tree-sitter init-config
+
+
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
 mkdir -p ~/.config/nvim/lua/plugins
