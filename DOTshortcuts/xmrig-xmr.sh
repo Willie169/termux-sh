@@ -2,7 +2,7 @@
 cd ~/xmrig/build || true
 rm -r .tor 2>/dev/null || true
 mkdir .tor
-cat > .tor/torrc <<'EOF'
+cat >.tor/torrc <<'EOF'
 SocksPort 9054
 DataDirectory .tor
 EOF

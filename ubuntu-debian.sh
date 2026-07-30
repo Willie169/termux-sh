@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 set -euxo pipefail
 shopt -s expand_aliases
 TEST=0
@@ -29,24 +30,24 @@ EOF
 source /etc/os-release
 apt update
 if [ "$ID" = "ubuntu" ]; then
-f=/etc/apt/sources.list.d/ubuntu.sources
-sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
-DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y -o Dpkg::Options::="--force-confnew"
-add-apt-repository universe -y
-add-apt-repository multiverse -y
-add-apt-repository restricted -y
-add-apt-repository ppa:git-core/ppa -y
-add-apt-repository ppa:libreoffice/ppa -y
-add-apt-repository ppa:longsleep/golang-backports -y
-add-apt-repository ppa:openjdk-r/ppa -y
-mv /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-*.sources /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources || true
-sed -i 's/^Suites: .*$/Suites: noble/' /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources
-add-apt-repository ppa:mozillateam/ppa -y
-add-apt-repository ppa:zhangsongcui3371/fastfetch -y
+	f=/etc/apt/sources.list.d/ubuntu.sources
+	sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
+	DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y -o Dpkg::Options::="--force-confnew"
+	add-apt-repository universe -y
+	add-apt-repository multiverse -y
+	add-apt-repository restricted -y
+	add-apt-repository ppa:git-core/ppa -y
+	add-apt-repository ppa:libreoffice/ppa -y
+	add-apt-repository ppa:longsleep/golang-backports -y
+	add-apt-repository ppa:openjdk-r/ppa -y
+	mv /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-*.sources /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources || true
+	sed -i 's/^Suites: .*$/Suites: noble/' /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources
+	add-apt-repository ppa:mozillateam/ppa -y
+	add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
-f=/etc/apt/sources.list.d/debian.sources
-sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
-sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' "$f"
+	f=/etc/apt/sources.list.d/debian.sources
+	sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
+	sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' "$f"
 fi
 apt update
 apt purge neovim rustup texlive* tree-sitter-cli yq -y
@@ -67,25 +68,25 @@ wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/50-functions.sh -O ~/.bashrc.d/50-functions.sh
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/60-completion.sh -O ~/.bashrc.d/60-completion.sh
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/bashrc.d/bashrc -O ~/.bashrc
-cat > ~/.profile <<'EOF'
+cat >~/.profile <<'EOF'
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "$HOME/.bashrc" ]; then
     . "$HOME/.bashrc"
   fi
 fi
 EOF
-if [ -d "$HOME/.bashrc.d" ];  then
-  for f in "$HOME/.bashrc.d/"*; do
-    [ -r "$f" ] && . "$f"
-  done
+if [ -d "$HOME/.bashrc.d" ]; then
+	for f in "$HOME/.bashrc.d/"*; do
+		[ -r "$f" ] && . "$f"
+	done
 fi
 DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
 PKG='alsa-utils apksigner apt-transport-https aptitude audacity automake bash bc bear bindfs bison bookletimposer build-essential bzip2 ca-certificates calcurse clang clang-format clangd cmake command-not-found cronie curl dbus dbus-x11 debconf-utils distro-info dnsutils dvisvgm fastfetch ffmpeg file flex fontconfig fonts-cns11643-kai fonts-cns11643-sung fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gzip hyperfine iftop imagemagick info inkscape iotop-c iproute2 jpegoptim jq lftp libheif-examples libreoffice lsb-release lsd luajit lzip make maven mesa-utils mpv nano ncdu netcat-openbsd nethogs net-tools ngspice ninja-build nmap ocrmypdf octave openjdk-21-jdk openssh-client openssh-server openssl optipng p7zip-full pandoc perl perl-tk pkg-config poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-neovim python3-pip python3-requests python3-venv qalc qpdf shellcheck shfmt socat sqlite3 strace sudo tar tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra tesseract-ocr-chi-tra-vert tesseract-ocr-eng tesseract-ocr-jpn tesseract-ocr-jpn-vert tmux tree tsocks unrar unzip uuid-runtime verilator vim-gtk3 w3m webp wget wget2 xdotool xmlstarlet xz-utils zip zsh zstd 2048'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
-DEBIAN_FRONTEND=noninteractive apt install $PKG -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive apt install $PKG -y -o Dpkg::Options::="--force-confnew"
 else
-DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s -o Dpkg::Options::="--force-confnew"
 fi
 wget --tries=100 --retry-connrefused --waitretry=5 http://ports.ubuntu.com/pool/universe/e/elementary-xfce/elementary-xfce-icon-theme_0.19-1_all.deb
 DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_all.deb -y -o Dpkg::Options::="--force-confnew"
@@ -114,8 +115,8 @@ cd ~ || exit
 NVM_VERSION=$(curl -fsSL "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r '.tag_name')
 PROFILE=/dev/null bash -c "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash"
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 nvm install --lts
 echo y | corepack enable npm
 echo y | npm --help || true
@@ -127,7 +128,7 @@ chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
 curl -LsSf https://astral.sh/uv/install.sh | sh
 for pkg in autopep8 cmake-language-server gallery-dl gh2md img2pdf jupyterlab jupytext libretranslate meson notebook pylatexenc tldr xmljson yamllint; do
-uv tool install "$pkg"
+	uv tool install "$pkg"
 done
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 bash Miniforge3-Linux-aarch64.sh -b -p "${HOME}/conda"
@@ -144,30 +145,30 @@ NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Ho
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 BREW='bat bottom broot dust fd fzf git-delta lazygit neovim procs resvg ripgrep sevenzip yazi yq zoxide'
 if [ "$TEST" -eq 0 ]; then
-# shellcheck disable=2086
-echo y | brew install $BREW || true
-# shellcheck disable=2086
-echo y | brew install $BREW
-git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global delta.navigate true
-git config --global merge.conflictStyle zdiff3
-broot --set-install-state installed && mkdir -p "${HOME}"/.config/broot/launcher/bash && broot --print-shell-function bash > "${HOME}"/.config/broot/launcher/bash/br && chmod +x "${HOME}"/.config/broot/launcher/bash/br
+	# shellcheck disable=2086
+	echo y | brew install $BREW || true
+	# shellcheck disable=2086
+	echo y | brew install $BREW
+	git config --global core.pager delta
+	git config --global interactive.diffFilter 'delta --color-only'
+	git config --global delta.navigate true
+	git config --global merge.conflictStyle zdiff3
+	broot --set-install-state installed && mkdir -p "${HOME}"/.config/broot/launcher/bash && broot --print-shell-function bash >"${HOME}"/.config/broot/launcher/bash/br && chmod +x "${HOME}"/.config/broot/launcher/bash/br
 else
-# shellcheck disable=2086
-echo y | brew install $BREW --dry-run
+	# shellcheck disable=2086
+	echo y | brew install $BREW --dry-run
 fi
 brew cleanup
 git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
 mkdir -p ~/.config/nvim/lua/config
 mkdir -p ~/.config/nvim/lua/plugins
-cat > ~/.config/nvim/init.lua <<'EOF'
+cat >~/.config/nvim/init.lua <<'EOF'
 vim.cmd("set runtimepath^=~/.vim runtimepath+=~/.vim/after")
 vim.cmd("let &packpath = &runtimepath")
 vim.cmd("source ~/.vimrc")
 require("config.lazy")
 EOF
-cat > ~/.config/nvim/lua/config/lazy.lua <<'EOF'
+cat >~/.config/nvim/lua/config/lazy.lua <<'EOF'
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -237,7 +238,7 @@ cd ~ || exit
 mv ~/lizzieyzy/src/main/resources/assets/logo.png ~/.local/share/lizzieyzy/
 rm -rf ~/.m2/repository
 rm -rf ~/lizzieyzy
-cat > ~/.local/share/applications/lizzieyzy.desktop <<EOF
+cat >~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=LizzieYzy
@@ -254,11 +255,11 @@ git clone --depth=1 https://github.com/fairy-stockfish/Fairy-Stockfish.git
 cd Fairy-Stockfish/src || exit
 ARCH=$(uname -m)
 if [ "$ARCH" == "x86_64" ]; then
-ARCH="x86-64"
+	ARCH="x86-64"
 elif [ "$ARCH" == "aarch64" ]; then
-ARCH="armv8"
+	ARCH="armv8"
 elif [ "$ARCH" == "arm" ]; then
-ARCH="armv7"
+	ARCH="armv7"
 fi
 make -j ARCH="$ARCH" profile-build largeboards=yes nnue=yes
 mv stockfish ~/.local/bin/
@@ -278,7 +279,7 @@ cd ..
 mv projects/gui/res/icons/cutechess_128x128.png ~/.config/cutechess/
 cd ~ || exit
 rm -rf cutechess
-cat > ~/.local/share/applications/cutechess.desktop <<EOF
+cat >~/.local/share/applications/cutechess.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Cute Chess
@@ -296,7 +297,7 @@ cd Sylvan || exit
 qmake
 make
 cd ~ || exit
-cat > ~/.local/share/applications/sylvan.desktop <<EOF
+cat >~/.local/share/applications/sylvan.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=Sylvan
@@ -331,17 +332,17 @@ cmake --install build --strip
 cd ~ || exit
 rm -rf yosys
 if [ "$TEST" -eq 0 ]; then
-wget --tries=100 --retry-connrefused --waitretry=5 --no-check-certificate https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-tar -xzf install-tl-unx.tar.gz
-rm install-tl-unx.tar.gz*
-cd install-tl-* || exit
-perl ./install-tl --no-interaction
-cd ~ || exit
-rm -rf install-tl-*
-/usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
+	wget --tries=100 --retry-connrefused --waitretry=5 --no-check-certificate https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+	tar -xzf install-tl-unx.tar.gz
+	rm install-tl-unx.tar.gz*
+	cd install-tl-* || exit
+	perl ./install-tl --no-interaction
+	cd ~ || exit
+	rm -rf install-tl-*
+	/usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
 fi
 mkdir -p ~/.config/fontconfig/conf.d
-cat > ~/.config/fontconfig/conf.d/00-noto.conf <<'EOF'
+cat >~/.config/fontconfig/conf.d/00-noto.conf <<'EOF'
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -397,7 +398,7 @@ cat > ~/.config/fontconfig/conf.d/00-noto.conf <<'EOF'
 </match>
 </fontconfig>
 EOF
-cat > ~/.config/fontconfig/conf.d/01-replace.conf <<'EOF'
+cat >~/.config/fontconfig/conf.d/01-replace.conf <<'EOF'
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
@@ -435,7 +436,7 @@ cat > ~/.config/fontconfig/conf.d/01-replace.conf <<'EOF'
 </match>
 </fontconfig>
 EOF
-cat > ~/.config/fontconfig/conf.d/99-texlive.conf << 'EOF'
+cat >~/.config/fontconfig/conf.d/99-texlive.conf <<'EOF'
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
