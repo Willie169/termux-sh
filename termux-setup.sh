@@ -14,7 +14,7 @@ MOZLZ4=1
 PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
-NPMG='bash-language-server dockerfile-language-server-nodejs http-server pyright @linthtml/linthtml'
+NPMG='bash-language-server dockerfile-language-server-nodejs http-server neovim pyright @linthtml/linthtml'
 PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
 UV='cmake-language-server gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr xmljson yamllint'
 GO=''
@@ -156,8 +156,8 @@ chmod +x install.sh
 PROFILE=/dev/null ./install.sh "platform-tools"
 fi
 if [ "$VIMRC" -ne 0 ]; then
-DEBIAN_FRONTEND=noninteractive pkg install neovim python-pynvim tree-sitter -y -o Dpkg::Options::="--force-confnew"
-
+DEBIAN_FRONTEND=noninteractive pkg install neovim nodejs-lts npm python-pynvim tree-sitter -y -o Dpkg::Options::="--force-confnew"
+npm i -g neovim
 
 
 
