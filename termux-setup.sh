@@ -98,11 +98,7 @@ nameserver 2a10:50c0::1:ff
 nameserver 2a10:50c0::2:ff
 EOF
 wget --tries=100 --retry-connrefused --waitretry=5 -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
-if [ -d "$HOME/.bashrc.d" ]; then
-	for f in "$HOME/.bashrc.d/"*; do
-		[ -r "$f" ] && . "$f"
-	done
-fi
+source ~/.bashrc
 mkdir ~/.JetBrainsMono
 cd ~/.JetBrainsMono || exit
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
