@@ -17,7 +17,7 @@ CYBERCHEF=1
 STIRLINGPDF=1
 NPMG='bash-language-server dockerfile-language-server-nodejs http-server neovim pyright @linthtml/linthtml'
 PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
-UV='autopep8 cmake-language-server gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr xmljson yamllint'
+UV='autopep8 cmake-language-server gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr vint xmljson yamllint'
 GO=''
 APKTOOL=1
 ANTLR=1
