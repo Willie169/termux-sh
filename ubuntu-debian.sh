@@ -107,7 +107,7 @@ echo y | corepack enable npm
 echo y | npm --help || true
 echo y | corepack enable yarn
 echo y | yarn --help || true
-npm config set allow-scripts=deno,opencode-ai --location=user && npm i -g bash-language-server deno dockerfile-language-server-nodejs http-server neovim opencode-ai pyright @linthtml/linthtml @openai/codex
+npm config set allow-scripts=deno,opencode-ai --location=user && npm i -g bash-language-server deno dockerfile-language-server-nodejs http-server neovim opencode-ai pyright @openai/codex
 gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
@@ -153,10 +153,6 @@ apt update
 DEBIAN_FRONTEND=noninteractive apt install glow -y -o Dpkg::Options::="--force-confnew"
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
 wget --tries=100 --retry-connrefused --waitretry=5 -O /usr/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
-gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
-tar -xJf aarch64-linux.tar.xz
-rm aarch64-linux.tar.xz*
-mv superhtml ~/.local/bin/
 DEBIAN_FRONTEND=noninteractive apt install libeigen3-dev libzip-dev zlib1g-dev -y -o Dpkg::Options::="--force-confnew"
 git clone --depth=1 https://github.com/lightvector/KataGo.git
 cd KataGo/cpp || exit

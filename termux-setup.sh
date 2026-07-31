@@ -1,4 +1,12 @@
 #!/data/data/com.termux/files/usr/bin/bash
+
+# GitHub Action errors to be prevented:
+## + tar -xJf file.tar.xz
+## tar: Unknown option Jf (see "tar --help")
+#
+## + tar -xf -
+## tar: chown ...: Operation not permitted
+
 set -euxo pipefail
 shopt -s expand_aliases
 
@@ -149,17 +157,6 @@ if [ "$NVIM" -ne 0 ]; then
 	npm i -g neovim
 	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/install.sh | sh
 	nvim --headless "+Lazy! install" +qa
-	gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
-	# Fix for GitHub Action error:
-	# + tar -xJf aarch64-linux.tar.xz
-	# tar: Unknown option Jf (see "tar --help")
-	# and
-	# + tar -xf -
-	# tar: chown 501:20 'superhtml': Operation not permitted
-	# other tar similarly
-	xz -dc aarch64-linux.tar.xz | tar -xf - || true
-	rm aarch64-linux.tar.xz*
-	mv superhtml ~/.local/bin/
 fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
 	gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
