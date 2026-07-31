@@ -98,7 +98,7 @@ nameserver 94.140.14.141
 nameserver 2a10:50c0::1:ff
 nameserver 2a10:50c0::2:ff
 EOF
-wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
+wget --tries=100 --retry-connrefused --waitretry=5 -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/termux/install.sh | sh
 source ~/.bashrc
 mkdir ~/.JetBrainsMono
 cd ~/.JetBrainsMono || exit
