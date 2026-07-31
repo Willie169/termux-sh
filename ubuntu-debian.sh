@@ -112,7 +112,7 @@ gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dl
 chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
 curl -LsSf https://astral.sh/uv/install.sh | sh
-for pkg in autopep8 cmake-language-server gallery-dl gh2md img2pdf jupyterlab jupytext libretranslate meson notebook pylatexenc tldr vint xmljson yamllint; do
+for pkg in autopep8 cmake-language-server gallery-dl gh2md img2pdf jupyterlab jupytext libretranslate meson notebook pylatexenc tldr vim-vint xmljson yamllint; do
 	uv tool install "$pkg"
 done
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
