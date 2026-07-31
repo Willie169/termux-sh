@@ -56,7 +56,7 @@ DEBIAN_FRONTEND=noninteractive apt install sudo -y -o Dpkg::Options::="--force-c
 sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
-wget --tries=100 --retry-connrefused --waitretry=5 -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/install.sh | sh
+wget -qO- https://raw.githubusercontent.com/Willie169/bashrc/main/ubuntu-debian-arm-proot/install.sh | sh
 cat >~/.profile <<'EOF'
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "$HOME/.bashrc" ]; then
