@@ -8,7 +8,8 @@ PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip
 GITDELTA=1
 YTDLP=1
 ANDROID=1
-VIMRC=1
+VIM=1
+NVIM=1
 RCLONEEXTRA=1
 MOZLZ4=1
 PHICE=1
@@ -139,57 +140,15 @@ if [ "$ANDROID" -ne 0 ]; then
 	chmod +x install.sh
 	PROFILE=/dev/null ./install.sh "platform-tools"
 fi
-if [ "$VIMRC" -ne 0 ]; then
+if [ "$VIM" -ne 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install vim -y -o Dpkg::Options::="--force-confnew"
+	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
+fi
+if [ "$NVIM" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install neovim nodejs-lts npm python-pynvim tree-sitter -y -o Dpkg::Options::="--force-confnew"
 	npm i -g neovim
-
-	git clone --depth=1 https://github.com/Willie169/vimrc.git ~/.vim_runtime && sh ~/.vim_runtime/install_awesome_vimrc.sh
-	mkdir -p ~/.config/nvim/lua/config
-	mkdir -p ~/.config/nvim/lua/plugins
-	cat >~/.config/nvim/init.lua <<'EOF'
-vim.cmd("set runtimepath^=~/.vim runtimepath+=~/.vim/after")
-vim.cmd("let &packpath = &runtimepath")
-vim.cmd("source ~/.vimrc")
-require("config.lazy")
-EOF
-	cat >~/.config/nvim/lua/config/lazy.lua <<'EOF'
--- Bootstrap lazy.nvim
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-  if vim.v.shell_error ~= 0 then
-    vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
-      { "\nPress any key to exit..." },
-    }, true, {})
-    vim.fn.getchar()
-    os.exit(1)
-  end
-end
-vim.opt.rtp:prepend(lazypath)
-
--- Make sure to setup `mapleader` and `maplocalleader` before
--- loading lazy.nvim so that mappings are correct.
--- This is also a good place to setup other settings (vim.opt)
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
--- Setup lazy.nvim
-require("lazy").setup({
-  spec = {
-    -- import your plugins
-    { import = "plugins" },
-  },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
-})
-EOF
-	curl --retry 100 --retry-connrefused --retry-delay 5 -fsSL https://raw.githubusercontent.com/Willie169/bashrc/main/nvim.sh | bash
+	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/install.sh | sh
+	nvim --headless "+Lazy! sync" +qa
 	gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 	# Fix for GitHub Action error:
 	# + tar -xJf aarch64-linux.tar.xz
