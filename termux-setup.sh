@@ -148,7 +148,7 @@ if [ "$NVIM" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install neovim nodejs-lts npm python-pynvim tree-sitter -y -o Dpkg::Options::="--force-confnew"
 	npm i -g neovim
 	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/install.sh | sh
-	nvim --headless "+Lazy! sync" +qa
+	nvim --headless "+Lazy! install" +qa
 	gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' kristoff-it/superhtml aarch64-linux.tar.xz
 	# Fix for GitHub Action error:
 	# + tar -xJf aarch64-linux.tar.xz
