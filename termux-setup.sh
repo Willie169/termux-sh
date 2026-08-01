@@ -8,7 +8,6 @@
 ## tar: chown ...: Operation not permitted
 
 set -euxo pipefail
-shopt -s expand_aliases
 
 ## CONFIG START
 

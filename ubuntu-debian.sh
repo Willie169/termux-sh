@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -euxo pipefail
-shopt -s expand_aliases
 TEST=0
 FULL=0
 [ "${1:-}" = '--test' ] && TEST=1
