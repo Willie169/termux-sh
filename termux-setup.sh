@@ -1,8 +1,9 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# GitHub Action errors to be prevented:
+# GitHub Action termux/termux-docker errors to be prevented:
 ## + tar -xJf file.tar.xz
 ## tar: Unknown option Jf (see "tar --help")
+## and
 ## + tar -xf -
 ## tar: chown ...: Operation not permitted
 ## use
