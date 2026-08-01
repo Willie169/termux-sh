@@ -55,7 +55,12 @@ DEBIANBOXINSTALL=0
 <li>Stable internet connection.</li>
 <li>It is recommended to turn off the battery optimization for Termux.</li>
 <li>It is recommended to hold wakelock while running these scripts. You can do so by opening Termux, pulling down the notification bar, and then tapping <strong>Acquire wakelock</strong> on the notification of Termux.</li>
-<li>It is recommended to disable phantom process killer to prevent <code>Process completed (signal 9) - press Enter</code> error from occuring when using Termux in advance. If you have setup Shizuku with <code>rish</code> available in Termux to access interactive ADB shell, you can simply run <a href="disable-phantom-process-killer-rish.sh"><code>disable-phantom-process-killer-rish.sh</code></a> in this repo. If you have ADB connected with <code>adb shell</code> available, you can simply run <a href="disable-phantom-process-killer-adb.sh"><code>disable-phantom-process-killer-adb.sh</code></a> in this repo. Otherwise, refer to my guide about it in my <a href="https://github.com/Willie169/Android-Non-Root#process-completed-signal-9---press-enter-error"><strong>Android Non Root repo</strong></a> or <a href="https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error"><strong>Android Non Root site</strong></a>.</li>
+<li>It is recommended to disable phantom process killer to prevent <code>Process completed (signal 9) - press Enter</code> error from occuring when using Termux in advance by executing
+<pre><code>device_config set_sync_disabled_for_tests persistent
+device_config put activity_manager max_phantom_processes 214748364
+settings put global settings_enable_monitor_phantom_procs false
+</code></pre>
+If you have setup Shizuku with <code>rish</code> available in Termux to access interactive ADB shell, you can simply run <a href="disable-phantom-process-killer-rish.sh"><code>disable-phantom-process-killer-rish.sh</code></a> in this repo. If you have ADB connected with <code>adb shell</code> available, you can simply run <a href="disable-phantom-process-killer-adb.sh"><code>disable-phantom-process-killer-adb.sh</code></a> in this repo. Otherwise, refer to my guide about it in my <a href="https://github.com/Willie169/Android-Non-Root#process-completed-signal-9---press-enter-error"><strong>Android Non Root repo</strong></a> or <a href="https://willie169.github.io/Android-Non-Root/#process-completed-signal-9---press-enter-error"><strong>Android Non Root site</strong></a>.</li>
 </ul>
 
 ### Execution
