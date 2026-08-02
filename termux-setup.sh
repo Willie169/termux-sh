@@ -152,7 +152,7 @@ if [ "$VIM" -ne 0 ]; then
 	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
 fi
 if [ "$NVIM" -ne 0 ]; then
-	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/install.sh | sh
+	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | sh
 	nvim --headless "+Lazy! install" +qa
 fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
