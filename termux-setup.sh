@@ -138,7 +138,7 @@ if [ "$GITDELTA" -ne 0 ]; then
 fi
 if [ "$YTDLP" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install deno -y -o Dpkg::Options::="--force-confnew"
-	gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
+	gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 	chmod +x yt-dlp
 	mv yt-dlp ~/.local/bin/
 fi
@@ -156,7 +156,7 @@ if [ "$NVIM" -ne 0 ]; then
 	nvim --headless "+Lazy! install" +qa
 fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
-	gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
+	gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
 	unzip rclone-android-all.zip
 	rm rclone-android-all.zip*
 	if [[ "$ARCH" == "x86_64" ]]; then
@@ -247,7 +247,7 @@ if [ "$APKTOOL" -ne 0 ]; then
 	wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 	chmod +x apktool
 	mv apktool "$PREFIX"/local/bin/
-	gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
+	gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 	chmod +x apktool_*.jar
 	mv apktool_*.jar "$PREFIX"/local/bin/
 fi

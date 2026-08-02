@@ -83,12 +83,12 @@ curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 chmod +x apktool
 mv apktool /usr/local/bin/
-gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
+gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
 chmod +x apktool_*.jar
 mv apktool_*.jar /usr/local/bin/
 mkdir jadx
 cd jadx || exit
-gh_latest_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
+gh_release_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
 unzip jadx*.zip
 rm jadx*.zip*
 chmod +x bin/jadx
@@ -105,7 +105,7 @@ echo y | npm --help || true
 echo y | corepack enable yarn
 echo y | yarn --help || true
 npm config set allow-scripts=deno,opencode-ai --location=user && npm i -g deno http-server opencode-ai prettier @openai/codex
-gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
+gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 chmod +x yt-dlp
 mv yt-dlp ~/.local/bin/
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -249,7 +249,7 @@ mv mozlz4 ~/.local/bin/
 cd ~ || true
 rm -rf mozlz4
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
-gh_latest -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
+gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
 unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
 mv rclone ~/.local/bin/
