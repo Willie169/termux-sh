@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 [ -z "$DEBIAN" ] && DEBIAN='debian'
-cmd=(proot-distro login "$DEBIAN" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+cmd=(proot-distro login "$DEBIAN" --redirect-ports --isolated --get-proot-cmd)
 bind=(
 	"/apex"
 	"/data/app"

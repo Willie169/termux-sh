@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 [ -z "$UBUNTU" ] && UBUNTU='ubuntu'
-cmd=(proot-distro login "$UBUNTU" --redirect-ports --shared-tmp --isolated --get-proot-cmd)
+cmd=(proot-distro login "$UBUNTU" --redirect-ports --isolated --get-proot-cmd)
 bind=(
 	"/apex"
 	"/data/app"
