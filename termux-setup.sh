@@ -13,7 +13,7 @@ set -euxo pipefail
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd luajit lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-pynvim python-scipy p7zip qalc qemu-user-x86-64 qpdf ruby rust scrcpy shellcheck shfmt socat sqlite strace stylua tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet xz-utils yazi yq zip zoxide zsh 2048-c'
+PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd luajit lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl plantuml umpoppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-pynvim python-scipy p7zip qalc qemu-user-x86-64 qpdf ruby rust scrcpy shellcheck shfmt socat sqlite strace stylua tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet xz-utils yazi yq zip zoxide zsh 2048-c'
 GITDELTA=1
 YTDLP=1
 ANDROID=1
@@ -29,8 +29,6 @@ PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sym
 UV='autopep8 cmake-language-server gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr xmljson yamllint'
 GO=''
 APKTOOL=1
-ANTLR=1
-PLANTUML=1
 EFFLIST=1
 TERMUX='termux'
 UBUNTU='ubuntu'
@@ -253,8 +251,6 @@ if [ "$APKTOOL" -ne 0 ]; then
 	chmod +x apktool_*.jar
 	mv apktool_*.jar "$PREFIX"/local/bin/
 fi
-[ "$ANTLR" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O "$PREFIX"/local/java/antlr-4.13.2-complete.jar https://www.antlr.org/download/antlr-4.13.2-complete.jar
-[ "$PLANTUML" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 -O "$PREFIX"/local/java/plantuml.jar https://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 [ "$EFFLIST" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name "$TERMUX"
 [ -n "$UBUNTU" ] && proot-distro install ubuntu:latest --name "$UBUNTU"

@@ -34,6 +34,7 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 ### Prerequisites
 
 <ul>
+<li>Full features are supported on arm64-v8a architecture, but only limited features are supported on other architectures.</li>
 <li>Sufficient storage: (calculated using GitHub Action, typically a bit less than that on a real device)
 <ul>
 <li>Previous rows remain default with
@@ -108,7 +109,6 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **uv packages**: Installs uv tools set in `$UV`.
 2. **Go packages**: Installs Go packages set in `$GO`.
 2. **Apktool**: Installs Apktool in `/$PREFIX/local/bin` if not `$APKTOOL=0`.
-2. **JARs**: Installs ANTLR 4 (JAR in `/usr/local/java`) if not `$ANTLR=0` and PlantUML (JAR in `/usr/local/java`) if not `$PLANTUML=0`.
 2. **EFF Large Wordlist for Passphrases**: Downloads EFF Large Wordlist for Passphrases in `~/.eff_large_wordlist.txt`.
 2. **Proot-distro Termux environment**: Installs an Termux proot-distro environment with alias `$TERMUX`, which can be booted using script `proot-termux.sh` in home directory `~` and `~/.shortcuts` folder (for **Termux:Widget**), if `$TERMUX` is set as a nonempty string.
 2. **Proot-distro Ubuntu environment**: Installs an Ubuntu ARM64 proot-distro environment with alias `$UBUNTU` if `$UBUNTU` is set as a nonempty string, and runs [`ubuntu-debian.sh`](ubuntu-debian.sh) in it if `$UBUNTU` is set as a nonempty string, machine is of AArch64 (aka ARM64) architecture, and `$UBUNTUINSTALL` is not `0`. See [Invoked VM Setup Scripts](#invoked-vm-setup-scripts) section for more information. 
@@ -124,8 +124,8 @@ These scripts will be invoked by [Termux Setup](#termux-setup) if corresponding 
   Rust, Go, Perl, LuaJIT, Aptitude, GitHub CLI, GitLab CLI, GVim, OpenSSL, OpenSSH, JQ, FFMPEG, Pandoc, TeX Live (via regular installation instead of APT for unrestricted `tlmgr` and updates, can be updated with `update_texlive`), Maven, Zsh, XFCE desktop environment, iproute2, 
   net-tools, Nmap, Node.js LTS (via NVM), npm, Yarn, Deno, http-server, Prettier, OpenCode, Codex, yt-dlp, Lazygit, Homebrew, Glow, bat, fd, ncdu, dust, fzf, Delta, ripgrep (rg), Yazi, zoxide, Miniforge, uv, autopep8, gallery-dl, procs, tldr, xmljson, JADX, Apktool, broot, bottom (btm), hyperfine, lsd, Qalculate! CLI (qalc), 2048, Cargo B(inary)Install (cargo-binstall), StyLua, 
   gh2md, img2pdf, English, Chinese - Simplified, Chinese - Simplified (vertical), Chinese - Traditional, and Chinese - Traditional (vertical) Tesseract OCR, OCRmyPDF, LibreTranslate, Jupyter Notebook, JupyterLab, Jupytext, Meson, pylatexenc, RARLAB UnRAR, Verilator, Ngspice, jpegoptim, optipng, libheif, LibWebP, ImageMagick, Inkscape, Poppler, qpdf, PDFtk, Ghostscript, Bookletimposer, 
-  Audacity, w3m, XMLStarlet, GTKWave, ANTLR 4 (JAR in `/usr/local/java`), Octave, XFCE desktop environment (can be started with Termux:X11 by running `termux-x11 :0 &`, logging into Proot-distro with `--shared-tmp` option, and running `export DISPLAY=:0` 
-  and `xfce` inside, where `0` can be replaced with other numbers), fix for stuck `elementary-xfce-icon-theme` from my [**fix-elementary-xfce-icon-theme**](https://github.com/Willie169/fix-elementary-xfce-icon-theme) repo, PlantUML (JAR in `/usr/local/java`), SQLite 3, yosys – Yosys Open SYnthesis Suite, 
+  Audacity, w3m, XMLStarlet, GTKWave, Octave, XFCE desktop environment (can be started with Termux:X11 by running `termux-x11 :0 &`, logging into Proot-distro with `--shared-tmp` option, and running `export DISPLAY=:0` 
+  and `xfce` inside, where `0` can be replaced with other numbers), fix for stuck `elementary-xfce-icon-theme` from my [**fix-elementary-xfce-icon-theme**](https://github.com/Willie169/fix-elementary-xfce-icon-theme) repo, PlantUML, SQLite 3, yosys – Yosys Open SYnthesis Suite, 
   mpv, iotop-c, netcat, NetHogs, net-tools, iftop, KataGo (`~/KataGo/cpp/katago` and can be run with `katago`) and KataGo network `kata1-b6c96-s175395328-d26788732` (in `~/katago-networks`, other networks can be downloaded from <https://katagotraining.org/networks>), LizzieYzy (can be launched by running `lizzieyzy` or 
   with desktop entry `~/.local/share/applications/lizzieyzy.desktop` or `~/desktop/lizzieyzy.desktop`, runtime directory `~/.local/share/lizzieyzy`. KataGo network `kata1-b6c96-s175395328-d26788732` configured as default engine and estimate engine in `~/.local/share/lizzieyzy/config.txt`. `~/.local/share/lizzieyzy/config.txt` can be updated by running `update_lizzieyzy_config`.), Fairy-Stockfish (can be run with `stockfish`), Cute Chess (GUI can be launched by running `cutechess` or with 
   desktop entry `~/.local/share/applications/cutechess.desktop` or `~/desktop/cutechess.desktop`, CLI can be run with `cutechess-cli`. Fairy-Stockfish configured as engine in `~/.config/cutechess/engines.json`. `~/.config/cutechess/engines.json` can be updated by running `update_cutechess_config`.), Sylvan (GUI at `~/Sylvan/projects/gui/sylvan` and can be launched by running `sylvan` or with desktop entry `~/.local/share/applications/sylvan.desktop` or `~/desktop/sylvan.desktop`, CLI at 
