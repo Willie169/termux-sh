@@ -106,7 +106,6 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **npm packages**: Installs npm packages set in `$NPMG` globally.
 2. **pip packages**: Installs pip packages set in `$PIP`.
 2. **uv packages**: Installs uv tools set in `$UV`.
-2. **Go packages**: Installs Go packages set in `$GO`.
 2. **Apktool**: Installs Apktool in `/$PREFIX/local/bin` if not `$APKTOOL=0`.
 2. **EFF Large Wordlist for Passphrases**: Downloads EFF Large Wordlist for Passphrases in `~/.eff_large_wordlist.txt`.
 2. **Proot-distro Termux environment**: Installs an Termux proot-distro environment with alias `$TERMUX`, which can be booted using script `proot-termux.sh` in home directory `~` and `~/.shortcuts` folder (for **Termux:Widget**), if `$TERMUX` is set as a nonempty string.
