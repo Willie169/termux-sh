@@ -24,9 +24,9 @@ MOZLZ4=1
 PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
-NPMG='bash-language-server dockerfile-language-server-nodejs http-server neovim prettier pyright'
+NPMG='http-server prettier'
 PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
-UV='autopep8 cmake-language-server gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr xmljson yamllint'
+UV='autopep8 gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr xmljson yamllint'
 GO=''
 APKTOOL=1
 EFFLIST=1
@@ -227,8 +227,14 @@ if [ "$STIRLINGPDF" -ne 0 ]; then
 	cd ~ || exit
 	echo -e 'server:\n  port: 9000' | tee "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
 fi
-# shellcheck disable=2086
-[ -n "$NPMG" ] && npm i -g $NPMG
+if [ -n "$NPMG" ]; then
+	npm_allow=$(npm config get allow-scripts)
+	[ -n "$npm_allow" ] && npm_allow+=','
+	npm_allow+="${NPMG// /,}"
+	npm config set allow-scripts="$npm_allow" --location=user
+	# shellcheck disable=2086
+	npm i -g $NPMG
+fi
 if [ -n "$PIP" ]; then
 	# shellcheck disable=2086
 	pip3 install $PIP || true

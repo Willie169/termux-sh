@@ -104,11 +104,11 @@ echo y | corepack enable npm
 echo y | npm --help || true
 echo y | corepack enable yarn
 echo y | yarn --help || true
+NPMG='deno http-server opencode-ai prettier @openai/codex'
 npm_allow=$(npm config get allow-scripts)
 [ -n "$npm_allow" ] && npm_allow+=','
-npm_allow+='deno,opencode-ai'
+npm_allow+="${NPMG// /,}"
 npm config set allow-scripts="$npm_allow" --location=user
-NPMG='deno http-server opencode-ai prettier @openai/codex'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
 	npm i -g $NPMG
