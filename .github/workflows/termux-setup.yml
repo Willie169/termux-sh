@@ -19,7 +19,6 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt install docker-ce -y
           git clone https://github.com/Willie169/termux-sh.git
           cd termux-sh
-          sed -Ei 's/( install [\$PKG|xfce4] -y)/\1 -s/; s/(\.\/ubuntu-debian.sh)/\1 --test/' termux-setup.sh
       - name: Run termux-setup.sh
         timeout-minutes: 360
         run: |
