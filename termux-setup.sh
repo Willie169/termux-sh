@@ -27,7 +27,6 @@ STIRLINGPDF=1
 NPMG='http-server prettier'
 PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
 UV='autopep8 gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr xmljson yamllint'
-GO=''
 APKTOOL=1
 EFFLIST=1
 TERMUX='termux'
@@ -64,7 +63,7 @@ cd ~ || exit
 pkg update
 DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro pulseaudio python python-ensurepip-wheels python-pip rust tar termux-api termux-tools uv wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq perl proot proot-distro pulseaudio python python-ensurepip-wheels python-pip tar termux-api termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew"
 XPKG='mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
@@ -183,6 +182,7 @@ if [ "$VIM" -ne 0 ]; then
 	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
 fi
 if [ "$NVIM" -ne 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install rust uv -y -o Dpkg::Options::="   --force-confnew"
 	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
 	nvim --headless "+Lazy! install" +qa
 fi
@@ -219,6 +219,7 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
 	mv rclone ~/.local/bin/
 fi
 if [ "$MOZLZ4" -ne 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg rust -y -o Dpkg::Options::="--force-confnew"
 	git clone https://github.com/jusw85/mozlz4.git
 	cd mozlz4 || exit
 	cargo build --release
@@ -229,7 +230,7 @@ if [ "$MOZLZ4" -ne 0 ]; then
 	rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"
 	git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 	cd phice || exit
 	if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
@@ -266,6 +267,7 @@ if [ "$STIRLINGPDF" -ne 0 ]; then
 	echo -e 'server:\n  port: 9000' | tee "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
 fi
 if [ -n "$NPMG" ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew"
 	npm_allow=$(npm config get allow-scripts)
 	[ -n "$npm_allow" ] && npm_allow+=','
 	npm_allow+="${NPMG// /,}"
@@ -274,12 +276,14 @@ if [ -n "$NPMG" ]; then
 	npm i -g $NPMG
 fi
 if [ -n "$PIP" ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install python python-ensurepip-wheels python-pip -y -o Dpkg::Options::="--force-confnew"
 	# shellcheck disable=2086
 	if ! pip3 install $PIP; then
 		pip3 install $PIP
 	fi
 fi
 if [ -n "$UV" ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install uv -y -o Dpkg::Options::="--force-confnew"
 	# shellcheck disable=2086
 	for pkg in $UV; do
 		if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
@@ -293,8 +297,6 @@ if [ -n "$UV" ]; then
 		fi
 	done
 fi
-# shellcheck disable=2086
-[ -n "$GO" ] && go install $GO
 if [ "$APKTOOL" -ne 0 ]; then
 	wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
 	chmod +x apktool
