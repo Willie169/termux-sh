@@ -220,12 +220,12 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
 fi
 if [ "$MOZLZ4" -ne 0 ]; then
 	git clone https://github.com/jusw85/mozlz4.git
-	cd mozlz4 || true
+	cd mozlz4 || exit
 	cargo build --release
-	cd target/release || true
+	cd target/release || exit
 	mv mozlz4-bin mozlz4
 	mv mozlz4 ~/.local/bin/
-	cd ~ || true
+	cd ~ || exit
 	rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
@@ -233,11 +233,13 @@ if [ "$PHICE" -ne 0 ]; then
 	git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 	cd phice || exit
 	if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
-		ANDROID_API_LEVEL=24 uv sync || true
-		ANDROID_API_LEVEL=24 uv sync
+		if ! ANDROID_API_LEVEL=24 uv sync; then
+			ANDROID_API_LEVEL=24 uv sync
+		fi
 	else
-		uv sync || true
-		uv sync
+		if ! uv sync; then
+			uv sync
+		fi
 	fi
 	cp config.example.toml config.toml
 	cd ~ || exit
@@ -273,19 +275,21 @@ if [ -n "$NPMG" ]; then
 fi
 if [ -n "$PIP" ]; then
 	# shellcheck disable=2086
-	pip3 install $PIP || true
-	# shellcheck disable=2086
-	pip3 install $PIP
+	if ! pip3 install $PIP; then
+		pip3 install $PIP
+	fi
 fi
 if [ -n "$UV" ]; then
 	# shellcheck disable=2086
 	for pkg in $UV; do
 		if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
-			ANDROID_API_LEVEL=24 uv tool install "$pkg" || true
-			ANDROID_API_LEVEL=24 uv tool install "$pkg"
+			if ! ANDROID_API_LEVEL=24 uv tool install "$pkg"; then
+				ANDROID_API_LEVEL=24 uv tool install "$pkg"
+			fi
 		else
-			uv tool install "$pkg" || true
-			uv tool install "$pkg"
+			if ! uv tool install "$pkg"; then
+				uv tool install "$pkg"
+			fi
 		fi
 	done
 fi

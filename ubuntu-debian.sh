@@ -138,9 +138,9 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"
 BREW='bat bottom broot dust fd fzf git-delta lazygit procs resvg ripgrep sevenzip yazi yq zoxide'
 if [ "$TEST" -eq 0 ]; then
 	# shellcheck disable=2086
-	echo y | brew install $BREW || true
-	# shellcheck disable=2086
-	echo y | brew install $BREW
+	if ! echo y | brew install $BREW; then
+		echo y | brew install $BREW
+	fi
 	git config --global core.pager delta
 	git config --global interactive.diffFilter 'delta --color-only'
 	git config --global delta.navigate true
@@ -251,12 +251,12 @@ Categories=Game;
 EOF
 update_sylvan_config
 git clone https://github.com/jusw85/mozlz4.git
-cd mozlz4 || true
+cd mozlz4 || exit
 cargo build --release
-cd target/release || true
+cd target/release || exit
 mv mozlz4-bin mozlz4
 mv mozlz4 ~/.local/bin/
-cd ~ || true
+cd ~ || exit
 rm -rf mozlz4
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
 gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
