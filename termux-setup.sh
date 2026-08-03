@@ -42,6 +42,13 @@ DEBIANBOXINSTALL=0
 
 ## CONFIG END
 
+[ "${1:-}" = '--test' ] && TEST=1
+[ "${2:-}" = '--test' ] && TEST=1
+[ "${1:-}" = '--full' ] && FULL=1
+[ "${2:-}" = '--full' ] && FULL=1
+if [ "$FULL" -eq 1 ]; then
+	UBUNTUINSTALL=0
+fi
 # shellcheck disable=2046,2155
 PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
@@ -49,7 +56,13 @@ pkg update
 DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq nodejs-lts npm perl proot proot-distro pulseaudio python python-ensurepip-wheels python-pip rust tar termux-api termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg install mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4 -y -o Dpkg::Options::="--force-confnew"
+XPKG='mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4'
+# shellcheck disable=2086
+if [ "$TEST" -eq 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -o Dpkg::Options::="--force-confnew"
+else
+	DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -s -o Dpkg::Options::="--force-confnew"
+fi
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
@@ -119,8 +132,14 @@ mkdir -p "$PREFIX"/local/bin
 mkdir -p "$PREFIX"/local/go
 mkdir -p "$PREFIX"/local/java
 mkdir -p ~/.local/bin
-# shellcheck disable=2086
-[ -n "$PKG" ] && DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -o Dpkg::Options::="--force-confnew"
+if [ -n "$PKG" ]; then
+	# shellcheck disable=2086
+	if [ "$TEST" -eq 0 ]; then
+		DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -o Dpkg::Options::="--force-confnew"
+	else
+		DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -s -o Dpkg::Options::="--force-confnew"
+	fi
+fi
 command -v broot >/dev/null 2>&1 && broot --set-install-state installed && mkdir -p "${HOME}"/.config/broot/launcher/bash && broot --print-shell-function bash >"${HOME}"/.config/broot/launcher/bash/br && chmod +x "${HOME}"/.config/broot/launcher/bash/br
 [ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
@@ -145,6 +164,9 @@ fi
 if [ "$ANDROID" -ne 0 ]; then
 	wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/Willie169/termux-android-sdk-ndk/refs/heads/main/install.sh
 	chmod +x install.sh
+	if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
+		sed -Ei 's/(#!\/data\/data\/com\.termux\/files\/usr\/bin\/bash)/\1\nset -euxo pipefail/' install.sh
+	fi
 	PROFILE=/dev/null ./install.sh "platform-tools"
 fi
 if [ "$VIM" -ne 0 ]; then
@@ -201,8 +223,13 @@ if [ "$PHICE" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"
 	git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 	cd phice || exit
-	uv sync || true
-	uv sync
+	if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
+		ANDROID_API_LEVEL=24 uv sync || true
+		ANDROID_API_LEVEL=24 uv sync
+	else
+		uv sync || true
+		uv sync
+	fi
 	cp config.example.toml config.toml
 	cd ~ || exit
 fi
@@ -244,7 +271,13 @@ fi
 if [ -n "$UV" ]; then
 	# shellcheck disable=2086
 	for pkg in $UV; do
-		uv tool install "$pkg"
+		if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
+			ANDROID_API_LEVEL=24 uv tool install "$pkg" || true
+			ANDROID_API_LEVEL=24 uv tool install "$pkg"
+		else
+			uv tool install "$pkg" || true
+			uv tool install "$pkg"
+		fi
 	done
 fi
 # shellcheck disable=2086
