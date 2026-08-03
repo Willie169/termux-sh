@@ -88,7 +88,7 @@ chmod +x apktool_*.jar
 mv apktool_*.jar /usr/local/bin/
 mkdir jadx
 cd jadx || exit
-gh_release_r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
+gh_release -r -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' skylot/jadx 'jadx-[0-9\.]*\.zip'
 unzip jadx*.zip
 rm jadx*.zip*
 chmod +x bin/jadx
