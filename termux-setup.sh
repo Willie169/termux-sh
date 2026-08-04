@@ -67,7 +67,7 @@ cd ~ || exit
 pkg update
 DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq perl proot proot-distro pulseaudio python python-ensurepip-wheels python-pip tar termux-api termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq perl proot proot-distro pulseaudio tar termux-api termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew"
 XPKG='mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
@@ -161,7 +161,7 @@ Host *
     ServerAliveCountMax 8
 EOF
 if [ "$IMG2PDF" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt python python-ensurepip-wheels python-pip uv -y -o Dpkg::Options::="--force-confnew"
     if ! uv tool install img2pdf; then
         uv tool install img2pdf
     fi
@@ -231,7 +231,7 @@ if [ "$MOZLZ4" -ne 0 ]; then
 	rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew"
 	git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 	cd phice || exit
 	if ! uv sync; then
@@ -266,7 +266,7 @@ if [ "$VIM" -ne 0 ]; then
 	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
 fi
 if [ "$NVIM" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm rust uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew"
 	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
 	nvim --headless "+Lazy! install" +qa
 fi
@@ -287,7 +287,7 @@ if [ -n "$PIP" ]; then
 	fi
 fi
 if [ -n "$UV" ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip uv -y -o Dpkg::Options::="--force-confnew"
 	# shellcheck disable=2086
 	for pkg in $UV; do
 		if ! uv tool install "$pkg"; then
