@@ -210,7 +210,7 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
 	mv rclone ~/.local/bin/
 fi
 if [ "$MOZLZ4" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg rust -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install rust -y -o Dpkg::Options::="--force-confnew"
 	git clone https://github.com/jusw85/mozlz4.git
 	cd mozlz4 || exit
 	cargo build --release
