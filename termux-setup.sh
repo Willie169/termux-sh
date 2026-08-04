@@ -1,6 +1,6 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-# GitHub Action termux/termux-docker errors to be prevented:
+# GitHub Action termux/termux-docker possible errors to be prevented:
 # + tar -xJf file.tar.xz
 # tar: Unknown option Jf (see "tar --help")
 # and
@@ -9,7 +9,7 @@
 # use
 # xz -d file.tar.xz
 # gzip -d file.tar.gz
-# tar -xf file.tar
+# tar -xf file.tar || true
 
 set -euxo pipefail
 
