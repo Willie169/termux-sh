@@ -50,6 +50,10 @@ FULL=0
 if [ "$FULL" -eq 1 ]; then
 	UBUNTUINSTALL=0
 fi
+if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
+	# shellcheck disable=2034
+	ANDROID_API_LEVEL=24
+fi
 echo_ubuntu_debian() {
 	if [ "$1" -eq 0 ]; then
 		echo './ubuntu-debian.sh'
@@ -224,14 +228,8 @@ if [ "$PHICE" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt rust uv -y -o Dpkg::Options::="--force-confnew"
 	git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
 	cd phice || exit
-	if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
-		if ! ANDROID_API_LEVEL=24 uv sync; then
-			ANDROID_API_LEVEL=24 uv sync
-		fi
-	else
-		if ! uv sync; then
-			uv sync
-		fi
+	if ! uv sync; then
+		uv sync
 	fi
 	cp config.example.toml config.toml
 	cd ~ || exit
@@ -286,14 +284,8 @@ if [ -n "$UV" ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install uv -y -o Dpkg::Options::="--force-confnew"
 	# shellcheck disable=2086
 	for pkg in $UV; do
-		if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
-			if ! ANDROID_API_LEVEL=24 uv tool install "$pkg"; then
-				ANDROID_API_LEVEL=24 uv tool install "$pkg"
-			fi
-		else
-			if ! uv tool install "$pkg"; then
-				uv tool install "$pkg"
-			fi
+		if ! uv tool install "$pkg"; then
+			uv tool install "$pkg"
 		fi
 	done
 fi
