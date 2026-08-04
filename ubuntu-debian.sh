@@ -48,7 +48,7 @@ else
 	sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' "$f"
 fi
 apt update
-DEBIAN_FRONTEND=noninteractive apt purge rustup texlive* tree-sitter-cli yq -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive apt purge neovim rustup texlive* tree-sitter-cli yq -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales lsb-release make ninja-build openssh-server perl perl-tk python-is-python3 python3 vim-gtk3 wget xz-utils -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive apt install sudo -y -o Dpkg::Options::="--force-confnew"
 sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
