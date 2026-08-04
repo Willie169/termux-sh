@@ -51,8 +51,6 @@ if [ "$FULL" -eq 1 ]; then
 	UBUNTUINSTALL=0
 fi
 if [ "$TEST" -eq 1 ] || [ "$FULL" -eq 1 ]; then
-	# shellcheck disable=2034
-	ANDROID_API_LEVEL=24
 	echo 'export ANDROID_API_LEVEL=24' >~/.bashrc.overrides
 fi
 echo_ubuntu_debian() {
