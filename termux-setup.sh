@@ -14,6 +14,7 @@ set -euxo pipefail
 ## CONFIG START
 
 PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd luajit lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy p7zip qalc qemu-user-x86-64 qpdf ripgrep ruby rust scrcpy shellcheck shfmt socat sqlite strace stylua tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet xz-utils yazi yq zip zoxide zsh 2048-c'
+IMG2PDF=1
 GITDELTA=1
 YTDLP=1
 ANDROID=1
@@ -26,7 +27,7 @@ CYBERCHEF=1
 STIRLINGPDF=1
 NPMG='http-server prettier'
 PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
-UV='autopep8 gallery-dl gh2md img2pdf jupytext meson pylatexenc tldr xmljson yamllint'
+UV='autopep8 gallery-dl gh2md jupytext meson pylatexenc tldr xmljson yamllint'
 APKTOOL=1
 EFFLIST=1
 TERMUX='termux'
@@ -159,6 +160,12 @@ Host *
     ServerAliveInterval 15
     ServerAliveCountMax 8
 EOF
+if [ "$IMG2PDF" -ne 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install clang cmake uv -y -o Dpkg::Options::="--force-confnew"
+    if ! uv tool install img2pdf; then
+        uv tool install img2pdf
+    fi
+fi
 if [ "$GITDELTA" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew"
 	git config --global core.pager delta
