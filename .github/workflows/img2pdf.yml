@@ -24,9 +24,9 @@ jobs:
             set -euxo pipefail
             echo "deb https://packages.termux.dev/apt/termux-main stable main" > /data/data/com.termux/files/usr/etc/apt/sources.list
             pkg update
-            DEBIAN_FRONTEND=noninteractive pkg install clang cmake qpdf uv -y -o Dpkg::Options::="--force-confnew"
+            DEBIAN_FRONTEND=noninteractive pkg install clang cmake python python-ensurepip-wheels python-pip qpdf uv -y -o Dpkg::Options::="--force-confnew"
             DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew"
-            export ANDROID_API_LEVEL=24
+            ANDROID_API_LEVEL=24
             if ! uv tool install img2pdf; then
               uv tool install img2pdf
             fi
