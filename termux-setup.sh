@@ -182,7 +182,7 @@ if [ "$VIM" -ne 0 ]; then
 	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
 fi
 if [ "$NVIM" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install rust uv -y -o Dpkg::Options::="   --force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install rust uv -y -o Dpkg::Options::="--force-confnew"
 	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
 	nvim --headless "+Lazy! install" +qa
 fi
