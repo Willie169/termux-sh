@@ -1,13 +1,15 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 # GitHub Action termux/termux-docker errors to be prevented:
-## + tar -xJf file.tar.xz
-## tar: Unknown option Jf (see "tar --help")
-## and
-## + tar -xf -
-## tar: chown ...: Operation not permitted
-## use
-## xz -dc file.tar.xz | tar -xf - || true
+# + tar -xJf file.tar.xz
+# tar: Unknown option Jf (see "tar --help")
+# and
+# + tar -xf -
+# tar: chown ...: Operation not permitted
+# use
+# xz -d file.tar.xz
+# gzip -d file.tar.gz
+# tar -xf file.tar
 
 set -euxo pipefail
 
