@@ -13,7 +13,7 @@ set -euxo pipefail
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd luajit lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano neovim netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-pynvim python-scipy p7zip qalc qemu-user-x86-64 qpdf ripgrep ruby rust scrcpy shellcheck shfmt socat sqlite strace stylua tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet xz-utils yazi yq zip zoxide zsh 2048-c'
+PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libwebp lsd luajit lzip make mandoc matplotlib maven mesa-vulkan-icd-freedreno mesa-demos mesa-zink mpv nano netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy p7zip qalc qemu-user-x86-64 qpdf ripgrep ruby rust scrcpy shellcheck shfmt socat sqlite strace stylua tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet xz-utils yazi yq zip zoxide zsh 2048-c'
 GITDELTA=1
 YTDLP=1
 ANDROID=1
@@ -177,15 +177,6 @@ if [ "$ANDROID" -ne 0 ]; then
 	fi
 	PROFILE=/dev/null ./install.sh "platform-tools"
 fi
-if [ "$VIM" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install vim -y -o Dpkg::Options::="--force-confnew"
-	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
-fi
-if [ "$NVIM" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install rust uv -y -o Dpkg::Options::="--force-confnew"
-	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
-	nvim --headless "+Lazy! install" +qa
-fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
 	gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
 	unzip rclone-android-all.zip
@@ -265,6 +256,15 @@ if [ "$STIRLINGPDF" -ne 0 ]; then
 	wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/tesseract-ocr/tessdata/raw/refs/heads/main/eng.traineddata
 	cd ~ || exit
 	echo -e 'server:\n  port: 9000' | tee "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
+fi
+if [ "$VIM" -ne 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install vim -y -o Dpkg::Options::="--force-confnew"
+	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
+fi
+if [ "$NVIM" -ne 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm rust uv -y -o Dpkg::Options::="--force-confnew"
+	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
+	nvim --headless "+Lazy! install" +qa
 fi
 if [ -n "$NPMG" ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew"
