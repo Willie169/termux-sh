@@ -164,9 +164,9 @@ Host *
 EOF
 if [ "$IMG2PDF" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip qpdf uv -y -o Dpkg::Options::="--force-confnew"
-    if ! uv tool install img2pdf; then
-        uv tool install img2pdf
-    fi
+	if ! uv tool install img2pdf; then
+		uv tool install img2pdf
+	fi
 fi
 if [ "$GITDELTA" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew"
