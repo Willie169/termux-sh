@@ -163,7 +163,7 @@ Host *
     ServerAliveCountMax 8
 EOF
 if [ "$IMG2PDF" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt python python-ensurepip-wheels python-pip qpdf uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip qpdf uv -y -o Dpkg::Options::="--force-confnew"
     if ! uv tool install img2pdf; then
         uv tool install img2pdf
     fi
