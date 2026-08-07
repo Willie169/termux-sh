@@ -24,7 +24,7 @@ VIM=1
 NVIM=1
 RCLONEEXTRA=1
 MOZLZ4=1
-PHICE=0
+PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
 NPMG='http-server prettier'
@@ -236,7 +236,7 @@ if [ "$MOZLZ4" -ne 0 ]; then
 fi
 if [ "$PHICE" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew"
-	git clone --depth=1 https://codeberg.org/c4ffe14e/phice.git
+	git clone --depth=1 https://github.com/Willie169/phice.git
 	cd phice || exit
 	if ! uv sync; then
 		uv sync
