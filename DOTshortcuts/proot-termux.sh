@@ -1,3 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-[ -z "$TERMUX" ] && TERMUX='termux'
-bash <(proot-distro login "$TERMUX" --redirect-ports --isolated --get-proot-cmd)
+
+[ -z "$PROOT_TERMUX" ] && test -f ~/.bashrc.proot && source ~/.bashrc.proot
+[ -z "$PROOT_TERMUX" ] && PROOT_TERMUX='termux'
+bash <(proot-distro login "$PROOT_TERMUX" --redirect-ports --isolated --get-proot-cmd)

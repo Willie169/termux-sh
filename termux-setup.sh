@@ -315,15 +315,12 @@ fi
 [ -n "$UBUNTUBOX" ] && [ "$UBUNTUBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "${PREFIX}/var/lib/proot-distro/containers/$UBUNTUBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login "$UBUNTUBOX" --redirect-ports --isolated --get-proot-cmd)
 [ -n "$DEBIANBOX" ] && proot-distro install debian:latest --name "$DEBIANBOX"
 [ -n "$DEBIANBOX" ] && [ "$DEBIANBOXINSTALL" -ne 0 ] && cp ~/termux-sh/box64-wine64-winetricks.sh "${PREFIX}/var/lib/proot-distro/containers/$DEBIANBOX/rootfs/root/" && echo './box64-wine64-winetricks.sh' | bash <(proot-distro login "$DEBIANBOX" --redirect-ports --isolated --get-proot-cmd)
-cat >~/.bashrc.proot <<EOF
-#!/data/data/com.termux/files/usr/bin/bash
-
-EOF
-[ -n "$TERMUX" ] && echo -e "export TERMUX=$TERMUX\nexport TERMUX_HOME=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files/home\"" | tee -a ~/.bashrc.proot >/dev/null
-[ -n "$UBUNTU" ] && echo -e "export UBUNTU=$UBUNTU\nexport UBUNTU_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTU/rootfs/root\"" | tee -a ~/.bashrc.proot >/dev/null
-[ -n "$DEBIAN" ] && echo -e "export DEBIAN=$DEBIAN\nexport DEBIAN_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIAN/rootfs/root\"" | tee -a ~/.bashrc.proot >/dev/null
-[ -n "$UBUNTUBOX" ] && echo -e "export UBUNTUBOX=$UBUNTUBOX\nexport UBUNTUBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTUBOX/rootfs/root\"" | tee -a ~/.bashrc.proot >/dev/null
-[ -n "$DEBIANBOX" ] && echo -e "export DEBIANBOX=$DEBIANBOX\nexport DEBIANBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIANBOX/rootfs/root\"" | tee -a ~/.bashrc.proot >/dev/null
+echo $'#!/data/data/com.termux/files/usr/bin/bash\n' >~/.bashrc.proot
+[ -n "$TERMUX" ] && echo -e "export PROOT_TERMUX=\"$TERMUX\"\nexport PROOT_TERMUX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files\"\nexport PROOT_TERMUX_HOME=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files/home\"\nexport PROOT_TERMUX_PREFIX=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files/usr\"" >>~/.bashrc.proot
+[ -n "$UBUNTU" ] && echo -e "export PROOT_UBUNTU=\"$UBUNTU\"\nexport PROOT_UBUNTU_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTU/rootfs/root\"" >>~/.bashrc.proot
+[ -n "$DEBIAN" ] && echo -e "export PROOT_DEBIAN=\"$DEBIAN\"\nexport PROOT_DEBIAN_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIAN/rootfs/root\"" >>~/.bashrc.proot
+[ -n "$UBUNTUBOX" ] && echo -e "export PROOT_UBUNTUBOX=\"$UBUNTUBOX\"\nexport PROOT_UBUNTUBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTUBOX/rootfs/root\"" >>~/.bashrc.proot
+[ -n "$DEBIANBOX" ] && echo -e "export PROOT_DEBIANBOX=\"$DEBIANBOX\"\nexport PROOT_DEBIANBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIANBOX/rootfs/root\"" >>~/.bashrc.proot
 DEBIAN_FRONTEND=noninteractive apt install -f -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
 DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y -o Dpkg::Options::="--force-confnew"
