@@ -57,6 +57,8 @@ update-locale LANG=en_US.UTF-8
 rm -rf ~/.bashrc ~/.bashrc.d
 git clone --depth=1 https://github.com/Willie169/bashrc ~/.bashrc.d
 ln -sf "${HOME}"/.bashrc.d/bashrc.d/bashrc "${HOME}"/.bashrc
+source ~/.bashrc
+source /etc/os-release
 cat >~/.profile <<'EOF'
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "$HOME/.bashrc" ]; then
@@ -64,7 +66,6 @@ if [ -n "$BASH_VERSION" ]; then
   fi
 fi
 EOF
-source ~/.bashrc
 DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
 PKG='alsa-utils apksigner apt-transport-https aptitude audacity automake bash bc bear bindfs bison bookletimposer build-essential bzip2 ca-certificates calcurse clang clang-format cmake command-not-found cronie curl dbus dbus-x11 debconf-utils distro-info dnsutils dvisvgm fastfetch ffmpeg file flex fontconfig fonts-cns11643-kai fonts-cns11643-sung fonts-liberation fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji fonts-wqy-zenhei g++ gcc gdb gh ghostscript git glab gnupg gnupg2 golang-go gopls gperf grep gzip hyperfine iftop imagemagick info inkscape iotop-c iproute2 jpegoptim jq lftp libheif-examples libreoffice lsb-release lsd luajit lzip make maven mesa-utils mpv nano ncdu netcat-openbsd nethogs net-tools ngspice ninja-build nmap ocrmypdf octave openjdk-21-jdk openssh-client openssh-server openssl optipng p7zip-full pandoc perl perl-tk pkg-config plantuml poppler-utils procps pv pwgen python-is-python3 python3-all-dev python3-argcomplete python3-httpx python3-jinja2 python3-pip python3-requests python3-venv qalc qpdf shellcheck shfmt socat sqlite3 strace sudo tar tesseract-ocr tesseract-ocr-chi-sim tesseract-ocr-chi-sim-vert tesseract-ocr-chi-tra tesseract-ocr-chi-tra-vert tesseract-ocr-eng tesseract-ocr-jpn tesseract-ocr-jpn-vert tmux tree tsocks unrar unzip uuid-runtime verilator vim-gtk3 w3m webp wget wget2 xdotool xmlstarlet xz-utils zip zsh zstd 2048'
 # shellcheck disable=2086
