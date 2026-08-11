@@ -224,19 +224,15 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
 	mv rclone ~/.local/bin/
 fi
 if [ "$MOZLZ4" -ne 0 ]; then
-	if [[ "$ARCH" == "x86_64" ]]; then
-		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-x86_64-linux-android
-		cp mozlz4-x86_64-linux-android mozlz4
-		chmod +x mozlz4
-		mv mozlz4 ~/.local/bin/
-		rm mozlz4-x86_64-linux-android*
-	elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-aarch64-linux-android
-		cp mozlz4-aarch64-linux-android mozlz4
-		chmod +x mozlz4
-		mv mozlz4 ~/.local/bin/
-		rm mozlz4-aarch64-linux-android*
-	fi
+	DEBIAN_FRONTEND=noninteractive pkg install rust -y -o Dpkg::Options::="--force-confnew"
+	git clone https://github.com/jusw85/mozlz4.git
+	cd mozlz4 || exit
+	cargo build --release
+	cd target/release || exit
+	mv mozlz4-bin mozlz4
+	mv mozlz4 ~/.local/bin/
+	cd ~ || exit
+	rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew"
