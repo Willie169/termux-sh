@@ -225,17 +225,17 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
 fi
 if [ "$MOZLZ4" -ne 0 ]; then
 	if [[ "$ARCH" == "x86_64" ]]; then
-		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-x86_64-unknown-linux-gnu
-		cp mozlz4-x86_64-unknown-linux-gnu mozlz4
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-x86_64-linux-android
+		cp mozlz4-x86_64-linux-android mozlz4
 		chmod +x mozlz4
 		mv mozlz4 ~/.local/bin/
-		rm mozlz4-x86_64-unknown-linux-gnu*
+		rm mozlz4-x86_64-linux-android*
 	elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-aarch64-unknown-linux-gnu
-		cp mozlz4-aarch64-unknown-linux-gnu mozlz4
+		gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-aarch64-linux-android
+		cp mozlz4-aarch64-linux-android mozlz4
 		chmod +x mozlz4
 		mv mozlz4 ~/.local/bin/
-		rm mozlz4-aarch64-unknown-linux-gnu*
+		rm mozlz4-aarch64-linux-android*
 	fi
 fi
 if [ "$PHICE" -ne 0 ]; then
