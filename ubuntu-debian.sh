@@ -253,15 +253,12 @@ Terminal=false
 Categories=Game;
 EOF
 update_sylvan_config
-git clone https://github.com/jusw85/mozlz4.git
-cd mozlz4 || exit
-cargo build --release
-cd target/release || exit
-mv mozlz4-bin mozlz4
-mv mozlz4 ~/.local/bin/
-cd ~ || exit
-rm -rf mozlz4
 cp ~/.local/share/applications/sylvan.desktop ~/Desktop/sylvan.desktop && chmod +x ~/Desktop/sylvan.desktop
+gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/mozlz4 mozlz4-aarch64-unknown-linux-gnu
+cp mozlz4-aarch64-unknown-linux-gnu mozlz4
+chmod +x mozlz4
+mv mozlz4 ~/.local/bin/
+rm mozlz4-aarch64-unknown-linux-gnu*
 gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-linux-arm64.zip
 unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
