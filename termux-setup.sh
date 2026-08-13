@@ -190,6 +190,7 @@ if [ "$ANDROID" -ne 0 ]; then
 		sed -Ei 's/(#!\/data\/data\/com\.termux\/files\/usr\/bin\/bash)/\1\nset -euxo pipefail/' install.sh
 	fi
 	PROFILE=/dev/null ./install.sh "platform-tools"
+    rm install.sh
 fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
 	gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
