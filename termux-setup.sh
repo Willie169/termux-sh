@@ -67,15 +67,15 @@ echo_ubuntu_debian() {
 PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
 pkg update
-DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq perl proot proot-distro pulseaudio tar termux-api termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive pkg install coreutils curl file git gzip jq perl proot proot-distro pulseaudio tar termux-api termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 XPKG='mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-mesa-zink xfce4'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 else
-	DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -s -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -s -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 fi
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
@@ -151,9 +151,9 @@ mkdir -p ~/.local/bin
 if [ -n "$PKG" ]; then
 	# shellcheck disable=2086
 	if [ "$TEST" -eq 0 ]; then
-		DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -o Dpkg::Options::="--force-confnew"
+		DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	else
-		DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -s -o Dpkg::Options::="--force-confnew"
+		DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -s -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	fi
 fi
 command -v broot >/dev/null 2>&1 && broot --set-install-state installed && mkdir -p "${HOME}"/.config/broot/launcher/bash && broot --print-shell-function bash >"${HOME}"/.config/broot/launcher/bash/br && chmod +x "${HOME}"/.config/broot/launcher/bash/br
@@ -165,20 +165,20 @@ Host *
     ServerAliveCountMax 8
 EOF
 if [ "$IMG2PDF" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip qpdf uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip qpdf uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	if ! uv tool install img2pdf; then
 		uv tool install img2pdf
 	fi
 fi
 if [ "$GITDELTA" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	git config --global core.pager delta
 	git config --global interactive.diffFilter 'delta --color-only'
 	git config --global delta.navigate true
 	git config --global merge.conflictStyle zdiff3
 fi
 if [ "$YTDLP" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install deno -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install deno -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 	chmod +x yt-dlp
 	mv yt-dlp ~/.local/bin/
@@ -225,7 +225,7 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
 	mv rclone ~/.local/bin/
 fi
 if [ "$MOZLZ4" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install rust -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install rust -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	git clone https://github.com/jusw85/mozlz4.git
 	cd mozlz4 || exit
 	cargo build --release
@@ -236,7 +236,7 @@ if [ "$MOZLZ4" -ne 0 ]; then
 	rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	git clone --depth=1 https://github.com/Willie169/phice.git
 	cd phice || exit
 	if ! uv sync; then
@@ -267,16 +267,16 @@ if [ "$STIRLINGPDF" -ne 0 ]; then
 	echo -e 'server:\n  port: 9000' | tee "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
 fi
 if [ "$VIM" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install vim -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install vim -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
 fi
 if [ "$NVIM" -ne 0 ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
 	nvim --headless "+Lazy! install" +qa
 fi
 if [ -n "$NPMG" ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	npm_allow=$(npm config get allow-scripts)
 	[ -n "$npm_allow" ] && npm_allow+=','
 	npm_allow+="${NPMG// /,}"
@@ -285,14 +285,14 @@ if [ -n "$NPMG" ]; then
 	npm i -g $NPMG
 fi
 if [ -n "$PIP" ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install python python-ensurepip-wheels python-pip -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install python python-ensurepip-wheels python-pip -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	# shellcheck disable=2086
 	if ! pip3 install $PIP; then
 		pip3 install $PIP
 	fi
 fi
 if [ -n "$UV" ]; then
-	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip uv -y -o Dpkg::Options::="--force-confnew"
+	DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	# shellcheck disable=2086
 	for pkg in $UV; do
 		if ! uv tool install "$pkg"; then
@@ -324,9 +324,9 @@ echo $'#!/data/data/com.termux/files/usr/bin/bash\n' >~/.bashrc.proot
 [ -n "$DEBIAN" ] && echo -e "export PROOT_DEBIAN=\"$DEBIAN\"\nexport PROOT_DEBIAN_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIAN/rootfs/root\"" >>~/.bashrc.proot
 [ -n "$UBUNTUBOX" ] && echo -e "export PROOT_UBUNTUBOX=\"$UBUNTUBOX\"\nexport PROOT_UBUNTUBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTUBOX/rootfs/root\"" >>~/.bashrc.proot
 [ -n "$DEBIANBOX" ] && echo -e "export PROOT_DEBIANBOX=\"$DEBIANBOX\"\nexport PROOT_DEBIANBOX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$DEBIANBOX/rootfs/root\"" >>~/.bashrc.proot
-DEBIAN_FRONTEND=noninteractive apt install -f -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew"
-DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y -o Dpkg::Options::="--force-confnew"
+DEBIAN_FRONTEND=noninteractive apt install -f -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 apt clean
 # shellcheck disable=2046,2155
 POSTDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
