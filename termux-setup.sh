@@ -173,7 +173,7 @@ if [ "$IMG2PDF" -ne 0 ]; then
 fi
 if [ "$GITLFS" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install git-lfs -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-    git lfs install
+	git lfs install
 fi
 if [ "$GITDELTA" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
@@ -195,7 +195,7 @@ if [ "$ANDROID" -ne 0 ]; then
 		sed -Ei 's/(#!\/data\/data\/com\.termux\/files\/usr\/bin\/bash)/\1\nset -euxo pipefail/' install.sh
 	fi
 	PROFILE=/dev/null ./install.sh "platform-tools"
-    rm install.sh
+	rm install.sh
 fi
 if [ "$RCLONEEXTRA" -ne 0 ]; then
 	gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp79/rclone-extra rclone-android-all.zip
@@ -283,6 +283,11 @@ fi
 if [ -n "$NPMG" ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	# shellcheck disable=2086
+	if [ "$TEST" -eq 0 ]; then
+		npmig $NPMG
+	else
+		npmig -o --dry-run $NPMG
+	fi
 fi
 if [ -n "$PIP" ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install python python-ensurepip-wheels python-pip -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
