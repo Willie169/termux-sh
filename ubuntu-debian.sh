@@ -110,15 +110,11 @@ echo y | npm --help || true
 echo y | corepack enable yarn
 echo y | yarn --help || true
 NPMG='deno http-server opencode-ai prettier @openai/codex'
-npm_allow=$(npm config get allow-scripts)
-[ -n "$npm_allow" ] && npm_allow+=','
-npm_allow+="${NPMG// /,}"
-npm config set allow-scripts="$npm_allow" --location=user
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
-	npm i -g $NPMG
+	npmig $NPMG
 else
-	npm i -g --dry-run $NPMG
+	npmig -o --dry-run $NPMG
 fi
 gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 chmod +x yt-dlp

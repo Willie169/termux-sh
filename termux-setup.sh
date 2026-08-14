@@ -282,12 +282,7 @@ if [ "$NVIM" -ne 0 ]; then
 fi
 if [ -n "$NPMG" ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-	npm_allow=$(npm config get allow-scripts)
-	[ -n "$npm_allow" ] && npm_allow+=','
-	npm_allow+="${NPMG// /,}"
-	npm config set allow-scripts="$npm_allow" --location=user
 	# shellcheck disable=2086
-	npm i -g $NPMG
 fi
 if [ -n "$PIP" ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install python python-ensurepip-wheels python-pip -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
