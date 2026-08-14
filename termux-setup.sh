@@ -15,8 +15,9 @@ set -euxo pipefail
 
 ## CONFIG START
 
-PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust exiftool fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git git-delta git-lfs glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libjxl-progs libxml2 libxslt libwebp lsd luajit lzip make mandoc matplotlib maven mediainfo mesa-vulkan-icd-freedreno mesa-demos mesa-zink mplayer mpv nano netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy p7zip qalc qemu-user-x86-64 qpdf ripgrep ruby rust scrcpy shellcheck shfmt socat sqlite strace stylua tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet xz-utils yazi yq zip zoxide zsh 2048-c'
+PKG='alsa-utils aria2 automake bash bc binutils bison broot build-essential bzip2 calcurse clang cmake command-not-found cronie curl dbus debootstrap dnsutils dpkg dust exiftool fastfetch fd ffmpeg file flex fzf gdb gh ghostscript git glab-cli glow gnupg golang gopls gperf grep gzip hyperfine inkscape iproute2 jadx jpegoptim jq lazygit lftp libheif-progs libjxl-progs libxml2 libxslt libwebp lsd luajit lzip make mandoc matplotlib maven mediainfo mesa-vulkan-icd-freedreno mesa-demos mesa-zink mplayer mpv nano netcat-openbsd net-tools ngspice ninja nmap nodejs-lts npm octave openjdk-21 openssh openssl-tool optipng pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy p7zip qalc qemu-user-x86-64 qpdf ripgrep ruby rust scrcpy shellcheck shfmt socat sqlite strace stylua tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks tree tsocks unrar uuid-utils uv vim virglrenderer-mesa-zink wget wget2 which w3m xfce4 xmlstarlet xz-utils yazi yq zip zoxide zsh 2048-c'
 IMG2PDF=1
+GITLFS=1
 GITDELTA=1
 YTDLP=1
 ANDROID=1
@@ -169,6 +170,10 @@ if [ "$IMG2PDF" -ne 0 ]; then
 	if ! uv tool install img2pdf; then
 		uv tool install img2pdf
 	fi
+fi
+if [ "$GITLFS" -ne 0 ]; then
+	DEBIAN_FRONTEND=noninteractive pkg install git-lfs -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+    git lfs install
 fi
 if [ "$GITDELTA" -ne 0 ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
