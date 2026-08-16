@@ -28,7 +28,8 @@ MOZLZ4=1
 PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
-NPMG='http-server prettier'
+NPMGALLOW='http-server prettier'
+NPMGIGNORE=''
 PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
 UV='autopep8 gallery-dl gh2md jupytext meson pylatexenc tldr xmljson yamllint'
 APKTOOL=1
@@ -280,13 +281,23 @@ if [ "$NVIM" -ne 0 ]; then
 	curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
 	nvim --headless "+Lazy! install" +qa
 fi
-if [ -n "$NPMG" ]; then
+if [ -n "$NPMGALLOW" ] || [ -n "$NPMGIGNORE" ]; then
 	DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+fi
+if [ -n "$NPMGALLOW" ]; then
 	# shellcheck disable=2086
 	if [ "$TEST" -eq 0 ]; then
-		npmig $NPMG
+		npmig $NPMGALLOW
 	else
-		npmig -o --dry-run $NPMG
+		npmig -o --dry-run $NPMGALLOW
+	fi
+fi
+if [ -n "$NPMGIGNORE" ]; then
+	# shellcheck disable=2086
+	if [ "$TEST" -eq 0 ]; then
+		npm i -g --ignore-scripts $NPMGIGNORE
+	else
+		npm i -g --ignore-scripts --dry-run $NPMGIGNORE
 	fi
 fi
 if [ -n "$PIP" ]; then
