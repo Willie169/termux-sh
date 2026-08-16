@@ -135,7 +135,7 @@ nameserver 2a10:50c0::2:ff
 EOF
 rm -rf ~/.bashrc ~/.bashrc.d
 git clone --depth=1 https://github.com/Willie169/bashrc ~/.bashrc.d
-ln -sf "${HOME}"/.bashrc.d/bashrc.d/bashrc "${HOME}"/.bashrc
+ln -sf "$HOME/.bashrc.d/bashrc.d/bashrc" "$HOME/.bashrc"
 source ~/.bashrc
 mkdir ~/.JetBrainsMono
 cd ~/.JetBrainsMono || exit
@@ -157,7 +157,7 @@ if [ -n "$PKG" ]; then
 		DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -s -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 	fi
 fi
-command -v broot >/dev/null 2>&1 && broot --set-install-state installed && mkdir -p "${HOME}"/.config/broot/launcher/bash && broot --print-shell-function bash >"${HOME}"/.config/broot/launcher/bash/br && chmod +x "${HOME}"/.config/broot/launcher/bash/br
+command -v broot >/dev/null 2>&1 && broot --set-install-state installed && mkdir -p "$HOME/.config/broot/launcher/bash" && broot --print-shell-function bash >"$HOME/.config/broot/launcher/bash/br" && chmod +x "$HOME/.config/broot/launcher/bash/br"
 [ -f "$PREFIX"/etc/ssh/sshd_config ] && sed -Ei 's/^#?Port.*/Port 8022/' "$PREFIX"/etc/ssh/sshd_config
 mkdir -p ~/.ssh
 cat >~/.ssh/config <<'EOF'

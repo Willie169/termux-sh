@@ -56,7 +56,7 @@ locale-gen en_US.UTF-8
 update-locale LANG=en_US.UTF-8
 rm -rf ~/.bashrc ~/.bashrc.d
 git clone --depth=1 https://github.com/Willie169/bashrc ~/.bashrc.d
-ln -sf "${HOME}"/.bashrc.d/bashrc.d/bashrc "${HOME}"/.bashrc
+ln -sf "$HOME/.bashrc.d/bashrc.d/bashrc" "$HOME/.bashrc"
 source ~/.bashrc
 source /etc/os-release
 cat >~/.profile <<'EOF'
@@ -80,7 +80,7 @@ rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
 DEBIAN_FRONTEND=noninteractive apt install xclip xfce4 xfce4-goodies xinit -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
-. "${HOME}"/.cargo/env
+. "$HOME/.cargo/env"
 cargo install stylua
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 DEBIAN_FRONTEND=noninteractive apt install git-lfs -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
@@ -114,10 +114,10 @@ NPMIGNORE='opencode-ai @earendil-works/pi-coding-agent'
 # shellcheck disable=2086
 if [ "$TEST" -eq 0 ]; then
 	npmig $NPMG
-    npm i -g --ignore-scripts $NPMIGNORE
+	npm i -g --ignore-scripts $NPMIGNORE
 else
 	npmig -o --dry-run $NPMG
-    npm i -g --ignore-scripts --dry-run $NPMIGNORE
+	npm i -g --ignore-scripts --dry-run $NPMIGNORE
 fi
 gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
 chmod +x yt-dlp
@@ -127,11 +127,11 @@ for pkg in autopep8 gallery-dl gh2md img2pdf jupyterlab jupytext libretranslate 
 	uv tool install "$pkg"
 done
 wget --tries=100 --retry-connrefused --waitretry=5 https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
-bash Miniforge3-Linux-aarch64.sh -b -p "${HOME}/conda"
+bash Miniforge3-Linux-aarch64.sh -b -p "$HOME/conda"
 rm Miniforge3-Linux-aarch64.sh*
-export MAMBA_ROOT_PREFIX="${HOME}/conda"
-source "${HOME}/conda/etc/profile.d/conda.sh" 2>/dev/null
-source "${HOME}/conda/etc/profile.d/mamba.sh" 2>/dev/null
+export MAMBA_ROOT_PREFIX="$HOME/conda"
+source "$HOME/conda/etc/profile.d/conda.sh" 2>/dev/null
+source "$HOME/conda/etc/profile.d/mamba.sh" 2>/dev/null
 conda config --set auto_activate_base false
 conda config --add channels pypi
 conda config --add channels pytorch
@@ -149,7 +149,7 @@ if [ "$TEST" -eq 0 ]; then
 	git config --global interactive.diffFilter 'delta --color-only'
 	git config --global delta.navigate true
 	git config --global merge.conflictStyle zdiff3
-	broot --set-install-state installed && mkdir -p "${HOME}"/.config/broot/launcher/bash && broot --print-shell-function bash >"${HOME}"/.config/broot/launcher/bash/br && chmod +x "${HOME}"/.config/broot/launcher/bash/br
+	broot --set-install-state installed && mkdir -p "$HOME/.config/broot/launcher/bash" && broot --print-shell-function bash >"$HOME/.config/broot/launcher/bash/br" && chmod +x "$HOME/.config/broot/launcher/bash/br"
 else
 	# shellcheck disable=2086
 	echo y | brew install $BREW --dry-run
