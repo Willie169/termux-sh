@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=2016
 echo 'for pkg in $(pm list packages --user 0 -f | sed "s/.*=//"); do
   appops set --user 0 "$pkg" SYSTEM_EXEMPT_FROM_DISMISSIBLE_NOTIFICATIONS allow
 done
