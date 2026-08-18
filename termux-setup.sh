@@ -263,7 +263,7 @@ if [ "$VIM" -ne 0 ]; then
 fi
 if [ "$NVIM" -ne 0 ]; then
   DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-  curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash -s -- -n
+  curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash
   nvim --headless "+Lazy! install" +qa
 fi
 if [ -n "$NPMGALLOW" ] || [ -n "$NPMGIGNORE" ]; then
