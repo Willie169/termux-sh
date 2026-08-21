@@ -8,16 +8,14 @@ This repository contains Shell scripts for [Termux](https://github.com/termux/te
 * [Termux Setup](#termux-setup)
   + [Prerequisites](#prerequisites)
   + [Execution](#execution)
-  + [Features](#features)
+  + [Content](#content)
   + [Invoked VM Setup Scripts](#invoked-vm-setup-scripts)
 * [Shortcuts](#shortcuts)
   + [Boot VM Scripts](#boot-vm-scripts)
   + [Utility Scripts](#utility-scripts)
 * [Additional Scripts](#additional-scripts)
-* [My Related Repositories](#my-related-repositories)
-* [TODO](#todo)
 * [License](#license)
-* [References](#references)
+* [Credits](#credits)
 
 ## Termux
 
