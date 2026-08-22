@@ -33,7 +33,7 @@ Refer to [**Android-Non-Root**](https://github.com/Willie169/Android-Non-Root) f
 
 <ul>
 <li>Full features are supported on arm64-v8a architecture, but only limited features are supported on other architectures.</li>
-<li>Sufficient storage: (calculated using GitHub Action, typically a bit less than that on a real device)
+<li>Sufficient storage: (calculated using GitHub Action)
 <ul>
 <li>Previous rows remain default with
 <pre><code>TERMUX='termux'
@@ -43,7 +43,7 @@ DEBIAN='debian'
 DEBIANINSTALL=0
 </code></pre>
 : approximately 14.49 GB.</li>
-<li><code>UBUNTUINSTALL=1</code> or <code>DEBIANINSTALL=1</code>: approximately 27.77 GB.</li>
+<li><code>UBUNTUINSTALL=1</code> or <code>DEBIANINSTALL=1</code>: approximately 29.33 GB.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
 <li>Stable internet connection.</li>
