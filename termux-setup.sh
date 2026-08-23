@@ -76,6 +76,8 @@ if [ "$TEST" -eq 0 ]; then
 else
   DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -s -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 fi
+git config --global pull.rebase true
+git config --global init.defaultBranch
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
