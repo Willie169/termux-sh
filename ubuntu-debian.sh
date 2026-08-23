@@ -264,6 +264,10 @@ gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' gulp
 unzip rclone-linux-arm64.zip
 rm rclone-linux-arm64.zip*
 mv rclone ~/.local/bin/
+gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/bnkextr bnkextr-linux-glibc-aarch64.zip
+unzip bnkextr-linux-glibc-aarch64.zip
+rm bnkextr-linux-glibc-aarch64.zip*
+mv bnkextr ~/.local/bin/
 wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 DEBIAN_FRONTEND=noninteractive apt install gawk git make python3 lld bison clang flex libffi-dev libfl-dev libreadline-dev pkg-config tcl-dev zlib1g-dev graphviz xdot -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 git clone --depth=1 https://github.com/YosysHQ/yosys.git

@@ -25,6 +25,7 @@ VIM=1
 NVIM=1
 RCLONEEXTRA=1
 MOZLZ4=1
+BNKEXTR=1
 PHICE=1
 CYBERCHEF=1
 STIRLINGPDF=1
@@ -308,6 +309,19 @@ if [ "$APKTOOL" -ne 0 ]; then
   gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' iBotPeaches/Apktool 'apktool_*.jar'
   chmod +x apktool_*.jar
   mv apktool_*.jar "$PREFIX"/local/bin/
+fi
+if [ "$BNKEXTR" -ne 0 ]; then
+  if [[ "$ARCH" == "x86_64" ]]; then
+    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/bnkextr bnkextr-android-x86_64.zip
+    unzip bnkextr-android-x86_64.zip
+    rm bnkextr-android-x86_64.zip*
+    mv bnkextr ~/.local/bin/
+  elif [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
+    gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/bnkextr bnkextr-android-aarch64.zip
+    unzip bnkextr-android-aarch64.zip
+    rm bnkextr-android-aarch64.zip*
+    mv bnkextr ~/.local/bin/
+  fi
 fi
 [ "$EFFLIST" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name "$TERMUX"
