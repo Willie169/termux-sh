@@ -328,9 +328,9 @@ fi
 [ "$EFFLIST" -eq 0 ] || wget --tries=100 --retry-connrefused --waitretry=5 https://www.eff.org/files/2016/07/18/eff_large_wordlist.txt -O ~/.eff_large_wordlist.txt
 [ -n "$TERMUX" ] && proot-distro install termux/termux-docker --name "$TERMUX"
 [ -n "$UBUNTU" ] && proot-distro install ubuntu:latest --name "$UBUNTU"
-[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "${PREFIX}/var/lib/proot-distro/containers/$UBUNTU/rootfs/root/" && echo_ubuntu_debian "$TEST" | bash <(proot-distro login "$UBUNTU" --redirect-ports --isolated --get-proot-cmd)
+[ -n "$UBUNTU" ] && [ "$UBUNTUINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "${PREFIX}/var/lib/proot-distro/containers/$UBUNTU/rootfs/root/" && echo_ubuntu_debian "$TEST" | proot-distro login "$UBUNTU" --redirect-ports --isolated
 [ -n "$DEBIAN" ] && proot-distro install debian:latest --name "$DEBIAN"
-[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "${PREFIX}/var/lib/proot-distro/containers/$DEBIAN/rootfs/root/" && echo_ubuntu_debian "$TEST" | bash <(proot-distro login "$DEBIAN" --redirect-ports --isolated --get-proot-cmd)
+[ -n "$DEBIAN" ] && [ "$DEBIANINSTALL" -ne 0 ] && cp ~/termux-sh/ubuntu-debian.sh "${PREFIX}/var/lib/proot-distro/containers/$DEBIAN/rootfs/root/" && echo_ubuntu_debian "$TEST" | proot-distro login "$DEBIAN" --redirect-ports --isolated
 echo $'#!/data/data/com.termux/files/usr/bin/bash\n' >~/.bashrc.proot
 [ -n "$TERMUX" ] && echo -e "export PROOT_TERMUX=\"$TERMUX\"\nexport PROOT_TERMUX_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files\"\nexport PROOT_TERMUX_HOME=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files/home\"\nexport PROOT_TERMUX_PREFIX=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$TERMUX/rootfs/data/data/com.termux/files/usr\"" >>~/.bashrc.proot
 [ -n "$UBUNTU" ] && echo -e "export PROOT_UBUNTU=\"$UBUNTU\"\nexport PROOT_UBUNTU_ROOT=\"/data/data/com.termux/files/usr/var/lib/proot-distro/containers/\$UBUNTU/rootfs/root\"" >>~/.bashrc.proot
