@@ -78,6 +78,7 @@ else
 fi
 git config --global pull.rebase true
 git config --global init.defaultBranch main
+git config --global advice.detachedHead false
 TERMUX=$(echo "$TERMUX" | tr ' ' '_')
 UBUNTU=$(echo "$UBUNTU" | tr ' ' '_')
 DEBIAN=$(echo "$DEBIAN" | tr ' ' '_')
