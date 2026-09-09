@@ -15,7 +15,7 @@ set -euxo pipefail
 
 ## CONFIG START
 
-PKG='2048-c alsa-utils aria2 automake barcode bash bc binutils bison broot build-essential busybox bzip2 ca-certificates calcurse clang cmake command-not-found cowsay cronie curl dbus debootstrap dnsutils dpkg dust exiftool fastfetch fd fdupes ffmpeg file flex fortune fzf gdb gh ghostscript git git-sizer glab-cli glow gnupg golang gopls gperf grep gzip hugo hyperfine inkscape inxi iproute2 jadx jpegoptim jq lazygit lftp libavif libheif-progs libjxl-progs libqrencode libwebp libxml2 libxslt lsd luajit lzip make mandoc matplotlib maven mediainfo mesa-demos mesa-vulkan-icd-freedreno mesa-zink mktorrent mplayer mpv nano net-tools netcat-openbsd ngspice ninja nmap nodejs-lts npm octave opencc-tools openjdk-21 openssh openssl-tool optipng p7zip pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-numpy python-pandas python-pip python-scipy python-trash-cli qalc qemu-user-x86-64 qpdf ripgrep rtorrent ruby rust scrcpy shellcheck socat sqlite strace tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks traceroute tree tsocks unar unrar uuid-utils uv vgmstream vim virglrenderer-mesa-zink w3m wget wget2 which xfce4 xmlstarlet xz-utils yazi yq zbar zip zoxide zsh zstd'
+PKG='2048-c alsa-utils aria2 automake barcode bash bc binutils bison broot build-essential busybox bzip2 ca-certificates calcurse clang cmake command-not-found cowsay cronie curl dbus debootstrap dnsutils dpkg dust exiftool fastfetch fd fdupes ffmpeg file flex fortune fzf gdb gh ghostscript git git-sizer glab-cli glow gnupg golang gopls gperf grep gzip hugo hyperfine inkscape inxi iproute2 jadx jpegoptim jq lazygit lftp libavif libheif-progs libjxl-progs libqrencode libwebp libxml2 libxslt lsd luajit lzip make mandoc maven mediainfo mesa-demos mesa-vulkan-icd-freedreno mesa-zink mktorrent mplayer mpv nano net-tools netcat-openbsd ngspice ninja nmap nodejs-lts npm octave opencc-tools openjdk-21 openssh openssl-tool optipng p7zip pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-pip python-trash-cli qalc qemu-user-x86-64 qpdf ripgrep rtorrent ruby rust scrcpy shellcheck socat sqlite strace tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks traceroute tree tsocks unar unrar uuid-utils uv vgmstream vim virglrenderer-mesa-zink w3m wget wget2 which xfce4 xmlstarlet xz-utils yazi yq zbar zip zoxide zsh zstd'
 IMG2PDF=1
 GITLFS=1
 GITDELTA=1
@@ -31,8 +31,7 @@ CYBERCHEF=1
 STIRLINGPDF=1
 NPMGALLOW='http-server'
 NPMGIGNORE=''
-PIP='pip-autoremove plotly pydub requests selenium==4.9.1 setuptools==81.0.0 sympy'
-UV='autopep8 gallery-dl gh2md jupytext meson pylatexenc tldr xmljson yamllint'
+UV='gallery-dl gh2md jupytext meson pylatexenc tldr xmljson yamllint'
 APKTOOL=1
 EFFLIST=1
 TERMUX='termux'
@@ -287,13 +286,6 @@ if [ -n "$NPMGIGNORE" ]; then
     npm i -g --ignore-scripts $NPMGIGNORE
   else
     npm i -g --ignore-scripts --dry-run $NPMGIGNORE
-  fi
-fi
-if [ -n "$PIP" ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install python python-ensurepip-wheels python-pip -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-  # shellcheck disable=2086
-  if ! pip3 install $PIP; then
-    pip3 install $PIP
   fi
 fi
 if [ -n "$UV" ]; then
