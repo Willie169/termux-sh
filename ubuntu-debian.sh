@@ -58,7 +58,6 @@ rm -rf ~/.bashrc ~/.bashrc.d
 git clone --depth=1 https://github.com/Willie169/bashrc ~/.bashrc.d
 ln -sf "$HOME/.bashrc.d/bashrc.d/bashrc" "$HOME/.bashrc"
 source ~/.bashrc
-source /etc/os-release
 cat >~/.profile <<'EOF'
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "$HOME/.bashrc" ]; then
@@ -89,6 +88,23 @@ DEBIAN_FRONTEND=noninteractive apt install xclip xfce4 xfce4-goodies xinit -y -o
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 . "$HOME/.cargo/env"
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+# shellcheck disable=2155
+export UBUNTU_VERSION_ID=$(
+  if grep -q '^NAME="Linux Mint"' /etc/os-release; then
+    inxi -Sx | awk -F': ' '/base/{print $2}' | awk '{print $2}'
+  else
+    . /etc/os-release
+    echo "$VERSION_ID"
+  fi
+)
+wget --tries=100 --retry-connrefused --waitretry=5 -O linux.html https://www.bleachbit.org/download/linux
+url=$(cat linux.html | grep "_all_$ID${UBUNTU_VERSION_ID/./}\.deb" | sed 's/^.*href="//' | sed "s/_all_$ID${UBUNTU_VERSION_ID/./}\.deb.*$/_all_$ID${UBUNTU_VERSION_ID/./}\.deb/")
+rm linux.html*
+wget --tries=100 --retry-connrefused --waitretry=5 "$url"
+# shellcheck disable=2001
+deb=$(echo "$url" | sed 's|https://download.bleachbit.org/get/||')
+DEBIAN_FRONTEND=noninteractive apt install "./$deb" -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+rm "$deb"*
 DEBIAN_FRONTEND=noninteractive apt install git-lfs -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 git lfs install
 wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
