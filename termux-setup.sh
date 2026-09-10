@@ -155,7 +155,7 @@ Host *
     ServerAliveCountMax 8
 EOF
 if [ "$IMG2PDF" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip qpdf uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip python-psutil qpdf uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   if ! uv tool install img2pdf; then
     uv tool install img2pdf
   fi
@@ -230,7 +230,7 @@ if [ "$MOZLZ4" -ne 0 ]; then
   rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip python-psutil rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   git clone --depth=1 https://github.com/Willie169/phice.git
   cd phice || exit
   if ! uv sync; then
@@ -265,7 +265,7 @@ if [ "$VIM" -ne 0 ]; then
   curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
 fi
 if [ "$NVIM" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip python-psutil rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash
   nvim --headless "+Lazy! install" +qa
 fi
@@ -289,7 +289,7 @@ if [ -n "$NPMGIGNORE" ]; then
   fi
 fi
 if [ -n "$UV" ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip python-psutil uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   # shellcheck disable=2086
   for pkg in $UV; do
     if ! uv tool install "$pkg"; then
