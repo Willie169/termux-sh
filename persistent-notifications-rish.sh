@@ -7,4 +7,5 @@ forpkg in $(pm list packages --user "$line" -f | sed "s/.*=//"); do
 done
 done <<EOF
 $(pm list users | tail -n+2 | sed '"'"'s/^.*UserInfo{//; s/:.*}.*$//'"'"')
+EOF
 ' | rish
