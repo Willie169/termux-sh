@@ -49,7 +49,7 @@ else
 fi
 apt update
 DEBIAN_FRONTEND=noninteractive apt purge neovim rustup tree-sitter-cli yq -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales lsb-release make ninja-build openssh-server perl perl-tk python-is-python3 python3 vim-gtk3 wget xz-utils -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt install apt-transport-https bash build-essential ca-certificates coreutils cmake curl dbus openjdk-21-jdk g++ gcc git gnupg grep gzip jq locales lsb-release make ninja-build octave octave-dev openssh-server perl perl-tk python-is-python3 python3 vim-gtk3 wget xz-utils -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 DEBIAN_FRONTEND=noninteractive apt install sudo -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 sed -i 's/^# *en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen en_US.UTF-8
@@ -85,6 +85,7 @@ DEBIAN_FRONTEND=noninteractive apt install ./elementary-xfce-icon-theme_0.19-1_a
 rm elementary-xfce-icon-theme_0.19-1_all.deb*
 apt-mark hold elementary-xfce-icon-theme
 DEBIAN_FRONTEND=noninteractive apt install xclip xfce4 xfce4-goodies xinit -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+octave -G -e 'pkg install -forge control'
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 . "$HOME/.cargo/env"
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
