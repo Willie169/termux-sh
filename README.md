@@ -92,7 +92,8 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **XFCE desktop environment**: Installs XFCE desktop environment, which can be started with Termux:X11 by running `termux-x11 :0 -xstartup "dbus-launch --exit-with-session xfce4-session"`, where `0` can be replaced with other numbers, which has been defined as a function `xxfce` with an optional argument for display (e.g., `:0`).
 2. **Android Build Environment Setup**: Runs install script from my [**termux-android-sdk-ndk**](https://github.com/Willie169/termux-android-sdk-ndk) repo with `platform-tools` installed, if not `ANDROID=0`. Refer to it for more information.
 2. **Vim configuration**: Installs Vim configuration from my [**vim-config**](https://github.com/Willie169/vim-config) repo (can be updated by running `update_vim_config`), if not `$VIM=0`.
-2. **Neovim configuration**: Installs Neovim configuration and required and recommended external applications from my [**nvim-config**](https://github.com/Willie169/nvim-config) repo (You can do a configuration update by running `update_nvim_config` and a full update by running `update_nvim_config_full`).
+2. **Neovim configuration**: Installs Neovim configuration and required and recommended external applications from my [**nvim-config**](https://github.com/Willie169/nvim-config) repo (You can do a configuration update by running `update_nvim_config` and a full update by running `update_nvim_config_full`), if not `$NVIM=0`.
+2. **scrcpy**: Installs [my fork of scrcpy](https://github.com/Willie169/scrcpy-6007-workaround-termux), if not `$SCRCPY=0`.
 2. **rclone-extra**: Installs rclone-extra, an unofficial fork of rclone, with additional enhancements such as Alist, Alist, iCloud Photos, Teldrive and Terabox support, if not `$RCLONEEXTRA=0`.
 2. **mozlz4**: Installs mozlz4 if not `$MOZLZ4=0`.
 2. **bnkextr**: Installs [my fork of bnkextr](https://github.com/Willie169/bnkextr) if not `$BNKEXTR=0`.

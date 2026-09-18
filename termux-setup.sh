@@ -15,7 +15,7 @@ set -euxo pipefail
 
 ## CONFIG START
 
-PKG='2048-c alsa-utils aria2 automake barcode bash bc binutils bison broot build-essential busybox bzip2 ca-certificates calcurse clang cmake command-not-found cowsay cronie curl dbus debootstrap dnsutils dpkg dust exiftool fastfetch fd fdupes ffmpeg file flex fortune fzf gdb gh ghostscript git git-sizer glab-cli glow gnupg golang gopls gperf grep gzip hugo hyperfine inkscape inxi iproute2 jadx jpegoptim jq lazygit lftp libavif libheif-progs libjxl-progs libqrencode libwebp libxml2 libxslt lsd luajit lzip make mandoc maven mediainfo mesa-demos mesa-vulkan-icd-freedreno mesa-zink mktorrent mplayer mpv nano nethack net-tools netcat-openbsd ngspice ninja nmap nodejs-lts npm opencc-tools openjdk-21 openssh openssl-tool optipng p7zip pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-pip python-psutil python-trash-cli qalc qemu-user-x86-64 qpdf ripgrep rtorrent ruby rust scrcpy shellcheck socat sqlite strace tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks traceroute tree tsocks unar unrar uuid-utils uv vgmstream vim virglrenderer-mesa-zink w3m wget wget2 which xfce4 xmlstarlet xz-utils yazi yq zbar zip zoxide zsh zstd'
+PKG='2048-c alsa-utils aria2 automake barcode bash bc binutils bison broot build-essential busybox bzip2 ca-certificates calcurse clang cmake command-not-found cowsay cronie curl dbus debootstrap dnsutils dpkg dust exiftool fastfetch fd fdupes ffmpeg file flex fortune fzf gdb gh ghostscript git git-sizer glab-cli glow gnupg golang gopls gperf grep gzip hugo hyperfine inkscape inxi iproute2 jadx jpegoptim jq lazygit lftp libavif libheif-progs libjxl-progs libqrencode libwebp libxml2 libxslt lsd luajit lzip make mandoc maven mediainfo mesa-demos mesa-vulkan-icd-freedreno mesa-zink mktorrent mplayer mpv nano nethack net-tools netcat-openbsd ngspice ninja nmap nodejs-lts npm opencc-tools openjdk-21 openssh openssl-tool optipng p7zip pdftk perl plantuml poppler procs proot proot-distro pulseaudio pv pwgen python python-ensurepip-wheels python-pip python-psutil python-trash-cli qalc qemu-user-x86-64 qpdf ripgrep rtorrent ruby rust shellcheck socat sqlite strace tar termux-am termux-am-socket termux-api termux-auth termux-exec termux-keyring termux-services termux-tools termux-x11-nightly tigervnc tmux tor torsocks traceroute tree tsocks unar unrar uuid-utils uv vgmstream vim virglrenderer-mesa-zink w3m wget wget2 which xfce4 xmlstarlet xz-utils yazi yq zbar zip zoxide zsh zstd'
 IMG2PDF=1
 GITLFS=1
 GITDELTA=1
@@ -23,6 +23,7 @@ YTDLP=1
 ANDROID=1
 VIM=1
 NVIM=1
+SCRCPY=1
 RCLONEEXTRA=1
 MOZLZ4=1
 BNKEXTR=1
@@ -268,6 +269,11 @@ if [ "$NVIM" -ne 0 ]; then
   DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip python-psutil rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash
   nvim --headless "+Lazy! install" +qa
+fi
+if [ "$SCRCPY" -ne 0 ]; then
+  gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/scrcpy-6007-workaround-termux 'scrcpy_*.deb'
+  DEBIAN_FRONTEND=noninteractive apt install ./scrcpy_*.deb -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  rm scrcpy_*.deb*
 fi
 if [ -n "$NPMGALLOW" ] || [ -n "$NPMGIGNORE" ]; then
   DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
