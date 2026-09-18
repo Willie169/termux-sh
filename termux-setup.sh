@@ -272,7 +272,8 @@ if [ "$NVIM" -ne 0 ]; then
 fi
 if [ "$SCRCPY" -ne 0 ]; then
   gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' Willie169/scrcpy-6007-workaround-termux 'scrcpy_*.deb'
-  DEBIAN_FRONTEND=noninteractive apt install ./scrcpy_*.deb -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install --reinstall ./scrcpy_*.deb -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  apt-mark hold scrcpy
   rm scrcpy_*.deb*
 fi
 if [ -n "$NPMGALLOW" ] || [ -n "$NPMGIGNORE" ]; then
