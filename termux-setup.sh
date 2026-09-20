@@ -73,7 +73,6 @@ XPKG='mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglren
 # shellcheck disable=2086
 DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 mkdir -p "$PREFIX/var/service/pulseaudio/log"
-ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/pulseaudio/log/run"
 cat >"$PREFIX/var/service/pulseaudio/run" <<'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
 
@@ -85,7 +84,6 @@ command -v pulseaudio >/dev/null 2>&1 && (
 EOF
 chmod +x "$PREFIX/var/service/pulseaudio/run"
 mkdir -p "$PREFIX/var/service/virgl/log"
-ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/virgl/log/run"
 cat >"$PREFIX/var/service/virgl/run" <<'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
 
@@ -95,6 +93,8 @@ command -v virgl_test_server_android >/dev/null 2>&1 && (
 EOF
 chmod +x "$PREFIX/var/service/virgl/run"
 if [ "$TEST" -eq 0 ]; then
+  ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/pulseaudio/log/run"
+  ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/virgl/log/run"
   sv-disable busybox-httpd crond ftpd telnetd tor tx11 tx11-xfce4
   sv-enable ssh-agent sshd
   sv-enable pulseaudio
