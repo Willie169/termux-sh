@@ -92,7 +92,7 @@ command -v virgl_test_server_android >/dev/null 2>&1 && (
 ) || true
 EOF
 chmod +x "$PREFIX/var/service/virgl/run"
-if [ "$TEST" -eq 0 ]; then
+if [ "$TEST" -eq 0 ] || [ "$FULL" -eq 0 ]; then
   ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/pulseaudio/log/run"
   ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/virgl/log/run"
   sv-disable busybox-httpd crond ftpd telnetd tor tx11 tx11-xfce4
