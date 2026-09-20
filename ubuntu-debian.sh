@@ -94,7 +94,7 @@ export UBUNTU_VERSION_ID=$(
   fi
 )
 wget --tries=100 --retry-connrefused --waitretry=5 -O linux.html https://www.bleachbit.org/download/linux
-url=$(cat linux.html | grep "_all_$ID${UBUNTU_VERSION_ID/./}\.deb" | sed 's/^.*href="//' | sed "s/_all_$ID${UBUNTU_VERSION_ID/./}\.deb.*$/_all_$ID${UBUNTU_VERSION_ID/./}\.deb/")
+url=$(cat linux.html | grep "_all_$ID${UBUNTU_VERSION_ID/./}\.deb" | sed 's/^.*href="//' | sed "s/_all_$ID${UBUNTU_VERSION_ID/./}\.deb.*$/_all_$ID${UBUNTU_VERSION_ID/./}\.deb/" | head -n1)
 rm linux.html*
 wget --tries=100 --retry-connrefused --waitretry=5 "$url"
 # shellcheck disable=2001
