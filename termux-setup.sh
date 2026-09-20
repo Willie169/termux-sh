@@ -72,11 +72,9 @@ DEBIAN_FRONTEND=noninteractive pkg install busybox ca-certificates coreutils cur
 XPKG='mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-android xfce4'
 # shellcheck disable=2086
 DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-sv-disable busybox-httpd crond ftpd telnetd tor tx11 tx11-xfce4
-sv-enable ssh-agent sshd
 mkdir -p "$PREFIX/var/service/pulseaudio/log"
 ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/pulseaudio/log/run"
-cat >"$PREFIX/var/service/pulseaudio/run"<<'EOF'
+cat >"$PREFIX/var/service/pulseaudio/run" <<'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
 
 command -v pulseaudio >/dev/null 2>&1 && (
@@ -86,10 +84,9 @@ command -v pulseaudio >/dev/null 2>&1 && (
 ) || true
 EOF
 chmod +x "$PREFIX/var/service/pulseaudio/run"
-sv-enable pulseaudio
 mkdir -p "$PREFIX/var/service/virgl/log"
 ln -sf "$PREFIX/share/termux-services/svlogger" "$PREFIX/service/virgl/log/run"
-cat >"$PREFIX/var/service/virgl/run"<<'EOF'
+cat >"$PREFIX/var/service/virgl/run" <<'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
 
 command -v virgl_test_server_android >/dev/null 2>&1 && (
@@ -97,7 +94,12 @@ command -v virgl_test_server_android >/dev/null 2>&1 && (
 ) || true
 EOF
 chmod +x "$PREFIX/var/service/virgl/run"
-sv-enable virgl
+if [ "$TEST" -eq 0 ]; then
+  sv-disable busybox-httpd crond ftpd telnetd tor tx11 tx11-xfce4
+  sv-enable ssh-agent sshd
+  sv-enable pulseaudio
+  sv-enable virgl
+fi
 git config --global pull.rebase true
 git config --global init.defaultBranch main
 git config --global advice.detachedHead false
