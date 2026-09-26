@@ -403,7 +403,7 @@ cat >~/.config/fontconfig/conf.d/99-texlive.conf <<'EOF'
 EOF
 [ "$TEST" -eq 0 ] && fc-cache -fv
 mkdir -p ~/texmf/tex/latex
-cd ~/texmf/tex/latex
+cd ~/texmf/tex/latex || exit
 git clone https://github.com/Willie169/LaTeX-ToolKit.git
 git clone https://github.com/Willie169/physics-patch.git
 cd physics-patch || exit

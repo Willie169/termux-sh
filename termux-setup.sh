@@ -33,7 +33,6 @@ STIRLINGPDF=1
 NPMGALLOW='http-server'
 NPMGIGNORE=''
 UV='gallery-dl gh2md jupytext meson pylatexenc tldr xmljson yamllint'
-TEXLIVE=1
 APKTOOL=1
 EFFLIST=1
 TERMUX='termux'
