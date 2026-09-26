@@ -33,6 +33,7 @@ STIRLINGPDF=1
 NPMGALLOW='http-server'
 NPMGIGNORE=''
 UV='gallery-dl gh2md jupytext meson pylatexenc tldr xmljson yamllint'
+TEXLIVE=1
 APKTOOL=1
 EFFLIST=1
 TERMUX='termux'
@@ -66,12 +67,12 @@ echo_ubuntu_debian() {
 PREDF=$(df $(dirname "$PREFIX") | tail -n1 | awk '{print $3}')
 cd ~ || exit
 pkg update
-DEBIAN_FRONTEND=noninteractive pkg install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-DEBIAN_FRONTEND=noninteractive pkg upgrade -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-DEBIAN_FRONTEND=noninteractive pkg install busybox ca-certificates coreutils curl file git gzip jq openssh perl proot proot-distro pulseaudio tar termux-api termux-services termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt install x11-repo tur-repo -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt install busybox ca-certificates coreutils curl file git gzip jq openssh perl proot proot-distro pulseaudio tar termux-api termux-services termux-tools wget which xz-utils zip -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 XPKG='mesa-vulkan-icd-freedreno mesa-demos mesa-zink termux-x11-nightly virglrenderer-android xfce4'
 # shellcheck disable=2086
-DEBIAN_FRONTEND=noninteractive pkg install $XPKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt install $XPKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 mkdir -p "$PREFIX/var/service/pulseaudio/log"
 cat >"$PREFIX/var/service/pulseaudio/run" <<'EOF'
 #!/data/data/com.termux/files/usr/bin/bash
@@ -166,9 +167,9 @@ mkdir -p ~/.local/bin
 if [ -n "$PKG" ]; then
   # shellcheck disable=2086
   if [ "$TEST" -eq 0 ]; then
-    DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+    DEBIAN_FRONTEND=noninteractive apt install $PKG -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   else
-    DEBIAN_FRONTEND=noninteractive pkg install $PKG -y -s -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+    DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   fi
 fi
 command -v broot >/dev/null 2>&1 && broot --set-install-state installed && mkdir -p "$HOME/.config/broot/launcher/bash" && broot --print-shell-function bash >"$HOME/.config/broot/launcher/bash/br" && chmod +x "$HOME/.config/broot/launcher/bash/br"
@@ -180,24 +181,24 @@ Host *
     ServerAliveCountMax 8
 EOF
 if [ "$IMG2PDF" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip python-psutil qpdf uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install clang cmake libxml2 libxslt ninja python python-ensurepip-wheels python-pip python-psutil qpdf uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   if ! uv tool install img2pdf; then
     uv tool install img2pdf
   fi
 fi
 if [ "$GITLFS" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install git-lfs -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install git-lfs -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   git lfs install
 fi
 if [ "$GITDELTA" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install git-delta -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install git-delta -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   git config --global core.pager delta
   git config --global interactive.diffFilter 'delta --color-only'
   git config --global delta.navigate true
   git config --global merge.conflictStyle zdiff3
 fi
 if [ "$YTDLP" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install deno -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install deno -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' yt-dlp/yt-dlp yt-dlp
   chmod +x yt-dlp
   mv yt-dlp ~/.local/bin/
@@ -244,7 +245,7 @@ if [ "$RCLONEEXTRA" -ne 0 ]; then
   mv rclone ~/.local/bin/
 fi
 if [ "$MOZLZ4" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install rust -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install rust -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   git clone https://github.com/jusw85/mozlz4.git
   cd mozlz4 || exit
   cargo build --release
@@ -255,7 +256,7 @@ if [ "$MOZLZ4" -ne 0 ]; then
   rm -rf mozlz4
 fi
 if [ "$PHICE" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip python-psutil rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install libxml2 libxslt python python-ensurepip-wheels python-pip python-psutil rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   git clone --depth=1 https://github.com/Willie169/phice.git
   cd phice || exit
   if ! uv sync; then
@@ -286,11 +287,11 @@ if [ "$STIRLINGPDF" -ne 0 ]; then
   echo -e 'server:\n  port: 9000' | tee "$PREFIX"/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml >/dev/null
 fi
 if [ "$VIM" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install vim -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install vim -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   curl -fsSL https://raw.githubusercontent.com/Willie169/vim-config/refs/heads/main/install.sh | sh
 fi
 if [ "$NVIM" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip python-psutil rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install libxml2 libxslt nodejs-lts npm python python-ensurepip-wheels python-pip python-psutil rust uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   curl -fsSL https://raw.githubusercontent.com/Willie169/nvim-config/refs/heads/main/full-install.sh | bash
   nvim --headless "+Lazy! install" +qa
 fi
@@ -301,7 +302,7 @@ if [ "$SCRCPY" -ne 0 ]; then
   rm scrcpy_*.deb*
 fi
 if [ -n "$NPMGALLOW" ] || [ -n "$NPMGIGNORE" ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install nodejs-lts npm -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 fi
 if [ -n "$NPMGALLOW" ]; then
   # shellcheck disable=2086
@@ -320,13 +321,17 @@ if [ -n "$NPMGIGNORE" ]; then
   fi
 fi
 if [ -n "$UV" ]; then
-  DEBIAN_FRONTEND=noninteractive pkg install libxml2 libxslt python python-ensurepip-wheels python-pip python-psutil uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install libxml2 libxslt python python-ensurepip-wheels python-pip python-psutil uv -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   # shellcheck disable=2086
   for pkg in $UV; do
     if ! uv tool install "$pkg"; then
       uv tool install "$pkg"
     fi
   done
+fi
+if [ "$TEXLIVE" -ne 0 ]; then
+  DEBIAN_FRONTEND=noninteractive apt install texlive-installer -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  echo 'c' | termux-install-tl --no-interaction
 fi
 if [ "$APKTOOL" -ne 0 ]; then
   wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
