@@ -344,6 +344,109 @@ if [ "$TEXLIVE" -ne 0 ]; then
   cd physics-patch || exit
   git checkout dev
   cd ~ || exit
+  mkdir -p ~/.config/fontconfig/conf.d
+  cat >~/.config/fontconfig/conf.d/00-noto.conf <<'EOF'
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<match target="pattern">
+  <test name="family">
+    <string>system-ui</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>sans-serif</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>sans-serif</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>Noto Sans</string>
+    <string>Noto Sans CJK TC</string>
+    <string>Noto Sans CJK SC</string>
+    <string>Noto Sans CJK JP</string>
+    <string>Noto Sans CJK KR</string>
+    <string>Noto Sans CJK HK</string>
+    <string>Noto Color Emoji</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>serif</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>Noto Serif</string>
+    <string>Noto Serif CJK TC</string>
+    <string>Noto Serif CJK SC</string>
+    <string>Noto Serif CJK JP</string>
+    <string>Noto Serif CJK KR</string>
+    <string>Noto Serif CJK HK</string>
+    <string>Noto Color Emoji</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>monospace</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>Noto Sans Mono</string>
+    <string>Noto Sans Mono CJK TC</string>
+    <string>Noto Sans Mono CJK SC</string>
+    <string>Noto Sans Mono CJK JP</string>
+    <string>Noto Sans Mono CJK KR</string>
+    <string>Noto Sans Mono CJK HK</string>
+    <string>Noto Color Emoji</string>
+  </edit>
+</match>
+</fontconfig>
+EOF
+  cat >~/.config/fontconfig/conf.d/01-replace.conf <<'EOF'
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+<match target="pattern">
+  <test name="family">
+    <string>DFKai-SB</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>TW-Kai</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>MingLiu</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>TW-Sung</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>PMingLiu</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>TW-Sung</string>
+  </edit>
+</match>
+<match target="pattern">
+  <test name="family">
+    <string>Microsoft JhengHei</string>
+  </test>
+  <edit name="family" mode="prepend" binding="strong">
+    <string>WenQuanYi Zen Hei</string>
+  </edit>
+</match>
+</fontconfig>
+EOF
+  texfontdir=$(echo /data/data/com.termux/files/usr/share/texlive/*/texmf-dist/fonts | tail -n1)
+  cat >~/.config/fontconfig/conf.d/99-texlive.conf <<EOF
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <dir>$texfontdir</dir>
+</fontconfig>
+EOF
 fi
 if [ "$APKTOOL" -ne 0 ]; then
   wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
