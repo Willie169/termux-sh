@@ -102,7 +102,6 @@ The variables below refer to the variables set in the beginning of [`termux-setu
 2. **Stirling PDF**: Installs Stirling PDF, a powerful, open-source PDF editing platform, with English, Chinese - Simplified, Chinese - Simplified (vertical), Chinese - Traditional, and Chinese - Traditional (vertical) Tesseract OCR, if not `$STIRLINGPDF=0`. It can be started by optionally editing config in `$PREFIX/var/lib/proot-distro/containers/stirling-pdf/rootfs/configs/custom_settings.yml` and running `proot-distro run stirling-pdf -e SECURITY_ENABLELOGIN=false -e LANGS=en_GB`, or running `stirlingpdf [port]` (defined in my [**bashrc**](https://github.com/Willie169/bashrc), and if port is not specified, `9000` is used) and accessed on `localhost:<port>`. It's normal that startup needs a while.
 2. **npm packages**: Installs npm packages set in `$NPMGALLOW` globally with allowing scripts configured and npm packages set in `$NPMGIGNORE` globally with scripts ignored.
 2. **uv packages**: Installs uv tools set in `$UV`.
-2. **TeX Live**: Installs TeX Live if not `$TEXLIVE=0`.
 2. **Apktool**: Installs Apktool in `/$PREFIX/local/bin` if not `$APKTOOL=0`.
 2. **EFF Large Wordlist for Passphrases**: Downloads EFF Large Wordlist for Passphrases in `~/.eff_large_wordlist.txt`.
 2. **Proot-distro Termux environment**: Installs an Termux proot-distro environment with alias `$TERMUX`, which can be booted using script `proot-termux.sh` in home directory `~` and `~/.shortcuts` folder (for **Termux:Widget**), if `$TERMUX` is set as a nonempty string.
