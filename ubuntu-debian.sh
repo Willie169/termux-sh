@@ -299,16 +299,6 @@ cmake --build build --config Release --parallel "$(nproc)"
 cmake --install build --strip
 cd ~ || exit
 rm -rf yosys
-if [ "$TEST" -eq 0 ]; then
-  wget --tries=100 --retry-connrefused --waitretry=5 --no-check-certificate https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-  tar -xzf install-tl-unx.tar.gz
-  rm install-tl-unx.tar.gz*
-  cd install-tl-* || exit
-  perl ./install-tl --no-interaction
-  cd ~ || exit
-  rm -rf install-tl-*
-  /usr/local/texlive/2026/bin/aarch64-linux/tlmgr update --all --self --reinstall-forcibly-removed
-fi
 mkdir -p ~/.config/fontconfig/conf.d
 cat >~/.config/fontconfig/conf.d/00-noto.conf <<'EOF'
 <?xml version="1.0"?>
@@ -402,13 +392,6 @@ cat >~/.config/fontconfig/conf.d/01-replace.conf <<'EOF'
     <string>WenQuanYi Zen Hei</string>
   </edit>
 </match>
-</fontconfig>
-EOF
-cat >~/.config/fontconfig/conf.d/99-texlive.conf <<'EOF'
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-  <dir>/usr/local/texlive/2026/texmf-dist/fonts</dir>
 </fontconfig>
 EOF
 [ "$TEST" -eq 0 ] && fc-cache -fv
