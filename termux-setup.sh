@@ -447,6 +447,7 @@ EOF
   <dir>$texfontdir</dir>
 </fontconfig>
 EOF
+  fc-cache -fv
 fi
 if [ "$APKTOOL" -ne 0 ]; then
   wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
