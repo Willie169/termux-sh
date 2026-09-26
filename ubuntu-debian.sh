@@ -395,19 +395,6 @@ cat >~/.config/fontconfig/conf.d/01-replace.conf <<'EOF'
 </fontconfig>
 EOF
 [ "$TEST" -eq 0 ] && fc-cache -fv
-cd /usr/share || exit
-git clone https://github.com/Willie169/LaTeX-ToolKit
-cd ~ || exit
-mkdir -p texmf
-cd texmf || exit
-mkdir -p tex
-cd tex || exit
-mkdir -p latex
-cd latex || exit
-git clone https://github.com/Willie169/physics-patch
-cd physics-patch || exit
-git checkout dev
-cd ~ || exit
 DEBIAN_FRONTEND=noninteractive apt install -f -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 DEBIAN_FRONTEND=noninteractive apt autoremove --purge -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"

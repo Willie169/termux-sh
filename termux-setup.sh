@@ -330,8 +330,20 @@ if [ -n "$UV" ]; then
   done
 fi
 if [ "$TEXLIVE" -ne 0 ]; then
-  DEBIAN_FRONTEND=noninteractive apt install texlive-installer -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  DEBIAN_FRONTEND=noninteractive apt install fontconfig-utils texlive-installer -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
   echo 'c' | termux-install-tl --no-interaction
+  cd ~ || exit
+  mkdir -p texmf
+  cd texmf || exit
+  mkdir -p tex
+  cd tex || exit
+  mkdir -p latex
+  cd latex || exit
+  git clone https://github.com/Willie169/LaTeX-ToolKit.git
+  git clone https://github.com/Willie169/physics-patch.git
+  cd physics-patch || exit
+  git checkout dev
+  cd ~ || exit
 fi
 if [ "$APKTOOL" -ne 0 ]; then
   wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
