@@ -130,13 +130,6 @@ sed '/^extra-keys = /{N;d;}' -i ~/.termux/termux.properties
 perl -0777 -pe 's/(###############\n# Extra keys\n###############\n)/$1\nextra-keys = \[ \[ \{ key: ESC, popup: \{ macro: "CTRL t", display: "CTRL t" \} \}, \{ key: "\`", popup: \{ macro: "CTRL 1", display: "CTRL 1" \} \}, \{ key: "\`\`\`", popup: \{ macro: "CTRL 2", display: "CTRL 2" \} \}, \{ key: ":%s\/\\\\\\\\v", popup: \{ macro: "CTRL r", display: "CTRL r" \} \}, \{ key: ":%s\/", popup: ":wq\\n" \}, \{ key: "d^", popup: "d\\\$" \}, \{ key: "y^", popup: "y\\\$" \}, \{ key: "yG", popup: "dG" \} \], \[ \{ key: DRAWER, popup: "\\\!" \}, \{ key: KEYBOARD, popup: "–" \}, \{ key: "\/", popup: "±" \}, \{ key: DEL, popup: BKSP \}, \{ key: HOME, popup: ENTER \}, \{ key: UP, popup: \{ macro: "CTRL UP", display: "Up" \} \}, \{ key: END, popup: "gg=G" \}, \{ key: PGUP, popup: "\\\\\\\"_dP" \} \], \[ \{ key: TAB, popup: \{ macro: "CTRL d", display: "CTRL d" \} \}, \{ key: "~", popup: \{ macro: "CTRL \\\\\\\\", display: "CTRL \\\\\\\\" \} \}, \{ key: CTRL, popup: \{ macro: "CTRL c", display: "CTRL c" \} \}, \{ key: ALT, popup: \{ macro: "CTRL z", display: "CTRL z" \} \}, \{ key: LEFT, popup: \{ macro: "CTRL LEFT", display: "Left" \} \}, \{ key: DOWN, popup: \{ macro: "CTRL DOWN", display: "Down" \} \}, \{ key: RIGHT, popup: \{ macro: "CTRL RIGHT", display: "Right" \} \}, \{ key: PGDN, popup: "EOF\\n" \} \] \]\n/s' ~/.termux/termux.properties >~/tmp
 mv ~/tmp ~/.termux/termux.properties
 termux-reload-settings || true
-mkdir -p ~/.shortcuts
-cp ~/termux-sh/DOTshortcuts/* ~/.shortcuts
-cp ~/termux-sh/DOTshortcuts/documents.sh ~
-cp ~/termux-sh/DOTshortcuts/download.sh ~
-cp ~/termux-sh/DOTshortcuts/scripts.sh ~
-cp ~/termux-sh/DOTshortcuts/storage.sh ~
-cp ~/termux-sh/DOTshortcuts/proot-*.sh ~
 mkdir ~/shared
 tee "$PREFIX"/etc/resolv.conf >/dev/null <<'EOF'
 nameserver 1.1.1.1
