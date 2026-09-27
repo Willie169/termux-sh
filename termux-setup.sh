@@ -33,6 +33,7 @@ STIRLINGPDF=1
 NPMGALLOW='http-server'
 NPMGIGNORE=''
 UV='gallery-dl gh2md jupytext meson pylatexenc tldr xmljson yamllint'
+LATEX=1
 APKTOOL=1
 EFFLIST=1
 TERMUX='termux'
@@ -327,6 +328,15 @@ if [ -n "$UV" ]; then
       uv tool install "$pkg"
     fi
   done
+fi
+if [ "$LATEX" -ne 0 ]; then
+  mkdir -p ~/texmf/tex/latex
+  cd ~/texmf/tex/latex || exit
+  git clone https://github.com/Willie169/LaTeX-ToolKit.git
+  git clone https://github.com/Willie169/physics-patch.git
+  cd physics-patch || exit
+  git checkout dev
+  cd ~ || exit
 fi
 if [ "$APKTOOL" -ne 0 ]; then
   wget --tries=100 --retry-connrefused --waitretry=5 https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
