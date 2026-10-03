@@ -121,6 +121,10 @@ rm jadx*.zip*
 chmod +x bin/jadx
 chmod +x bin/jadx-gui
 cd ~ || exit
+gh_release -w --wget_option '--tries=100 --retry-connrefused --waitretry=5' qarmin/czkawka linux_czkawka_cli_heif_raw_avif_arm64
+mv linux_czkawka_cli_heif_raw_avif_arm64 czkawka
+chmod +x czkawka
+mv czkawka ~/.local/bin/
 NVM_VERSION=$(curl -fsSL "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r '.tag_name')
 PROFILE=/dev/null bash -c "curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash"
 export NVM_DIR="$HOME/.nvm"
