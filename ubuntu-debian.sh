@@ -28,17 +28,17 @@ EOF
 source /etc/os-release
 apt update
 if [ "$ID" = "ubuntu" ]; then
+  DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+  add-apt-repository universe -y -n
+  add-apt-repository multiverse -y -n
+  add-apt-repository restricted -y -n
+  add-apt-repository ppa:git-core/ppa -y -n
+  add-apt-repository ppa:libreoffice/ppa -y -n
+  add-apt-repository ppa:longsleep/golang-backports -y -n
+  add-apt-repository ppa:mozillateam/ppa -y -n
+  add-apt-repository ppa:zhangsongcui3371/fastfetch -y -n
   f=/etc/apt/sources.list.d/ubuntu.sources
   sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
-  DEBIAN_FRONTEND=noninteractive apt install software-properties-common -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
-  add-apt-repository universe -y
-  add-apt-repository multiverse -y
-  add-apt-repository restricted -y
-  add-apt-repository ppa:git-core/ppa -y
-  add-apt-repository ppa:libreoffice/ppa -y
-  add-apt-repository ppa:longsleep/golang-backports -y
-  add-apt-repository ppa:mozillateam/ppa -y
-  add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
   f=/etc/apt/sources.list.d/debian.sources
   sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
