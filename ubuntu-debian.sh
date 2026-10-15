@@ -37,12 +37,9 @@ if [ "$ID" = "ubuntu" ]; then
   add-apt-repository ppa:longsleep/golang-backports -y -n
   add-apt-repository ppa:mozillateam/ppa -y -n
   add-apt-repository ppa:zhangsongcui3371/fastfetch -y -n
-  f=/etc/apt/sources.list.d/ubuntu.sources
-  sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
+  sed -i 's/^Types: *deb.*/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources || true
 else
-  f=/etc/apt/sources.list.d/debian.sources
-  sed -i 's/^Types: *deb.*/Types: deb deb-src/' "$f"
-  sed -i 's/\bmain\b.*/main contrib non-free non-free-firmware/' "$f"
+  sed -i 's/^Types: *deb.*/Types: deb deb-src/; s/\bmain\b.*/main contrib non-free non-free-firmware/' /etc/apt/sources.list.d/debian.sources || true
 fi
 apt update
 DEBIAN_FRONTEND=noninteractive apt purge neovim rustup tree-sitter-cli yq -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
