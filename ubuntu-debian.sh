@@ -37,9 +37,6 @@ if [ "$ID" = "ubuntu" ]; then
   add-apt-repository ppa:git-core/ppa -y
   add-apt-repository ppa:libreoffice/ppa -y
   add-apt-repository ppa:longsleep/golang-backports -y
-  add-apt-repository ppa:openjdk-r/ppa -y
-  mv /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-*.sources /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources || true
-  sed -i 's/^Suites: .*$/Suites: noble/' /etc/apt/sources.list.d/openjdk-r-ubuntu-ppa-noble.sources
   add-apt-repository ppa:mozillateam/ppa -y
   add-apt-repository ppa:zhangsongcui3371/fastfetch -y
 else
