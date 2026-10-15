@@ -39,7 +39,7 @@ UBUNTUINSTALL=0
 DEBIAN='debian'
 DEBIANINSTALL=0
 </code></pre>
-: approximately 13.39 GB.</li>
+: approximately 14.32 GB.</li>
 <li><code>UBUNTUINSTALL=1</code> or <code>DEBIANINSTALL=1</code>: approximately 27.94 GB.</li>
 </ul></li>
 <li>Sufficient power supply.</li>
