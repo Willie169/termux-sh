@@ -67,7 +67,7 @@ if [ "$TEST" -eq 0 ]; then
 else
   DEBIAN_FRONTEND=noninteractive apt install $PKG -y -s -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 fi
-DEBIAN_FRONTEND=noninteractive apt install xclip xfce4 xfce4-goodies xinit -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
+DEBIAN_FRONTEND=noninteractive apt install libreoffice-nogui xclip xfce4 xfce4-goodies xinit -y -o Dpkg::Options::="--force-confnew" -o Dpkg::Options::="--force-overwrite"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path -y
 . "$HOME/.cargo/env"
 curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
