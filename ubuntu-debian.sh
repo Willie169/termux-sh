@@ -197,12 +197,16 @@ cd ~ || exit
 mv ~/lizzieyzy/src/main/resources/assets/logo.png ~/.local/share/lizzieyzy/
 rm -rf ~/.m2/repository
 rm -rf ~/lizzieyzy
+cat >~/.local/bin/lizzieyly <<'EOF'
+cd $HOME/.local/share/lizzieyzy && java -jar lizzie-yzy.jar
+EOF
+chmod +x ~/.local/bin/lizzieyly
 cat >~/.local/share/applications/lizzieyzy.desktop <<EOF
 [Desktop Entry]
 Type=Application
 Name=LizzieYzy
 Comment=LizzieYzy - GUI for Game of Go
-Exec=sh -c 'cd $HOME/.local/share/lizzieyzy && java -jar lizzie-yzy.jar'
+Exec=$HOME/.local/bin/lizzieyzy
 Icon=$HOME/.local/share/lizzieyzy/logo.png
 Terminal=false
 Categories=Game;
